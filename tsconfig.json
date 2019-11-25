@@ -1,0 +1,15 @@
+{
+    "compilerOptions":{
+        "lib":[
+            "es2015"
+        ]
+    },
+    "include": [
+        "src/*",
+        "src/*/*",
+        "build/*",
+    ],
+    "exclude":[
+        "node_modules"
+    ]
+}
