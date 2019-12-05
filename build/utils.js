@@ -7,14 +7,15 @@ exports.cssLoaders=function(options){
     const styleLoader={
         loader:"style-loader",
         options:{
-            sourceMap:options.sourceMap
+            //sourceMap:options.sourceMap
         }
     }
 
     const cssLoader={
         loader:"css-loader",
         options:{
-            sourceMap:options.sourceMap
+            sourceMap:options.sourceMap,
+            modules:options.useCssModule
         }
     }
 
@@ -27,13 +28,24 @@ exports.cssLoaders=function(options){
 
     function generateLoaders(loader,loaderOptions){
         
-        const loaders=options.isBuild?[cssLoader]:[styleLoader,cssLoader]
+        const loaders=options.isBuild?[cssLoader]:[styleLoader,cssLoader];
 
-        if(loader){
+        if(loader==="less"){
             loaders.push({
                 loader:loader+'-loader',
                 options:Object.assign({},loaderOptions,{
-                    sourceMap:options.sourceMap
+                    sourceMap:options.sourceMap,
+                    javascriptEnabled:true
+                })
+            })
+        }
+
+        if(loader && loader!=="less"){
+            loaders.push({
+                loader:loader+'-loader',
+                options:Object.assign({},loaderOptions,{
+                    sourceMap:options.sourceMap,
+                     
                 })
             })
         }
@@ -86,7 +98,7 @@ exports.styleLoaders=function(options){
                 include:[
                     path.resolve("src/")
                 ],
-                exclude:[/node_modules/],
+                exclude:[/node_modules/,/build/],
                 use:loader
             })
         }

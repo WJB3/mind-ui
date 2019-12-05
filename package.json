@@ -2,9 +2,11 @@
   "name": "mind-ui",
   "version": "1.0.0",
   "description": "a react ui-component",
-  "main": "index.js",
+  "main": "./src/index.tsx",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "cross-env webpack-dev-server --config build/webpack.dev.config.js",
+    "build": "cross-env webpack --config build/webpack.build.config.js"
   },
   "repository": {
     "type": "git",
@@ -23,9 +25,27 @@
     "react-router-dom": "^5.1.2"
   },
   "devDependencies": {
+    "@babel/core": "^7.7.4",
+    "@babel/plugin-proposal-class-properties": "^7.7.4",
+    "@babel/preset-react": "^7.7.4",
+    "antd": "^3.25.3",
     "babel-loader": "^8.0.6",
+    "cross-env": "^6.0.3",
+    "css-loader": "^3.2.0",
+    "friendly-errors-webpack-plugin": "^1.7.0",
+    "html-webpack-plugin": "^3.2.0",
+    "less": "^3.10.3",
+    "less-loader": "^5.0.0",
     "mini-css-extract-plugin": "^0.8.0",
+    "postcss-loader": "^3.0.0",
+    "prop-types": "^15.7.2",
+    "rc-queue-anim": "^1.8.3",
+    "rc-scroll-anim": "^2.7.4",
+    "rc-tween-one": "^2.6.5",
+    "style-loader": "^1.0.0",
     "ts-loader": "^6.2.1",
+    "typed-css-modules-loader": "^0.0.18",
+    "typescript": "^3.7.2",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10",
     "webpack-dev-server": "^3.9.0",
