@@ -9,9 +9,9 @@ class Layout extends React.Component {
     generateMenu=(menuConfig)=>{
         return menuConfig.map((menu)=>{
             if(menu.children){
-                return <SubMenu title={menu.title}>{this.generateMenu(menu.children)}</SubMenu>;
+                return <SubMenu title={menu.title} key={menu.key}>{this.generateMenu(menu.children)}</SubMenu>;
             }else{
-                return <Menu.Item>
+                return <Menu.Item key={menu.key}>
                     <span>{menu.title}</span>
                 </Menu.Item>;
             }
@@ -30,8 +30,8 @@ class Layout extends React.Component {
                     >{this.generateMenu(menuInfo)}</Menu>
                 </Sider>
                 <AntdLayout>
-                    <Content>{children}</Content>
-                    <Footer>Footer</Footer>
+                    <Content><div className={"main_container"}>{children}</div></Content>
+                    {/* <Footer>Footer</Footer> */}
                 </AntdLayout>
             </AntdLayout>
         )

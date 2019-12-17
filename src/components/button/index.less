@@ -1,0 +1,135 @@
+.melon-button{
+    border: none;
+    border-radius:2px;
+    background:#e0e0e0 ;
+    color:inherit;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    white-space: nowrap;
+    font-weight:500;
+    height: 32px;
+    padding: 0 15px;
+    font-size: 14px;
+    outline: 0;
+    position: relative;
+    text-decoration: none;
+    transition:all .3s ease; 
+    opacity:1;
+    cursor:pointer;
+    
+    &--raised{
+       
+        box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
+
+        &:hover{
+            will-change: 'box-shadow opacity' ;
+            box-shadow: 0 3px 3px 0 rgba(0,0,0,0.14), 0 1px 7px 0 rgba(0,0,0,0.12), 0 3px 1px -1px rgba(0,0,0,0.2);
+            opacity:0.9;
+        }
+
+    }
+
+    &--primary{
+        background-color: rgba(91,231,196);
+        opacity:1;
+        color:white;
+    }
+
+    &--ghost&--primary{
+        background-color: transparent;
+        border:1px solid rgba(91,231,196);
+        color:rgba(91,231,196);
+    }
+
+
+    &--secondary{
+        background-color: rgba(150,206,180);
+        opacity:1;
+        color:white;
+    }
+
+    &--ghost&--secondary{
+        background-color: transparent;
+        border:1px solid rgba(150,206,180);
+        color:rgba(150,206,180);
+    }
+
+    &--dashed{
+        background-color: rgba(255,255,255);
+        border: 1px solid rgba(0,0,0,0.5);
+        border-style:dashed;
+
+        &:hover{
+            border-color:rgba(91,231,196,0.8);
+            color:rgba(91,231,196,0.8)
+        }
+    }
+
+    &--danger{
+        background-color: rgba(242,49,127,1);
+        opacity:1;
+        color:white;
+
+    }
+
+    &--ghost&--danger{
+        background-color: transparent;
+        border:1px solid rgba(242,49,127,1);
+        color:rgba(242,49,127,1);
+    }
+
+    &--warning{
+        background-color: rgba(255,173,96,1);
+        opacity:1;
+        color:white;
+
+    }
+
+    &--ghost&--warning{
+        background-color: transparent;
+        border:1px solid rgba(255,173,96,1);
+        color:rgba(255,173,96,1);
+    }
+
+    &--link{
+        background-color: transparent;
+        color:rgba(91,231,196);
+        box-shadow:none;
+
+        &:hover{
+            box-shadow: none;
+        }
+    }
+
+    &--ghost&--link{
+      
+        color:rgba(91,231,196);
+
+        
+    }
+
+    &--small{
+        height: 24px;
+        padding: 0 7px;
+    }
+
+    &--large{
+        height: 40px;
+        padding: 0 15px;
+        font-size: 16px;
+    }
+
+    &--disabled{
+        opacity:0.4;
+        //box-shadow: none;
+        cursor: not-allowed;
+        color:rgba(0,0,0,1);
+
+        &:hover{
+            opacity:0.4;
+            box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
+        }
+    }
+    
+}
