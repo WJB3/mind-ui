@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { classNames } from './../helper/className';
+import Icon from './../icon';
 import "./index.less";
 
 class Button extends React.Component {
     render() {
 
-        const { children, type,size,disabled,ghost } = this.props;
+        const { children, type,size,disabled,ghost,shape,icon } = this.props;
         return (
             <button className={
                 classNames(
@@ -14,8 +15,10 @@ class Button extends React.Component {
                     type ? `melon-button--${type}` : "",
                     size ? `melon-button--${size}` : "",
                     disabled?`melon-button--disabled`:"",
-                    ghost?`melon-button--ghost`:""
+                    ghost?`melon-button--ghost`:"",
+                    shape?`melon-button--${shape}`:""
                 )} >
+                {icon && <Icon type={icon}/>}
                 {children}
             </button>
         )

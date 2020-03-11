@@ -17,7 +17,8 @@ module.exports={
                 test:/\.(js|jsx)/,
                 loader:"babel-loader",
                 include:SRC_PATH,
-                exclude:/node_modules/
+                exclude:/node_modules/,
+                include:/src/
             },
             {
                 test:/\.(ts|tsx)/,
@@ -29,7 +30,27 @@ module.exports={
                         }
                     }
                 ]
-            }
+            },
+            {
+                test:/\.svg$/,
+                loader:"svg-sprite-loader"
+            },
+            {
+                test:/\.(sc|sa)ss$/,
+                use:[
+                    {loader:"style-loader"},
+                    {loader:"css-loader"},
+                    {loader:"sass-loader"},
+                    {loader:"postcss-loader"}
+                ]
+            },
+            {
+				test:/\.mp3$/,
+				loader:'file-loader',
+				options:{
+					name:'[name].[ext]'
+				}
+			}
         ]
     }
 }

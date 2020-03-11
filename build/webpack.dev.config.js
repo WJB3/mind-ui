@@ -29,7 +29,7 @@ module.exports=merge(baseWebpackConfig,{
             errors:true,
         },
         host:"127.0.0.1",
-        open:true,//开发服务器将打开浏览器
+        open:false,//开发服务器将打开浏览器
         noInfo:true,//那些显示的 webpack 包(bundle)信息」的消息将被隐藏。错误和警告仍然会显示。
         https:false,
         hot:true,//启用webpack的模块热更新
@@ -55,7 +55,7 @@ module.exports=merge(baseWebpackConfig,{
                 html5:true,
                 collapseWhitespace: true, //把生成的 index.html 文件的内容的没用空格去掉，减少空间
             },
-            title:'一个即将升起的React-UI框架',
+            title:'Melon-ui',
             hash:true,
             favicon:'./man.ico',//将给定的favicon路径添加到输出HTML
             showErrors:true,

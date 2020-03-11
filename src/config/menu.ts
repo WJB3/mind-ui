@@ -1,3 +1,4 @@
+import {NavLink} from 'react-router-dom';
 const menuInfo=[
     {
         title:"介绍",
@@ -9,7 +10,16 @@ const menuInfo=[
         children:[
             {
                 title:"按钮",
-                key:"button"
+                key:"button",
+                
+            },
+            {
+                title:"Icon",
+                key:"icon",
+            },
+            {
+                title:"动画",
+                key:"animation",
             }
         ]
     }

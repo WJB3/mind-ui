@@ -1,4 +1,5 @@
 import React from 'react';
+import { HashRouter, Route, Switch,NavLink } from 'react-router-dom';
 export const Banner50DataSource = {
   wrapper: { className: 'home-page-wrapper banner5' },
   page: { className: 'home-page banner5-page' },
@@ -38,9 +39,9 @@ export const Banner50DataSource = {
         children: {
           className: 'banner5-button',
           type: 'primary',
-          children: '开始使用'
+          children:<NavLink to='/button'><div style={{position: "relative",bottom: "10px"}}>开始使用</div></NavLink>
         },
-        onClick:()=>{   }
+        onClick:()=>{ }
       },
     ],
   },

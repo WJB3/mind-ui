@@ -103,10 +103,13 @@
     }
 
     &--ghost&--link{
-      
-        color:rgba(91,231,196);
+        color:rgba(91,231,196);  
+    }
 
-        
+    &--circle{
+        height:32px;
+        width:32px;
+        border-radius: 50%;
     }
 
     &--small{
@@ -114,10 +117,22 @@
         padding: 0 7px;
     }
 
+    &--small&--circle{
+        height: 24px;
+        width:24px;
+        border-radius: 50%;
+    }
+
     &--large{
         height: 40px;
         padding: 0 15px;
         font-size: 16px;
+    }
+
+    &--large&--circle{
+        height: 40px;
+        width:40px;
+        border-radius: 50%;
     }
 
     &--disabled{
@@ -132,4 +147,6 @@
         }
     }
     
+    
+
 }

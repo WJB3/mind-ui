@@ -16,8 +16,8 @@ class DescriptionTable extends React.Component {
                 <colgroup>
                    
                     {
-                        columns.map(item => (
-                            <col width={item.width || ''}></col>
+                        columns.map((item,index) => (
+                            <col width={item.width || ''} key={index}></col>
                         ))
                     }
                 </colgroup>
@@ -25,9 +25,9 @@ class DescriptionTable extends React.Component {
                     <tr>
 
                         {
-                            columns.map(item => {
+                            columns.map((item,index) => {
                                 return (
-                                    <th>
+                                    <th key={index}>
                                         {item.title}
 
                                     </th>
@@ -39,16 +39,16 @@ class DescriptionTable extends React.Component {
                 <tbody>
 
                     {
-                        dataSource.map(data => {
-                            return <React.Fragment>
-                                <tr>
+                        dataSource.map((data,index) => {
+                            return <React.Fragment key={index}>
+                                <tr key={index}>
 
-                                    {columns.map(column => {
+                                    {columns.map((column,index) => {
                                         if (column.render) {
-                                            return <td>{column.render(data[column.dataIndex], data)}</td>
+                                            return <td key={index}>{column.render(data[column.dataIndex], data)}</td>
                                         }
                                         return (
-                                            <td>{data[column.dataIndex]}</td>
+                                            <td key={index}>{data[column.dataIndex]}</td>
                                         )
                                     })}</tr>
 

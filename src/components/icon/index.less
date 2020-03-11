@@ -1,0 +1,22 @@
+@import "./../less/animation.less";
+
+.melon-icon{
+    display: inline-block;
+    color: inherit;
+    font-style: normal;
+    line-height: 0;
+    text-align: center;
+    text-transform: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+
+    &:hover{
+        opacity: 0.8;
+    }
+
+    &--spin{
+        -webkit-animation:spining 1s linear infinite;
+        animation:spining 1s liner infinite;
+    }
+
+}

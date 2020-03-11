@@ -8,14 +8,14 @@ class TextLayout extends React.Component{
             children,
             components,
             title,
-            description
+            description,
+            layoutStyle
         }=this.props;
-
-        console.log(components);
+ 
 
         return(
             <section className={"textlayout_component"}>
-                <section className={"textlayout_component-demo"}>
+                <section className={"textlayout_component-demo"} style={layoutStyle}>
                     {components}
                 </section>
                 <section className={"textlayout_component-text"}>

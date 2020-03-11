@@ -72,7 +72,9 @@ exports.cssLoaders=function(options){
 
     return {
         css:generateLoaders(),
-        less:generateLoaders("less")
+        less:generateLoaders("less"),
+        scss:generateLoaders("scss"),
+        // sass:generateLoaders("sass"),
     }
 }
 
