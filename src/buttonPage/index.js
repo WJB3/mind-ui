@@ -5,8 +5,8 @@ import Description from './../components/text/Description';
 import SubTitle from './../components/text/SubTitle';
 import Button from './../components/button/index';
 import Textlayout from './../components/text/Textlayout';
+import Ripples from './../components/ripples';
 import DescriptionTable from './../components/text/DescriptionTable';
-import { getDayOfYear } from './../utils/dateUtils';
 
 class ButtonPage extends React.Component {
 
@@ -27,7 +27,7 @@ class ButtonPage extends React.Component {
 
                 <Textlayout
                     components={<React.Fragment>
-                        <Button>Default</Button>
+                        <Ripples color="#00a1e9"><span style={{padding:"20px"}}>rimary</span></Ripples>
                         <Button type={"primary"}>Primary</Button>
                         <Button type={"secondary"}>Secondary</Button>
                         <Button type={"dashed"}>Dashed</Button>

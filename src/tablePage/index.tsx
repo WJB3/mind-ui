@@ -101,7 +101,7 @@ class TablePage extends React.Component{
             ],
             rowSelection:{
                 type:"checkbox",
-                onSelectAll:(row)=>{console.log(row)},
+                onSelectAll:(row)=>{},
                 onSelect:(record,selectedRows)=>{console.log(record);console.log(selectedRows);},
                 columnWidth:50
             }

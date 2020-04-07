@@ -20,8 +20,6 @@ class Layout extends React.Component {
     }
 
     menuClick=(info)=>{
-        // console.log(info);
-        // console.log(this.props);
         this.props.history.push(`/${info.key}`)
     }
 

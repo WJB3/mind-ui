@@ -5,8 +5,7 @@
  */
 
 function floatAdd(fa,fb){
-    console.log(fa)
-    console.log(fb)
+
     if(typeof fa!=="number"||typeof fb!=="number"){
         return fb+fb;
     }

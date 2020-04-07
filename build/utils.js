@@ -105,6 +105,6 @@ exports.styleLoaders=function(options){
             })
         }
     }
-    console.log(output)
+    
     return output;
 }

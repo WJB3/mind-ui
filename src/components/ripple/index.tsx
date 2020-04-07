@@ -3,6 +3,7 @@ import { classNames } from './../helper/className';
 import { getOffset } from './../helper/dom';
 import "./../styles/ripple.scss";
 import CircleRipple from './CircleRipple';
+import { TransitionGroup } from 'react-transition-group';
 
 interface RippleProps{
     children?:any,
@@ -74,9 +75,16 @@ const Ripple:React.FunctionComponent<RippleProps>=(RippleProps)=>{
 
     return(
         <div className={classes} onMouseDown={(event)=>handleMouseDown(event)} ref={rippleWrapperRef} onMouseUp={(event)=>handleMouseUp(event)}>
+            <TransitionGroup
+                component="span"
+                enter
+                exit
+            >
             {
                 circleRipple.map(item=><CircleRipple key={item.key} mergeStyle={item.style} />)
             }
+            </TransitionGroup>
+            
         </div>
     )
 }

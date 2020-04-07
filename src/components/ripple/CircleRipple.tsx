@@ -1,6 +1,6 @@
-import React,{Fragment} from 'react';
+import React,{Fragment,useState} from 'react';
 import { classNames } from './../helper/className';
-import { CSSTransition,SwitchTransition  } from 'react-transition-group';
+import { CSSTransition,SwitchTransition,Transition } from 'react-transition-group';
 import "./../styles/ripple.scss";
 import "./../styles/ripple.css";
  
@@ -13,6 +13,8 @@ interface CircleRippleProps{
 
 const CircleRipple:React.FunctionComponent<CircleRippleProps>=(CircleRippleProps)=>{
 
+    const [ rippleEntering,setRippleEntering ]=useState(false);
+
     const {
         mergeStyle,
         color,
@@ -21,14 +23,23 @@ const CircleRipple:React.FunctionComponent<CircleRippleProps>=(CircleRippleProps
 
     const styles={...mergeStyle,color,opacity}
 
-    const classes=classNames("wonderful-circle-ripple")
+    const classes=classNames("wonderful-circle-ripple",{
+        "ripple-entering":rippleEntering
+    });
+
+    function handleEnter(){
+        setRippleEntering(true);
+        console.log("handleEnter")
+    }
 
     return(
-        <SwitchTransition>
-            <CSSTransition classNames="ripple" in={true} timeout={200}>
-                <div className={classes} style={styles}></div>
-            </CSSTransition>
-        </SwitchTransition>
+        <Transition
+            onEnter={()=>console.log("circle")}
+ 
+            timeout={1000}
+        >
+            <div className={classes} style={styles}></div>
+        </Transition>
     )
 }
 
