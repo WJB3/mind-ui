@@ -1,4 +1,5 @@
-function classNames(name){
+ 
+function classNames(...name:any):any{
     let hasOwn={}.hasOwnProperty;
     let classes=[];
 

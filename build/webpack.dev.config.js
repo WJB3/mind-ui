@@ -5,7 +5,7 @@ const merge=require('webpack-merge');
 const baseWebpackConfig=require('./webpack.base.config.js');
 //引入基础webpack设置
 const HtmlWebpackPlugin=require('html-webpack-plugin');
-const derServerPort=8080;
+const derServerPort=10080;
 //基本作用就是生成html文件
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 //友好的提示
@@ -17,10 +17,15 @@ module.exports=merge(baseWebpackConfig,{
     module:{
         rules:styleUtils.styleLoaders({
             sourceMap:true,
-            usePostCSS:true,
+            usePostCSS:false,
             useTypescriptCssModule:false,
             useCssModule:false
         })
+    },
+    resolveLoader: {
+        alias: {
+            'scss-loader': 'sass-loader',
+        },
     },
     devServer:{
         port:derServerPort,//指定要监听请求的端口号
@@ -49,7 +54,7 @@ module.exports=merge(baseWebpackConfig,{
     plugins:[
         //处理html
         new HtmlWebpackPlugin({
-            template:'./index.ejs',//开发环境需要路径
+            template:'./public/index.ejs',//开发环境需要路径
             inject:'body',//所有javascript资源将被放置在body元素的底部
             minify:{
                 html5:true,
@@ -57,7 +62,7 @@ module.exports=merge(baseWebpackConfig,{
             },
             title:'Melon-ui',
             hash:true,
-            favicon:'./man.ico',//将给定的favicon路径添加到输出HTML
+            favicon:'./public/man.ico',//将给定的favicon路径添加到输出HTML
             showErrors:true,
         }),
         //热更新

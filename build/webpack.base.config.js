@@ -36,15 +36,6 @@ module.exports={
                 loader:"svg-sprite-loader"
             },
             {
-                test:/\.(sc|sa)ss$/,
-                use:[
-                    {loader:"style-loader"},
-                    {loader:"css-loader"},
-                    {loader:"sass-loader"},
-                    {loader:"postcss-loader"}
-                ]
-            },
-            {
 				test:/\.mp3$/,
 				loader:'file-loader',
 				options:{

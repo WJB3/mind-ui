@@ -1,28 +1,46 @@
-import * as React from 'react';
+import React from 'react';
 import { classNames } from './../helper/className';
-import Icon from './../icon';
-import "./index.less";
+import Ripple from './../ripple';
+import "./../styles/button.scss";
 
-class Button extends React.Component {
-    render() {
+export enum ButtonType{
+    PRIMARY="primary",
+    DANGER="danger",
+    WARNING="warning"
+}
 
-        const { children, type,size,disabled,ghost,shape,icon } = this.props;
-        return (
-            <button className={
-                classNames(
-                    'melon-button',
-                    'melon-button--raised',
-                    type ? `melon-button--${type}` : "",
-                    size ? `melon-button--${size}` : "",
-                    disabled?`melon-button--disabled`:"",
-                    ghost?`melon-button--ghost`:"",
-                    shape?`melon-button--${shape}`:""
-                )} >
-                {icon && <Icon type={icon}/>}
+export enum ButtonSize{
+    SMALL="small",
+    DEFAULT="default",
+    LARGE="large"
+}
+
+interface ButtonProps{
+    type?:ButtonType,
+    size?:ButtonSize,
+    children?:any,
+    onClick?:()=>void
+}
+
+const Button:React.FunctionComponent<ButtonProps>=(ButtonProps)=>{
+
+    const {
+        type,
+        size,
+        children,
+        onClick
+    }=ButtonProps;
+
+    const classes=classNames("wonderful-button","wonderful-raised-button",`wonderful-${type}-button`)
+
+    return(
+        <button className={classes}>
+            <div className={"wonderful-button-wrapper"}>
+                <Ripple />
                 {children}
-            </button>
-        )
-    }
+            </div>
+        </button>
+    )
 }
 
 export default Button;

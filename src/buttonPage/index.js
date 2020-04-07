@@ -11,10 +11,7 @@ import { getDayOfYear } from './../utils/dateUtils';
 class ButtonPage extends React.Component {
 
     componentDidMount(){
-        console.log("componentDidMount")
       
-        console.log(0.1245+0.15457)
-       
     }
  
     render() {

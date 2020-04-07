@@ -1,0 +1,30 @@
+@import "./variable";
+
+.wonderful-ripple-wrapper{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: inherit!important;
+    contain: strict;//不会使页面重绘
+    overflow: hidden;
+}
+
+.wonderful-circle-ripple{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    pointer-events: none;
+    user-select: none;
+    border-radius: 50%;
+    background-color: currentColor;
+    background-clip: padding-box;
+    opacity: 0.1;
+}
+
+
+
+ 
