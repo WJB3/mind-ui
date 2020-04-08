@@ -1,42 +1,51 @@
-import React,{Fragment,useState} from 'react';
+import React,{ useState } from 'react';
 import { classNames } from './../helper/className';
-import { CSSTransition,SwitchTransition,Transition } from 'react-transition-group';
+import { Transition } from 'react-transition-group';
 import "./../styles/ripple.scss";
-import "./../styles/ripple.css";
  
-
 interface CircleRippleProps{
     mergeStyle?:any,
     color?:any,
-    opacity?:any
+    opacity?:any,
+    in?:any
 }
 
 const CircleRipple:React.FunctionComponent<CircleRippleProps>=(CircleRippleProps)=>{
 
     const [ rippleEntering,setRippleEntering ]=useState(false);
+    const [ rippleExiting,setRippleExiting ]=useState(false);
 
     const {
         mergeStyle,
         color,
-        opacity
+        opacity,
+        ...other
     }=CircleRippleProps;
 
     const styles={...mergeStyle,color,opacity}
 
     const classes=classNames("wonderful-circle-ripple",{
-        "ripple-entering":rippleEntering
+        "wonderful-ripple-entering":rippleEntering,
+        "wonderful-ripple-wrapper-exiting":rippleExiting
     });
 
     function handleEnter(){
         setRippleEntering(true);
-        console.log("handleEnter")
+    }
+
+    function handleExit(){
+        setRippleExiting(true);
     }
 
     return(
         <Transition
-            onEnter={()=>console.log("circle")}
- 
-            timeout={1000}
+            onEnter={()=>handleEnter()}
+            onExit={()=>handleExit()}
+            exit
+            enter
+            timeout={300}
+            unmountOnExit
+            {...other}
         >
             <div className={classes} style={styles}></div>
         </Transition>

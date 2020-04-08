@@ -2,24 +2,17 @@ import React from 'react';
 import { classNames } from './../helper/className';
 import Ripple from './../ripple';
 import "./../styles/button.scss";
-
-export enum ButtonType{
-    PRIMARY="primary",
-    DANGER="danger",
-    WARNING="warning"
-}
-
-export enum ButtonSize{
-    SMALL="small",
-    DEFAULT="default",
-    LARGE="large"
-}
+ 
 
 interface ButtonProps{
-    type?:ButtonType,
-    size?:ButtonSize,
+    type?:any,
+    size?:any,
     children?:any,
-    onClick?:()=>void
+    onClick?:()=>void,
+    disabled?:boolean,
+    flat?:boolean,
+    shape?:string,
+    float?:boolean
 }
 
 const Button:React.FunctionComponent<ButtonProps>=(ButtonProps)=>{
@@ -28,15 +21,26 @@ const Button:React.FunctionComponent<ButtonProps>=(ButtonProps)=>{
         type,
         size,
         children,
-        onClick
+        disabled,
+        flat,
+        shape,
+        float
     }=ButtonProps;
 
-    const classes=classNames("wonderful-button","wonderful-raised-button",`wonderful-${type}-button`)
+    const classes=classNames("wonderful-button",
+        "wonderful-rasied-button",
+        size?`wonderful-${size}-button`:"wonderful-normal-button",
+        type?`wonderful-${type}-button`:"",
+        {"wonderful-disabled-button":disabled},
+        flat?`wonderful-flat-button`:"",
+        shape?`wonderful-${shape}-button`:"",
+        float?`wonderful-float-button`:""
+    )
 
     return(
         <button className={classes}>
             <div className={"wonderful-button-wrapper"}>
-                <Ripple />
+                <Ripple disabled={disabled}/>
                 {children}
             </div>
         </button>

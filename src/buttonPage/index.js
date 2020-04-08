@@ -5,17 +5,13 @@ import Description from './../components/text/Description';
 import SubTitle from './../components/text/SubTitle';
 import Button from './../components/button/index';
 import Textlayout from './../components/text/Textlayout';
-import Ripples from './../components/ripples';
 import DescriptionTable from './../components/text/DescriptionTable';
 
 class ButtonPage extends React.Component {
 
-    componentDidMount(){
-      
-    }
- 
+
     render() {
- 
+
 
         return (
             <Layout >
@@ -27,24 +23,22 @@ class ButtonPage extends React.Component {
 
                 <Textlayout
                     components={<React.Fragment>
-                        <Ripples color="#00a1e9"><span style={{padding:"20px"}}>rimary</span></Ripples>
                         <Button type={"primary"}>Primary</Button>
-                        <Button type={"secondary"}>Secondary</Button>
-                        <Button type={"dashed"}>Dashed</Button>
+                        <Button type={"second"}>Secondary</Button>
                         <Button type={"danger"}>Danger</Button>
+                        <Button type={"info"}>Info</Button>
                         <Button type={"warning"}>Warning</Button>
-                        <Button type={"link"}>Link</Button>
+                        <Button disabled>禁用</Button>
                     </React.Fragment>}
                     title={"按钮类型"}
-                    description={"按钮有五种类型：主按钮、次按钮、虚线按钮、危险按钮、警告按钮和链接按钮。主按钮在同一个操作区域最多出现一次。"}
+                    description={"按钮有六种类型：主按钮、次按钮、危险按钮、提示按钮、警告按钮、禁用按钮。主按钮在同一个操作区域最多出现一次。"}
                 ></Textlayout>
 
                 <Textlayout
                     components={<React.Fragment>
                         <Button size={"small"} type={"primary"}>small</Button>
-                        <Button type={"primary"}>Default</Button>
+                        <Button type={"danger"}>danger</Button>
                         <Button type={"warning"} size={"large"}>Large</Button>
-
                     </React.Fragment>}
                     title={"按钮尺寸"}
                     description={"通过设置 size 为 large small 分别把按钮设为大、小尺寸。若不设置 size，则尺寸为中。"}
@@ -52,29 +46,45 @@ class ButtonPage extends React.Component {
 
                 <Textlayout
                     components={<React.Fragment>
-                        <Button  type={"primary"} shape={"circle"}>圆</Button>
-                        <Button  type={"danger"} shape={"circle"} size={"small"}>圆</Button>
-                        <Button  type={"warning"} shape={"circle"} size={"large"}>圆</Button>
-                        <Button  type={"warning"} shape={"circle"} size={"large"} icon="wechat"> </Button>
-                    
+                        <Button type={"primary"} flat size={"large"}>Primary</Button>
+                        <Button type={"second"} flat>Secondary</Button>
+                        <Button type={"danger"} flat>Danger</Button>
+                        <Button type={"info"} flat>Info</Button>
+                        <Button type={"warning"} flat>Warning</Button>
+                        <Button disabled flat>禁用</Button>
                     </React.Fragment>}
-                    title={"按钮形状"}
-                    description={"通过设置 shape 为 circle 分别把按钮设为圆形等。设置icon为按钮的图标类型"}
+                    title={"按钮扁平"}
+                    description={"用于通用功能和减少分层在屏幕上,使其更具可读性。"}
                 ></Textlayout>
 
                 <Textlayout
                     components={<React.Fragment>
-                        <div style={{ backgroundColor: "rgb(190, 200, 200)", padding: "10px" }}>
-                            <Button type={"primary"} ghost>primary ghost</Button>
-                            <Button type={"danger"} ghost>danger ghost</Button>
-                            <Button type={"warning"} ghost>warning ghost</Button>
-                            <Button type={"link"} ghost>link ghost</Button>
-                        </div>
+                        <Button type={"primary"} shape={"circle"} size={"small"} flat>小</Button>
+                        <Button type={"danger"} shape={"circle"} flat >中</Button>
+                        <Button type={"warning"} shape={"circle"} size={"large"} flat>大</Button>
+                        <Button type={"primary"} shape={"round"} size={"small"} >小</Button>
+                        <Button type={"second"} shape={"round"}>中</Button>
+                        <Button type={"danger"} shape={"round"} size={"large"} flat>大</Button>
 
                     </React.Fragment>}
-                    title={"幽灵按钮"}
-                    description={"幽灵按钮将按钮的内容反色，背景变为透明，常用在有色背景上。"}
+                    title={"按钮形状"}
+                    description={"通过设置 shape 为 circle 或者round（正方形）。设置icon为按钮的图标类型。此属性只适合单个字，多个字会有问题。"}
                 ></Textlayout>
+
+                <Textlayout
+                    components={<React.Fragment>
+                        <Button type={"primary"} float>Primary</Button>
+                        <Button type={"second"} float>Secondary</Button>
+                        <Button type={"danger"} float>Danger</Button>
+                        <Button type={"info"} float>Info</Button>
+                        <Button type={"warning"} float>Warning</Button>
+                        <Button disabled>禁用</Button>
+                    </React.Fragment>}
+                    title={"按钮浮动"}
+                    description={"通过设置float来决定按钮是否悬浮，通常被用来作为网站的全局按钮操作。"}
+                ></Textlayout>
+
+
 
                 <SubTitle>API</SubTitle>
                 <Description>通过设置 Button 的属性来产生不同的按钮样式，推荐顺序为：type -> shape -> size -> loading -> disabled。</Description>
@@ -90,9 +100,9 @@ class ButtonPage extends React.Component {
                         { attr: "disabled", description: "按钮失效状态", type: "boolean", default: "false" },
                         { attr: "type", description: "设置按钮类型，可选值为 primary dashed danger link或者不设", type: "string", default: "-" },
                         { attr: "size", description: "设置按钮大小，可选值为 small large 或者不设", type: "string", default: "default" },
-                        { attr: "ghost", description: "幽灵属性，使按钮背景透明", type: "boolean", default: "false" },
                         { attr: "shape", description: "设置按钮形状，可选值为 circle 或者不设", type: "string", default: "-" },
-                        { attr: "icon", description: "设置按钮的图标类型", type: "string", default: "-" },
+                        { attr: "float", description: "设置按钮是否悬浮", type: "boolean", default: "false" },
+                        { attr: "flat", description: "设置按钮的扁平状态", type: "boolean", default: "false" },
                     ]}
                 />
 

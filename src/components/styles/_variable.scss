@@ -2,13 +2,25 @@
 @import "./mixin";
 
  
-//raised按钮样式
-$button-raised-font-size:$normal-font-size;
-$button-raised-min-width:88px;
-$button-raised-height:36px;
-$button-raised-border-radius:$normal-border-radius;
-$button-raised-text-color:$normal-text-color;
-$button-raised-background-color:$normal-text-color;
+//normal按钮样式
+$button-normal-font-size:$normal-font-size;
+$button-normal-min-width:88px;
+$button-normal-height:36px;
+$button-normal-border-radius:$normal-border-radius;
+$button-normal-text-color:$normal-text-color;
+$button-normal-background-color:$normal-text-color;
+
+//small样式
+$button-small-font-size:$small-font-size;
+$button-small-min-width:68px;
+$button-small-height:28px;
+$button-small-border-radius:$small-border-radius;
+
+//large样式
+$button-large-font-size:$large-font-size;
+$button-large-min-width:68px;
+$button-large-height:44px;
+$button-large-border-radius:$large-border-radius;
 
 //primary按钮样式
 $button-primary-background-color:$primary-color;
@@ -19,6 +31,27 @@ $button-warning-background-color:$warning-color;
 //danger按钮样式
 $button-danger-background-color:$danger-color;
 
+//secord按钮样式
+$button-second-background-color:$second-color;
+
+//disabled按钮样式
+$button-disabled-background-color:$disabled-color;
+$button-disabled-text-color:$disabled-text-color;
+
+//info按钮样式
+$button-info-background-color:$info-color;
+
+//圆形按钮样式
+$button-circle-border-radius:50%;
+$button-small-circle-length:32px;
+$button-normal-circle-length:46px;
+$button-large-circle-length:66px;
+
+//长方形按钮样式
+$button-round-border-radius:$normal-border-radius;
+$button-small-round-length:32px;
+$button-normal-round-length:46px;
+$button-large-round-length:66px;
 
 // animate
 $easeOutFunction: cubic-bezier(0.23, 1, 0.32, 1);

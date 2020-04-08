@@ -24,15 +24,31 @@
     background-clip: padding-box;
     opacity: 0.1;
 }
+.wonderful-ripple-entering {
+    opacity: 0.3;
+    transform: scale(1);
+    animation: wonderful-ripple-enter 500ms $easeOutFunction;
+}
 
-//入场动画
-.fade-enter {
-    transform:scale(0);
+.wonderful-ripple-wrapper-exiting {
+    opacity: 0;
+    animation: wonderful-ripple-exit 500ms $easeOutFunction;
 }
-.fade-enter-active, .fade-exit-active{
-    transition: opacity 2s  cubic-bezier(0.23, 1, 0.32, 1), transform .45s  cubic-bezier(0.23, 1, 0.32, 1);
+
+@keyframes wonderful-ripple-enter {
+    0% {
+        transform: scale(0);
+    }
+    100% {
+        transform: scale(1);
+    }
 }
-.fade-exit-active{
-    opacity: 0 !important;
+
+@keyframes wonderful-ripple-exit {
+    0% {
+        opacity: 0.3;
+    }
+    100% {
+        opacity: 0;
+    }
 }
- 

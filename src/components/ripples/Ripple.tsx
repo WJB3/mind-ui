@@ -25,6 +25,7 @@ class Ripple extends React.Component<Props, State> {
     };
 
     handleEnter = () => {
+        console.log("handleEnter")
         this.setState({
             rippleEntering: true,
         });
@@ -46,6 +47,7 @@ class Ripple extends React.Component<Props, State> {
             timeout,
             ...other
         } = this.props;
+        console.log(other)
         const { wrapperExiting, rippleEntering } = this.state;
 
         return (

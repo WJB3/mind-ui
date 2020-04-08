@@ -5,7 +5,7 @@
     outline: none;
     display: inline-block;
     position: relative;
-    transition-duration: 300ms;
+    transition-duration: 500ms;
     text-decoration: none;
     text-align: center;
     border: none;
@@ -13,38 +13,565 @@
     @include marginAndMargin();
     @include hoverMouse();
     @include textTransform();
+ 
 }
 
 .wonderful-button-wrapper {
     @include flexbox()
 }
 
-.wonderful-raised-button {
-    font-size:$button-raised-font-size;
-    min-width:$button-raised-min-width;
-    height: $button-raised-height;
-    line-height: $button-raised-height;
-    border-radius: $button-raised-border-radius;
-    background-color: $button-raised-background-color;
-    color: $button-raised-text-color;
+.wonderful-rasied-button {
+    font-size:$button-normal-font-size;
+    min-width:$button-normal-min-width;
+    height: $button-normal-height;
+    line-height: $button-normal-height;
+    border-radius: $button-normal-border-radius;
+    background-color: $button-normal-background-color;
+    color: $button-normal-text-color;
     @include boxShadowLevel(2);
+    &:not(.wonderful-disabled-button):hover{
+        @include boxShadowLevel(4);
+        opacity:0.8;
+    }
+
+    &.wonderful-float-button{
+        @include boxShadowLevel(6);
+        &:not(.wonderful-disabled-button):hover{
+            @include boxShadowLevel(10);
+            opacity:0.8;
+        }
+    }
 
     .wonderful-button-wrapper {
         padding: 0 16px;
     }
-}
 
-.wonderful-primary-button {
-    background-color:$button-primary-background-color;
-}
+    &.wonderful{
+        &-primary-button{
+            background-color:$button-primary-background-color;
+    
+            &.wonderful-small-button{
+                
+                font-size:$button-small-font-size;
+                min-width:$button-small-min-width;
+                height: $button-small-height;
+                line-height: $button-small-height;
+                border-radius: $button-small-border-radius;
+    
+                .wonderful-button-wrapper {
+                    padding: 0 8px;
+                }
+            }
+    
+            &.wonderful-large-button{
+                
+                font-size:$button-large-font-size;
+                min-width:$button-large-min-width;
+                height: $button-large-height;
+                line-height: $button-large-height;
+                border-radius: $button-large-border-radius;
+    
+                .wonderful-button-wrapper {
+                    padding: 0 32px;
+                }
+            }
+    
+            &.wonderful-flat-button{
+                background-color: transparent;
+                color:$button-primary-background-color;
+                @include boxShadowLevel();
+                &.wonderful-circle-button{
+                    .wonderful-button-wrapper {
+                        border-radius: $button-circle-border-radius!important;
+                    }
+                }
+                &.wonderful-round-button{
+                    .wonderful-button-wrapper {
+                        border-radius: $button-round-border-radius!important;
+                    }
+                }
+                
+            }
+    
+            &.wonderful-circle-button{
+                width:$button-normal-circle-length;
+                height:$button-normal-circle-length;
+                min-width: $button-normal-circle-length;
+                min-height: $button-normal-circle-length;
+                border-radius: $button-circle-border-radius;
+
+                &.wonderful-small-button{
+                    width:$button-small-circle-length;
+                    height:$button-small-circle-length;
+                    min-width: $button-small-circle-length;
+                    min-height: $button-small-circle-length;
+                    border-radius: $button-circle-border-radius;
+                }
+
+                &.wonderful-large-button{
+                    width:$button-large-circle-length;
+                    height:$button-large-circle-length;
+                    min-width: $button-large-circle-length;
+                    min-height: $button-large-circle-length;
+                    border-radius: $button-circle-border-radius;
+                }
+            }
+
+            &.wonderful-round-button{
+                width:$button-normal-round-length;
+                height:$button-normal-round-length;
+                min-width: $button-normal-round-length;
+                min-height: $button-normal-round-length;
+                border-radius: $button-round-border-radius;
+
+                &.wonderful-small-button{
+                    width:$button-small-round-length;
+                    height:$button-small-round-length;
+                    min-width: $button-small-round-length;
+                    min-height: $button-small-round-length;
+                    border-radius: $button-round-border-radius;
+                }
+
+                &.wonderful-large-button{
+                    width:$button-large-round-length;
+                    height:$button-large-round-length;
+                    min-width: $button-large-round-length;
+                    min-height: $button-large-round-length;
+                    border-radius: $button-round-border-radius;
+                }
+            }
+        }
+        &-warning-button {
+            background-color:$button-warning-background-color;
+    
+            &.wonderful-small-button{
+                
+                font-size:$button-small-font-size;
+                min-width:$button-small-min-width;
+                height: $button-small-height;
+                line-height: $button-small-height;
+                border-radius: $button-small-border-radius;
+    
+                .wonderful-button-wrapper {
+                    padding: 0 8px;
+                }
+            }
+    
+            &.wonderful-large-button{
+                
+                font-size:$button-large-font-size;
+                min-width:$button-large-min-width;
+                height: $button-large-height;
+                line-height: $button-large-height;
+                border-radius: $button-large-border-radius;
+    
+                .wonderful-button-wrapper {
+                    padding: 0 32px;
+                }
+            }
+            &.wonderful-flat-button{
+                background-color: transparent;
+                color:$button-warning-background-color;
+                @include boxShadowLevel();
+                &.wonderful-circle-button{
+                    .wonderful-button-wrapper {
+                        border-radius: $button-circle-border-radius!important;
+                    }
+                }
+                &.wonderful-round-button{
+                    .wonderful-button-wrapper {
+                        border-radius: $button-round-border-radius!important;
+                    }
+                }
+            }
+            &.wonderful-circle-button{
+                width:$button-normal-circle-length;
+                height:$button-normal-circle-length;
+                min-width: $button-normal-circle-length;
+                min-height: $button-normal-circle-length;
+                border-radius: $button-circle-border-radius;
+
+                &.wonderful-small-button{
+                    width:$button-small-circle-length;
+                    height:$button-small-circle-length;
+                    min-width: $button-small-circle-length;
+                    min-height: $button-small-circle-length;
+                    border-radius: $button-circle-border-radius;
+                }
+
+                &.wonderful-large-button{
+                    width:$button-large-circle-length;
+                    height:$button-large-circle-length;
+                    min-width: $button-large-circle-length;
+                    min-height: $button-large-circle-length;
+                    border-radius: $button-circle-border-radius;
+                }
+            }
+            &.wonderful-round-button{
+                width:$button-normal-round-length;
+                height:$button-normal-round-length;
+                min-width: $button-normal-round-length;
+                min-height: $button-normal-round-length;
+                border-radius: $button-round-border-radius;
+
+                &.wonderful-small-button{
+                    width:$button-small-round-length;
+                    height:$button-small-round-length;
+                    min-width: $button-small-round-length;
+                    min-height: $button-small-round-length;
+                    border-radius: $button-round-border-radius;
+                }
+
+                &.wonderful-large-button{
+                    width:$button-large-round-length;
+                    height:$button-large-round-length;
+                    min-width: $button-large-round-length;
+                    min-height: $button-large-round-length;
+                    border-radius: $button-round-border-radius;
+                }
+            }
+        }
+        &-danger-button {
+            background-color:$button-danger-background-color;
+    
+            &.wonderful-small-button{
+                
+                font-size:$button-small-font-size;
+                min-width:$button-small-min-width;
+                height: $button-small-height;
+                line-height: $button-small-height;
+                border-radius: $button-small-border-radius;
+    
+                .wonderful-button-wrapper {
+                    padding: 0 8px;
+                }
+            }
+    
+            &.wonderful-large-button{
+                
+                font-size:$button-large-font-size;
+                min-width:$button-large-min-width;
+                height: $button-large-height;
+                line-height: $button-large-height;
+                border-radius: $button-large-border-radius;
+    
+                .wonderful-button-wrapper {
+                    padding: 0 32px;
+                }
+            }
+            &.wonderful-flat-button{
+                background-color: transparent;
+                color:$button-danger-background-color;
+                @include boxShadowLevel();
+                &.wonderful-circle-button{
+                    .wonderful-button-wrapper {
+                        border-radius: $button-circle-border-radius!important;
+                    }
+                }
+                &.wonderful-round-button{
+                    .wonderful-button-wrapper {
+                        border-radius: $button-round-border-radius!important;
+                    }
+                }
+            }
+            &.wonderful-circle-button{
+                width:$button-normal-circle-length;
+                height:$button-normal-circle-length;
+                min-width: $button-normal-circle-length;
+                min-height: $button-normal-circle-length;
+                border-radius: $button-circle-border-radius;
+
+                &.wonderful-small-button{
+                    width:$button-small-circle-length;
+                    height:$button-small-circle-length;
+                    min-width: $button-small-circle-length;
+                    min-height: $button-small-circle-length;
+                    border-radius: $button-circle-border-radius;
+                }
+
+                &.wonderful-large-button{
+                    width:$button-large-circle-length;
+                    height:$button-large-circle-length;
+                    min-width: $button-large-circle-length;
+                    min-height: $button-large-circle-length;
+                    border-radius: $button-circle-border-radius;
+                }
+                
+            }
+            &.wonderful-round-button{
+                width:$button-normal-round-length;
+                height:$button-normal-round-length;
+                min-width: $button-normal-round-length;
+                min-height: $button-normal-round-length;
+                border-radius: $button-round-border-radius;
+
+                &.wonderful-small-button{
+                    width:$button-small-round-length;
+                    height:$button-small-round-length;
+                    min-width: $button-small-round-length;
+                    min-height: $button-small-round-length;
+                    border-radius: $button-round-border-radius;
+                }
+
+                &.wonderful-large-button{
+                    width:$button-large-round-length;
+                    height:$button-large-round-length;
+                    min-width: $button-large-round-length;
+                    min-height: $button-large-round-length;
+                    border-radius: $button-round-border-radius;
+                }
+            }
+        }
+        &-second-button {
+            background-color:$button-second-background-color;
+    
+            &.wonderful-small-button{
+                
+                font-size:$button-small-font-size;
+                min-width:$button-small-min-width;
+                height: $button-small-height;
+                line-height: $button-small-height;
+                border-radius: $button-small-border-radius;
+    
+                .wonderful-button-wrapper {
+                    padding: 0 8px;
+                }
+            }
+    
+            &.wonderful-large-button{
+                
+                font-size:$button-large-font-size;
+                min-width:$button-large-min-width;
+                height: $button-large-height;
+                line-height: $button-large-height;
+                border-radius: $button-large-border-radius;
+    
+                .wonderful-button-wrapper {
+                    padding: 0 32px;
+                }
+            }
+            &.wonderful-flat-button{
+                background-color: transparent;
+                color:$button-second-background-color;
+                @include boxShadowLevel();
+                &.wonderful-circle-button{
+                    .wonderful-button-wrapper {
+                        border-radius: $button-circle-border-radius!important;
+                    }
+                }
+                &.wonderful-round-button{
+                    .wonderful-button-wrapper {
+                        border-radius: $button-round-border-radius!important;
+                    }
+                }
+            }
+            &.wonderful-circle-button{
+                width:$button-normal-circle-length;
+                height:$button-normal-circle-length;
+                min-width: $button-normal-circle-length;
+                min-height: $button-normal-circle-length;
+                border-radius: $button-circle-border-radius;
+
+                &.wonderful-small-button{
+                    width:$button-small-circle-length;
+                    height:$button-small-circle-length;
+                    min-width: $button-small-circle-length;
+                    min-height: $button-small-circle-length;
+                    border-radius: $button-circle-border-radius;
+                }
+
+                &.wonderful-large-button{
+                    width:$button-large-circle-length;
+                    height:$button-large-circle-length;
+                    min-width: $button-large-circle-length;
+                    min-height: $button-large-circle-length;
+                    border-radius: $button-circle-border-radius;
+                }
+            }
+            &.wonderful-round-button{
+                width:$button-normal-round-length;
+                height:$button-normal-round-length;
+                min-width: $button-normal-round-length;
+                min-height: $button-normal-round-length;
+                border-radius: $button-round-border-radius;
+
+                &.wonderful-small-button{
+                    width:$button-small-round-length;
+                    height:$button-small-round-length;
+                    min-width: $button-small-round-length;
+                    min-height: $button-small-round-length;
+                    border-radius: $button-round-border-radius;
+                }
+
+                &.wonderful-large-button{
+                    width:$button-large-round-length;
+                    height:$button-large-round-length;
+                    min-width: $button-large-round-length;
+                    min-height: $button-large-round-length;
+                    border-radius: $button-round-border-radius;
+                }
+            }
+        }   
+        &-info-button{
+            background-color:$button-info-background-color;
+    
+            &.wonderful-small-button{
+                
+                font-size:$button-small-font-size;
+                min-width:$button-small-min-width;
+                height: $button-small-height;
+                line-height: $button-small-height;
+                border-radius: $button-small-border-radius;
+    
+                .wonderful-button-wrapper {
+                    padding: 0 8px;
+                }
+            }
+    
+            &.wonderful-large-button{
+                
+                font-size:$button-large-font-size;
+                min-width:$button-large-min-width;
+                height: $button-large-height;
+                line-height: $button-large-height;
+                border-radius: $button-large-border-radius;
+    
+                .wonderful-button-wrapper {
+                    padding: 0 32px;
+                }
+            }
+    
+            &.wonderful-flat-button{
+                background-color: transparent;
+                color:$button-info-background-color;
+                @include boxShadowLevel();
+                &.wonderful-circle-button{
+                    .wonderful-button-wrapper {
+                        border-radius: $button-circle-border-radius!important;
+                    }
+                }
+                &.wonderful-round-button{
+                    .wonderful-button-wrapper {
+                        border-radius: $button-round-border-radius!important;
+                    }
+                }
+            }
+            &.wonderful-circle-button{
+                width:$button-normal-circle-length;
+                height:$button-normal-circle-length;
+                min-width: $button-normal-circle-length;
+                min-height: $button-normal-circle-length;
+                border-radius: $button-circle-border-radius;
+
+                &.wonderful-small-button{
+                    width:$button-small-circle-length;
+                    height:$button-small-circle-length;
+                    min-width: $button-small-circle-length;
+                    min-height: $button-small-circle-length;
+                    border-radius: $button-circle-border-radius;
+                }
+
+                &.wonderful-large-button{
+                    width:$button-large-circle-length;
+                    height:$button-large-circle-length;
+                    min-width: $button-large-circle-length;
+                    min-height: $button-large-circle-length;
+                    border-radius: $button-circle-border-radius;
+                }
+            }
+            &.wonderful-round-button{
+                width:$button-normal-round-length;
+                height:$button-normal-round-length;
+                min-width: $button-normal-round-length;
+                min-height: $button-normal-round-length;
+                border-radius: $button-round-border-radius;
+
+                &.wonderful-small-button{
+                    width:$button-small-round-length;
+                    height:$button-small-round-length;
+                    min-width: $button-small-round-length;
+                    min-height: $button-small-round-length;
+                    border-radius: $button-round-border-radius;
+                }
+
+                &.wonderful-large-button{
+                    width:$button-large-round-length;
+                    height:$button-large-round-length;
+                    min-width: $button-large-round-length;
+                    min-height: $button-large-round-length;
+                    border-radius: $button-round-border-radius;
+                }
+            }
+            
+        }
+        &-disabled-button {
+            background-color:$button-disabled-background-color;
+            color:$button-disabled-text-color;
+            @include boxShadowLevel();
+            cursor: not-allowed;
+    
+            &.wonderful-flat-button{
+                background-color: transparent;
+                color:$button-disabled-background-color;
+            }
+            &.wonderful-circle-button{
+                width:$button-normal-circle-length;
+                height:$button-normal-circle-length;
+                min-width: $button-normal-circle-length;
+                min-height: $button-normal-circle-length;
+                border-radius: $button-circle-border-radius;
+
+                &.wonderful-small-button{
+                    width:$button-small-circle-length;
+                    height:$button-small-circle-length;
+                    min-width: $button-small-circle-length;
+                    min-height: $button-small-circle-length;
+                    border-radius: $button-circle-border-radius;
+                }
+
+                &.wonderful-large-button{
+                    width:$button-large-circle-length;
+                    height:$button-large-circle-length;
+                    min-width: $button-large-circle-length;
+                    min-height: $button-large-circle-length;
+                    border-radius: $button-circle-border-radius;
+                }
+            }
+            &.wonderful-round-button{
+                width:$button-normal-round-length;
+                height:$button-normal-round-length;
+                min-width: $button-normal-round-length;
+                min-height: $button-normal-round-length;
+                border-radius: $button-round-border-radius;
+
+                &.wonderful-small-button{
+                    width:$button-small-round-length;
+                    height:$button-small-round-length;
+                    min-width: $button-small-round-length;
+                    min-height: $button-small-round-length;
+                    border-radius: $button-round-border-radius;
+                }
+
+                &.wonderful-large-button{
+                    width:$button-large-round-length;
+                    height:$button-large-round-length;
+                    min-width: $button-large-round-length;
+                    min-height: $button-large-round-length;
+                    border-radius: $button-round-border-radius;
+                }
+            }
+        }
+    }
+
+ 
   
-  
-.wonderful-warning-button {
-    background-color:$button-warning-background-color;
 }
+ 
+
+ 
+  
+ 
   
 
-.wonderful-danger-button {
-    background-color:$button-danger-background-color;
-}
-  
+
+

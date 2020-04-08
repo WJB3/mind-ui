@@ -157,9 +157,9 @@ class RippleWrapper extends React.Component {
 
         if (rippleArray && rippleArray.length) {
             // remove the first ripple
-            // this.setState({
-            //     rippleArray: rippleArray.slice(1),
-            // });
+            this.setState({
+                rippleArray: rippleArray.slice(1),
+            });
         }
     }
 

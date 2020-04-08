@@ -7,13 +7,14 @@ import { TransitionGroup } from 'react-transition-group';
 
 interface RippleProps{
     children?:any,
-    onClick?:()=>void
+    onClick?:()=>void,
+    disabled?:boolean
 }
 
 const Ripple:React.FunctionComponent<RippleProps>=(RippleProps)=>{
 
     const {
-        children
+        disabled
     }=RippleProps;
 
     const rippleWrapperRef=useRef(null);
@@ -58,31 +59,37 @@ const Ripple:React.FunctionComponent<RippleProps>=(RippleProps)=>{
         };
     }
 
-    function handleMouseDown(event:any){//点击事件
+    function handleMouseDown(event:any){//鼠标按下时触发
+        if(disabled) return ;
         setCircleRipple([...circleRipple,{key:nextKey,style:getRippleStyle(event)}])
         setNextKey(nextKey+1);
     }
 
-    function handleMouseUp(event:any){//鼠标按下时触发
+    function handleMouseUp(event:any){//鼠标左键松开时触发
         if (circleRipple.length === 0) return;
-        // circleRipple.splice(0,1);
-        // setCircleRipple([...circleRipple]);
+        circleRipple.splice(0,1);
+        setCircleRipple([...circleRipple]);
     }
 
     useEffect(() => {
-        
+         
     });
 
     return(
-        <div className={classes} onMouseDown={(event)=>handleMouseDown(event)} ref={rippleWrapperRef} onMouseUp={(event)=>handleMouseUp(event)}>
+        <div 
+            className={classes} 
+            onMouseDown={(event)=>handleMouseDown(event)} 
+            ref={rippleWrapperRef} 
+            onMouseUp={(event)=>handleMouseUp(event)}
+        >
             <TransitionGroup
-                component="span"
+                component={null}
                 enter
                 exit
             >
-            {
-                circleRipple.map(item=><CircleRipple key={item.key} mergeStyle={item.style} />)
-            }
+                {
+                    circleRipple.map(item=><CircleRipple key={item.key} mergeStyle={item.style}  />)
+                }
             </TransitionGroup>
             
         </div>
