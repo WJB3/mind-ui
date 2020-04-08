@@ -78,7 +78,6 @@ class ButtonPage extends React.Component {
                         <Button type={"danger"} float>Danger</Button>
                         <Button type={"info"} float>Info</Button>
                         <Button type={"warning"} float>Warning</Button>
-                        <Button disabled>禁用</Button>
                     </React.Fragment>}
                     title={"按钮浮动"}
                     description={"通过设置float来决定按钮是否悬浮，通常被用来作为网站的全局按钮操作。"}
