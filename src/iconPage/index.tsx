@@ -18,19 +18,17 @@ class ButtonPage extends React.Component {
                 <Description>Icon图标用于定义一个图标。</Description>
                 <SubTitle>代码演示</SubTitle>
 
-                 
-
                 <Textlayout
                     components={<React.Fragment>
-                        <Icon  type="wechat" style={{fontSize:"24px",color:"red"}}/>
-                        <Icon  type="qq"  style={{fontSize:"24px"}}/>
-                        <Icon  type="find"  style={{fontSize:"24px"}} rotate={180}/>
-                        <Icon  type="delete"  style={{fontSize:"24px"}}/>
-                        <Icon  type="add"  style={{fontSize:"24px"}}/>
-                        <Icon  type="edit"  style={{fontSize:"24px"}}/>
-                        <Icon  type="re-load"  style={{fontSize:"24px"}} spin/>
-                        <Icon  type="re-loading"  style={{fontSize:"24px"}} spin/>
-                        <Icon  type="loading"  style={{fontSize:"24px"}} spin/>
+                        <div className="icon_container">
+                            <Icon  name="earth"  />
+                            <Icon  name="warehouse" color="primary" />
+                            <Icon  name="wechat"  color="second" />
+                            <Icon  name="wifi" color="danger" />
+                            <Icon  name="alipay" color="info" />
+                            <Icon  name="lock-fill" color="green" />
+                        </div>
+                        
                         
                     </React.Fragment>}
                     title={"基本用法"}

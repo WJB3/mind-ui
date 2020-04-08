@@ -1,6 +1,6 @@
-@import "./../less/animation.less";
+@import "./variable";
 
-.melon-icon{
+.wonderful-icon{
     display: inline-block;
     color: inherit;
     font-style: normal;
@@ -9,14 +9,5 @@
     text-transform: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
-
-    &:hover{
-        opacity: 0.8;
-    }
-
-    &--spin{
-        -webkit-animation:spining 1s linear infinite;
-        animation:spining 1s liner infinite;
-    }
-
+    font-size:24px;
 }
