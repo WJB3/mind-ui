@@ -16,7 +16,7 @@ const Row:React.FunctionComponent<RowProps>=(RowProps)=>{
         gutter
     }=RowProps;
 
-    const classes=classNames("wonderful-row")
+    const classes=classNames("wonderful-row",gutter?`wonderful-gutter-row`:"")
 
     return(
         <div className={classes} style={{marginLeft:gutter?-gutter/2:0,marginRight:gutter?-gutter/2:0}}>

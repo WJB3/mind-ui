@@ -22,7 +22,7 @@ const Col:React.FunctionComponent<ColProps>=(ColProps)=>{
             <GridContext.Consumer>
                 {
                     ({gutter})=>
-                    <div className={classes} style={{paddingLeft:gutter?gutter:0,paddingRight:gutter?gutter/2:0}}>
+                    <div className={classes} style={{paddingLeft:gutter?gutter/2:0,paddingRight:gutter?gutter/2:0}}>
                         {children}
                     </div>
                 }

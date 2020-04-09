@@ -54,7 +54,7 @@ class ButtonPage extends React.Component {
                     components={<React.Fragment>
                         <Row gutter={16}>
                             <Col  span={6}>
-                                <div  >col-6</div>
+                                <div style={{padding:"8px 0"}}>col-6</div>
                             </Col>
                             <Col span={6}>
                                 <div  >col-6</div>
