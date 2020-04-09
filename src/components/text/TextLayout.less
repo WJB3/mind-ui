@@ -17,8 +17,32 @@
             margin:10px;
         }
 
+        .wonderful-col{
+            min-height: 30px;
+            margin-top: 8px;
+            margin-bottom: 8px;
+            color: #fff;
+            text-align: center;
+            border-radius: 0;
+            
+        }
+
+        .wonderful-row{
+            &>div{
+                padding: 16px 0;
+            }
+            &>div:nth-child(2n)  {
+                background: rgba(8,217,214,0.8);
+            }
+            &>div:nth-child(2n+1)  {
+                background: rgba(8,217,214,1);
+            }
+        }
+
+       
+
         .icon_container{
-            width:400px;
+            width:500px;
             display:flex;
             align-items: center;
             justify-content: space-around;

@@ -20,19 +20,54 @@ class ButtonPage extends React.Component {
 
                 <Textlayout
                     components={<React.Fragment>
-                        <div className="icon_container">
-                            <Icon  name="earth"  />
-                            <Icon  name="warehouse" color="primary" />
-                            <Icon  name="wechat"  color="second" />
-                            <Icon  name="wifi" color="danger" />
-                            <Icon  name="alipay" color="info" />
-                            <Icon  name="lock-fill" color="green" />
+                         <div className="icon_container">
+                            <Icon  name="car" color="black" size={16}/>
+                            <Icon  name="file-add"  color="second" size={16}/>
+                            <Icon  name="file-remove" color="danger" size={16}/>
+                            <Icon  name="monitor" color="info" size={16}/>
+                            <Icon  name="wifi" color="skyblue" size={16}/>
                         </div>
-                        
-                        
+                        <div className="icon_container">
+                            <Icon  name="car" color="black" />
+                            <Icon  name="file-add"  color="second" />
+                            <Icon  name="file-remove" color="danger" />
+                            <Icon  name="monitor" color="info" />
+                            <Icon  name="wifi" color="skyblue" />
+                        </div>
+                        <div className="icon_container">
+                            <Icon  name="car" color="black" size={36} />
+                            <Icon  name="file-add"  color="second" size={36} />
+                            <Icon  name="file-remove" color="danger" size={36} />
+                            <Icon  name="monitor" color="info" size={36} />
+                            <Icon  name="wifi" color="skyblue" size={36} />
+                        </div>
+                        <div className="icon_container">
+                            <Icon  name="car" color="black" size={56}/>
+                            <Icon  name="file-add"  color="second" size={56}/>
+                            <Icon  name="file-remove" color="danger" size={56}/>
+                            <Icon  name="monitor" color="info" size={56}/>
+                            <Icon  name="wifi" color="skyblue" size={56} />
+                        </div>
                     </React.Fragment>}
                     title={"基本用法"}
-                    description={"使用 <Icon /> 标签声明组件，指定图标对应的 type 属性。可以通过 theme 属性来设置不同的主题风格的图标，也可以通过设置 spin 属性来实现动画旋转效果。"}
+                    description={"使用 <Icon /> 标签声明组件，指定图标对应的 name 属性。"}
+                ></Textlayout>
+
+                <Textlayout
+                    components={<React.Fragment>
+                         
+                        <div className="icon_container">
+                            <Icon  name="car" color="black" size={36} />
+                            <Icon  name="bell" color="primary" size={36} bounce/>
+                            <Icon  name="file-add"  color="second" size={36} />
+                            <Icon  name="file-remove" color="danger" size={36} spin />
+                            <Icon  name="monitor" color="info" size={36} />
+                            <Icon  name="wifi" color="skyblue" size={36} />
+                        </div>
+                        
+                    </React.Fragment>}
+                    title={"动画"}
+                    description={"支持旋转、抖动动画"}
                 ></Textlayout>
  
                 <SubTitle>API</SubTitle>
@@ -47,8 +82,10 @@ class ButtonPage extends React.Component {
                     ]}
                     dataSource={[
        
-                        {attr:"type",description:"图标类型。遵循图标的命名规范",type:"string",default:"-"},
-                        {attr:"style",description:"设置图标的样式，例如 fontSize 和 color",type:"CSSProperties",default:"-"},
+                        {attr:"name",description:"图标名称。遵循图标的命名规范",type:"string",default:"-"},
+                        {attr:"color",description:"图标颜色。",type:"string",default:"-"},
+                        {attr:"size",description:"图标尺寸。",type:"string",default:"normal(34px)"},
+                        {attr:"bounce",description:"是否有抖动动画",type:"boolean",default:"false"},
                         {attr:"spin",description:"是否有旋转动画",type:"boolean",default:"false"},
                     ]}
                 />

@@ -1,5 +1,6 @@
 @import "./theme";
 @import "./mixin";
+@import "./animation";
 
  
 //normal按钮样式
@@ -52,6 +53,15 @@ $button-round-border-radius:$normal-border-radius;
 $button-small-round-length:32px;
 $button-normal-round-length:46px;
 $button-large-round-length:66px;
+
+
+//图标样式
+$icon-normal-font-size:24px;
+$icon-primary-color:$primary-color;
+$icon-second-color:$second-color;
+$icon-danger-color:$danger-color;
+$icon-info-color:$info-color;
+$icon-warning-color:$warning-color;
 
 // animate
 $easeOutFunction: cubic-bezier(0.23, 1, 0.32, 1);

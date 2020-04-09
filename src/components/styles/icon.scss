@@ -9,5 +9,33 @@
     text-transform: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
-    font-size:24px;
+    font-size:$icon-normal-font-size;
+
+    &-primary{
+        color:$icon-primary-color;
+    }
+
+    &-info{
+        color:$icon-info-color;
+    }
+
+    &-warning{
+        color:$icon-warning-color;
+    }
+
+    &-danger{
+        color:$icon-danger-color;
+    }
+
+    &-second{
+        color:$icon-second-color;
+    }
+
+    &-spin{
+        animation:rotate  1s linear infinite;
+    }
+
+    &-bounce{
+        animation: icon-bounce  1s linear infinite;
+    }
 }

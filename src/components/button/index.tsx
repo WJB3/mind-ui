@@ -1,6 +1,7 @@
 import React from 'react';
 import { classNames } from './../helper/className';
 import Ripple from './../ripple';
+import Icon from './../icon';
 import "./../styles/button.scss";
  
 
@@ -12,7 +13,9 @@ interface ButtonProps{
     disabled?:boolean,
     flat?:boolean,
     shape?:string,
-    float?:boolean
+    float?:boolean,
+    icon?:string,
+    iconStyle?:object
 }
 
 const Button:React.FunctionComponent<ButtonProps>=(ButtonProps)=>{
@@ -24,7 +27,9 @@ const Button:React.FunctionComponent<ButtonProps>=(ButtonProps)=>{
         disabled,
         flat,
         shape,
-        float
+        float,
+        icon,
+        iconStyle
     }=ButtonProps;
 
     const classes=classNames("wonderful-button",
@@ -41,7 +46,7 @@ const Button:React.FunctionComponent<ButtonProps>=(ButtonProps)=>{
         <button className={classes}>
             <div className={"wonderful-button-wrapper"}>
                 <Ripple disabled={disabled}/>
-                {children}
+                {!icon?children:<Icon name={icon} style={iconStyle}/>}
             </div>
         </button>
     )

@@ -9,6 +9,11 @@ const menuInfo=[
         key:"component",
         children:[
             {
+                title:"Grid",
+                key:"grid",
+                
+            },
+            {
                 title:"按钮",
                 key:"button",
                 
@@ -20,7 +25,9 @@ const menuInfo=[
             {
                 title:"动画",
                 key:"animation",
-            }
+            },
+            
+            
         ]
     }
 ];

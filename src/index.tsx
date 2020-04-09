@@ -1,13 +1,11 @@
 import *as ReactDOM from 'react-dom';
 import *as React from 'react';
-import { HashRouter, Route, Switch } from 'react-router-dom';
-import Home from './home2/index';
+import { HashRouter, Route } from 'react-router-dom';
 import Layout from './layout/index';
 import ButtonPage from './buttonPage/index';
-import TablePage from './tablePage/index';
 import IconPage from './iconPage/index';
 import AnimationPage from './animationPage/index';
-import snowPage from './snowPage/index';
+import gridPage from './gridPage/index';
 import 'antd/dist/antd.css';
 import "./index.less";
 
@@ -21,5 +19,6 @@ ReactDOM.render((<HashRouter>
         <Route path="/layout" component={Layout}></Route>
         <Route path="/icon" component={IconPage}></Route>
         <Route path="/animation" component={AnimationPage}></Route>
+        <Route path="/grid" component={gridPage}></Route>
  
 </HashRouter>), document.getElementById("root"));

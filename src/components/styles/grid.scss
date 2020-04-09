@@ -1,0 +1,21 @@
+.wonderful-row{
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-flow: row wrap;
+    flex-flow: row wrap;
+}
+
+.wonderful-col{
+    max-width:100%;
+    position:relative;
+
+    @for $i from 1 through 24 {
+        &.wonderful-col-#{$i} { 
+            display: block;
+            -webkit-box-flex: 0;//不可伸缩
+            flex:0 0 100%/(24/$i); 
+            max-width:100%/(24/$i);
+        }
+    }
+}
