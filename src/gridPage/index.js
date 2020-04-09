@@ -3,8 +3,6 @@ import Layout from './../layout/index';
 import Title from './../components/text/Title';
 import Description from './../components/text/Description';
 import SubTitle from './../components/text/SubTitle';
-import Button from './../components/button/index';
-import Icon from './../components/icon/index';
 import Textlayout from './../components/text/Textlayout';
 import DescriptionTable from './../components/text/DescriptionTable';
 import Row from './../components/row';
@@ -12,9 +10,14 @@ import Col from './../components/col';
 
 class ButtonPage extends React.Component {
 
-
+    
     render() {
 
+        const gutterStyle={
+            padding:"8px 0px",
+            background:'rgba(8,217,214,0.8)',
+            borderRadius:"4px"
+        }
 
         return (
             <Layout >
@@ -54,77 +57,36 @@ class ButtonPage extends React.Component {
                     components={<React.Fragment>
                         <Row gutter={16}>
                             <Col  span={6}>
-                                <div style={{padding:"8px 0"}}>col-6</div>
+                                <div style={gutterStyle}>col-6</div>
                             </Col>
                             <Col span={6}>
-                                <div  >col-6</div>
+                                <div style={gutterStyle} >col-6</div>
                             </Col>
                             <Col  span={6}>
-                                <div  >col-6</div>
+                                <div  style={gutterStyle}>col-6</div>
                             </Col>
                             <Col  span={6}>
-                                <div  >col-6</div>
+                                <div  style={gutterStyle} >col-6</div>
                             </Col>
+                        </Row>
+                        <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32,xxl:200 }}>
+                            <Col  span={8}>
+                                <div style={gutterStyle}>col-6</div>
+                            </Col>
+                            <Col span={8}>
+                                <div style={gutterStyle} >col-6</div>
+                            </Col>
+                            <Col  span={8}>
+                                <div  style={gutterStyle}>col-6</div>
+                            </Col>
+                             
                         </Row>
                     </React.Fragment>}
                     title={"区块间隔"}
                     description={"栅格常常需要和间隔进行配合，你可以使用 Row 的 gutter 属性，我们推荐使用 (16+8n)px 作为栅格间隔。(n 是自然数)如果要支持响应式，可以写成 { xs: 8, sm: 16, md: 24, lg: 32 }。如果需要垂直间距，可以写成数组形式 [水平间距, 垂直间距] [16, { xs: 8, sm: 16, md: 24, lg: 32 }]。"}
                 ></Textlayout>
 
-                <Textlayout
-                    components={<React.Fragment>
-                        <Button type={"primary"} flat size={"large"}>Primary</Button>
-                        <Button type={"second"} flat>Secondary</Button>
-                        <Button type={"danger"} flat>Danger</Button>
-                        <Button type={"info"} flat>Info</Button>
-                        <Button type={"warning"} flat>Warning</Button>
-                        <Button disabled flat>禁用</Button>
-                    </React.Fragment>}
-                    title={"按钮扁平"}
-                    description={"用于通用功能和减少分层在屏幕上,使其更具可读性。"}
-                ></Textlayout>
-
-                <Textlayout
-                    components={<React.Fragment>
-                        <Button type={"primary"} shape={"circle"} size={"small"} flat>小</Button>
-                        <Button type={"danger"} shape={"circle"} flat >中</Button>
-                        <Button type={"warning"} shape={"circle"} size={"large"} flat>大</Button>
-                        <Button type={"primary"} shape={"round"} size={"small"} >小</Button>
-                        <Button type={"second"} shape={"round"}>中</Button>
-                        <Button type={"danger"} shape={"round"} size={"large"} flat>大</Button>
-
-                    </React.Fragment>}
-                    title={"按钮形状"}
-                    description={"通过设置 shape 为 circle 或者round（正方形）。设置icon为按钮的图标类型。此属性只适合单个字，多个字会有问题。"}
-                ></Textlayout>
-
-                <Textlayout
-                    components={<React.Fragment>
-                        <Button type={"primary"} float>Primary</Button>
-                        <Button type={"second"} float>Secondary</Button>
-                        <Button type={"danger"} float>Danger</Button>
-                        <Button type={"info"} float>Info</Button>
-                        <Button type={"warning"} float>Warning</Button>
-                    </React.Fragment>}
-                    title={"图标按钮"}
-                    description={"通过设置icon来生成具有单个图标的按钮。仅适合单个图标属性。"}
-                ></Textlayout>
-
-                <Textlayout
-                    components={<React.Fragment>
-                        <Button type={"primary"} float icon="add" shape="circle" ></Button>
-                        <Button type={"second"} size={"large"} float icon="car" shape="round" iconStyle={{ color: "black", fontSize: 32 }}></Button>
-                        <Button type={"warning"} float >
-                            <Icon name={"edit"} size={16} style={{ marginRight: "8px" }} /> 编辑
-                        </Button>
-                        <Button type={"danger"} float>
-                            删除<Icon name={"delete"} size={16} style={{ marginLeft: "8px" }} />
-                        </Button>
-
-                    </React.Fragment>}
-                    title={"按钮浮动"}
-                    description={"通过设置float来决定按钮是否悬浮，通常被用来作为网站的全局按钮操作。"}
-                ></Textlayout>
+            
 
 
                 <SubTitle>API</SubTitle>

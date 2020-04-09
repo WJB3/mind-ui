@@ -81,7 +81,7 @@ class ButtonPage extends React.Component {
                         <Button type={"warning"} float>Warning</Button>
                     </React.Fragment>}
                     title={"图标按钮"}
-                    description={"通过设置icon来生成具有单个图标的按钮。仅适合单个图标属性。"}
+                    description={"通过设置float来决定按钮是否悬浮，通常被用来作为网站的全局按钮操作。"}
                 ></Textlayout>
 
                 <Textlayout
@@ -97,7 +97,7 @@ class ButtonPage extends React.Component {
                        
                     </React.Fragment>}
                     title={"按钮浮动"}
-                    description={"通过设置float来决定按钮是否悬浮，通常被用来作为网站的全局按钮操作。"}
+                    description={"通过设置icon来生成具有单个图标的按钮。仅适合单个图标属性。"}
                 ></Textlayout>
 
 
