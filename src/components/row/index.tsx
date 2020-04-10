@@ -4,18 +4,20 @@ import { GridContext } from './../grid';
 import "./../styles/grid.scss";
 import { responsiveObserve,responsiveSize,responsiveArray } from "./../_utils/responsiveObserve";
  
-let token;
+let token:any;
 
 interface RowProps{
     children?:any,
     gutter?:number|object,
+    justify?:string
 }
 
 const Row:React.FunctionComponent<RowProps>=(RowProps)=>{
 
     const {
         children,
-        gutter
+        gutter,
+        justify
     }=RowProps;
 
     const [screens,setScreens]=useState({xs:true,sm:true,md:true,lg:true,xl:true,xxl:true});
@@ -28,6 +30,9 @@ const Row:React.FunctionComponent<RowProps>=(RowProps)=>{
             }
         });
         changeGutterFunc();
+        return ()=>{
+            responsiveObserve.unsubscribe(token)
+        }
     })
 
     function changeGutterFunc(){
@@ -61,9 +66,10 @@ const Row:React.FunctionComponent<RowProps>=(RowProps)=>{
         
     }
 
-    
-
-    const classes=classNames("wonderful-row",gutter?`wonderful-gutter-row`:"")
+    const classes=classNames("wonderful-row",
+        gutter?`wonderful-gutter-row`:"",
+        justify?`wonderful-justify-${justify}`:""    
+    )
 
     return(
         <div className={classes} style={{marginLeft:changeGutter?-changeGutter/2:0,marginRight:changeGutter?-changeGutter/2:0}}>

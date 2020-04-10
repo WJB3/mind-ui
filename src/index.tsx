@@ -6,6 +6,7 @@ import ButtonPage from './buttonPage/index';
 import IconPage from './iconPage/index';
 import AnimationPage from './animationPage/index';
 import gridPage from './gridPage/index';
+import uploadPage from './uploadPage/index';
 import 'antd/dist/antd.css';
 import "./index.less";
 
@@ -20,5 +21,7 @@ ReactDOM.render((<HashRouter>
         <Route path="/icon" component={IconPage}></Route>
         <Route path="/animation" component={AnimationPage}></Route>
         <Route path="/grid" component={gridPage}></Route>
+      
+ 
  
 </HashRouter>), document.getElementById("root"));

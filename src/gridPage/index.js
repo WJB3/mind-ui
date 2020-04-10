@@ -1,22 +1,22 @@
 import React from 'react';
-import Layout from './../layout/index';
-import Title from './../components/text/Title';
-import Description from './../components/text/Description';
-import SubTitle from './../components/text/SubTitle';
-import Textlayout from './../components/text/Textlayout';
-import DescriptionTable from './../components/text/DescriptionTable';
-import Row from './../components/row';
-import Col from './../components/col';
+import Layout from '../layout/index';
+import Title from '../components/text/Title';
+import Description from '../components/text/Description';
+import SubTitle from '../components/text/SubTitle';
+import Textlayout from '../components/text/Textlayout';
+import DescriptionTable from '../components/text/DescriptionTable';
+import Row from '../components/row';
+import Col from '../components/col';
 
 class ButtonPage extends React.Component {
 
-    
+
     render() {
 
-        const gutterStyle={
-            padding:"8px 0px",
-            background:'rgba(8,217,214,0.8)',
-            borderRadius:"4px"
+        const gutterStyle = {
+            padding: "8px 0px",
+            background: 'rgba(8,217,214,0.8)',
+            borderRadius: "4px"
         }
 
         return (
@@ -56,38 +56,154 @@ class ButtonPage extends React.Component {
                 <Textlayout
                     components={<React.Fragment>
                         <Row gutter={16}>
-                            <Col  span={6}>
+                            <Col span={6}>
                                 <div style={gutterStyle}>col-6</div>
                             </Col>
                             <Col span={6}>
                                 <div style={gutterStyle} >col-6</div>
                             </Col>
-                            <Col  span={6}>
-                                <div  style={gutterStyle}>col-6</div>
+                            <Col span={6}>
+                                <div style={gutterStyle}>col-6</div>
                             </Col>
-                            <Col  span={6}>
-                                <div  style={gutterStyle} >col-6</div>
+                            <Col span={6}>
+                                <div style={gutterStyle} >col-6</div>
                             </Col>
                         </Row>
-                        <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32,xxl:200 }}>
-                            <Col  span={8}>
+                        <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32, xxl: 200 }}>
+                            <Col span={8}>
                                 <div style={gutterStyle}>col-6</div>
                             </Col>
                             <Col span={8}>
                                 <div style={gutterStyle} >col-6</div>
                             </Col>
-                            <Col  span={8}>
-                                <div  style={gutterStyle}>col-6</div>
+                            <Col span={8}>
+                                <div style={gutterStyle}>col-6</div>
                             </Col>
-                             
+
                         </Row>
                     </React.Fragment>}
                     title={"区块间隔"}
                     description={"栅格常常需要和间隔进行配合，你可以使用 Row 的 gutter 属性，我们推荐使用 (16+8n)px 作为栅格间隔。(n 是自然数)如果要支持响应式，可以写成 { xs: 8, sm: 16, md: 24, lg: 32 }。如果需要垂直间距，可以写成数组形式 [水平间距, 垂直间距] [16, { xs: 8, sm: 16, md: 24, lg: 32 }]。"}
                 ></Textlayout>
 
-            
+                <Textlayout
+                    components={<React.Fragment>
+                        <Row>
+                            <Col span={8}>col-8</Col>
+                            <Col span={8} offset={8}>
+                                col-8
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col span={6} offset={6}>
+                                col-6 col-offset-6
+                            </Col>
+                            <Col span={6} offset={6}>
+                                col-6 col-offset-6
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col span={12} offset={6}>
+                                col-12 col-offset-6
+                            </Col>
+                        </Row>
+                    </React.Fragment>}
+                    title={"左右偏移"}
+                    description={"列偏移。使用 offset 可以将列向右侧偏。例如，offset={4} 将元素向右侧偏移了 4 个列（column）的宽度。"}
+                ></Textlayout>
 
+                <Textlayout
+                    components={<React.Fragment>
+                        <Row>
+                            <Col span={18} push={6}>
+                                col-18 col-push-6
+                        </Col>
+                            <Col span={6} pull={18}>
+                                col-6 col-pull-18
+                            </Col>
+                        </Row>
+                    </React.Fragment>}
+                    title={"栅格排序"}
+                    description={"列排序。通过使用 push 和 pull 类就可以很容易的改变列（column）的顺序。"}
+                ></Textlayout>
+
+                <Textlayout
+                    components={<React.Fragment>
+                        <Row>
+                            <Col span={6} order={4}>
+                                1 col-order-4
+                            </Col>
+                            <Col span={6} order={3}>
+                                2 col-order-3
+                            </Col>
+                            <Col span={6} order={2}>
+                                3 col-order-2
+                            </Col>
+                            <Col span={6} order={1}>
+                                4 col-order-1
+                            </Col>
+                        </Row>
+                    </React.Fragment>}
+                    title={"排序"}
+                    description={"通过 Order 来改变元素的排序。"}
+                ></Textlayout>
+
+                <Textlayout
+                    components={<React.Fragment>
+                        <Row justify="start">
+                            <Col span={4}>col-4</Col>
+                            <Col span={4}>col-4</Col>
+                            <Col span={4}>col-4</Col>
+                            <Col span={4}>col-4</Col>
+                        </Row>
+                        <Row justify="center">
+                            <Col span={4}>col-4</Col>
+                            <Col span={4}>col-4</Col>
+                            <Col span={4}>col-4</Col>
+                            <Col span={4}>col-4</Col>
+                        </Row>
+                        <Row justify="end">
+                            <Col span={4}>col-4</Col>
+                            <Col span={4}>col-4</Col>
+                            <Col span={4}>col-4</Col>
+                            <Col span={4}>col-4</Col>
+                        </Row>
+                        <Row justify="space-between">
+                            <Col span={4}>col-4</Col>
+                            <Col span={4}>col-4</Col>
+                            <Col span={4}>col-4</Col>
+                            <Col span={4}>col-4</Col>
+                        </Row>
+                        <Row justify="space-around">
+                            <Col span={4}>col-4</Col>
+                            <Col span={4}>col-4</Col>
+                            <Col span={4}>col-4</Col>
+                            <Col span={4}>col-4</Col>
+                        </Row>
+                    </React.Fragment>}
+                    title={"排版"}
+                    description={"布局基础。子元素根据不同的值 start,center,end,space-between,space-around，分别定义其在父节点里面的排版方式。"}
+                ></Textlayout>
+
+                <Textlayout
+                    components={<React.Fragment>
+
+                        <Row>
+                            <Col flex={2}>2 / 5</Col>
+                            <Col flex={3}>3 / 5</Col>
+                        </Row>
+                        <Row>
+                            <Col flex="100px">100px</Col>
+                            <Col flex="auto">Fill Rest</Col>
+                        </Row>
+                        <Row>
+                            <Col flex="1 1 200px">1 1 200px</Col>
+                            <Col flex="0 1 300px">0 1 300px</Col>
+                        </Row>
+                    </React.Fragment>}
+                    title={"Flex 填充"}
+                    description={"Col 提供 flex 属性以支持填充。"}
+                ></Textlayout>
 
                 <SubTitle>API</SubTitle>
                 <Description>通过设置 Button 的属性来产生不同的按钮样式，推荐顺序为：type -> shape -> size -> loading -> disabled。</Description>

@@ -26,7 +26,10 @@ const menuInfo=[
                 title:"动画",
                 key:"animation",
             },
-            
+            {
+                title:"上传demo",
+                key:"upload",
+            },
             
         ]
     }

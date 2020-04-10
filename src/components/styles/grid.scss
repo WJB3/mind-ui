@@ -6,6 +6,26 @@
     -webkit-box-direction: normal;
     -ms-flex-flow: row wrap;
     flex-flow: row wrap;
+
+    &.wonderful-justify-start{
+        justify-content: flex-start;
+    }
+     
+    &.wonderful-justify-center{
+        justify-content: center;
+    }
+
+    &.wonderful-justify-end{
+        justify-content: flex-end;
+    }
+
+    &.wonderful-justify-space-around{
+        justify-content: space-around;
+    }
+    &.wonderful-justify-space-between{
+        justify-content: space-between;
+    }
+    
 }
 
 .wonderful-col{
@@ -13,11 +33,40 @@
     position:relative;
 
     @for $i from 1 through 24 {
-        &.wonderful-col-#{$i} { 
+        &.wonderful-col-#{$i} {
+            
+        
             display: block;
             -webkit-box-flex: 0;//不可伸缩
             flex:0 0 100%/(24/$i); 
             max-width:100%/(24/$i);
+
+           
         }
     }
+    @for $offset from 1 through 24{
+        &.wonderful-offset-#{$offset}{
+            margin-left: (100%/24) * $offset;
+        }
+    }
+
+    @for $push from 1 through 24{
+        &.wonderful-push-#{$push}{
+            left: (100%/24) * $push;
+        }
+    }
+
+    @for $pull from 1 through 24{
+        &.wonderful-pull-#{$pull}{
+            right: (100%/24) * $pull;
+        }
+    }
+
+    @for $order from 1 through 100{
+        &.wonderful-order-#{$order}{
+            order:$order;
+        }
+    }
+ 
+    
 }
