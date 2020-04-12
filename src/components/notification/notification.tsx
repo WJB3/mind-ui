@@ -4,6 +4,7 @@ import { classNames } from './../helper/className';
 import { createChainedFunction } from './../_utils/utils';
 import Notice from './notice';
 import "./../styles/grid.scss";
+import Animate from './../animate/Animate';
 
 export interface NotificationInstance {
     notice?: any,
@@ -45,11 +46,12 @@ class Notification extends Component<NotificationProps, NotificationState>{
 
     //add方法保证了notice不会重复加入到notices队列中。
     addNotice(notice: any) {
-        console.log(notice)
+  
         const { notices } = this.state;
         const { maxCount } = this.props;
         //key表示一个notice的id
-        const key = notice.key || getNotificationUuid();
+        const key = notice.key=  getNotificationUuid();
+    
         //要添加的notice是否存在
         const noticeIndex = notices.map((v: any) => v.key).indexOf(key);
         //使用concat()来复制notice数组
@@ -73,16 +75,9 @@ class Notification extends Component<NotificationProps, NotificationState>{
         })
     }
 
-
-
-    render() {
-        const classes = classNames("wonderful-notification");
-
+    getNoticeNodes=()=>{
         const { notices }=this.state;
-
-        console.log(notices)
-
-        let noticeNodes=notices.map((notice: any, index: any) => {
+        return notices.map((notice: any, index: any) => {
             //如果notice是数组最后一个，且存在updateKey。说明，该notice添加进来之前，数组已经达到maxCount,并挤掉了数组的第一个noitce。
             // update 为true，是由于重用了之前被挤掉的notice的组件，需要更新重启Notice组件的定时器
             const update = Boolean(index === notices.length - 1 && notice.updateKey);
@@ -90,19 +85,30 @@ class Notification extends Component<NotificationProps, NotificationState>{
             const key = notice.updateKey ? notice.updateKey : notice.key;
             //createChainedFunction目的是，让this.remove函数,notice.onClose函数能够接收相同的参数，并一同调用。
             //即调用onClose时，会先调用this.remove,再调用notice.onClose
-            const onClose = createChainedFunction(this.removeNotice(key), notice.onClose);
+            const onClose = createChainedFunction(this.removeNotice.bind(this,notice.key), notice.onClose);
 
+            //React中有两个比较特殊的参数：ref 和 key，不会被传递到组件
             return <Notice
                 onClose={onClose}
+                keyIndex={key}
                 key={key}
             >
                 {notice.content}
             </Notice>
         })
+    }
+
+    render() {
+       
+        const classes = classNames("wonderful-notification");
+
+        const { notices }=this.state;
+      
 
         return (
             <div className={classes}>
-                {noticeNodes}
+                <Animate transitionName={"fade"}>{this.getNoticeNodes()}</Animate>
+                {/* {this.getNoticeNodes()} */}
             </div>
         )
     }

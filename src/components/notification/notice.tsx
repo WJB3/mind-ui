@@ -7,7 +7,8 @@ let closeTimer:any;//计算关闭的定时器
 interface NoticeProps{
     duration?:number,//组件挂载多久后关闭
     children?:any,//子元素
-    onClose?:()=>{},//关闭的回调函数
+    onClose?:()=>{},//关闭的回调函数,
+    keyIndex?:string
 }
 
 const Notice:React.FunctionComponent<NoticeProps>=(NoticeProps)=>{
@@ -15,9 +16,10 @@ const Notice:React.FunctionComponent<NoticeProps>=(NoticeProps)=>{
     const {
         duration,
         onClose,
-        children
+        children,
+        keyIndex
     }=NoticeProps;
-
+    
     function startCloseTimer(){//开始计时的定时器
         //duration 默认为1.5秒。
         if(duration){
@@ -46,12 +48,7 @@ const Notice:React.FunctionComponent<NoticeProps>=(NoticeProps)=>{
         startCloseTimer();
     }
 
-
-    const []=useState([])
-
     useEffect(()=>{
-        console.log("useE");
-        console.log(children)
         startCloseTimer()
         restartCloseTimer()
     })
@@ -63,8 +60,9 @@ const Notice:React.FunctionComponent<NoticeProps>=(NoticeProps)=>{
             className={classes} 
             onMouseEnter={()=>clearCloseTimer()}
             onMouseLeave={()=>startCloseTimer()}    
+            key={keyIndex}
         >
-           <div>{children}</div>
+           {children}
         </div>
     )
 }

@@ -1,0 +1,18 @@
+@import "./variable";
+
+.wonderful-notification{
+    position: fixed;
+    top:24px;
+    right:24px;
+    border-radius:$normal-border-radius;
+    width: 384px;
+    max-width: calc(100vw - 32px);
+}
+
+.wonderful-notice{
+    padding: 16px 24px;
+    margin-bottom:18px;
+    background-color: $default-color;
+    @include boxShadowLevel(5);
+    border-radius:$normal-border-radius;
+}

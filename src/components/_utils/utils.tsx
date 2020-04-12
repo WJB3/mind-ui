@@ -15,6 +15,8 @@ function createChainedFunction(...params: any[]){
     }
 }
 
+
+
 export {
     createChainedFunction
 }

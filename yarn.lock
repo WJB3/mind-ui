@@ -1544,6 +1544,11 @@ crypto-browserify@^3.11.0:
     randombytes "^2.0.0"
     randomfill "^1.0.3"
 
+css-animate@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/css-animate/-/css-animate-1.0.1.tgz#b19b9fa7ccd427ae8a023a191415913bb4d11702"
+  integrity sha512-AJOtPSp0npQ1d456nDdPWUfoaFzeXTfOTdrO1LQwrlo486rNR8NLHGgkt5B6tTzuxb6acaQcuw+S8En2VW6wFA==
+
 css-animation@1.x, css-animation@^1.3.2, css-animation@^1.5.0:
   version "1.6.1"
   resolved "https://registry.yarnpkg.com/css-animation/-/css-animation-1.6.1.tgz#162064a3b0d51f958b7ff37b3d6d4de18e17039e"
@@ -4554,7 +4559,7 @@ rc-align@^2.4.0, rc-align@^2.4.1:
     prop-types "^15.5.8"
     rc-util "^4.0.4"
 
-rc-animate@2.x, rc-animate@^2.10.1, rc-animate@^2.10.2, rc-animate@^2.3.0, rc-animate@^2.6.0, rc-animate@^2.8.2:
+rc-animate@2.x, rc-animate@^2.10.1, rc-animate@^2.10.2, rc-animate@^2.10.3, rc-animate@^2.3.0, rc-animate@^2.6.0, rc-animate@^2.8.2:
   version "2.10.3"
   resolved "https://registry.yarnpkg.com/rc-animate/-/rc-animate-2.10.3.tgz#163d5e29281a4ff82d53ee7918eeeac856b756f9"
   integrity sha512-A9qQ5Y8BLlM7EhuCO3fWb/dChndlbWtY/P5QvPqBU7h4r5Q2QsvsbpTGgdYZATRDZbTRnJXXfVk9UtlyS7MBLg==
