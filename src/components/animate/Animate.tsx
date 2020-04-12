@@ -1,4 +1,4 @@
-import React, { useEffect, useState,Fragment, Children } from 'react';
+import React, { useEffect, useState,Fragment, Children,useRef } from 'react';
 import { classNames } from './../helper/className';
 import "./../styles/c_animation.scss";
 import { toArrayChildren,isSameChildren } from './ChildrenUtils';
@@ -38,7 +38,11 @@ const Animate:React.FunctionComponent<AnimateProps>=(AnimateProps)=>{
        transitionLeave
     }=AnimateProps;
 
-    const [childrenState,setChildrenState]=useState(toArrayChildren(getChildrenFromProps(AnimateProps)))
+    const [childrenState,setChildrenState]=useState(toArrayChildren(getChildrenFromProps(AnimateProps)));
+
+    function createRefFunc(){
+         
+    }
 
     useEffect(()=>{
         if(!isSameChildren(children,childrenState)){
