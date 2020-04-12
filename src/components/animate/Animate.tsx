@@ -1,4 +1,4 @@
-import React, { useEffect, useState,Fragment, Children,useRef } from 'react';
+import React, { useEffect, useState,Fragment, useCallback,Children,useRef } from 'react';
 import { classNames } from './../helper/className';
 import "./../styles/c_animation.scss";
 import { toArrayChildren,isSameChildren } from './ChildrenUtils';
@@ -38,18 +38,32 @@ const Animate:React.FunctionComponent<AnimateProps>=(AnimateProps)=>{
        transitionLeave
     }=AnimateProps;
 
+    let createRef:any={}
+
+    const overlayAnimation = [{ opacity: 0 }, { opacity: 0.3 }];
+    const animationSettings = { duration: 150, fill: "both" };
+
+    const animateIn = useCallback(() => {
+        createRef[toArrayChildren(getChildrenFromProps(AnimateProps)).length-1].current.animate(overlayAnimation, animationSettings);
+    }, [animationSettings, overlayAnimation]);
+
     const [childrenState,setChildrenState]=useState(toArrayChildren(getChildrenFromProps(AnimateProps)));
 
     function createRefFunc(){
-         
+        children.forEach((item:any,index:any)=>{
+            createRef[index]=useRef(null);
+        })
     }
 
     useEffect(()=>{
+        // createRefFunc();
         if(!isSameChildren(children,childrenState)){
-            setChildrenState(children)
+         
+            setChildrenState(children);
+            
         }
-        console.log(children);
-        console.log(childrenState);
+        
+         
     })
 
     function getChildren(){
