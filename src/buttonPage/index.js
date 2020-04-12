@@ -7,9 +7,23 @@ import Button from './../components/button/index';
 import Icon  from './../components/icon/index';
 import Textlayout from './../components/text/Textlayout';
 import DescriptionTable from './../components/text/DescriptionTable';
+import  Notification from './../components/notification/notification';
 
 class ButtonPage extends React.Component {
 
+    componentDidMount(){
+         
+    }
+
+    handleClick(){
+        let notification=null;
+        Notification.newInstance({},(n)=>notification=n);
+        console.log(notification)
+        notification.notice({
+            content:"aaa",
+
+        })
+    }
 
     render() {
 
@@ -24,7 +38,7 @@ class ButtonPage extends React.Component {
 
                 <Textlayout
                     components={<React.Fragment>
-                        <Button type={"primary"}>Primary</Button>
+                        <Button type={"primary"} onClick={()=>{this.handleClick()}}>Primary</Button>
                         <Button type={"second"}>Secondary</Button>
                         <Button type={"danger"}>Danger</Button>
                         <Button type={"info"}>Info</Button>

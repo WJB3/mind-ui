@@ -81,15 +81,17 @@
                 color:$button-primary-background-color;
                 @include boxShadowLevel();
                 
-                .wonderful-button-wrapper {
+                &.wonderful-circle-button{
+                    .wonderful-button-wrapper {
                         border-radius: $button-circle-border-radius!important;
+                    }
                 }
                 
-               
-                .wonderful-button-wrapper {
+                &.wonderful-round-button{
+                    .wonderful-button-wrapper {
                         border-radius: $button-round-border-radius!important;
+                    }
                 }
-             
                 
             }
     
@@ -174,14 +176,17 @@
                 color:$button-warning-background-color;
                 @include boxShadowLevel();
                 
+                &.wonderful-circle-button{
                     .wonderful-button-wrapper {
                         border-radius: $button-circle-border-radius!important;
                     }
-             
-               
+                }
+                
+                &.wonderful-round-button{
                     .wonderful-button-wrapper {
                         border-radius: $button-round-border-radius!important;
                     }
+                }
                
             }
             &.wonderful-circle-button{
@@ -264,14 +269,17 @@
                 color:$button-danger-background-color;
                 @include boxShadowLevel();
                 
+                &.wonderful-circle-button{
                     .wonderful-button-wrapper {
                         border-radius: $button-circle-border-radius!important;
                     }
-               
-                 
+                }
+                
+                &.wonderful-round-button{
                     .wonderful-button-wrapper {
                         border-radius: $button-round-border-radius!important;
                     }
+                }
                
             }
             &.wonderful-circle-button{
@@ -355,14 +363,17 @@
                 color:$button-second-background-color;
                 @include boxShadowLevel();
                  
+                &.wonderful-circle-button{
                     .wonderful-button-wrapper {
                         border-radius: $button-circle-border-radius!important;
                     }
-             
-               
+                }
+                
+                &.wonderful-round-button{
                     .wonderful-button-wrapper {
                         border-radius: $button-round-border-radius!important;
                     }
+                }
                 
             }
             &.wonderful-circle-button{
@@ -446,14 +457,17 @@
                 color:$button-info-background-color;
                 @include boxShadowLevel();
                 
+                &.wonderful-circle-button{
                     .wonderful-button-wrapper {
                         border-radius: $button-circle-border-radius!important;
                     }
-               
+                }
                 
+                &.wonderful-round-button{
                     .wonderful-button-wrapper {
                         border-radius: $button-round-border-radius!important;
                     }
+                }
                
             }
             &.wonderful-circle-button{

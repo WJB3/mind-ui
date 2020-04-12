@@ -15,7 +15,7 @@ interface ButtonProps{
     shape?:string,
     float?:boolean,
     icon?:string,
-    iconStyle?:object
+    iconStyle?:object,
 }
 
 const Button:React.FunctionComponent<ButtonProps>=(ButtonProps)=>{
@@ -29,7 +29,8 @@ const Button:React.FunctionComponent<ButtonProps>=(ButtonProps)=>{
         shape,
         float,
         icon,
-        iconStyle
+        iconStyle,
+        onClick
     }=ButtonProps;
 
     const classes=classNames("wonderful-button",
@@ -42,9 +43,15 @@ const Button:React.FunctionComponent<ButtonProps>=(ButtonProps)=>{
         float?`wonderful-float-button`:""
     )
 
+    function handleClick(){
+        if(onClick){
+            onClick()
+        }
+    }
+
     return(
         <button className={classes}>
-            <div className={"wonderful-button-wrapper"}>
+            <div className={"wonderful-button-wrapper"} onClick={()=>handleClick()}>
                 <Ripple disabled={disabled}/>
                 {!icon?children:<Icon name={icon} style={iconStyle}/>}
             </div>
