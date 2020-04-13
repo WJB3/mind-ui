@@ -25,7 +25,9 @@ function getNotificationUuid() {
 
 interface NotificationProps {
     maxCount?: number,
-    ref?: any
+    ref?: any,
+    className?:string,
+    style?:object
 }
 
 interface NotificationState {
@@ -52,7 +54,8 @@ class Notification extends Component<NotificationProps, NotificationState>{
         const { notices } = this.state;
         const { maxCount } = this.props;
         //key表示一个notice的id
-        const key = notice.key=  getNotificationUuid();
+        const key = notice.key || getNotificationUuid();
+        notice.key=key;
     
         //要添加的notice是否存在
         const noticeIndex = notices.map((v: any) => v.key).indexOf(key);
@@ -104,16 +107,17 @@ class Notification extends Component<NotificationProps, NotificationState>{
                     backgroundColor={notice.backgroundColor}
                     icon={notice.icon}
                     btn={notice.btn}
+                    style={notice.style}
                 /> 
         })
     }
 
     render() {
-       
-        const classes = classNames("wonderful-notification");
+        const { className,style }=this.props;
+        const classes = classNames("wonderful-notification",className);
 
         return (
-            <div className={classes}>
+            <div className={classes} style={style}>
                 {this.getNoticeNodes()} 
             </div>
         )
@@ -145,7 +149,10 @@ Notification.newInstance = function newNotificationInstance(properties: any, cal
             notice(noticeProps:any){
                 notification.addNotice(noticeProps);
             },
-            component:notification
+            component:notification,
+            removeNotice(key:any){
+                notification.removeNotice(key);
+            }
         })
     }
     ReactDom.render(<Notification {...props} ref={ref} />, div);

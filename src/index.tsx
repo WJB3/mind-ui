@@ -12,10 +12,8 @@ import 'antd/dist/antd.css';
 import "./index.less";
 
 ReactDOM.render((<HashRouter>
-        
-        <Route path="/notification" exact component={notificationPage}>
-              
-        </Route>
+        <Route path="/" exact component={notificationPage} />
+        <Route path="/notification" exact component={notificationPage} />
         <Route path="/button" component={ButtonPage}></Route>
         {/* <Route path="/button" component={TablePage}></Route> */}
         <Route path="/layout" component={Layout}></Route>

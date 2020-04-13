@@ -63,29 +63,66 @@ class Page extends React.Component {
     }
 
     handleClickDemoFive() {
+        let key = "demofive";
         notification.open({
             message: 'Notification Title',
             description:
                 '自定义图标',
             icon: <Icon name={"car"} size={22} color={"red"} />,
+            key,
+            duration: null,
             btn: (
-                <Button type="danger" size="small">关闭</Button>
+                <Button type="danger" size="small" onClick={() => { notification.close(key) }}>关闭</Button>
             )
         })
     }
 
-    handleClickDemoSix(){
+    handleClickDemoSix() {
+        notification.open({
+            message: 'Notification Title',
+            description:
+                '自定义样式',
+            duration: null,
+            icon: <Icon name={"car"} size={22} color={"red"} />,
+            style: {
+                width: "600px",
+                marginLeft: 384 - 600 + "px"
+            },
+        })
+    }
+
+    handleClickDemoSeven(placement) {
+         
         notification.open({
             message: 'Notification Title',
             description:
                 '弹窗永不关闭',
             duration: null,
-            icon: <Icon name={"car"} size={22} color={"red"} />,
-            style: {
-                width: 600,
-                marginLeft: 335 - 600,
-            },
+            btn: (
+                <Button type="danger" size="small" >关闭</Button>
+            ),
+            placement,
+            onClose:()=>{
+                console.log("closeed!")
+            }
         })
+    }
+
+    handleClickDemoEight() {
+        const key="updatable";
+        notification.open({
+            key,
+            message: 'Notification Title',
+            description: 'description.',
+            
+        });
+        setTimeout(() => {
+            notification.open({
+                key,
+                message: 'New Title',
+                description: 'New description.',
+            });
+        }, 1000);
     }
 
     render() {
@@ -145,16 +182,6 @@ class Page extends React.Component {
                     description={"自定义关闭按钮的样式和文字。"}
                 ></Textlayout>
 
-                <Textlayout
-                    components={<React.Fragment>
-                        <Button onClick={() => { this.handleClickDemoFour() }} type={"primary"}>
-                            图标自定义
-                        </Button>
-
-                    </React.Fragment>}
-                    title={"自定义图标"}
-                    description={"图标可以被自定义。"}
-                ></Textlayout>
 
                 <Textlayout
                     components={<React.Fragment>
@@ -166,6 +193,38 @@ class Page extends React.Component {
                     title={"自定义样式"}
                     description={"使用 style 和 className 来定义样式。"}
                 ></Textlayout>
+
+                <Textlayout
+                    components={<React.Fragment>
+                        <Button type={"primary"} onClick={() => { this.handleClickDemoSeven("left-top") }}>
+                            <Icon name={"left-top"} size={18} color={"rgba(255,255,255,1)"} style={{ marginRight: "8px" }} />左上角
+                        </Button>
+                        <Button type={"primary"} onClick={() => { this.handleClickDemoSeven("right-top") }}>
+                            <Icon name={"right-top"} size={18} color={"rgba(255,255,255,1)"} style={{ marginRight: "8px" }} />右上角
+                        </Button>
+                        <Button type={"primary"} onClick={() => { this.handleClickDemoSeven("left-bottom") }}>
+                            <Icon name={"left-bottom"} size={18} color={"rgba(255,255,255,1)"} style={{ marginRight: "8px" }} />左下角
+                        </Button>
+                        <Button type={"primary"} onClick={() => { this.handleClickDemoSeven("right-bottom") }}>
+                            <Icon name={"right-bottom"} size={18} color={"rgba(255,255,255,1)"} style={{ marginRight: "8px" }} />右下角
+                        </Button>
+
+                    </React.Fragment>}
+                    title={"自定义图标"}
+                    description={"图标可以被自定义。"}
+                ></Textlayout>
+
+                <Textlayout
+                    components={<React.Fragment>
+                        <Button onClick={() => { this.handleClickDemoEight() }} type={"primary"}>
+                            1s后更新提示框
+                        </Button>
+
+                    </React.Fragment>}
+                    title={"更新消息内容"}
+                    description={"可以通过唯一的 key 来更新内容。"}
+                ></Textlayout>
+
 
                 <SubTitle>API</SubTitle>
                 <Description>通过设置 Button 的属性来产生不同的按钮样式，推荐顺序为：type -> shape -> size -> loading -> disabled。</Description>

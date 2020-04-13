@@ -2,32 +2,63 @@
 
 .wonderful-notification{
     position: fixed;
-    top:24px;
-    right:24px;
     border-radius:$normal-border-radius;
     width: 384px;
     max-width: calc(100vw - 32px);
     transform: all 0.3s;
 }
 
+.wonderful-notification-right-top,.wonderful-notification-right-bottom{
+    margin-right: 24px;
+}
+
+.wonderful-notification-right-top,.wonderful-notification-left-top{
+    .wonderful-notice{
+        margin-bottom:18px;
+    }
+}
+
+.wonderful-notification-right-bottom,.wonderful-notification-left-bottom{
+    .wonderful-notice{
+        margin-top:18px;
+    }
+}
+
+.wonderful-notification-left-top,.wonderful-notification-left-bottom{
+    margin-left: 24px;
+}
+
+.wonderful-notification-right-top,.wonderful-notification-right-bottom{
+
+    .item-wrapper_appear{
+        animation:notice_appear_right 300ms $easeInOutFunction 1;
+    }
+
+    .item-wrapper_leave{
+        animation:notice_leave_right 300ms $easeInOutFunction 1;
+    }
+
+}
+
+.wonderful-notification-left-top,.wonderful-notification-left-bottom{
+
+    .item-wrapper_appear{
+        animation:notice_appear_left 300ms $easeInOutFunction 1;
+    }
+
+    .item-wrapper_leave{
+        animation:notice_leave_left 300ms $easeInOutFunction 1;
+    }
+
+}
+ 
 .wonderful-notice{
     transform: all 0.3s;
     padding: 16px 24px;
-    margin-bottom:18px;
     background-color: $default-color;
     @include boxShadowLevel(5);
     border-radius:$normal-border-radius;
     position:relative;
-
-  
-
-    &.item-wrapper_appear{
-        animation:notice_appear 300ms $easeInOutFunction 1;
-    }
-
-    &.item-wrapper_leave{
-        animation:notice_leave_right 300ms $easeInOutFunction 1;
-    }
 
     .wonderful-notice-content{
         font-size: 14px;

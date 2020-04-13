@@ -21,7 +21,7 @@ interface NoticeProps {
     backgroundColor?:string,
     icon?:any,
     btn?:any,
-    style?:string
+    style?:any
 }
 
 const Notice: React.FunctionComponent<NoticeProps> = (NoticeProps) => {
@@ -39,7 +39,7 @@ const Notice: React.FunctionComponent<NoticeProps> = (NoticeProps) => {
         backgroundColor,
         icon,
         btn,
-        style
+        style={}
     } = NoticeProps;
 
     const { onRemove, onLeave, className } = useAnimate({ className: "item-wrapper",delay:250 });
@@ -101,16 +101,16 @@ const Notice: React.FunctionComponent<NoticeProps> = (NoticeProps) => {
                 onMouseEnter={() => clearCloseTimer()}
                 onMouseLeave={() => startCloseTimer()}
                 key={keyIndex}
-                style={backgroundColor?{backgroundColor:backgroundColor}:{}}
+                style={backgroundColor?{backgroundColor:backgroundColor,...style}:{...style}}
             >
                 <Ripple />
                 <div className={"wonderful-notice-content"} style={(status||!!icon)?{display:"flex"}:{}}>
                     { status && <div  className={classNames(`wonderful-notice-icon-${status}`,'wonderful-notice-icon')} ><Icon name={status}/></div>}
                     {!status && !!icon && <div  className={classNames(`wonderful-notice-icon-${status}`,'wonderful-notice-icon')} >{icon}</div>}
-                    <div style={(status||!!icon)?{flex:1,display:"flex",flexDirection:"column"}:{}}>
+                    <div style={(status||!!icon||btn)?{flex:1,display:"flex",flexDirection:"column"}:{}}>
                         <div className={"wonderful-notice-message"}>{message}</div>
                         <div className={"wonderful-notice-description"}>{description}</div>
-                        { btn && <div className={"wonderful-notice-content-close"} onClick={handleClose}>{btn}</div>}
+                        { btn && <div className={"wonderful-notice-content-close"} >{btn}</div>}
                     </div>
                 </div>
                 <div className={"wonderful-notice-close"} onClick={handleClose}>

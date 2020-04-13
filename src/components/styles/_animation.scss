@@ -197,7 +197,7 @@
     }
   }
 
-  @keyframes notice_appear
+  @keyframes notice_appear_right
 {
   0%{
     transform: translate3d(100%, 0, 0);
@@ -209,7 +209,7 @@
   }
 }
 
-@-moz-keyframes notice_appear /* Firefox */
+@-moz-keyframes notice_appear_right /* Firefox */
 {
   0%{
     transform: translate3d(100%, 0, 0);
@@ -221,7 +221,7 @@
   }
 }
 
-@-webkit-keyframes notice_appear /* Safari 和 Chrome */
+@-webkit-keyframes notice_appear_right /* Safari 和 Chrome */
 {
   0%{
     transform: translate3d(100%, 0, 0);
@@ -234,7 +234,7 @@
 }
 
 
-@-o-keyframes notice_appear /* Opera */
+@-o-keyframes notice_appear_right /* Opera */
 {
   0%{
     transform: translate3d(100%, 0, 0);
@@ -242,6 +242,55 @@
   }
   100%{
     transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes notice_leave_right
+{
+  0%{
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+  100%{
+    transform: translate3d(100%, 0, 0);
+    opacity: 1;
+  }
+}
+
+@-moz-keyframes notice_leave_right /* Firefox */
+{
+  0%{
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+  100%{
+    transform: translate3d(100%, 0, 0);
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes notice_leave_right /* Safari 和 Chrome */
+{
+  0%{
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+  100%{
+    transform: translate3d(100%, 0, 0);
+    opacity: 1;
+  }
+}
+
+
+@-o-keyframes notice_leave_right /* Opera */
+{
+  0%{
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+  100%{
+    transform: translate3d(100%, 0, 0);
     opacity: 1;
   }
 }
@@ -295,51 +344,51 @@
   }
 }
 
-@keyframes notice_leave_right
+@keyframes notice_leave_left
 {
   0%{
     transform: translate3d(0, 0, 0);
     opacity: 1;
   }
   100%{
-    transform: translate3d(100%, -20px, 0);
+    transform: translate3d(-100%, 0, 0);
     opacity: 1;
   }
 }
 
-@-moz-keyframes notice_leave_right /* Firefox */
+@-moz-keyframes notice_leave_left /* Firefox */
 {
   0%{
     transform: translate3d(0, 0, 0);
     opacity: 1;
   }
   100%{
-    transform: translate3d(100%, -20px, 0);
+    transform: translate3d(-100%, 0, 0);
     opacity: 1;
   }
 }
 
-@-webkit-keyframes notice_leave_right /* Safari 和 Chrome */
+@-webkit-keyframes notice_leave_left /* Safari 和 Chrome */
 {
   0%{
     transform: translate3d(0, 0, 0);
     opacity: 1;
   }
   100%{
-    transform: translate3d(100%, -20px, 0);
+    transform: translate3d(-100%, 0, 0);
     opacity: 1;
   }
 }
 
 
-@-o-keyframes notice_leave_right /* Opera */
+@-o-keyframes notice_leave_left /* Opera */
 {
   0%{
     transform: translate3d(0, 0, 0);
     opacity: 1;
   }
   100%{
-    transform: translate3d(100%, -20px, 0);
+    transform: translate3d(-100%, 0, 0);
     opacity: 1;
   }
 }
