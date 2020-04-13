@@ -58,6 +58,17 @@
         .wonderful-notice-icon-warning{
             color:$warning-color;
         }
+        .wonderful-notice-content-close{
+            align-self: flex-end;
+            margin-top:10px;
+        }
+    }
+
+    .wonderful-notice-close{
+        position: absolute;
+        right:24px;
+        top:18px;
+        color:rgba(0,0,0,.4);
     }
    
 }

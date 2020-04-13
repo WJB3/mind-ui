@@ -62,16 +62,29 @@ class Page extends React.Component {
         })
     }
 
-    handleClickDemoFive(){
+    handleClickDemoFive() {
+        notification.open({
+            message: 'Notification Title',
+            description:
+                '自定义图标',
+            icon: <Icon name={"car"} size={22} color={"red"} />,
+            btn: (
+                <Button type="danger" size="small">关闭</Button>
+            )
+        })
+    }
+
+    handleClickDemoSix(){
         notification.open({
             message: 'Notification Title',
             description:
                 '弹窗永不关闭',
             duration: null,
             icon: <Icon name={"car"} size={22} color={"red"} />,
-            btn:(
-                <Button type="danger" size="small">关闭</Button>
-            )
+            style: {
+                width: 600,
+                marginLeft: 335 - 600,
+            },
         })
     }
 
@@ -141,6 +154,17 @@ class Page extends React.Component {
                     </React.Fragment>}
                     title={"自定义图标"}
                     description={"图标可以被自定义。"}
+                ></Textlayout>
+
+                <Textlayout
+                    components={<React.Fragment>
+                        <Button onClick={() => { this.handleClickDemoSix() }} type={"primary"}>
+                            自定义样式
+                        </Button>
+
+                    </React.Fragment>}
+                    title={"自定义样式"}
+                    description={"使用 style 和 className 来定义样式。"}
                 ></Textlayout>
 
                 <SubTitle>API</SubTitle>
