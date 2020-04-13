@@ -6,13 +6,14 @@ import ButtonPage from './buttonPage/index';
 import IconPage from './iconPage/index';
 import AnimationPage from './animationPage/index';
 import gridPage from './gridPage/index';
+import notificationPage from './notificationPage/index';
 import uploadPage from './uploadPage/index';
 import 'antd/dist/antd.css';
 import "./index.less";
 
 ReactDOM.render((<HashRouter>
         
-        <Route path="/" exact component={ButtonPage}>
+        <Route path="/notification" exact component={notificationPage}>
               
         </Route>
         <Route path="/button" component={ButtonPage}></Route>

@@ -27,7 +27,7 @@
     line-height: $button-normal-height;
     border-radius: $button-normal-border-radius;
     background-color: $button-normal-background-color;
-    color: $button-normal-text-color;
+    color: black;
     @include boxShadowLevel(2);
     &:not(.wonderful-disabled-button):hover{
         @include boxShadowLevel(4);
@@ -49,6 +49,7 @@
     &.wonderful{
         &-primary-button{
             background-color:$button-primary-background-color;
+            color: $normal-text-color;
     
             &.wonderful-small-button{
                 
@@ -145,6 +146,7 @@
         }
         &-warning-button {
             background-color:$button-warning-background-color;
+            color: $normal-text-color;
     
             &.wonderful-small-button{
                 
@@ -238,6 +240,7 @@
         }
         &-danger-button {
             background-color:$button-danger-background-color;
+            color: $normal-text-color;
     
             &.wonderful-small-button{
                 
@@ -332,6 +335,7 @@
         }
         &-second-button {
             background-color:$button-second-background-color;
+            color: $normal-text-color;
     
             &.wonderful-small-button{
                 
@@ -425,6 +429,7 @@
         }   
         &-info-button{
             background-color:$button-info-background-color;
+            color: $normal-text-color;
     
             &.wonderful-small-button{
                 

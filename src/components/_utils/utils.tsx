@@ -14,9 +14,16 @@ function createChainedFunction(...params: any[]){
         }
     }
 }
-
+//判断一个值是否是Null
+function isNull(value:any){
+    if(!value && typeof(value)!=="undefined" && value!==0){
+        return true;
+    }
+    return false;
+}
 
 
 export {
-    createChainedFunction
+    createChainedFunction,
+    isNull
 }

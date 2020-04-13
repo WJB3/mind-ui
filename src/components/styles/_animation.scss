@@ -38,6 +38,7 @@
     100%{-webkit-transform:rotate(360deg);}
 }
 
+
 @-o-keyframes rotate /* Opera */
 {
     0%{-webkit-transform:rotate(0deg);}
@@ -195,3 +196,150 @@
       transform: rotate(-5deg);
     }
   }
+
+  @keyframes notice_appear
+{
+  0%{
+    transform: translate3d(100%, 0, 0);
+    opacity: 1;
+  }
+  100%{
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+@-moz-keyframes notice_appear /* Firefox */
+{
+  0%{
+    transform: translate3d(100%, 0, 0);
+    opacity: 1;
+  }
+  100%{
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes notice_appear /* Safari 和 Chrome */
+{
+  0%{
+    transform: translate3d(100%, 0, 0);
+    opacity: 1;
+  }
+  100%{
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+
+@-o-keyframes notice_appear /* Opera */
+{
+  0%{
+    transform: translate3d(100%, 0, 0);
+    opacity: 1;
+  }
+  100%{
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes notice_appear_left
+{
+  0%{
+    transform: translate3d(-100%, 0, 0);
+    opacity: 1;
+  }
+  100%{
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+@-moz-keyframes notice_appear_left /* Firefox */
+{
+  0%{
+    transform: translate3d(-100%, 0, 0);
+    opacity: 1;
+  }
+  100%{
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes notice_appear_left /* Safari 和 Chrome */
+{
+  0%{
+    transform: translate3d(-100%, 0, 0);
+    opacity: 1;
+  }
+  100%{
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+
+@-o-keyframes notice_appear_left /* Opera */
+{
+  0%{
+    transform: translate3d(-100%, 0, 0);
+    opacity: 1;
+  }
+  100%{
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes notice_leave_right
+{
+  0%{
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+  100%{
+    transform: translate3d(100%, -20px, 0);
+    opacity: 1;
+  }
+}
+
+@-moz-keyframes notice_leave_right /* Firefox */
+{
+  0%{
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+  100%{
+    transform: translate3d(100%, -20px, 0);
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes notice_leave_right /* Safari 和 Chrome */
+{
+  0%{
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+  100%{
+    transform: translate3d(100%, -20px, 0);
+    opacity: 1;
+  }
+}
+
+
+@-o-keyframes notice_leave_right /* Opera */
+{
+  0%{
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+  100%{
+    transform: translate3d(100%, -20px, 0);
+    opacity: 1;
+  }
+}

@@ -10,7 +10,8 @@ interface IconProps{
     size?:number,
     spin?:boolean,
     bounce?:boolean,
-    style?:object
+    style?:object,
+    className?:any,
 }
 
 const Icon:React.FunctionComponent<IconProps>=(IconProps)=>{
@@ -21,7 +22,8 @@ const Icon:React.FunctionComponent<IconProps>=(IconProps)=>{
         size,
         spin,
         bounce,
-        style
+        style,
+        className
     }=IconProps;
 
     let index=Object.values(typeEnum).findIndex(item=>item===color);//判断是否颜色类型
@@ -29,7 +31,8 @@ const Icon:React.FunctionComponent<IconProps>=(IconProps)=>{
     const classes=classNames("wonderful-icon",
         index>-1?`wonderful-icon-${color}`:"",
         spin?"wonderful-icon-spin":"",
-        bounce?`wonderful-icon-bounce`:""
+        bounce?`wonderful-icon-bounce`:"",
+        className?className:""
     )
 
 

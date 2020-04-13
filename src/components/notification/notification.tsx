@@ -3,8 +3,10 @@ import ReactDom, { render } from 'react-dom';
 import { classNames } from './../helper/className';
 import { createChainedFunction } from './../_utils/utils';
 import Notice from './notice';
+import { useAnimate } from './../../components/_utils/hooks';
 import "./../styles/grid.scss";
-import Animate from './../animate/Animate';
+import { isNull } from './../_utils/utils';
+
 
 export interface NotificationInstance {
     notice?: any,
@@ -73,10 +75,12 @@ class Notification extends Component<NotificationProps, NotificationState>{
         this.setState({
             notices: updatedNotices
         })
+      
     }
 
     getNoticeNodes=()=>{
         const { notices }=this.state;
+      
         return notices.map((notice: any, index: any) => {
             //如果notice是数组最后一个，且存在updateKey。说明，该notice添加进来之前，数组已经达到maxCount,并挤掉了数组的第一个noitce。
             // update 为true，是由于重用了之前被挤掉的notice的组件，需要更新重启Notice组件的定时器
@@ -89,12 +93,18 @@ class Notification extends Component<NotificationProps, NotificationState>{
 
             //React中有两个比较特殊的参数：ref 和 key，不会被传递到组件
             return <Notice
-                onClose={onClose}
-                keyIndex={key}
-                key={key}
-            >
-                {notice.content}
-            </Notice>
+                    onClose={onClose}
+                    keyIndex={key}
+                    key={key}
+                    message={notice.message?notice.message:"通知提醒框"}
+                    description={notice.description} 
+                    duration={notice.duration?notice.duration:4}
+                    isCloseAuto={isNull(notice.duration)}
+                    status={notice.status}
+                    backgroundColor={notice.backgroundColor}
+                    icon={notice.icon}
+                    btn={notice.btn}
+                /> 
         })
     }
 
@@ -102,13 +112,9 @@ class Notification extends Component<NotificationProps, NotificationState>{
        
         const classes = classNames("wonderful-notification");
 
-        const { notices }=this.state;
-      
-
         return (
             <div className={classes}>
-                <Animate transitionName={"fade"}>{this.getNoticeNodes()}</Animate>
-                {/* {this.getNoticeNodes()} */}
+                {this.getNoticeNodes()} 
             </div>
         )
     }

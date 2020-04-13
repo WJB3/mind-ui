@@ -7,27 +7,11 @@ import Button from './../components/button/index';
 import Icon  from './../components/icon/index';
 import Textlayout from './../components/text/Textlayout';
 import DescriptionTable from './../components/text/DescriptionTable';
-import  Notification from './../components/notification/notification';
 //import  Notification from 'rc-notification';
 
 class ButtonPage extends React.Component {
-    notification=null;
 
-    componentDidMount(){
-        Notification.newInstance({},(n)=>this.notification=n);
-    }
-
-    handleClick(){
-       
-        this.notification.notice({
-            content:<span>closable</span>,
-            duration:100000,
-            onClose() {
-                console.log('simple close');
-            },
-        })
-    }
-
+    
     render() {
 
 
@@ -41,7 +25,7 @@ class ButtonPage extends React.Component {
 
                 <Textlayout
                     components={<React.Fragment>
-                        <Button type={"primary"} onClick={()=>{this.handleClick()}}>Primary</Button>
+                        <Button type={"primary"}>Primary</Button>
                         <Button type={"second"}>Secondary</Button>
                         <Button type={"danger"}>Danger</Button>
                         <Button type={"info"}>Info</Button>

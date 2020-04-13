@@ -7,12 +7,57 @@
     border-radius:$normal-border-radius;
     width: 384px;
     max-width: calc(100vw - 32px);
+    transform: all 0.3s;
 }
 
 .wonderful-notice{
+    transform: all 0.3s;
     padding: 16px 24px;
     margin-bottom:18px;
     background-color: $default-color;
     @include boxShadowLevel(5);
     border-radius:$normal-border-radius;
+    position:relative;
+
+  
+
+    &.item-wrapper_appear{
+        animation:notice_appear 300ms $easeInOutFunction 1;
+    }
+
+    &.item-wrapper_leave{
+        animation:notice_leave_right 300ms $easeInOutFunction 1;
+    }
+
+    .wonderful-notice-content{
+        font-size: 14px;
+
+        .wonderful-notice-message{
+            display: inline-block;
+            margin-bottom: 8px;
+            color: rgba(0,0,0,.85);
+            font-size: 16px;
+            line-height: 24px;
+        }
+        .wonderful-notice-description{
+            font-size: 14px;
+        }
+        .wonderful-notice-icon{
+            margin-right:24px;
+        }
+        .wonderful-notice-icon-success{
+            color:$success-color;
+        }
+        .wonderful-notice-icon-info{
+            color:$info-color;
+            
+        }
+        .wonderful-notice-icon-error{
+            color:$danger-color;
+        }
+        .wonderful-notice-icon-warning{
+            color:$warning-color;
+        }
+    }
+   
 }
