@@ -1,5 +1,6 @@
 import * as React from 'react';
 import "./TextLayout.less";
+import { classNames } from './../helper/className';
 
 class TextLayout extends React.Component{
     render(){
@@ -9,13 +10,14 @@ class TextLayout extends React.Component{
             components,
             title,
             description,
-            layoutStyle
+            layoutStyle,
+            componentClassName
         }=this.props;
  
 
         return(
             <section className={"textlayout_component"}>
-                <section className={"textlayout_component-demo"} style={layoutStyle}>
+                <section className={classNames("textlayout_component-demo",componentClassName?componentClassName:"")} style={layoutStyle}>
                     {components}
                 </section>
                 <section className={"textlayout_component-text"}>

@@ -12,6 +12,7 @@ interface IconProps{
     bounce?:boolean,
     style?:object,
     className?:any,
+    onClick?:any
 }
 
 const Icon:React.FunctionComponent<IconProps>=(IconProps)=>{
@@ -23,7 +24,8 @@ const Icon:React.FunctionComponent<IconProps>=(IconProps)=>{
         spin,
         bounce,
         style,
-        className
+        className,
+        onClick
     }=IconProps;
 
     let index=Object.values(typeEnum).findIndex(item=>item===color);//判断是否颜色类型
@@ -35,9 +37,14 @@ const Icon:React.FunctionComponent<IconProps>=(IconProps)=>{
         className?className:""
     )
 
+    function handleClick(){
+        if(onClick){
+            onClick()
+        }
+    }
 
     return(
-        <i  className={classes} style={{color:index===-1?color:"",fontSize:size?size:"24px",...style}}>
+        <i  className={classes} style={{color:index===-1?color:"",fontSize:size?size:"24px",...style}} onClick={()=>handleClick()}>
             <svg width={"1em"} height={"1em"} fill={"currentcolor"} >
                 <use xlinkHref={`#${name}`}></use>
             </svg>

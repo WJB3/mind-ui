@@ -81,6 +81,10 @@
                 background-color: transparent;
                 color:$button-primary-background-color;
                 @include boxShadowLevel();
+
+                .wonderful-button-wrapper {
+                    border-radius: $button-round-border-radius!important;
+                }
                 
                 &.wonderful-circle-button{
                     .wonderful-button-wrapper {
@@ -177,6 +181,10 @@
                 background-color: transparent;
                 color:$button-warning-background-color;
                 @include boxShadowLevel();
+
+                .wonderful-button-wrapper {
+                    border-radius: $button-round-border-radius!important;
+                }
                 
                 &.wonderful-circle-button{
                     .wonderful-button-wrapper {
@@ -271,6 +279,10 @@
                 background-color: transparent;
                 color:$button-danger-background-color;
                 @include boxShadowLevel();
+
+                .wonderful-button-wrapper {
+                    border-radius: $button-round-border-radius!important;
+                }
                 
                 &.wonderful-circle-button{
                     .wonderful-button-wrapper {
@@ -367,6 +379,10 @@
                 color:$button-second-background-color;
                 @include boxShadowLevel();
                  
+                .wonderful-button-wrapper {
+                    border-radius: $button-round-border-radius!important;
+                }
+
                 &.wonderful-circle-button{
                     .wonderful-button-wrapper {
                         border-radius: $button-circle-border-radius!important;
@@ -461,6 +477,10 @@
                 background-color: transparent;
                 color:$button-info-background-color;
                 @include boxShadowLevel();
+
+                .wonderful-button-wrapper {
+                    border-radius: $button-round-border-radius!important;
+                }
                 
                 &.wonderful-circle-button{
                     .wonderful-button-wrapper {

@@ -103,7 +103,6 @@ class Page extends React.Component {
             ),
             placement,
             onClose:()=>{
-                console.log("closeed!")
             }
         })
     }

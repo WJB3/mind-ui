@@ -24,6 +24,7 @@ class ButtonPage extends React.Component {
                 <SubTitle>代码演示</SubTitle>
 
                 <Textlayout
+                    componentClassName={"button-page-demo"}
                     components={<React.Fragment>
                         <Button type={"primary"}>Primary</Button>
                         <Button type={"second"}>Secondary</Button>
@@ -37,6 +38,7 @@ class ButtonPage extends React.Component {
                 ></Textlayout>
 
                 <Textlayout
+                    componentClassName={"button-page-demo"}
                     components={<React.Fragment>
                         <Button size={"small"} type={"primary"}>small</Button>
                         <Button type={"danger"}>danger</Button>
@@ -47,6 +49,7 @@ class ButtonPage extends React.Component {
                 ></Textlayout>
 
                 <Textlayout
+                    componentClassName={"button-page-demo"}
                     components={<React.Fragment>
                         <Button type={"primary"} flat size={"large"}>Primary</Button>
                         <Button type={"second"} flat>Secondary</Button>
@@ -60,20 +63,21 @@ class ButtonPage extends React.Component {
                 ></Textlayout>
 
                 <Textlayout
+                    componentClassName={"button-page-demo"}
                     components={<React.Fragment>
-                        <Button type={"primary"} shape={"circle"} size={"small"} flat>小</Button>
+                        <Button type={"primary"} shape={"circle"} size={"small"}>小</Button>
                         <Button type={"danger"} shape={"circle"} flat >中</Button>
                         <Button type={"warning"} shape={"circle"} size={"large"} flat>大</Button>
                         <Button type={"primary"} shape={"round"} size={"small"} >小</Button>
                         <Button type={"second"} shape={"round"}>中</Button>
                         <Button type={"danger"} shape={"round"} size={"large"} flat>大</Button>
-
                     </React.Fragment>}
                     title={"按钮形状"}
                     description={"通过设置 shape 为 circle 或者round（正方形）。设置icon为按钮的图标类型。此属性只适合单个字，多个字会有问题。"}
                 ></Textlayout>
 
                 <Textlayout
+                    componentClassName={"button-page-demo"}
                     components={<React.Fragment>
                         <Button type={"primary"} float>Primary</Button>
                         <Button type={"second"} float>Secondary</Button>
@@ -86,6 +90,7 @@ class ButtonPage extends React.Component {
                 ></Textlayout>
 
                 <Textlayout
+                    componentClassName={"button-page-demo"}
                     components={<React.Fragment>
                         <Button type={"primary"} float icon="add" shape="circle" ></Button>
                         <Button type={"second"} size={"large"} float icon="car" shape="round" iconStyle={{color:"black",fontSize:32}}></Button>
