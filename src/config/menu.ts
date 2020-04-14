@@ -9,6 +9,10 @@ const menuInfo=[
         key:"component",
         children:[
             {
+                title:"Pager",
+                key:"pager",
+            },
+            {
                 title:"Input",
                 key:"input",
             },

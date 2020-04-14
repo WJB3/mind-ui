@@ -8,12 +8,14 @@ import AnimationPage from './animationPage/index';
 import gridPage from './gridPage/index';
 import notificationPage from './notificationPage/index';
 import inputPage from './inputPage/index';
-import uploadPage from './uploadPage/index';
+import pagerPage from './pagerPage/index';
+ 
 import 'antd/dist/antd.css';
 import "./index.less";
 
 ReactDOM.render((<HashRouter>
-        <Route path="/" exact component={notificationPage} />
+        <Route path="/" exact component={pagerPage} />
+        <Route path="/pager" exact component={pagerPage} />
         <Route path="/notification" exact component={notificationPage} />
         <Route path="/button" component={ButtonPage}></Route>
         <Route path="/layout" component={Layout}></Route>

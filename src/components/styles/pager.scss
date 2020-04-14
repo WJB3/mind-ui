@@ -1,0 +1,20 @@
+@import "./variable";
+
+.parrot{
+    &-pager{
+        color: $pager-text-color;
+        transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+        background-color: $pager-background-color;
+        border-radius:$pager-round-border-radius;
+    }
+
+    &-pager-circle{
+        border-radius:$pager-circle-border-radius;
+    }
+
+    @for $i from 1 through 24 {
+        &-pager-deep-#{$i} {
+            @include boxShadowLevel($i)
+        }
+    }
+}
