@@ -10,18 +10,22 @@ interface Props{
    onEntered?:any,
    onEntering?:any,
    onExit?:any,
-   onExiting?:any
+   onExiting?:any,
+   children?:any,
+   component?:any
 }
 
 const Fold:React.FunctionComponent<Props>=React.forwardRef((Props,ref)=>{
 
     const {
+        children,
         in:inProp,
         onEnter,
         onEntered,
         onEntering,
         onExit,
-        onExiting
+        onExiting,
+        component:Component='div'
     }=Props;
 
     const classes=classNames(
@@ -58,6 +62,12 @@ const Fold:React.FunctionComponent<Props>=React.forwardRef((Props,ref)=>{
         }
     }
 
+    const addEndListener=(_,next)=>{
+        if(timeout==="auto"){
+
+        }
+    }
+
     return(
         <Transition
             in={inProp}
@@ -67,7 +77,13 @@ const Fold:React.FunctionComponent<Props>=React.forwardRef((Props,ref)=>{
             onExit={handleExit}
             onExiting={handleExiting}
         >
-
+            {
+                (state,childrenProps)=>(
+                    <Component>
+                        
+                    </Component>
+                )
+            }
         </Transition>
     
     )

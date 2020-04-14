@@ -22,6 +22,9 @@ function isNull(value:any){
     return false;
 }
 
+//
+
+
 
 export {
     createChainedFunction,
