@@ -7,26 +7,75 @@
         &-container{
             font-size:16px;
             width:256px;
-            min-height:48px;
-            height:48px;
             display:inline-block;
             position: relative;
             color:$input-normal-color;
             padding-bottom: 4px;
             padding-top: 4px;
+            min-height:40px;
+            height:40px;
 
             &.has_label{
-                padding-top: 28px;
-                padding-bottom: 12px;
-                min-height: 72px;
-                height:72px;
+                padding-top: 20px;
+                padding-bottom: 4px;
+                min-height: 56px;
+                height:56px;
             }
 
             &.stylize-filled{
                 background-color: rgba(0,0,0,.09);
-                padding-left:10px;
+                border-top-left-radius: $global-border-radius;
+                border-top-right-radius:$global-border-radius;
+                padding-bottom: 0px;
+               
+                .parrot-input-float-babel{
+                    left:8px;
+
+                    &.has_label{
+                        transform: translate3d(4px,14px,0) scale(1);
+                         
+                    }
+                }
+
+                &.has_label{
+                    transform: translate3d(4px,18px,0) scale(1);
+                    color: rgba(0,0,0,.38);
+                    
+                }
+
+                input{
+                    padding-left: 8px;
+                }
+                 
             }
             
+            &.stylize-outline{
+
+                border-radius: $global-border-radius;
+                border:1px solid rgba(0,0,0,.20);
+                border-color: inherit;
+                
+               
+                .parrot-input-float-babel{
+                    left:8px;
+
+                    &.has_label{
+                        transform: translate3d(8px,14px,0) scale(1);
+                         
+                    }
+                }
+
+                &.has_label{
+                    transform: translate3d(8px,18px,0) scale(1);
+                    color: rgba(0,0,0,.38);
+                    padding-bottom: 4px;
+                }
+
+                input{
+                    padding-left: 8px;
+                }
+                 
+            }
         }
 
         &-content{
@@ -65,7 +114,7 @@
                 margin: 0;
                 height: 1px;
                 border: none;
-                background-color: rgba(0,0,0,.12);
+                background-color: rgba(0,0,0,.20);
                 left: 0;
                 right: 0;
                 bottom: -1px;
@@ -93,7 +142,7 @@
         }
 
         &-float-babel{
-            line-height: 20px;
+            line-height: 22px;
             transition: all $global-transition-duration $easeOutFunction;
             z-index: 1;
             cursor: text;
@@ -102,18 +151,356 @@
             user-select: none;
             pointer-events: none;
             backface-visibility: hidden;
-            top: 8px;
+            top: 4px;
             position: absolute;
+
            
             &.has_label{
-                transform: translate3d(0,28px,0) scale(1);
+                transform: translate3d(0,18px,0) scale(1);
                 color: rgba(0,0,0,.38);
             }
+        }
+
+        &-size-small{
+            &.parrot-input-container{
+                font-size:12px;
+                width:256px;
+                display:inline-block;
+                position: relative;
+                color:$input-normal-color;
+                padding-bottom: 0px;
+                padding-top: 0px;
+                min-height:32px;
+                height:32px;
+    
+                &.has_label{
+                    padding-top: 12px;
+                    padding-bottom: 0px;
+                    min-height: 40px;
+                    height:40px;
+                }
+    
+                &.stylize-filled{
+                    background-color: rgba(0,0,0,.09);
+                    border-top-left-radius: $global-border-radius;
+                    border-top-right-radius:$global-border-radius;
+                    padding-bottom: 0px;
+                   
+                    .parrot-input-float-babel{
+                        left:4px;
+    
+                        &.has_label{
+                            transform: translate3d(4px,4px,0) scale(1);
+                             
+                        }
+                    }
+    
+                    &.has_label{
+                        transform: translate3d(4px,4px,0) scale(1);
+                        color: rgba(0,0,0,.38);
+                        
+                    }
+    
+                    input{
+                        padding-left: 4px;
+                    }
+                     
+                }
+                
+                &.stylize-outline{
+    
+                    border-radius: $global-border-radius;
+                    border:1px solid rgba(0,0,0,.20);
+                    border-color: inherit;
+                    
+                   
+                    .parrot-input-float-babel{
+                        left:4px;
+    
+                        &.has_label{
+                            transform: translate3d(4px,4px,0) scale(1);
+                             
+                        }
+                    }
+    
+                    &.has_label{
+                        transform: translate3d(4px,4px,0) scale(1);
+                        color: rgba(0,0,0,.38);
+                        padding-bottom: 0px;
+                    }
+    
+                    input{
+                        padding-left: 4px;
+                    }
+                     
+                }
+            }
+    
+            &.parrot-input-content{
+                height:100%;
+                position: relative;
+                display:flex;
+                justify-content: flex-start;
+                align-items: center;
+                width:100%;
+    
+                &-standInput{
+                    -webkit-appearance: none;
+                    appearance: none;
+                    outline: none;
+                    border:none;
+                    background: none;
+                    border-radius: 0 0 0 0;
+                    box-shadow: none;
+                    display:flex;
+                    padding:0;
+                    margin:0;
+                    width:100%;
+                    font-style: inherit;
+                    font-variant: inherit;
+                    font-weight: inherit;
+                    font-stretch: inherit;
+                    font-size: inherit;
+                    color: rgba(0,0,0,.87);
+                    font-family: inherit;
+                    position: relative;
+                    flex:1;
+                    height:24px;
+                }
+    
+                &-line{
+                    margin: 0;
+                    height: 1px;
+                    border: none;
+                    background-color: rgba(0,0,0,.20);
+                    left: 0;
+                    right: 0;
+                    bottom: -1px;
+                    position: absolute;
+    
+                    &-focus{
+                        background-color: currentColor;
+                        margin: 0;
+                        height: 2px;
+                        border: none;
+                        position: absolute;
+                        left: 0;
+                        right: 0;
+                        bottom: -1px;
+                        -webkit-transform: scaleX(0);
+                        transform: scaleX(0);
+                        -webkit-transition: -webkit-transform $global-transition-duration cubic-bezier(.23,1,.32,1);
+                        transition: -webkit-transform $global-transition-duration cubic-bezier(.23,1,.32,1);
+                        transition: transform $global-transition-duration cubic-bezier(.23,1,.32,1);
+                        transition: transform $global-transition-duration cubic-bezier(.23,1,.32,1),-webkit-transform $global-transition-duration cubic-bezier(.23,1,.32,1);
+                    }
+    
+                    
+                }
+            }
+    
+            &.parrot-input-float-babel{
+                line-height: 18px;
+                transition: all $global-transition-duration $easeOutFunction;
+                z-index: 1;
+                cursor: text;
+                transform: translate3d(0, 0, 0) scale(0.75);
+                transform-origin: left top;
+                user-select: none;
+                pointer-events: none;
+                backface-visibility: hidden;
+                top: 0px;
+                position: absolute;
+    
+               
+                &.has_label{
+                    transform: translate3d(0,18px,0) scale(1);
+                    color: rgba(0,0,0,.38);
+                }
+            }
+        }
+
+        &-size-large{
+            &.parrot-input-container{
+                font-size:20px;
+                width:256px;
+                display:inline-block;
+                position: relative;
+                color:$input-normal-color;
+                padding-bottom: 8px;
+                padding-top: 8px;
+                min-height:48px;
+                height:48px;
+    
+                &.has_label{
+                    padding-top: 24px;
+                    padding-bottom: 8px;
+                    min-height: 64px;
+                    height:64px;
+                }
+    
+                &.stylize-filled{
+                    background-color: rgba(0,0,0,.09);
+                    border-top-left-radius: $global-border-radius;
+                    border-top-right-radius:$global-border-radius;
+                    padding-bottom: 0px;
+                   
+                    .parrot-input-float-babel{
+                        left:8px;
+    
+                        &.has_label{
+                            transform: translate3d(8px,20px,0) scale(1);
+                             
+                        }
+                    }
+    
+                    &.has_label{
+                        transform: translate3d(8px,20px,0) scale(1);
+                        color: rgba(0,0,0,.38);
+                        
+                    }
+    
+                    input{
+                        padding-left: 8px;
+                    }
+                     
+                }
+                
+                &.stylize-outline{
+    
+                    border-radius: $global-border-radius;
+                    border:1px solid rgba(0,0,0,.20);
+                    border-color: inherit;
+                    
+                   
+                    .parrot-input-float-babel{
+                        left:8px;
+    
+                        &.has_label{
+                            transform: translate3d(8px,20px,0) scale(1);
+                             
+                        }
+                    }
+    
+                    &.has_label{
+                        transform: translate3d(8px,16px,0) scale(1);
+                        color: rgba(0,0,0,.38);
+                        padding-bottom: 8px;
+                    }
+    
+                    input{
+                        padding-left: 8px;
+                    }
+                     
+                }
+            }
+    
+            &.parrot-input-content{
+                height:100%;
+                position: relative;
+                display:flex;
+                justify-content: flex-start;
+                align-items: center;
+                width:100%;
+    
+                &-standInput{
+                    -webkit-appearance: none;
+                    appearance: none;
+                    outline: none;
+                    border:none;
+                    background: none;
+                    border-radius: 0 0 0 0;
+                    box-shadow: none;
+                    display:flex;
+                    padding:0;
+                    margin:0;
+                    width:100%;
+                    font-style: inherit;
+                    font-variant: inherit;
+                    font-weight: inherit;
+                    font-stretch: inherit;
+                    font-size: inherit;
+                    color: rgba(0,0,0,.87);
+                    font-family: inherit;
+                    position: relative;
+                    flex:1;
+                    height:40px;
+                }
+    
+                &-line{
+                    margin: 0;
+                    height: 1px;
+                    border: none;
+                    background-color: rgba(0,0,0,.20);
+                    left: 0;
+                    right: 0;
+                    bottom: -1px;
+                    position: absolute;
+    
+                    &-focus{
+                        background-color: currentColor;
+                        margin: 0;
+                        height: 2px;
+                        border: none;
+                        position: absolute;
+                        left: 0;
+                        right: 0;
+                        bottom: -1px;
+                        -webkit-transform: scaleX(0);
+                        transform: scaleX(0);
+                        -webkit-transition: -webkit-transform $global-transition-duration cubic-bezier(.23,1,.32,1);
+                        transition: -webkit-transform $global-transition-duration cubic-bezier(.23,1,.32,1);
+                        transition: transform $global-transition-duration cubic-bezier(.23,1,.32,1);
+                        transition: transform $global-transition-duration cubic-bezier(.23,1,.32,1),-webkit-transform $global-transition-duration cubic-bezier(.23,1,.32,1);
+                    }
+    
+                    
+                }
+            }
+    
+            &.parrot-input-float-babel{
+                line-height: 30px;
+                transition: all $global-transition-duration $easeOutFunction;
+                z-index: 1;
+                cursor: text;
+                transform: translate3d(0, 0, 0) scale(0.75);
+                transform-origin: left top;
+                user-select: none;
+                pointer-events: none;
+                backface-visibility: hidden;
+                top: 8px;
+                position: absolute;
+    
+               
+                &.has_label{
+                    transform: translate3d(0,22px,0) scale(1);
+                    color: rgba(0,0,0,.38);
+                }
+            }
+        }
+
+        &-fullWidth{
+            width: 100%;
         }
     }
 
     &-is_focus{
-        color:$primary-color;
+        color:$primary-color!important;
         transform: scaleX(1);
     }
+
+    
+   
 }
+input::-webkit-input-placeholder{
+    color:rgba(0, 0, 0, 0.38);
+}    /* 使用webkit内核的浏览器 */
+input:-moz-placeholder{
+    color:rgba(0, 0, 0, 0.38);
+}                  /* Firefox版本4-18 */
+input::-moz-placeholder{
+    color:rgba(0, 0, 0, 0.38);
+}                  /* Firefox版本19+ */
+input:-ms-input-placeholder{
+    color:rgba(0, 0, 0, 0.38);
+}    

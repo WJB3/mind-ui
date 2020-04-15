@@ -10,7 +10,10 @@ interface Props {
     placeholder?:any,
     maxLength?:number,
     float?:boolean,//placeholder浮动
-    stylize?:string
+    stylize?:string,
+    size?:string,
+    onChange?:any,
+    fullWidth?:boolean
 }
 
 const Input: React.FunctionComponent<Props> = React.forwardRef((Props, ref) => {
@@ -21,7 +24,10 @@ const Input: React.FunctionComponent<Props> = React.forwardRef((Props, ref) => {
         placeholder="",
         maxLength,
         float,
-        stylize
+        stylize,
+        size,
+        onChange,
+        fullWidth
     } = Props;
 
     const [focus,setFocus]=useState(false);
@@ -47,11 +53,19 @@ const Input: React.FunctionComponent<Props> = React.forwardRef((Props, ref) => {
         }
     }
 
+    function handleChange(...props:any){
+        if(onChange){
+            onChange(...props)
+        }
+    }
+
     const classname = classNames(
         `${prefixClassname}-input-container`,
         focus?`${prefixClassname}-is_focus`:"",
         float?"has_label":"",
-        stylize && stylize!=="normal"?`stylize-${stylize}`:""
+        stylize && stylize!=="normal"?`stylize-${stylize}`:"",
+        size && size!=="normal"?`${prefixClassname}-input-size-${size}`:"",
+        fullWidth?`${prefixClassname}-input-fullWidth`:""
     );
 
     return (
@@ -62,13 +76,14 @@ const Input: React.FunctionComponent<Props> = React.forwardRef((Props, ref) => {
                     className={classNames(`${prefixClassname}-input-content-standInput`)}
                     onFocus={handleFocus}
                     onBlur={handleBlur}
+                    onChange={handleChange}
                     placeholder={float?"":placeholder}
                     maxLength={maxLength}
                 />
-                <div>
+                {stylize!=="outline" && <div>
                     <div className={classNames(`${prefixClassname}-input-content-line`)}></div>
                     <div className={classNames(`${prefixClassname}-input-content-line-focus`,focus?`${prefixClassname}-is_focus`:"")}></div>
-                </div>
+                </div>}
             </div>
 
         </div>

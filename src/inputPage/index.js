@@ -41,11 +41,35 @@ class Page extends React.Component {
                         <div style={{ display: "flex", justifyContent: "space-around" }}>
                             <Input placeholder="请输入姓名" float />
                             <Input placeholder="请输入姓名" float stylize="filled" />
-                            <Input placeholder="请输入姓名" float />
+                            <Input placeholder="请输入姓名" float stylize="outline" />
                         </div>
                     </React.Fragment>}
                     title={"stylize设置。"}
                     description={"设置stylize可实现输入框风格，默认风格为normal"}
+                ></Textlayout>
+
+                <Textlayout
+                    components={<React.Fragment>
+                        <div style={{ display: "flex", justifyContent: "space-around" }}>
+                            <Input placeholder="请输入姓名" float stylize="filled" size={"small"} />
+                            <Input placeholder="请输入姓名" float stylize="filled" />
+                            <Input placeholder="请输入姓名" float stylize="filled" size={"large"} />
+                        </div>
+                    </React.Fragment>}
+                    title={"size设置。"}
+                    description={"设置size为大、中、小。默认大小为中。"}
+                ></Textlayout>
+
+                <Textlayout
+                    components={<React.Fragment>
+                        <div style={{ display: "flex", justifyContent: "space-around", flexWrap: "wrap" }}>
+                            <Input placeholder="请输入姓名" float fullWidth/>
+                            <Input placeholder="请输入姓名" float stylize="filled" fullWidth/>
+                            <Input placeholder="请输入姓名" float stylize="outline" fullWidth/>
+                        </div>
+                    </React.Fragment>}
+                    title={"fullWidth设置。"}
+                    description={"设置fullWidth沾满宽度。"}
                 ></Textlayout>
 
                 <SubTitle>API</SubTitle>
