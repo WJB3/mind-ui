@@ -26,56 +26,26 @@ class Page extends React.Component {
 
                 <Textlayout
                     components={<React.Fragment>
-                        <Input placeholder="Basic usage"  maxLength={10} />
+                        <div style={{ display: "flex", justifyContent: "space-around" }}>
+                            <Input placeholder="基础" />
+                            <Input placeholder="请输入姓名" float />
+                            <Input placeholder="输入长度最大为10个字符" maxLength={10} />
+                        </div>
                     </React.Fragment>}
                     title={"基本使用。"}
-                    description={"基本使用。"}
+                    description={"设置float可浮动placeholder,通过设置maxLength实现输入最大长度"}
                 ></Textlayout>
 
                 <Textlayout
                     components={<React.Fragment>
-                        <Input placeholder="Large" size="large" prefixIcon={<Icon name="phone" />} />
-                        <Input placeholder="Basic usage" disabled prefixIcon={<Icon name="phone" />} />
-                        <Input placeholder="Small" size="small" prefixIcon={<Icon name="phone" />} />
-                        <Input placeholder="Small" size="small" prefixIcon={<Icon name="find" />} />
-                        <Input placeholder="Small" size="small" prefix={"www"} suffix={"@gmail.com"} />
-                        <Input.Password placeholder="Basic usage" />
-                        <Input.Password placeholder="Basic usage" fillWidth />
+                        <div style={{ display: "flex", justifyContent: "space-around" }}>
+                            <Input placeholder="请输入姓名" float />
+                            <Input placeholder="请输入姓名" float stylize="filled" />
+                            <Input placeholder="请输入姓名" float />
+                        </div>
                     </React.Fragment>}
-                    title={"三种大小"}
-                    description={"我们为 <Input /> 输入框定义了三种尺寸（大、默认、小），高度分别为 40px、32px 和 24px。"}
-                ></Textlayout>
-
-                <Textlayout
-                    components={<React.Fragment>
-                        <Input.Search
-                            placeholder="input search text"
-                            onSearch={value => console.log(value)}
-                            style={{ width: "200px" }}
-                        />
-                        <Input.Search
-                            placeholder="input search text"
-                            enterButton="Search"
-                            onChange={() => { console.log("changing...") }}
-                            onSearch={(value) => { console.log(value) }}
-                        />
-                        <Input.Search
-                            placeholder="input search text"
-                            errorText="请输入正确的"
-                        />
-                    </React.Fragment>}
-                    title={"搜索框。"}
-                    description={"带有搜索按钮的输入框。"}
-                ></Textlayout>
-
-                <Textlayout
-                    components={<React.Fragment>
-                        <Input.TextArea
-                            rows={4}
-                        />
-                    </React.Fragment>}
-                    title={"文本域。"}
-                    description={"用于多行输入。"}
+                    title={"stylize设置。"}
+                    description={"设置stylize可实现输入框风格，默认风格为normal"}
                 ></Textlayout>
 
                 <SubTitle>API</SubTitle>

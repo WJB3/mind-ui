@@ -12,11 +12,10 @@ interface Props{
    onExit?:any,
    onExiting?:any,
    children?:any,
-   component?:any,
-   foldHeight?:any
+   component?:any
 }
 
-const Fold:React.FunctionComponent<Props>=React.forwardRef((Props,ref)=>{
+const Fade:React.FunctionComponent<Props>=React.forwardRef((Props,ref)=>{
 
     const {
         children,
@@ -27,33 +26,29 @@ const Fold:React.FunctionComponent<Props>=React.forwardRef((Props,ref)=>{
         onExit,
         onExiting,
         component:Component='div',
-        foldHeight="0px"
+ 
     }=Props;
 
-    const wrapperRef:any=React.useRef(null);
-
-    const classes=classNames(
-        `${prefixClassname}-animation-fold`
-    );
+   
 
     const handleEnter=(node:any,isAppearing:any)=>{
-        node.style.height = foldHeight;
+        
         if (onEnter) {
             onEnter(node, isAppearing);
         }
     }
 
     const handleEntered=(node:any,isAppearing:any)=>{
-        node.style.height = 'auto';
+        
+        node.style.transition="opacity 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms";
+
         if(onEntered){
             onEntered(node,isAppearing)
         }
     }
 
     const handleEntering=(node:any,isAppearing:any)=>{
-        const wrapperHeight=wrapperRef.current?wrapperRef.current.clientHeight:0;
-
-        node.style.height = `${wrapperHeight}px`;
+       
 
         if(onEntering){
             onEntering(node,isAppearing)
@@ -61,8 +56,6 @@ const Fold:React.FunctionComponent<Props>=React.forwardRef((Props,ref)=>{
     }
 
     const handleExit=(node:any)=>{
-        const wrapperHeight = wrapperRef.current ? wrapperRef.current.clientHeight : 0;
-        node.style.height = `${wrapperHeight}px`;
 
         if(onExit){
             onExit(node)
@@ -70,22 +63,19 @@ const Fold:React.FunctionComponent<Props>=React.forwardRef((Props,ref)=>{
     }
 
     const handleExiting=(node:any)=>{
-        const wrapperHeight = wrapperRef.current ? wrapperRef.current.clientHeight : 0;
-        node.style.transitionDuration = `250ms`;
-        node.style.height = foldHeight;
+        
         if(onExiting){
             onExiting(node)
         }
     }
 
-    const addEndListener=(_,next)=>{
-        // if(timeout==="auto"){
-
-        // }
+    const addEndListener=(_:any,next:any)=>{
+       
     }
 
     return(
         <Transition
+            appear
             in={inProp}
             onEnter={handleEnter}
             onEntered={handleEntered}
@@ -99,22 +89,15 @@ const Fold:React.FunctionComponent<Props>=React.forwardRef((Props,ref)=>{
                    
                    return <Component
                         className={
-                            classNames(`${prefixClassname}-animation-fold-container`,{
-                                [`${prefixClassname}-animation-fold-entered`]:state==='entered',
-                                [`${prefixClassname}-animation-fold-hidden`]:state==='exited' && !inProp && foldHeight==='0px',
+                            classNames(`${prefixClassname}-animation-fade-container`,{
+                                [`${prefixClassname}-animation-fade-entered`]:state==='entered',
+                                [`${prefixClassname}-animation-fade-exited`]:state==='exited' && !inProp ,
                             })
                         }
-                        style={{
-                            minHeight:foldHeight
-                        }}
                         ref={ref}
                         {...childrenProps}
                    >
-                        <div className={`${prefixClassname}-animation-fold-container-wrapper`} ref={wrapperRef}>
-                            <div className={`${prefixClassname}-animation-fold-container-wrapperInner`}>
-                                {children}
-                            </div>
-                        </div>
+                       {children} 
                     </Component>
                 }
             }
@@ -123,4 +106,4 @@ const Fold:React.FunctionComponent<Props>=React.forwardRef((Props,ref)=>{
     )
 });
 
-export default Fold;
+export default Fade;

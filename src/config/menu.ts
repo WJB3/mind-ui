@@ -9,6 +9,10 @@ const menuInfo=[
         key:"component",
         children:[
             {
+                title:"animation",
+                key:"animation",
+            },
+            {
                 title:"Pager",
                 key:"pager",
             },
@@ -35,8 +39,8 @@ const menuInfo=[
                 key:"icon",
             },
             {
-                title:"动画",
-                key:"animation",
+                title:"电池动画",
+                key:"battery-animation-demo",
             },
             {
                 title:"上传demo",

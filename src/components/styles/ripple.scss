@@ -27,12 +27,12 @@
 .wonderful-ripple-entering {
     opacity: 0.3;
     transform: scale(1);
-    animation: wonderful-ripple-enter 500ms $easeOutFunction;
+    animation: wonderful-ripple-enter $global-transition-duration $easeOutFunction;
 }
 
 .wonderful-ripple-wrapper-exiting {
     opacity: 0;
-    animation: wonderful-ripple-exit 500ms $easeOutFunction;
+    animation: wonderful-ripple-exit $global-transition-duration $easeOutFunction;
 }
 
 @keyframes wonderful-ripple-enter {

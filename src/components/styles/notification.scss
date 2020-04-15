@@ -31,11 +31,11 @@
 .wonderful-notification-right-top,.wonderful-notification-right-bottom{
 
     .item-wrapper_appear{
-        animation:notice_appear_right 300ms $easeInOutFunction 1;
+        animation:notice_appear_right $global-transition-duration $easeInOutFunction 1;
     }
 
     .item-wrapper_leave{
-        animation:notice_leave_right 300ms $easeInOutFunction 1;
+        animation:notice_leave_right $global-transition-duration $easeInOutFunction 1;
     }
 
 }
@@ -43,11 +43,11 @@
 .wonderful-notification-left-top,.wonderful-notification-left-bottom{
 
     .item-wrapper_appear{
-        animation:notice_appear_left 300ms $easeInOutFunction 1;
+        animation:notice_appear_left $global-transition-duration $easeInOutFunction 1;
     }
 
     .item-wrapper_leave{
-        animation:notice_leave_left 300ms $easeInOutFunction 1;
+        animation:notice_leave_left $global-transition-duration $easeInOutFunction 1;
     }
 
 }

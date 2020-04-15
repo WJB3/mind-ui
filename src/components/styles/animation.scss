@@ -1,7 +1,46 @@
 @import "./variable";
 
 .parrot{
-    &-animation-fold{
-        
+    &-animation{
+        &-fold{
+            &-container{
+                height: 0;
+                overflow: hidden;
+                transition: height $global-transition-duration cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    
+                &-wrapper{
+                    display: flex;
+                }
+                &-wrapperInner{
+                    width:100%;
+                }
+            }
+    
+            &-hidden{
+                visibility: hidden;
+            }
+    
+            &-entered{
+                height: 'auto';
+                overflow: visible;
+            }
+        }
+
+        &-fade{
+            &-container{
+                transition: opacity $global-transition-duration cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+                opacity: 0;
+            }
+    
+            &-exited{
+                opacity: 0;
+                transition: opacity $global-transition-duration cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+                visibility: hidden;
+            }
+    
+            &-entered{
+                opacity:1;
+            }
+        }
     }
 }
