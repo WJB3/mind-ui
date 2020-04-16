@@ -7,7 +7,8 @@ interface CircleRippleProps{
     mergeStyle?:any,
     color?:any,
     opacity?:any,
-    in?:any
+    in?:any,
+    backgroundColor?:string
 }
 
 const CircleRipple:React.FunctionComponent<CircleRippleProps>=(CircleRippleProps)=>{
@@ -18,11 +19,12 @@ const CircleRipple:React.FunctionComponent<CircleRippleProps>=(CircleRippleProps
     const {
         mergeStyle,
         color,
+        backgroundColor,
         opacity,
         ...other
     }=CircleRippleProps;
 
-    const styles={...mergeStyle,color,opacity}
+    const styles={...mergeStyle,backgroundColor,opacity}
 
     const classes=classNames("wonderful-circle-ripple",{
         "wonderful-ripple-entering":rippleEntering,
@@ -34,6 +36,7 @@ const CircleRipple:React.FunctionComponent<CircleRippleProps>=(CircleRippleProps
     }
 
     function handleExit(){
+        console.log("handleExit")
         setRippleExiting(true);
     }
 
@@ -43,7 +46,7 @@ const CircleRipple:React.FunctionComponent<CircleRippleProps>=(CircleRippleProps
             onExit={()=>handleExit()}
             exit
             enter
-            timeout={300}
+            timeout={500}
             unmountOnExit
             {...other}
         >

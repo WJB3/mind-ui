@@ -48,28 +48,30 @@ class Page extends React.Component {
                     description={"设置stylize可实现输入框风格，默认风格为normal"}
                 ></Textlayout>
 
+
+
                 <Textlayout
                     components={<React.Fragment>
-                        <div style={{ display: "flex", justifyContent: "space-around" }}>
-                            <Input placeholder="请输入姓名" float stylize="filled" size={"small"} />
-                            <Input placeholder="请输入姓名" float stylize="filled" />
-                            <Input placeholder="请输入姓名" float stylize="filled" size={"large"} />
+                        <div style={{ display: "flex", justifyContent: "space-around", flexWrap: "wrap" }}>
+                            <Input.Password placeholder="默认显示密码框" float />
+                            <Input.Password placeholder="visibilityToggle=false" float stylize="filled" visibilityToggle={false} />
+                            <Input.Password placeholder="visibilityToggle=true" float stylize="outline" visibilityToggle={true} />
                         </div>
                     </React.Fragment>}
-                    title={"size设置。"}
-                    description={"设置size为大、中、小。默认大小为中。"}
+                    title={"密码框"}
+                    description={"设置密码框。"}
                 ></Textlayout>
 
                 <Textlayout
                     components={<React.Fragment>
                         <div style={{ display: "flex", justifyContent: "space-around", flexWrap: "wrap" }}>
-                            <Input placeholder="请输入姓名" float fullWidth/>
-                            <Input placeholder="请输入姓名" float stylize="filled" fullWidth/>
-                            <Input placeholder="请输入姓名" float stylize="outline" fullWidth/>
+                            <Input.Password placeholder="默认显示密码框" float allowClear/>
+                            <Input placeholder="默认显示密码框" float allowClear />
+
                         </div>
                     </React.Fragment>}
-                    title={"fullWidth设置。"}
-                    description={"设置fullWidth沾满宽度。"}
+                    title={"密码框"}
+                    description={"设置密码框。"}
                 ></Textlayout>
 
                 <SubTitle>API</SubTitle>

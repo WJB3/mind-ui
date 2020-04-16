@@ -1,497 +1,326 @@
 
 @import "./variable";
+$prefix:"#{$global-prefix}-input";
 
-.parrot{
-    &-input{
-
+.#{$prefix}{
+    
         &-container{
-            font-size:16px;
-            width:256px;
-            display:inline-block;
-            position: relative;
-            color:$input-normal-color;
-            padding-bottom: 4px;
-            padding-top: 4px;
-            min-height:40px;
-            height:40px;
 
-            &.has_label{
-                padding-top: 20px;
-                padding-bottom: 4px;
-                min-height: 56px;
-                height:56px;
+            
+            &.#{$prefix}-is_focus{//聚焦事件样式
+                color:$primary-color;
+
+                .#{$prefix}-wrapper{
+                    &::after{
+                        transform:scaleX(1);
+                    }
+                }
+
+                .#{$prefix}-float-label{
+                    transform: translate($input-normal-input-left,$input-normal-float-label-focus-top) scale($input-normal-float-label-scale);
+                }
+            }
+
+            &.has-value{
+                color:$primary-color;
+
+                .#{$prefix}-wrapper{
+                    &::after{
+                        transform:scaleX(1);
+                    }
+                }
+
+                .#{$prefix}-float-label{
+                    transform: translate($input-normal-input-left,$input-normal-float-label-focus-top) scale($input-normal-float-label-scale);
+                }
+            }
+
+            width:$input-normal-width;
+            background:none;
+            border:none;
+            outline:none;
+            position: relative;
+            font-size:$input-normal-font-size;
+
+            &.has_float_label{
+                padding-top:$input-normal-container-top;
+            }
+
+            .#{$prefix}-float-label{
+                position:absolute;
+                left:$input-normal-input-left;
+                line-height: 1;
+                top: 0;
+                transform: translate($input-normal-input-left, $input-normal-float-label-top) scale(1);
+                transition:transform $global-transition-duration $global-tansition-function $global-transition-delay-time;
+                transform-origin:top left;
+            }
+             
+            .#{$prefix}-wrapper{
+                width:100%;
+                position: relative;
+                display: flex;
+                align-items: center;
+
+                &:hover{
+                    &::before{
+                        border-bottom:2px solid $input-normal-underline-focus-color;
+                    }
+                }
+
+                &::before{
+                    content:"";
+                    display:block;
+                    position:absolute;
+                    left:0;
+                    right:0;
+                    bottom:0;
+                    transition: border-bottom-color $global-transition-duration $global-tansition-function $global-transition-delay-time;
+                    border-bottom:1px solid $input-normal-underline-color;
+                    pointer-events: none;//不会触发时间响应
+                }
+
+                &-standInput{//input框
+                    width:100%;
+                    border:none;
+                    background: none;
+                    outline:none;
+                    padding-top:$input-normal-padding-top-bottom;
+                    padding-bottom:$input-normal-padding-top-bottom;
+                    height:$input-normal-height;
+                    color:$input-normal-text-color;
+                }
+
+                &-suffix{//input框
+                    line-height: 1;
+                    margin: 0 8px;
+                }
+
+                &::after{
+                    content:"";
+                    display:block;
+                    position:absolute;
+                    left:0;
+                    right:0;
+                    bottom:0;
+                    transition:transform $global-transition-duration $global-tansition-function $global-transition-delay-time;
+                    transform:scaleX(0);
+                    border-bottom: 2px solid $primary-color;
+                    pointer-events: none;//不会触发时间响应
+                }
             }
 
             &.stylize-filled{
-                background-color: rgba(0,0,0,.09);
-                border-top-left-radius: $global-border-radius;
-                border-top-right-radius:$global-border-radius;
-                padding-bottom: 0px;
-               
-                .parrot-input-float-babel{
-                    left:8px;
-
-                    &.has_label{
-                        transform: translate3d(4px,14px,0) scale(1);
-                         
+                &.#{$prefix}-is_focus{//聚焦事件样式
+                    color:$primary-color;
+    
+                    .#{$prefix}-wrapper{
+                        &::after{
+                            transform:scaleX(1);
+                        }
+                    }
+    
+                    .#{$prefix}-float-label{
+                        transform: translate($input-filled-input-left,$input-filled-float-label-focus-top) scale($input-normal-float-label-scale);
                     }
                 }
-
-                &.has_label{
-                    transform: translate3d(4px,18px,0) scale(1);
-                    color: rgba(0,0,0,.38);
-                    
-                }
-
-                input{
-                    padding-left: 8px;
-                }
-                 
-            }
-            
-            &.stylize-outline{
-
-                border-radius: $global-border-radius;
-                border:1px solid rgba(0,0,0,.20);
-                border-color: inherit;
-                
-               
-                .parrot-input-float-babel{
-                    left:8px;
-
-                    &.has_label{
-                        transform: translate3d(8px,14px,0) scale(1);
-                         
+                &.has-value{
+                    color:$primary-color;
+    
+                    .#{$prefix}-wrapper{
+                        &::after{
+                            transform:scaleX(1);
+                        }
+                    }
+    
+                    .#{$prefix}-float-label{
+                        transform: translate($input-filled-input-left,$input-filled-float-label-focus-top) scale($input-normal-float-label-scale);
                     }
                 }
-
-                &.has_label{
-                    transform: translate3d(8px,18px,0) scale(1);
-                    color: rgba(0,0,0,.38);
-                    padding-bottom: 4px;
-                }
-
-                input{
-                    padding-left: 8px;
-                }
-                 
-            }
-        }
-
-        &-content{
-            height:100%;
-            position: relative;
-            display:flex;
-            justify-content: flex-start;
-            align-items: center;
-            width:100%;
-
-            &-standInput{
-                -webkit-appearance: none;
-                appearance: none;
-                outline: none;
+                width:$input-filled-width;
+                background:none;
                 border:none;
-                background: none;
-                border-radius: 0 0 0 0;
-                box-shadow: none;
-                display:flex;
-                padding:0;
-                margin:0;
-                width:100%;
-                font-style: inherit;
-                font-variant: inherit;
-                font-weight: inherit;
-                font-stretch: inherit;
-                font-size: inherit;
-                color: rgba(0,0,0,.87);
-                font-family: inherit;
+                outline:none;
                 position: relative;
-                flex:1;
-                height:32px;
-            }
+                background:$input-filled-background-color;
+                border-top-left-radius: $global-border-radius;
+                border-top-right-radius: $global-border-radius;
+                transition:background-color $global-transition-duration $global-tansition-function $global-transition-delay-time;
 
-            &-line{
-                margin: 0;
-                height: 1px;
-                border: none;
-                background-color: rgba(0,0,0,.20);
-                left: 0;
-                right: 0;
-                bottom: -1px;
-                position: absolute;
-
-                &-focus{
-                    background-color: currentColor;
-                    margin: 0;
-                    height: 2px;
-                    border: none;
-                    position: absolute;
-                    left: 0;
-                    right: 0;
-                    bottom: -1px;
-                    -webkit-transform: scaleX(0);
-                    transform: scaleX(0);
-                    -webkit-transition: -webkit-transform $global-transition-duration cubic-bezier(.23,1,.32,1);
-                    transition: -webkit-transform $global-transition-duration cubic-bezier(.23,1,.32,1);
-                    transition: transform $global-transition-duration cubic-bezier(.23,1,.32,1);
-                    transition: transform $global-transition-duration cubic-bezier(.23,1,.32,1),-webkit-transform $global-transition-duration cubic-bezier(.23,1,.32,1);
-                }
-
-                
-            }
-        }
-
-        &-float-babel{
-            line-height: 22px;
-            transition: all $global-transition-duration $easeOutFunction;
-            z-index: 1;
-            cursor: text;
-            transform: translate3d(0, 0, 0) scale(0.75);
-            transform-origin: left top;
-            user-select: none;
-            pointer-events: none;
-            backface-visibility: hidden;
-            top: 4px;
-            position: absolute;
-
-           
-            &.has_label{
-                transform: translate3d(0,18px,0) scale(1);
-                color: rgba(0,0,0,.38);
-            }
-        }
-
-        &-size-small{
-            &.parrot-input-container{
-                font-size:12px;
-                width:256px;
-                display:inline-block;
-                position: relative;
-                color:$input-normal-color;
-                padding-bottom: 0px;
-                padding-top: 0px;
-                min-height:32px;
-                height:32px;
-    
-                &.has_label{
-                    padding-top: 12px;
-                    padding-bottom: 0px;
-                    min-height: 40px;
-                    height:40px;
+                &:hover{
+                    background:$input-filled-hover-background-color;
                 }
     
-                &.stylize-filled{
-                    background-color: rgba(0,0,0,.09);
-                    border-top-left-radius: $global-border-radius;
-                    border-top-right-radius:$global-border-radius;
-                    padding-bottom: 0px;
-                   
-                    .parrot-input-float-babel{
-                        left:4px;
-    
-                        &.has_label{
-                            transform: translate3d(4px,4px,0) scale(1);
-                             
-                        }
-                    }
-    
-                    &.has_label{
-                        transform: translate3d(4px,4px,0) scale(1);
-                        color: rgba(0,0,0,.38);
-                        
-                    }
-    
-                    input{
-                        padding-left: 4px;
-                    }
-                     
+                &.has_float_label{
+                    padding-top:$input-filled-container-top;
                 }
-                
-                &.stylize-outline{
     
-                    border-radius: $global-border-radius;
-                    border:1px solid rgba(0,0,0,.20);
-                    border-color: inherit;
-                    
-                   
-                    .parrot-input-float-babel{
-                        left:4px;
-    
-                        &.has_label{
-                            transform: translate3d(4px,4px,0) scale(1);
-                             
-                        }
-                    }
-    
-                    &.has_label{
-                        transform: translate3d(4px,4px,0) scale(1);
-                        color: rgba(0,0,0,.38);
-                        padding-bottom: 0px;
-                    }
-    
-                    input{
-                        padding-left: 4px;
-                    }
-                     
+                .#{$prefix}-float-label{
+                    position:absolute;
+                    left:$input-filled-input-left;
+                    line-height: 1;
+                    top: 0;
+                    transform: translate($input-filled-input-left, $input-filled-float-label-top) scale(1);
+                    transition:transform $global-transition-duration $global-tansition-function $global-transition-delay-time;
+                    transform-origin:top left;
                 }
-            }
-    
-            &.parrot-input-content{
-                height:100%;
-                position: relative;
-                display:flex;
-                justify-content: flex-start;
-                align-items: center;
-                width:100%;
-    
-                &-standInput{
-                    -webkit-appearance: none;
-                    appearance: none;
-                    outline: none;
-                    border:none;
-                    background: none;
-                    border-radius: 0 0 0 0;
-                    box-shadow: none;
-                    display:flex;
-                    padding:0;
-                    margin:0;
+                 
+                .#{$prefix}-wrapper{
                     width:100%;
-                    font-style: inherit;
-                    font-variant: inherit;
-                    font-weight: inherit;
-                    font-stretch: inherit;
-                    font-size: inherit;
-                    color: rgba(0,0,0,.87);
-                    font-family: inherit;
                     position: relative;
-                    flex:1;
-                    height:24px;
-                }
-    
-                &-line{
-                    margin: 0;
-                    height: 1px;
-                    border: none;
-                    background-color: rgba(0,0,0,.20);
-                    left: 0;
-                    right: 0;
-                    bottom: -1px;
-                    position: absolute;
-    
-                    &-focus{
-                        background-color: currentColor;
-                        margin: 0;
-                        height: 2px;
-                        border: none;
-                        position: absolute;
-                        left: 0;
-                        right: 0;
-                        bottom: -1px;
-                        -webkit-transform: scaleX(0);
-                        transform: scaleX(0);
-                        -webkit-transition: -webkit-transform $global-transition-duration cubic-bezier(.23,1,.32,1);
-                        transition: -webkit-transform $global-transition-duration cubic-bezier(.23,1,.32,1);
-                        transition: transform $global-transition-duration cubic-bezier(.23,1,.32,1);
-                        transition: transform $global-transition-duration cubic-bezier(.23,1,.32,1),-webkit-transform $global-transition-duration cubic-bezier(.23,1,.32,1);
+                    padding:$input-filled-padding;
+                    display: flex;
+                    align-items: center;
+                    &:hover{
+                        &::before{
+                            border-bottom:2px solid $input-filled-underline-focus-color;
+                        }
                     }
     
-                    
+                    &::before{
+                        content:"";
+                        display:block;
+                        position:absolute;
+                        left:0;
+                        right:0;
+                        bottom:0;
+                        transition: border-bottom-color $global-transition-duration $global-tansition-function $global-transition-delay-time;
+                        border-bottom:1px solid $input-filled-underline-color;
+                        pointer-events: none;//不会触发时间响应
+                    }
+    
+                    &-standInput{//input框
+                        width:100%;
+                        border:none;
+                        background: none;
+                        outline:none;
+                        padding:0;
+                        height:$input-filled-height;
+                        color:$input-normal-text-color;
+                    }
+    
+                    &::after{
+                        content:"";
+                        display:block;
+                        position:absolute;
+                        left:0;
+                        right:0;
+                        bottom:0;
+                        transition:transform $global-transition-duration $global-tansition-function $global-transition-delay-time;
+                        transform:scaleX(0);
+                        border-bottom: 2px solid $primary-color;
+                        pointer-events: none;//不会触发时间响应
+                    }
                 }
             }
-    
-            &.parrot-input-float-babel{
-                line-height: 18px;
-                transition: all $global-transition-duration $easeOutFunction;
-                z-index: 1;
-                cursor: text;
-                transform: translate3d(0, 0, 0) scale(0.75);
-                transform-origin: left top;
-                user-select: none;
-                pointer-events: none;
-                backface-visibility: hidden;
-                top: 0px;
-                position: absolute;
-    
-               
-                &.has_label{
-                    transform: translate3d(0,18px,0) scale(1);
-                    color: rgba(0,0,0,.38);
-                }
-            }
-        }
 
-        &-size-large{
-            &.parrot-input-container{
-                font-size:20px;
-                width:256px;
-                display:inline-block;
-                position: relative;
-                color:$input-normal-color;
-                padding-bottom: 8px;
-                padding-top: 8px;
-                min-height:48px;
-                height:48px;
-    
-                &.has_label{
-                    padding-top: 24px;
-                    padding-bottom: 8px;
-                    min-height: 64px;
-                    height:64px;
-                }
-    
-                &.stylize-filled{
-                    background-color: rgba(0,0,0,.09);
-                    border-top-left-radius: $global-border-radius;
-                    border-top-right-radius:$global-border-radius;
-                    padding-bottom: 0px;
-                   
-                    .parrot-input-float-babel{
-                        left:8px;
-    
-                        &.has_label{
-                            transform: translate3d(8px,20px,0) scale(1);
-                             
+            &.stylize-outline{
+                &.#{$prefix}-is_focus{//聚焦事件样式
+                    color:$primary-color;
+                    border-color:$primary-color!important;
+                    .#{$prefix}-wrapper{
+                        &::after{
+                            transform:scaleX(1);
                         }
                     }
     
-                    &.has_label{
-                        transform: translate3d(8px,20px,0) scale(1);
-                        color: rgba(0,0,0,.38);
-                        
+                    .#{$prefix}-float-label{
+                        transform: translate($input-filled-input-left,$input-filled-float-label-focus-top) scale($input-normal-float-label-scale);
                     }
-    
-                    input{
-                        padding-left: 8px;
-                    }
-                     
                 }
-                
-                &.stylize-outline{
+                &.has-value{
+                    color:$primary-color;
     
-                    border-radius: $global-border-radius;
-                    border:1px solid rgba(0,0,0,.20);
-                    border-color: inherit;
-                    
-                   
-                    .parrot-input-float-babel{
-                        left:8px;
-    
-                        &.has_label{
-                            transform: translate3d(8px,20px,0) scale(1);
-                             
+                    .#{$prefix}-wrapper{
+                        &::after{
+                            transform:scaleX(1);
                         }
                     }
     
-                    &.has_label{
-                        transform: translate3d(8px,16px,0) scale(1);
-                        color: rgba(0,0,0,.38);
-                        padding-bottom: 8px;
+                    .#{$prefix}-float-label{
+                        transform: translate($input-filled-input-left,$input-filled-float-label-focus-top) scale($input-normal-float-label-scale);
                     }
-    
-                    input{
-                        padding-left: 8px;
-                    }
-                     
                 }
-            }
-    
-            &.parrot-input-content{
-                height:100%;
+                width:$input-filled-width;
+                background:none;
+                border:none;
+                outline:none;
                 position: relative;
-                display:flex;
-                justify-content: flex-start;
-                align-items: center;
-                width:100%;
+                background:$input-outline-background-color;
+                border-radius: $global-border-radius;
+                border:1px solid $input-outline-border-color;
+                transition:border-color $global-transition-duration $global-tansition-function $global-transition-delay-time;
+
+                &:hover{
+                    border-color:$input-outline-border-focus-color;
+                }
     
-                &-standInput{
-                    -webkit-appearance: none;
-                    appearance: none;
-                    outline: none;
-                    border:none;
-                    background: none;
-                    border-radius: 0 0 0 0;
-                    box-shadow: none;
-                    display:flex;
-                    padding:0;
-                    margin:0;
+                &.has_float_label{
+                    padding-top:$input-filled-container-top;
+                    max-height:$input-filled-max-height;
+                  
+                }
+    
+                .#{$prefix}-float-label{
+                    position:absolute;
+                    left:$input-filled-input-left;
+                    line-height: 1;
+                    top: 0;
+                    transform: translate($input-filled-input-left, $input-filled-float-label-top) scale(1);
+                    transition:transform $global-transition-duration $global-tansition-function $global-transition-delay-time;
+                    transform-origin:top left;
+                }
+                 
+                .#{$prefix}-wrapper{
                     width:100%;
-                    font-style: inherit;
-                    font-variant: inherit;
-                    font-weight: inherit;
-                    font-stretch: inherit;
-                    font-size: inherit;
-                    color: rgba(0,0,0,.87);
-                    font-family: inherit;
                     position: relative;
-                    flex:1;
-                    height:40px;
-                }
-    
-                &-line{
-                    margin: 0;
-                    height: 1px;
-                    border: none;
-                    background-color: rgba(0,0,0,.20);
-                    left: 0;
-                    right: 0;
-                    bottom: -1px;
-                    position: absolute;
-    
-                    &-focus{
-                        background-color: currentColor;
-                        margin: 0;
-                        height: 2px;
-                        border: none;
-                        position: absolute;
-                        left: 0;
-                        right: 0;
-                        bottom: -1px;
-                        -webkit-transform: scaleX(0);
-                        transform: scaleX(0);
-                        -webkit-transition: -webkit-transform $global-transition-duration cubic-bezier(.23,1,.32,1);
-                        transition: -webkit-transform $global-transition-duration cubic-bezier(.23,1,.32,1);
-                        transition: transform $global-transition-duration cubic-bezier(.23,1,.32,1);
-                        transition: transform $global-transition-duration cubic-bezier(.23,1,.32,1),-webkit-transform $global-transition-duration cubic-bezier(.23,1,.32,1);
+                    padding:$input-filled-padding;
+                    display: flex;
+                    align-items: center;
+                    &:hover{
+                         
                     }
     
-                    
-                }
-            }
+                    &::before{
+                        content:"";
+                        display:none;
+                        position:absolute;
+                        left:0;
+                        right:0;
+                        bottom:0;
+                        transition: border-bottom-color $global-transition-duration $global-tansition-function $global-transition-delay-time;
+                        border-bottom:1px solid $input-filled-underline-color;
+                        pointer-events: none;//不会触发时间响应
+                    }
     
-            &.parrot-input-float-babel{
-                line-height: 30px;
-                transition: all $global-transition-duration $easeOutFunction;
-                z-index: 1;
-                cursor: text;
-                transform: translate3d(0, 0, 0) scale(0.75);
-                transform-origin: left top;
-                user-select: none;
-                pointer-events: none;
-                backface-visibility: hidden;
-                top: 8px;
-                position: absolute;
+                    &-standInput{//input框
+                        width:100%;
+                        border:none;
+                        background: none;
+                        outline:none;
+                        padding:0;
+                        height:$input-filled-height;
+                        color:$input-normal-text-color;
+                    }
     
-               
-                &.has_label{
-                    transform: translate3d(0,22px,0) scale(1);
-                    color: rgba(0,0,0,.38);
+                    &::after{
+                        content:"";
+                        display:none;
+                        position:absolute;
+                        left:0;
+                        right:0;
+                        bottom:0;
+                        transition:transform $global-transition-duration $global-tansition-function $global-transition-delay-time;
+                        transform:scaleX(0);
+                        border-bottom: 2px solid $primary-color;
+                        pointer-events: none;//不会触发时间响应
+                    }
                 }
             }
         }
-
-        &-fullWidth{
-            width: 100%;
-        }
-    }
-
-    &-is_focus{
-        color:$primary-color!important;
-        transform: scaleX(1);
-    }
-
-    
-   
+        
 }
+
 input::-webkit-input-placeholder{
     color:rgba(0, 0, 0, 0.38);
 }    /* 使用webkit内核的浏览器 */

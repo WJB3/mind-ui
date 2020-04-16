@@ -1,19 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { classNames } from './../helper/className';
 import { prefixClassname } from './../_utils/config';
 import "./../styles/input.scss";
 
 
 interface Props {
-    onFocus?:any,
-    onBlur?:any,
-    placeholder?:any,
-    maxLength?:number,
-    float?:boolean,//placeholder浮动
-    stylize?:string,
-    size?:string,
-    onChange?:any,
-    fullWidth?:boolean
+    onFocus?: any,
+    onBlur?: any,
+    placeholder?: any,
+    maxLength?: number,
+    float?: boolean,//placeholder浮动
+    stylize?: string,
+    size?: string,
+    onChange?: any,
+    fullWidth?: boolean,
+    type?: string,
+    suffix?: any,
+    visibilityToggle?:boolean,
+    prefix?:any,
+    allowClear?:any
 }
 
 const Input: React.FunctionComponent<Props> = React.forwardRef((Props, ref) => {
@@ -21,70 +26,89 @@ const Input: React.FunctionComponent<Props> = React.forwardRef((Props, ref) => {
     const {
         onFocus,
         onBlur,
-        placeholder="",
+        placeholder = "",
         maxLength,
         float,
         stylize,
         size,
         onChange,
-        fullWidth
+        fullWidth,
+        type,
+        suffix,
+        visibilityToggle=true,
+        prefix,
+        allowClear
     } = Props;
 
-    const [focus,setFocus]=useState(false);
-    const [floatLabel,setFloatLabel]=useState(float);
+    const [focus, setFocus] = useState(false);
+    const [floatLabel, setFloatLabel] = useState(float);
+    const [inputValue, setInputValue] = useState("");
 
-    function handleFocus(...props:any){
+    function handleFocus(...props: any) {
         setFocus(true);
-        if(float){
+        if (float) {
             setFloatLabel(false);
         }
-        if(onFocus){
+        if (onFocus) {
             onFocus(...props);
         }
     }
 
-    function handleBlur(...props:any){
+    function handleBlur(...props: any) {
         setFocus(false);
-        if(float){
+        if (float) {
             setFloatLabel(true);
         }
-        if(onBlur){
+        if (onBlur) {
             onBlur(...props);
         }
     }
 
-    function handleChange(...props:any){
-        if(onChange){
-            onChange(...props)
+    function handleChange(...props: any) {
+        setInputValue(props[0].target.value);
+
+        if (onChange) {
+            onChange(props[0])
         }
     }
 
     const classname = classNames(
         `${prefixClassname}-input-container`,
-        focus?`${prefixClassname}-is_focus`:"",
-        float?"has_label":"",
-        stylize && stylize!=="normal"?`stylize-${stylize}`:"",
-        size && size!=="normal"?`${prefixClassname}-input-size-${size}`:"",
-        fullWidth?`${prefixClassname}-input-fullWidth`:""
+        focus ? `${prefixClassname}-input-is_focus` : "",
+        float ? "has_float_label" : "",
+        stylize && stylize !== "normal" ? `stylize-${stylize}` : "",
+        size && size !== "normal" ? `${prefixClassname}-input-size-${size}` : "",
+        fullWidth ? `${prefixClassname}-input-fullWidth` : "",
+        inputValue ? `has-value` : ""
     );
 
     return (
         <div className={classname}>
-            { float && <div className={classNames(`${prefixClassname}-input-float-babel`,floatLabel?"has_label":"")}>{placeholder}</div>}
-            <div className={classNames(`${prefixClassname}-input-content`)}>
+
+            {float && <div className={classNames(`${prefixClassname}-input-float-label`, floatLabel ? "has_label" : "")}>{placeholder}</div>}
+
+            <div className={classNames(`${prefixClassname}-input-wrapper`)}>
+
+                {
+                    !!prefix  && <div className={classNames(`${prefixClassname}-input-wrapper-prefix`)}>{suffix}</div>
+                }
+
                 <input
-                    className={classNames(`${prefixClassname}-input-content-standInput`)}
+                    className={classNames(`${prefixClassname}-input-wrapper-standInput`)}
                     onFocus={handleFocus}
                     onBlur={handleBlur}
                     onChange={handleChange}
-                    placeholder={float?"":placeholder}
+                    placeholder={float ? "" : placeholder}
                     maxLength={maxLength}
+                    type={type}
                 />
-                {stylize!=="outline" && <div>
-                    <div className={classNames(`${prefixClassname}-input-content-line`)}></div>
-                    <div className={classNames(`${prefixClassname}-input-content-line-focus`,focus?`${prefixClassname}-is_focus`:"")}></div>
-                </div>}
+
+                {
+                    !!suffix && visibilityToggle && <div className={classNames(`${prefixClassname}-input-wrapper-suffix`)}>{suffix}</div>
+                }
             </div>
+
+
 
         </div>
     )

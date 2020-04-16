@@ -1,0 +1,92 @@
+@import "./variable";
+$prefix:"#{$global-prefix}-radio";
+
+.#{$prefix}{
+    position: relative;
+    display: inline-block;
+    height: $radio-normal-height;
+    line-height: $radio-normal-height;
+    cursor: pointer;
+    user-select: none;
+    outline: none;
+ 
+
+    input[type='radio']{
+        display:none;
+    }
+
+    .#{$prefix}-wrapper{
+       
+        &.checked-radio {
+            color:$primary-color;
+            .#{$prefix}-icon{
+    
+                &-uncheck{
+                    opacity: 0;
+                    -webkit-transform: scale(0);
+                    transform: scale(0);
+                }
+    
+                &-checked{
+                    opacity: 1;
+                    -webkit-transform: scale(1);
+                    transform: scale(1);
+                }
+            }
+        }
+
+        display: flex;
+        width: 100%;
+        height: $radio-normal-height;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+
+        .#{$prefix}-icon{
+            width:  $radio-normal-height;
+            height:  $radio-normal-height;
+            vertical-align: middle;
+            position: relative;
+            margin-right: 8px;
+
+            &-svg{
+                display: inline-block;
+                fill: currentColor;
+                height: 24px;
+                width: 24px;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+            }
+
+            &-checked,&-uncheck{
+                position: absolute;
+                left: 0;
+                top: 0;
+                -webkit-transition: all $radio-normal-transition-time $radio-normal-transition-function;
+                transition: all $radio-normal-transition-time $radio-normal-transition-function;
+            }
+
+            &-uncheck{
+                opacity:1;
+            }
+
+            &-checked{
+                opacity: 0;
+                -webkit-transform: scale(0);
+                transform: scale(0);
+                transition: all $global-transition-duration $easeOutFunction;
+            }
+        }
+
+        .#{$prefix}-label{
+            color: $radio-normal-label-color;
+            white-space: nowrap;
+            font-size: $radio-normal-label-font-size;
+        }
+    }
+}

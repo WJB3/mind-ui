@@ -29,8 +29,17 @@ $normal-text-color:#fff;
 //全局文字placeholder颜色
 $global-placeholder-color:rgba(0,0,0,.38);
 //全局动画过渡时间
-$global-transition-duration:250ms;
+$global-transition-duration:300ms;
+//全局动画过渡曲线
+$global-tansition-function:cubic-bezier(0.4, 0, 0.2, 1);
+//全局动画延迟执行时间
+$global-transition-delay-time:0ms;
 //全局圆角
 $global-border-radius:4px;
 
+
+
+
+//全局前缀
+$global-prefix:"parrot";
  

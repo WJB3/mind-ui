@@ -10,12 +10,14 @@ import notificationPage from './notificationPage/index';
 import inputPage from './inputPage/index';
 import pagerPage from './pagerPage/index';
 import animationPage from './animationPage/index';
+import radioPage from './radioPage/index';
  
 import 'antd/dist/antd.css';
 import "./index.less";
 
 ReactDOM.render((<HashRouter>
-        <Route path="/" exact component={animationPage} />
+        <Route path="/" exact component={radioPage} />
+        <Route path="/radio" exact component={radioPage} />
         <Route path="/animation" exact component={animationPage} />
         <Route path="/pager" exact component={pagerPage} />
         <Route path="/notification" exact component={notificationPage} />

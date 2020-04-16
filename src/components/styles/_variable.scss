@@ -73,6 +73,65 @@ $pager-background-color:rgba(255,255,255,1);
 $pager-round-border-radius:$normal-border-radius;
 $pager-circle-border-radius:$normal-circle-border-radius;
 
+//input stylize:normal size:normal样式
+$input-normal-underline-color:rgba(0, 0, 0, 0.42);
+$input-normal-underline-focus-color:rgba(0, 0, 0, 1);
+$input-normal-text-color:rgba(0, 0, 0, 0.54);
+$input-normal-width:256px;//容器的宽度
+$input-normal-padding-top-bottom:4px;//input框距离上下的距离
+$input-normal-height:32px;//input框的高度
+$input-normal-font-size:16px;//容器内的font-size大小
+$input-normal-input-left:0;//浮动label距离左边的距离
+$input-normal-container-top:14px;//容器内部上边框距离Input框的距离
+$input-normal-float-label-top:24px;//浮动label距离上边的距离
+$input-normal-float-label-focus-top:0;//浮动label距离上边的距离
+
+//input stylize:filled size:normal样式
+$input-filled-underline-color:rgba(0, 0, 0, 0.42);
+$input-filled-underline-focus-color:rgba(0, 0, 0, 1);
+$input-filled-text-color:rgba(0, 0, 0, 0.54);
+$input-filled-background-color:rgba(0, 0, 0, 0.09);
+$input-filled-width:256px;//容器的宽度
+$input-filled-container-top:0px;
+$input-filled-padding:20px 0 4px 16px;//input框距离上下的距离
+$input-filled-height:32px;//input框的高度
+$input-filled-font-size:16px;//容器内的font-size大小
+$input-filled-input-left:8px;//浮动label距离左边的距离
+$input-filled-float-label-top:20px;//浮动label距离上边的距离
+$input-filled-float-label-focus-top:8px;//浮动label距离上边的距离
+$input-filled-border-radius:$global-border-radius;
+$input-filled-hover-background-color:rgba(0, 0, 0, 0.15);
+$input-filled-max-height:56px;
+
+//input stylize:outline size:normal样式
+$input-outline-border-color:rgba(0, 0, 0, 0.42);
+$input-outline-border-focus-color:rgba(0, 0, 0, 1);
+$input-outline-text-color:rgba(0, 0, 0, 0.54);
+$input-outline-background-color:rgba(255,255,255,1);
+$input-outline-width:256px;//容器的宽度
+$input-outline-container-top:0px;
+$input-outline-padding:20px 0 4px 16px;//input框距离上下的距离
+$input-outline-height:32px;//input框的高度
+$input-outline-font-size:16px;//容器内的font-size大小
+$input-outline-input-left:8px;//浮动label距离左边的距离
+$input-outline-float-label-top:20px;//浮动label距离上边的距离
+$input-outline-float-label-focus-top:8px;//浮动label距离上边的距离
+$input-outline-border-radius:$global-border-radius;
+$input-outline-hover-background-color:rgba(0, 0, 0, 0.15);
+//浮动label
+$input-normal-float-label-scale:0.85;
+$input-normal-text-color:rgba(0, 0, 0, 0.87);
+
+
+$radio-normal-height:24px;
+$radio-normal-label-color:rgba(0,0,0,.87);
+$radio-normal-label-font-size:16px;
+$radio-normal-transition-function:cubic-bezier(.23,1,.32,1);
+$radio-normal-transition-time:.45s;
+
+
+//ripple transition time
+$ripple-animation-duration:500ms;
 // animate
 $easeOutFunction: cubic-bezier(0.23, 1, 0.32, 1);
 $easeInOutFunction: cubic-bezier(0.445, 0.55, 0.55, 0.95);

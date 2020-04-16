@@ -3,6 +3,7 @@ import { classNames } from './../helper/className';
 import Input from './Input';
 import "./../styles/input.scss";
 import Icon from './../icon';
+import Button from './../button';
  
 
 interface PageProps{
@@ -28,7 +29,7 @@ const Password:React.FunctionComponent<PageProps>=(PageProps)=>{
     })
     
     return(
-        <Input {...props} type={type} suffix={<Icon name={icon} onClick={()=>setIcon(icon==="eye"?"eye-off":"eye")}/>}/>
+        <Input {...props} type={type} suffix={<Button shape={"circle"} flat onClick={()=>setIcon(icon==="eye"?"eye-off":"eye")}/>}/>
     )
 }
 

@@ -6,7 +6,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    border-radius: inherit!important;
+    border-radius: inherit;
     contain: strict;//不会使页面重绘
     overflow: hidden;
 }
@@ -22,17 +22,17 @@
     border-radius: 50%;
     background-color: currentColor;
     background-clip: padding-box;
-    opacity: 0.1;
+    opacity: 0;
 }
 .wonderful-ripple-entering {
     opacity: 0.3;
     transform: scale(1);
-    animation: wonderful-ripple-enter $global-transition-duration $easeOutFunction;
+    animation: wonderful-ripple-enter $ripple-animation-duration $easeOutFunction;
 }
 
 .wonderful-ripple-wrapper-exiting {
     opacity: 0;
-    animation: wonderful-ripple-exit $global-transition-duration $easeOutFunction;
+    animation: wonderful-ripple-exit $ripple-animation-duration $easeOutFunction;
 }
 
 @keyframes wonderful-ripple-enter {
@@ -52,3 +52,4 @@
         opacity: 0;
     }
 }
+
