@@ -9,6 +9,15 @@ $prefix:"#{$global-prefix}-radio";
     cursor: pointer;
     user-select: none;
     outline: none;
+
+    &.radio-group{
+        margin-right:12px;
+    }
+
+    &.radio-disabled{
+        color: $radio-normal-disabled-color;
+        cursor: not-allowed;
+    }
  
 
     input[type='radio']{
@@ -43,7 +52,7 @@ $prefix:"#{$global-prefix}-radio";
         align-items: center;
         -webkit-box-pack: justify;
         -ms-flex-pack: justify;
-        justify-content: space-between;
+     
 
         .#{$prefix}-icon{
             width:  $radio-normal-height;
@@ -52,6 +61,11 @@ $prefix:"#{$global-prefix}-radio";
             position: relative;
             margin-right: 8px;
 
+            &.radio-disabled{
+                color: $radio-normal-disabled-color;
+                cursor: not-allowed;
+            }
+            
             &-svg{
                 display: inline-block;
                 fill: currentColor;
@@ -87,6 +101,12 @@ $prefix:"#{$global-prefix}-radio";
             color: $radio-normal-label-color;
             white-space: nowrap;
             font-size: $radio-normal-label-font-size;
+            display: flex;
+
+            &.radio-disabled{
+                color: $radio-normal-disabled-color;
+                cursor: not-allowed;
+            }
         }
     }
 }

@@ -36,7 +36,6 @@ const CircleRipple:React.FunctionComponent<CircleRippleProps>=(CircleRippleProps
     }
 
     function handleExit(){
-        console.log("handleExit")
         setRippleExiting(true);
     }
 

@@ -1,0 +1,8 @@
+@import "./variable";
+$prefix:"#{$global-prefix}-radio-group";
+
+.#{$prefix}{
+    .radio-group{
+        margin-right: 12px;
+    }
+}

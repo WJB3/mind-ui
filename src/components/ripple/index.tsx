@@ -11,7 +11,8 @@ interface RippleProps{
     disabled?:boolean,
     rippleStyle?:any,
     color?:string,
-    center?:boolean
+    center?:boolean,
+    isStopPropagation?:boolean
 }
 
 const Ripple:React.FunctionComponent<RippleProps>=React.forwardRef((RippleProps,ref)=>{
@@ -20,7 +21,9 @@ const Ripple:React.FunctionComponent<RippleProps>=React.forwardRef((RippleProps,
         disabled,
         rippleStyle,
         color,
-        center
+        center,
+        onClick,
+        isStopPropagation=false
     }=RippleProps;
 
     const rippleWrapperRef:any=useRef(null);
@@ -91,6 +94,16 @@ const Ripple:React.FunctionComponent<RippleProps>=React.forwardRef((RippleProps,
          
     });
 
+    function handleClickRipple(e:any){
+        if(isStopPropagation){
+            e.stopPropagation();//阻止事件向上传播
+        }
+       
+        if(onClick){
+            onClick()
+        }
+    }
+
     useImperativeHandle(ref,()=>({
         handleMouseDown:(event:any)=>{
             handleMouseDown(event)
@@ -115,6 +128,7 @@ const Ripple:React.FunctionComponent<RippleProps>=React.forwardRef((RippleProps,
         <div 
             className={classes} 
             onMouseDown={(event)=>handleMouseDown(event)} 
+            onClick={handleClickRipple}
             ref={rippleWrapperRef} 
             onMouseUp={(event)=>handleMouseUp(event)}
             style={rippleStyle}
