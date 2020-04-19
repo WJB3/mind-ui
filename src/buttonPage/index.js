@@ -65,7 +65,7 @@ class ButtonPage extends React.Component {
                 <Textlayout
                     componentClassName={"button-page-demo"}
                     components={<React.Fragment>
-                        <Button type={"primary"} shape={"circle"} size={"small"}>小</Button>
+                        <Button type={"primary"} shape={"circle"} size={"small"} flat>小</Button>
                         <Button type={"danger"} shape={"circle"} flat >中</Button>
                         <Button type={"warning"} shape={"circle"} size={"large"} flat>大</Button>
                         <Button type={"primary"} shape={"round"} size={"small"} >小</Button>

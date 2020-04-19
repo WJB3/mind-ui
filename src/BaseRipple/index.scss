@@ -3,6 +3,8 @@
 $prefix-ripple:"#{$global-prefix}-Ripple";
 $prefix-touch-ripple:"#{$global-prefix}-TouchRipple";
 $prefix-base-ripple:"#{$global-prefix}-BaseRipple";
+$ripple-background-color-timing-function:cubic-bezier(0.4,0,0.2,1);
+$ripple-background-color-duration:$global-transition-duration;
 
 .#{$prefix-ripple}{
     position: absolute;
@@ -78,4 +80,12 @@ $prefix-base-ripple:"#{$global-prefix}-BaseRipple";
     background-color: transparent;
     -webkit-appearance: none;
     -webkit-tap-highlight-color: transparent;
+    border-radius:50%;
+    transition: background-color $ripple-background-color-duration $ripple-background-color-timing-function 0ms;
+
+    &:not(.disabled){
+        &:hover{
+            @include backgroundColorOpacity(0.1);
+        }
+    }
 }

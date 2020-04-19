@@ -21,6 +21,10 @@
     margin:0;
 }
 
+@mixin backgroundColorOpacity($opacity:1){
+    background-color: rgba(0,189,170,$opacity);
+}
+
 //阴影
 @mixin boxShadowLevel($level:0){
     @if $level == 0 {

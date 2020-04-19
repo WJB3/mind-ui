@@ -15,10 +15,12 @@ $prefixGroup:"#{$global-prefix}-RadioGroup";
     display: inline-flex;
     align-items: center;
 
+  
+
     &.disabled{
         color:$radio-diabled-color;
         cursor: not-allowed;
-
+        
         .disabled{
             color:$radio-diabled-color;
             cursor: not-allowed;

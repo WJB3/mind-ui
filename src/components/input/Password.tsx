@@ -26,10 +26,10 @@ const Password:React.FunctionComponent<PageProps>=(PageProps)=>{
         if(icon==="eye"){
             setType("text")
         }
-    })
+    }) 
     
     return(
-        <Input {...props} type={type} suffix={<Button shape={"circle"} flat onClick={()=>setIcon(icon==="eye"?"eye-off":"eye")}/>}/>
+        <Input {...props} type={type} suffix={<Button shape={"circle"} onClick={()=>setIcon(icon==="eye-off"?"eye":"eye-off")} icon={icon} size={"small"} flat type={"primary"} iconStyle={{color:"black"}}/>}/>
     )
 }
 

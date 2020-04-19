@@ -11,12 +11,14 @@ import inputPage from './inputPage/index';
 import pagerPage from './pagerPage/index';
 import animationPage from './animationPage/index';
 import radioPage from './radioPage/index';
+import switchPage from './switchPage/index';
  
 import 'antd/dist/antd.css';
 import "./index.less";
 
 ReactDOM.render((<HashRouter>
-        <Route path="/" exact component={radioPage} />
+        <Route path="/" exact component={switchPage} />
+        <Route path="/switch" exact component={switchPage} />
         <Route path="/radio" exact component={radioPage} />
         <Route path="/animation" exact component={animationPage} />
         <Route path="/pager" exact component={pagerPage} />

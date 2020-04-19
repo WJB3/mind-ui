@@ -9,6 +9,10 @@ const menuInfo=[
         key:"component",
         children:[
             {
+                title:"Switch",
+                key:"switch",
+            },
+            {
                 title:"Radio",
                 key:"radio",
             },

@@ -66,7 +66,7 @@ class Page extends React.Component {
                 <Textlayout
                     components={<React.Fragment>
                         <div style={{ display: "flex", justifyContent: "space-around" }}>
-                            <Radio onChange={this.handleChangeRadioOne} >选中</Radio>
+                            <Radio>选中</Radio>
                         </div>
                     </React.Fragment>}
                     title={"基本使用。"}

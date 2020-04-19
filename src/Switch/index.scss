@@ -1,0 +1,109 @@
+@import "./../components/styles/variable.scss";
+
+
+$switch-background-color-timing-function:cubic-bezier(0.4,0,0.2,1);
+$switch-disabled-thumb-color:#bdbdbd;
+
+$prefix:"#{$global-prefix}-Switch";
+
+.#{$prefix}{
+    width:58px;
+    height:38px;
+    display:inline-flex;
+    padding:12px;
+    z-index:0;
+    overflow: hidden;
+    box-sizing: border-box;
+    flex-shrink: 0;
+    vertical-align: middle;
+    position:relative;
+
+    &.isChildren{
+        padding:6px;
+    }
+
+    &-checkedChildren{
+        position: absolute;
+        top: 8px;
+        left: 12px;
+        color: #fff;
+    }
+
+    &-unCheckedChildren{
+        position: absolute;
+        right: 12px;
+        top: 8px;
+        color: #fff;
+    }
+
+    &-fixBlock{
+        width:100%;
+        height:100%;
+        z-index:-1;
+        opacity:0.38;
+        transition: opacity 150ms $switch-background-color-timing-function 0ms,background-color 150ms $switch-background-color-timing-function 0ms;
+        border-radius: 8px;
+        background-color: rgb(0,0,0);
+
+        &.isChecked{
+            background-color:$primary-color;
+            opacity:0.5;
+        }
+
+       
+        &.disabled{
+            background-color: #000;
+            opacity:0.14;
+        }
+    }
+
+    &-baseRipple{
+        top:0;
+        left:0;
+        color:#fafafa;
+        z-index:1;
+        position:absolute;
+        transition: left 150ms $switch-background-color-timing-function 0ms,transform 150ms $switch-background-color-timing-function 0ms;
+        padding:9px;
+
+        &.isChecked{
+            transform:translateX(20px);
+            color:$primary-color;
+        }
+
+        &.disabled{
+            color:$switch-disabled-thumb-color;
+        }
+
+        .#{$prefix}-inputWrapper{
+            width: 100%;
+            display: flex;
+            align-items: inherit;
+            justify-content: inherit;
+
+            &-input{
+                top: 0;
+                left: 0;
+                width: 100%;
+                cursor: inherit;
+                height: 100%;
+                margin: 0;
+                opacity: 0;
+                padding: 0;
+                z-index: 1;
+                position: absolute;
+            }
+
+            &-thumb{
+                width:20px;
+                height:20px;
+                @include boxShadowLevel(4);
+                border-radius: 50%;
+                background-color: currentColor;
+
+                
+
+            }
+        }
+    }
+}
