@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { classNames } from './../components/helper/className';
 import { globalPrefix } from './../_config/variable';
 import BaseRipple from './../BaseRipple';
@@ -6,6 +6,7 @@ import Icon from './../components/icon';
 import useControlled from "./../_utils/useControlled";
 import useRadioGroup from './useRadioGroup';
 import createChainedFunction from './../_utils/createChainedFunction';
+import transformString from './../_utils/transformString';
 import "./index.scss";
 
 const componentName = "Radio";
@@ -18,7 +19,8 @@ const Radio = React.forwardRef((props, ref) => {
         disabled,
         defaultChecked,
         checked:checkedProp,
-        name:nameProps
+        name:nameProps,
+        labelPlacement="right"
     } = props;
 
     const radioGroup = useRadioGroup();
@@ -28,7 +30,7 @@ const Radio = React.forwardRef((props, ref) => {
 
     if(radioGroup){
         if (typeof checked === 'undefined') {
-            checked = radioGroup.value === props.value;
+            checked = transformString(radioGroup.value) === transformString(props.value);
         }
         if(typeof name==="undefined"){
             name=radioGroup.name;
@@ -50,18 +52,18 @@ const Radio = React.forwardRef((props, ref) => {
         }
     }
 
-    
-
     useEffect(() => {
 
     }, []);
    
+
     return (
         <label
             className={
                 classNames(
                     `${globalPrefix}-${componentName}`,
-                    disabled?"disabled":""
+                    disabled?"disabled":"",
+                    `${globalPrefix}-${componentName}-labelplacement-${labelPlacement}`
                 )
             }
         >
@@ -95,7 +97,7 @@ const Radio = React.forwardRef((props, ref) => {
                         disabled={disabled}
                         checked={checked}
                         name={name}
-                        value={props.value}
+                        value={transformString(props.value)}
                     />
 
                     <Icon name={isChecked ? "radio-checked" : "radio-uncheck"} />

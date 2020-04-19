@@ -7,6 +7,7 @@ $radio-radioWrapper-padding:8px;
 $radio-diabled-color:rgba(0,0,0,.28);
 
 $prefix:"#{$global-prefix}-Radio";
+$prefixGroup:"#{$global-prefix}-RadioGroup";
 
 .#{$prefix}{
     
@@ -24,8 +25,24 @@ $prefix:"#{$global-prefix}-Radio";
         }
     }
 
-    &-radioWrapper{
+    &-labelplacement-top{
+        flex-direction: column-reverse;
+    }
 
+    &-labelplacement-bottom {
+        flex-direction: column;
+    }
+
+    &-labelplacement-left{
+        flex-direction: row-reverse;
+    }
+
+    &-labelplacement-right{
+        justify-content: row;
+    }
+
+    &-radioWrapper{
+        flex:0 0 auto;
         position:relative;
         color:$radio-uncheck-color;
         transition:color 150ms $radio-background-color-timing-function 0ms;
@@ -55,4 +72,9 @@ $prefix:"#{$global-prefix}-Radio";
     }
 
     
+}
+
+.#{$prefixGroup}{
+    display: flex;
+    flex-wrap: wrap;
 }

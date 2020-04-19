@@ -8,11 +8,25 @@ import DescriptionTable from './../components/text/DescriptionTable';
 import Button from './../components/button';
 import Radio from './../Radio';
 import Input from './../components/input';
-const radioStyle={
+const radioStyle = {
     display: 'block',
     height: '30px',
     lineHeight: '30px',
 }
+
+const plainOptions = ['Apple', 'Pear', 'Orange'];
+const options = [
+  { label: 'Apple', value: 'Apple' },
+  { label: 'Pear', value: 'Pear' },
+  { label: 'Orange', value: 'Orange' },
+];
+const optionsWithDisabled = [
+  { label: '上', value: 'top',labelPlacement:"top" },
+  { label: '下', value: 'bottom',labelPlacement:"bottom" },
+  { label: '左', value: 'left', disabled: true,labelPlacement:"left" },
+  { label: '右', value: 'right', disabled: true,labelPlacement:"right"  },
+];
+
 
 
 class Page extends React.Component {
@@ -23,17 +37,22 @@ class Page extends React.Component {
 
     state = {
         disabled2: true,
-        fourvalue:1
+        fourvalue: 1,
+        optionValue1:"Apple",
+        optionValue2:"Apple",
+        optionValue3:"right",
     }
 
-    handleChangeRadioOne = (value,isCheck) => {
-       
+    handleChangeRadioOne = (value, isCheck) => {
+
     }
 
     
+
+
     render() {
 
-        const {fourvalue}=this.state;
+        const { fourvalue,optionValue1,optionValue2,optionValue3 } = this.state;
 
         return (
             <Layout >
@@ -75,40 +94,49 @@ class Page extends React.Component {
 
                 <Textlayout
                     components={<React.Fragment>
-
-                        <Radio.Group onChange={this.handleChangeRadioThree} value={"4"}>
-                            <Radio value={"1"}>A</Radio>
-                            <Radio value={"2"}>B</Radio>
-                            <Radio value={"3"}>C</Radio>
-                            <Radio value={"4"}>D</Radio>
-                        </Radio.Group>
+                        <div style={{ display: "flex", justifyContent: "center" }}>
+                            <Radio.Group onChange={this.handleChangeRadioThree} value={1}>
+                                <Radio value={1}>A</Radio>
+                                <Radio value={2}>B</Radio>
+                                <Radio value={3}>C</Radio>
+                                <Radio value={4}>D</Radio>
+                            </Radio.Group>
+                        </div>
                     </React.Fragment>}
                     title={"单选组合。"}
                     description={"一组互斥的 Radio 配合使用。"}
                 ></Textlayout>
 
-                {/* <Textlayout
+                <Textlayout
                     components={<React.Fragment>
-                            <Radio.Group onChange={(value)=>this.setState({fourvalue:value})} value={fourvalue}>
-                                <Radio style={radioStyle} value={1}>
-                                    Option A
-                                </Radio>
-                                <Radio style={radioStyle} value={2}>
-                                    Option B
-                                </Radio>
-                                <Radio style={radioStyle} value={3}>
-                                    Option C
-                                </Radio>
-                                <Radio style={radioStyle} value={4}>
-                                    <div>More...</div>
-                                    {fourvalue === 4 ? <div onClick={(e)=>e.stopPropagation()}><Input style={{ width: 100, marginLeft: 10 }} /></div> : null}
-                                </Radio>
+                        <div style={{ display: "flex", justifyContent: "center" }}>
+                            <Radio.Group onChange={this.handleChangeRadioThree} value={1}>
+                                <Radio value={1} labelPlacement="top">上</Radio>
+                                <Radio value={2} labelPlacement="bottom">下</Radio>
+                                <Radio value={3} labelPlacement="left">左</Radio>
+                                <Radio value={4} labelPlacement="right">右</Radio>
                             </Radio.Group>
-                    
+                        </div>
                     </React.Fragment>}
-                    title={"Radio.Group 垂直。"}
-                    description={"垂直的 Radio.Group，配合更多输入框选项。"}
-                ></Textlayout> */}
+                    title={"label文字的位置。"}
+                    description={"通过设置label来设置label文字的位置。默认为right"}
+                ></Textlayout>
+
+                <Textlayout
+                    components={<React.Fragment>
+                        <div style={{ display: "flex", flexDirection:"column",alignItems: "center" }}>
+                            <Radio.Group options={plainOptions} onChange={(e,value)=>{console.log(value)}} value={optionValue1} />
+                            <Radio.Group options={options} onChange={(e,value)=>{console.log(value)}} value={optionValue2} />
+                            <Radio.Group
+                                options={optionsWithDisabled}
+                                onChange={(e,value)=>{console.log(value)}}
+                                value={optionValue3}
+                            />
+                        </div>
+                    </React.Fragment>}
+                    title={"label文字的位置。"}
+                    description={"通过设置label来设置label文字的位置。默认为right"}
+                ></Textlayout>
 
                 <SubTitle>API</SubTitle>
                 <Description>通过设置 Button 的属性来产生不同的按钮样式，推荐顺序为：type -> shape -> size -> loading -> disabled。</Description>
