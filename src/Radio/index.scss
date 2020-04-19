@@ -1,0 +1,58 @@
+@import "./../components/styles/variable.scss";
+
+$radio-background-color-timing-function:cubic-bezier(0.4,0,0.2,1);
+$radio-uncheck-color:rgba(0,0,0,.54);
+$radio-checked-color:$primary-color;
+$radio-radioWrapper-padding:8px;
+$radio-diabled-color:rgba(0,0,0,.28);
+
+$prefix:"#{$global-prefix}-Radio";
+
+.#{$prefix}{
+    
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+
+    &.disabled{
+        color:$radio-diabled-color;
+        cursor: not-allowed;
+
+        .disabled{
+            color:$radio-diabled-color;
+            cursor: not-allowed;
+        }
+    }
+
+    &-radioWrapper{
+
+        position:relative;
+        color:$radio-uncheck-color;
+        transition:color 150ms $radio-background-color-timing-function 0ms;
+        padding:$radio-radioWrapper-padding;
+
+        &.checked{
+            color:$radio-checked-color;
+        }
+
+        .#{$prefix}-inputWrapper{ 
+            width:100%;
+            @include flexbox(inherit,inherit);
+    
+            &-input{
+                position:absolute;
+                top:0;
+                left:0;
+                width:100%;
+                height:100%;
+                cursor: inherit;
+                margin:0;
+                opacity:0;
+                padding:0;
+                z-index:1;
+            }
+        }
+    }
+
+    
+}

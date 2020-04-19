@@ -1,19 +1,25 @@
 import React from 'react';
 import { classNames } from './../components/helper/className';
 import { globalPrefix } from './../_config/variable';
+import useIsFocusVisible from "./../_utils/useIsFocusVisible";
 import useEventCallback from './../_utils/useEventCallback';
+import useForkRef from './../_utils/useForkRef';
+import Ripple from './../components/ripple';
 import "./index.scss";
 const componentName="BaseClick";
 
 const BaseClick=React.forwardRef(function BaseClick(props,ref){
     const {
         component="div",
+        buttonRef:buttonRefProp,
         //onBlur,//大部分html标签包括div上有此事件对象失去焦点时发生
         onClick,//大部分html标签包括div点击事件在对象被点击时发生，鼠标按下事件之后又发生了鼠标放开事件时才发生的。
         onMouseDown,//mousedown,
         onMouseLeave,
         onMouseUp
     }=props;
+
+    const buttonRef=React.useRef(null);
 
     const [ focusVisible,setFocusVisible ]=React.useState(false);
 
@@ -38,6 +44,11 @@ const BaseClick=React.forwardRef(function BaseClick(props,ref){
 
     let ComponentProp=component;
 
+    const handleUserRef=useForkRef(buttonRefProp,ref);
+    const handleOwnRef=useForkRef()
+
+    const handleRef=useForkRef();
+
     return (
         <ComponentProp
             className={
@@ -47,8 +58,12 @@ const BaseClick=React.forwardRef(function BaseClick(props,ref){
             onMouseDown={handleMouseDown}//当鼠标被按下时
             onMouseLeave={handleMouseLeave}//当鼠标离开该元素时触发
             onMouseUp={handleMouseUp}//当鼠标离开后
+            ref={handleRef}
         >
-
+            { children }
+            {
+                enableTouchRipple && <Ripple />
+            }
         </ComponentProp>
     )
 

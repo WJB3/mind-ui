@@ -6,7 +6,7 @@ import SubTitle from './../components/text/SubTitle';
 import Textlayout from './../components/text/Textlayout';
 import DescriptionTable from './../components/text/DescriptionTable';
 import Button from './../components/button';
-import Radio from './../components/radio';
+import Radio from './../Radio';
 import Input from './../components/input';
 const radioStyle={
     display: 'block',
@@ -26,8 +26,8 @@ class Page extends React.Component {
         fourvalue:1
     }
 
-    handleChangeRadioThree = (value) => {
-
+    handleChangeRadioOne = (value,isCheck) => {
+       
     }
 
     
@@ -76,18 +76,18 @@ class Page extends React.Component {
                 <Textlayout
                     components={<React.Fragment>
 
-                        <Radio.Group onChange={this.handleChangeRadioThree} value={1}>
-                            <Radio value={1}>A</Radio>
-                            <Radio value={2}>B</Radio>
-                            <Radio value={3}>C</Radio>
-                            <Radio value={4}>D</Radio>
+                        <Radio.Group onChange={this.handleChangeRadioThree} value={"4"}>
+                            <Radio value={"1"}>A</Radio>
+                            <Radio value={"2"}>B</Radio>
+                            <Radio value={"3"}>C</Radio>
+                            <Radio value={"4"}>D</Radio>
                         </Radio.Group>
                     </React.Fragment>}
                     title={"单选组合。"}
                     description={"一组互斥的 Radio 配合使用。"}
                 ></Textlayout>
 
-                <Textlayout
+                {/* <Textlayout
                     components={<React.Fragment>
                             <Radio.Group onChange={(value)=>this.setState({fourvalue:value})} value={fourvalue}>
                                 <Radio style={radioStyle} value={1}>
@@ -108,7 +108,7 @@ class Page extends React.Component {
                     </React.Fragment>}
                     title={"Radio.Group 垂直。"}
                     description={"垂直的 Radio.Group，配合更多输入框选项。"}
-                ></Textlayout>
+                ></Textlayout> */}
 
                 <SubTitle>API</SubTitle>
                 <Description>通过设置 Button 的属性来产生不同的按钮样式，推荐顺序为：type -> shape -> size -> loading -> disabled。</Description>
