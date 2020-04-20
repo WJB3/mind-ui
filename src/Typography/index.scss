@@ -1,0 +1,111 @@
+@import "./../components/styles/variable.scss";
+ 
+
+$prefix:"#{$global-prefix}-Typography";
+$prefixTitle:"#{$prefix}-Title";
+$prefixText:"#{$prefix}-Text";
+$prefixBase:"#{$prefix}-Base";
+ 
+
+.#{$prefix}{
+    font-family:"Parrot";
+
+    h1{
+        font-weight:500;
+        font-size:48px;
+    }
+
+    h2{
+        font-size: 42px;
+        font-weight: 500;
+    }
+
+    h3{
+        font-size: 36px;
+        font-weight: 500;
+    }
+
+    h4{
+        font-size: 30px;
+        font-weight: 500;
+    }
+
+    h5{
+        font-size: 24px;
+        font-weight: 500;
+    }
+
+    h6{
+        font-size: 18px;
+        font-weight: 500;
+    }
+
+}
+
+h1.#{$prefixTitle}{
+    font-weight:500;
+    font-size:48px;
+}
+h2.#{$prefixTitle}{
+        font-size: 42px;
+        font-weight: 500;
+}
+h3.#{$prefixTitle}{
+        font-size: 36px;
+        font-weight: 500;
+}
+h4.#{$prefixTitle}{
+        font-size: 30px;
+        font-weight: 500;
+}
+h5.#{$prefixTitle}{
+        font-size: 24px;
+        font-weight: 500;
+}
+
+h6.#{$prefixTitle}{
+        font-size: 18px;
+        font-weight: 500;
+}
+ 
+.#{$prefixBase}{
+    color:rgba(0,0,0,.95);
+    font-size:16px;
+
+    &-primary{
+        color:$primary-color;
+    }
+    &-secondary{
+        color:$second-color;
+    }
+    &-warning{
+        color:$warning-color;
+    }
+    &-danger{
+        color:$danger-color;
+    }
+    &-disabled{
+        color:$disabled-color;
+        cursor: not-allowed;
+    }
+    &-code{
+        background: rgba(0,0,0,.06);
+        border: 1px solid rgba(0,0,0,.06);
+        border-radius: 3px;
+        font-family: sfmono-regular,Consolas,liberation mono,Menlo,Courier,monospace;
+        padding:.05em .2em 0.17em 0.2em;
+    }
+    mark{
+        border-radius: 2px;
+        padding:.05em .2em 0.14em 0.2em;
+    }
+    &-underline{
+        text-decoration: underline;
+    }
+    &-delete{
+        text-decoration:line-through;
+    }
+    &-strong{
+        font-weight: 600;
+    }
+}

@@ -3,5 +3,6 @@ export enum typeEnum{
     INFO="info",
     DANGER="danger",
     WARNING="warning",
-    SECOND="second"
+    SECOND="second",
+    SECONDARY="secondary"
 }

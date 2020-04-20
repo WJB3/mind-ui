@@ -1,6 +1,6 @@
 import React from 'react';
 import { classNames } from './../helper/className';
-import Ripple from './../ripple';
+import BaseRipple from './../../BaseRipple';
 import Icon from './../icon';
 import "./../styles/button.scss";
  
@@ -16,6 +16,7 @@ interface ButtonProps{
     float?:boolean,
     icon?:string,
     iconStyle?:object,
+    centerRipple?:any
 }
 
 const Button:React.FunctionComponent<ButtonProps>=(ButtonProps)=>{
@@ -30,7 +31,8 @@ const Button:React.FunctionComponent<ButtonProps>=(ButtonProps)=>{
         float,
         icon,
         iconStyle,
-        onClick
+        onClick,
+        centerRipple
     }=ButtonProps;
 
     const classes=classNames("wonderful-button",
@@ -50,12 +52,16 @@ const Button:React.FunctionComponent<ButtonProps>=(ButtonProps)=>{
     }
 
     return(
-        <button className={classes}>
-            <div className={"wonderful-button-wrapper"} onClick={()=>handleClick()}>
-                <Ripple disabled={disabled}/>
-                {!icon?children:<Icon name={icon} style={iconStyle}/>}
-            </div>
-        </button>
+        <BaseRipple 
+            Component="button"
+            className={classes}
+            centerRipple={centerRipple}
+        >
+                <div className={"wonderful-button-wrapper"} onClick={()=>handleClick()}>
+                    
+                    {!icon?children:<Icon name={icon} style={iconStyle}/>}
+                </div>
+        </BaseRipple>
     )
 }
 

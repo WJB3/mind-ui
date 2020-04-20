@@ -52,7 +52,7 @@ $prefix:"#{$global-prefix}-input";
                 line-height: 1;
                 top: 0;
                 transform: translate($input-normal-input-left, $input-normal-float-label-top) scale(1);
-                transition:transform $global-transition-duration $global-tansition-function $global-transition-delay-time;
+                transition:transform $global-transition-duration $global-transition-function $global-transition-delay-time;
                 transform-origin:top left;
             }
              
@@ -75,7 +75,7 @@ $prefix:"#{$global-prefix}-input";
                     left:0;
                     right:0;
                     bottom:0;
-                    transition: border-bottom-color $global-transition-duration $global-tansition-function $global-transition-delay-time;
+                    transition: border-bottom-color $global-transition-duration  $global-transition-delay-time;
                     border-bottom:1px solid $input-normal-underline-color;
                     pointer-events: none;//不会触发时间响应
                 }
@@ -103,7 +103,7 @@ $prefix:"#{$global-prefix}-input";
                     left:0;
                     right:0;
                     bottom:0;
-                    transition:transform $global-transition-duration $global-tansition-function $global-transition-delay-time;
+                    transition:transform $global-transition-duration $global-transition-function $global-transition-delay-time;
                     transform:scaleX(0);
                     border-bottom: 2px solid $primary-color;
                     pointer-events: none;//不会触发时间响应
@@ -145,7 +145,7 @@ $prefix:"#{$global-prefix}-input";
                 background:$input-filled-background-color;
                 border-top-left-radius: $global-border-radius;
                 border-top-right-radius: $global-border-radius;
-                transition:background-color $global-transition-duration $global-tansition-function $global-transition-delay-time;
+                transition:background-color $global-transition-duration $global-transition-function $global-transition-delay-time;
 
                 &:hover{
                     background:$input-filled-hover-background-color;
@@ -161,7 +161,7 @@ $prefix:"#{$global-prefix}-input";
                     line-height: 1;
                     top: 0;
                     transform: translate($input-filled-input-left, $input-filled-float-label-top) scale(1);
-                    transition:transform $global-transition-duration $global-tansition-function $global-transition-delay-time;
+                    transition:transform $global-transition-duration $global-transition-function $global-transition-delay-time;
                     transform-origin:top left;
                 }
                  
@@ -184,7 +184,7 @@ $prefix:"#{$global-prefix}-input";
                         left:0;
                         right:0;
                         bottom:0;
-                        transition: border-bottom-color $global-transition-duration $global-tansition-function $global-transition-delay-time;
+                        transition: border-bottom-color $global-transition-duration $global-transition-function $global-transition-delay-time;
                         border-bottom:1px solid $input-filled-underline-color;
                         pointer-events: none;//不会触发时间响应
                     }
@@ -206,7 +206,7 @@ $prefix:"#{$global-prefix}-input";
                         left:0;
                         right:0;
                         bottom:0;
-                        transition:transform $global-transition-duration $global-tansition-function $global-transition-delay-time;
+                        transition:transform $global-transition-duration $global-transition-function $global-transition-delay-time;
                         transform:scaleX(0);
                         border-bottom: 2px solid $primary-color;
                         pointer-events: none;//不会触发时间响应
@@ -249,7 +249,7 @@ $prefix:"#{$global-prefix}-input";
                 background:$input-outline-background-color;
                 border-radius: $global-border-radius;
                 border:1px solid $input-outline-border-color;
-                transition:border-color $global-transition-duration $global-tansition-function $global-transition-delay-time;
+                transition:border-color $global-transition-duration $global-transition-function $global-transition-delay-time;
 
                 &:hover{
                     border-color:$input-outline-border-focus-color;
@@ -267,7 +267,7 @@ $prefix:"#{$global-prefix}-input";
                     line-height: 1;
                     top: 0;
                     transform: translate($input-filled-input-left, $input-filled-float-label-top) scale(1);
-                    transition:transform $global-transition-duration $global-tansition-function $global-transition-delay-time;
+                    transition:transform $global-transition-duration $global-transition-function $global-transition-delay-time;
                     transform-origin:top left;
                 }
                  
@@ -288,7 +288,7 @@ $prefix:"#{$global-prefix}-input";
                         left:0;
                         right:0;
                         bottom:0;
-                        transition: border-bottom-color $global-transition-duration $global-tansition-function $global-transition-delay-time;
+                        transition: border-bottom-color $global-transition-duration $global-transition-function $global-transition-delay-time;
                         border-bottom:1px solid $input-filled-underline-color;
                         pointer-events: none;//不会触发时间响应
                     }
@@ -310,7 +310,7 @@ $prefix:"#{$global-prefix}-input";
                         left:0;
                         right:0;
                         bottom:0;
-                        transition:transform $global-transition-duration $global-tansition-function $global-transition-delay-time;
+                        transition:transform $global-transition-duration $global-transition-function $global-transition-delay-time;
                         transform:scaleX(0);
                         border-bottom: 2px solid $primary-color;
                         pointer-events: none;//不会触发时间响应

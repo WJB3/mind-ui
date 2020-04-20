@@ -47,6 +47,111 @@
     }
 
     &.wonderful{
+        &-default-button{
+            background-color:transparent;
+            color: #fff;
+
+            &:hover{
+                background-color: rgba(0, 0, 0,0.12)!important;
+            }
+    
+            &.wonderful-small-button{
+                
+                font-size:$button-small-font-size;
+                min-width:$button-small-min-width;
+                height: $button-small-height;
+                line-height: $button-small-height;
+                border-radius: $button-small-border-radius;
+    
+                .wonderful-button-wrapper {
+                    padding: 0 8px;
+                }
+            }
+    
+            &.wonderful-large-button{
+                
+                font-size:$button-large-font-size;
+                min-width:$button-large-min-width;
+                height: $button-large-height;
+                line-height: $button-large-height;
+                border-radius: $button-large-border-radius;
+    
+                .wonderful-button-wrapper {
+                    padding: 0 32px;
+                }
+            }
+    
+            &.wonderful-flat-button{
+                background-color: transparent;
+                color:#fff;
+                @include boxShadowLevel();
+
+                .wonderful-button-wrapper {
+                    border-radius: $button-round-border-radius!important;
+                }
+                
+                &.wonderful-circle-button{
+                    .wonderful-button-wrapper {
+                        border-radius: $button-circle-border-radius!important;
+                    }
+                }
+                
+                &.wonderful-round-button{
+                    .wonderful-button-wrapper {
+                        border-radius: $button-round-border-radius!important;
+                    }
+                }
+                
+            }
+    
+            &.wonderful-circle-button{
+                width:$button-normal-circle-length;
+                height:$button-normal-circle-length;
+                min-width: $button-normal-circle-length;
+                min-height: $button-normal-circle-length;
+                border-radius: $button-circle-border-radius;
+
+                &.wonderful-small-button{
+                    width:$button-small-circle-length;
+                    height:$button-small-circle-length;
+                    min-width: $button-small-circle-length;
+                    min-height: $button-small-circle-length;
+                    border-radius: $button-circle-border-radius;
+                }
+
+                &.wonderful-large-button{
+                    width:$button-large-circle-length;
+                    height:$button-large-circle-length;
+                    min-width: $button-large-circle-length;
+                    min-height: $button-large-circle-length;
+                    border-radius: $button-circle-border-radius;
+                }
+            }
+
+            &.wonderful-round-button{
+                width:$button-normal-round-length;
+                height:$button-normal-round-length;
+                min-width: $button-normal-round-length;
+                min-height: $button-normal-round-length;
+                border-radius: $button-round-border-radius;
+
+                &.wonderful-small-button{
+                    width:$button-small-round-length;
+                    height:$button-small-round-length;
+                    min-width: $button-small-round-length;
+                    min-height: $button-small-round-length;
+                    border-radius: $button-round-border-radius;
+                }
+
+                &.wonderful-large-button{
+                    width:$button-large-round-length;
+                    height:$button-large-round-length;
+                    min-width: $button-large-round-length;
+                    min-height: $button-large-round-length;
+                    border-radius: $button-round-border-radius;
+                }
+            }
+        }
         &-primary-button{
             background-color:$button-primary-background-color;
             color: $normal-text-color;

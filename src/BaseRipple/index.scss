@@ -83,9 +83,10 @@ $ripple-background-color-duration:$global-transition-duration;
     border-radius:50%;
     transition: background-color $ripple-background-color-duration $ripple-background-color-timing-function 0ms;
 
-    &:not(.disabled){
+    &:not(.disabled,.wonderful-button,.wonderful-default-button){
         &:hover{
             @include backgroundColorOpacity(0.1);
         }
     }
+   
 }

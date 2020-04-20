@@ -9,6 +9,14 @@ const menuInfo=[
         key:"component",
         children:[
             {
+                title:"Typography",
+                key:"typography",
+            },
+            {
+                title:"Layout布局",
+                key:"layout",
+            },
+            {
                 title:"Switch",
                 key:"switch",
             },

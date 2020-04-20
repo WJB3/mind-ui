@@ -1,0 +1,50 @@
+@import "./../components/styles/variable.scss";
+ 
+
+$prefix:"#{$global-prefix}-LayoutC";
+$prefixHeader:"#{$global-prefix}-Header";
+$prefixContent:"#{$global-prefix}-Content";
+$prefixFooter:"#{$global-prefix}-Footer";
+$prefixSider:"#{$global-prefix}-Sider";
+ 
+
+.#{$prefix}{
+    display: flex;
+    min-height:0;
+    flex-direction: column;
+    flex: auto;
+    &.has-sider{
+        flex-direction: row;
+    }
+}
+
+.#{$prefixHeader}{
+    transition:width 300ms $global-transition-function 0ms;
+    color:#fff;
+    min-height:64px;
+    line-height:64px;
+    padding-left:24px;
+    padding-right:24px;
+    align-items: center;
+    
+}
+ 
+.#{$prefixContent}{
+    flex:auto;
+    min-height: 0;
+}
+
+.#{$prefixFooter}{
+    padding: 24px 50px;
+    font-size:14px;
+}
+
+.#{$prefixSider}{
+    flex: 0 0 200px;
+    max-width: 200px;
+    min-width: 200px;
+    width: 200px;
+    background: #3ba0e9;
+    color: #fff;
+    line-height: 120px;
+}

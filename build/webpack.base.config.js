@@ -36,7 +36,7 @@ module.exports={
                 loader:"svg-sprite-loader"
             },
             {
-				test:/\.mp3$/,
+				test:/\.(mp3|ttf|woff2)$/,
 				loader:'file-loader',
 				options:{
 					name:'[name].[ext]'
