@@ -5,9 +5,9 @@ import { typeEnum } from './../components/color';
 import Base from './Base';
 import "./index.scss";
 
-const componentName = "Typography-Text";
+const componentName = "Typography-Paragraph";
 
-const Text = React.forwardRef((props, ref) => {
+const Paragraph = React.forwardRef((props, ref) => {
 
     const {
         children,
@@ -15,10 +15,10 @@ const Text = React.forwardRef((props, ref) => {
     }=props;
 
     return (
-        <Base {...restProps} component={"span"}> 
+        <Base {...restProps} component={"div"}> 
             {children}
         </Base>
     )
 })
 
-export default Text;
+export default Paragraph;

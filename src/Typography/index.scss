@@ -108,4 +108,15 @@ h6.#{$prefixTitle}{
     &-strong{
         font-weight: 600;
     }
+    &-sing-line{
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+    &-multiple-line{
+        overflow:hidden;
+        text-overflow:ellipsis;
+        display:-webkit-box;
+        -webkit-box-orient:vertical;
+    }
 }
