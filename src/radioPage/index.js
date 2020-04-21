@@ -5,7 +5,7 @@ import Description from './../components/text/Description';
 import SubTitle from './../components/text/SubTitle';
 import Textlayout from './../components/text/Textlayout';
 import DescriptionTable from './../components/text/DescriptionTable';
-import Button from './../components/button';
+import Button from '../ButtonBase';
 import Radio from './../Radio';
 import Input from './../components/input';
 const radioStyle = {

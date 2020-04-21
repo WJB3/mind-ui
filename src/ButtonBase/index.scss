@@ -1,0 +1,122 @@
+@import "./../components/styles/variable.scss";
+@import "./mixin.scss";
+
+$prefixCls:"#{$global-prefix}-btn";
+
+.#{$prefixCls}{
+    @include btn();
+    @include btn-default();
+
+    &-primary{
+        @include btn-primary();
+    }
+
+    &-second{
+        @include btn-secord();
+    }
+
+    &-danger{
+        @include btn-danger();
+    }
+
+    &-info{
+        @include btn-info();
+    }
+
+    &-warning{
+        @include btn-warning();
+    }
+
+    &-disabled{
+        @include btn-disabled();
+        cursor: not-allowed;
+    }
+
+    &-flat{
+        @include buttonColor(transparent,rgba(0, 0, 0, 0.87)); 
+        box-shadow: none;
+        &:hover{
+            @include boxShadowLevel();
+            @include buttonColor(rgba(0, 0, 0, 0.06),rgba(0, 0, 0, 0.87)); 
+        }
+        &.#{$prefixCls}-primary{
+            color:$primary-color;
+            &:hover{
+                @include opacityPrimary(0.06);
+            }
+        }
+        &.#{$prefixCls}-second{
+            color:$second-color;
+            &:hover{
+                @include opacitySecond(0.06);
+            }
+        }
+        &.#{$prefixCls}-danger{
+            color:$danger-color;
+            &:hover{
+                @include opacityDanger(0.06);
+            }
+        }
+        &.#{$prefixCls}-info{
+            color:$info-color;
+            &:hover{
+                @include opacityInfo(0.06);
+            }
+        }
+        &.#{$prefixCls}-warning{
+            color:$warning-color;
+            &:hover{
+                @include opacityWarning(0.06);
+            }
+        }
+        &.#{$prefixCls}-disabled{
+            color:$disabled-text-color;
+            &:hover{
+                @include opacityWarning(0.06);
+            }
+        }
+    }
+
+    &-circle{
+        width:$button-normal-circle-length;
+        height:$button-normal-circle-length;
+        border-radius:$button-circle-border-radius ;
+        padding:0;
+        &.#{$prefixCls}-sm{
+            padding:auto;
+            width:$button-small-circle-length;
+            height:$button-small-circle-length;
+        }
+        &.#{$prefixCls}-lg{
+            padding:auto;
+            width:$button-large-circle-length;
+            height:$button-large-circle-length;
+        }
+    }
+    &-round{
+        width:$button-normal-round-length;
+        height:$button-normal-round-length;
+        border-radius:$button-round-border-radius ;
+        padding:0;
+        &.#{$prefixCls}-sm{
+             
+            width:$button-small-round-length;
+            height:$button-small-round-length;
+        }
+        &.#{$prefixCls}-lg{
+             
+            width:$button-large-round-length;
+            height:$button-large-round-length;
+        }
+
+    }
+    &-float{
+        @include btn-float();
+    }
+}
+
+ 
+ 
+ 
+
+

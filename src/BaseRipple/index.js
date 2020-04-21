@@ -9,7 +9,7 @@ const componentName="BaseRipple";
 const BaseRipple=React.forwardRef((props,ref)=>{
 
     const {
-        Component="span",
+        component:Component="span",
         onMouseDown,
         onMouseUp,
         centerRipple=false,

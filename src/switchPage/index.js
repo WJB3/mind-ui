@@ -7,7 +7,7 @@ import Textlayout from './../components/text/Textlayout';
 import DescriptionTable from './../components/text/DescriptionTable';
 import Radio from './../Radio';
 import Switch from './../Switch';
-import Button from './../components/button';
+import Button from '../ButtonBase';
 
 
 class Page extends React.Component {

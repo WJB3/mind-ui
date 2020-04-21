@@ -3,7 +3,7 @@ import Layout from './../layout/index';
 import Title from './../components/text/Title';
 import Description from './../components/text/Description';
 import SubTitle from './../components/text/SubTitle';
-import Button from './../components/button/index';
+import Button from '../ButtonBase/index';
 import Textlayout from './../components/text/Textlayout';
 import DescriptionTable from './../components/text/DescriptionTable';
 import Input from './../components/input';

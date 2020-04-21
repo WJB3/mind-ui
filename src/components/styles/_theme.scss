@@ -1,15 +1,29 @@
 //定义主题色等
 $primary-color:rgba(0,189,170,1);
+@mixin opacityPrimary($opacity) {
+    background-color:rgba(0,189,170,$opacity);
+}
 $warning-color:rgba(252,227,138,1);
+@mixin opacityWarning($opacity) {
+    background-color:rgba(252,227,138,$opacity);
+}
 $danger-color:rgba(255,46,99,1);
+@mixin opacityDanger($opacity) {
+    background-color:rgba(255,46,99,$opacity);
+}
 $second-color:rgba(64,0,130,1);
-$default-color:rgba(255,255,255,1);
-$disabled-color:rgba(0,0,0,.3);
+@mixin opacitySecond($opacity) {
+    background-color:rgba(64,0,130,$opacity);
+}
+ 
+$disabled-color:rgba(0,0,0,.26);
+$disabled-text-color:rgba(0,0,0,.26);
+@mixin opacityInfo($opacity) {
+    background-color:rgba(7,121,228,$opacity);
+}
 $info-color:rgba(7,121,228,1);
 $success-color:rgba(107,198,0,1);
-
-//禁止相关颜色
-$disabled-text-color:#fff;
+$default-color:rgba(224,224,224,1);
 
 //定义主题字体大小
 $normal-font-size:14px;

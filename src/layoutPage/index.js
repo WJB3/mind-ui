@@ -6,7 +6,7 @@ import SubTitle from './../components/text/SubTitle';
 import LayoutC from './../LayoutC';
 import Textlayout from './../components/text/Textlayout';
 import DescriptionTable from './../components/text/DescriptionTable';
-import Button from './../components/button';
+import Button from '../ButtonBase';
 
 class Page extends React.Component {
     render() {

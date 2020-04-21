@@ -9,6 +9,10 @@ const menuInfo=[
         key:"component",
         children:[
             {
+                title:"Space",
+                key:"space",
+            },
+            {
                 title:"Typography",
                 key:"typography",
             },

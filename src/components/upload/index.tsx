@@ -4,7 +4,7 @@ import Title from './../components/text/Title';
 import SubTitle from './../components/text/SubTitle';
 import Textlayout from './../components/text/Textlayout';
 import {Upload} from 'antd';
-import Button from './../button';
+import Button from '../../ButtonBase';
 import Icon from './../icon';
 
 interface Props{

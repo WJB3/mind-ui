@@ -1,0 +1,95 @@
+@mixin buttonSize($height,$padding-vertical,$padding-horizontal,$font-size,$border-radius:"4px"){//更换size
+    height:$height;
+    // line-height:$height;
+    padding:$padding-vertical $padding-horizontal;
+    font-size: $font-size;
+    border-radius: $border-radius;
+}
+
+@mixin buttonColor($background-color,$color){//更换背景色和颜色
+    background-color: $background-color;
+    color:$color;
+}
+
+ 
+
+@mixin btn(){
+    user-select: none;//文本不能被选择
+    outline: none;
+    display: inline-block;
+    position: relative;
+    text-decoration: none;
+    text-align: center;
+    border: none;
+    white-space: nowrap;
+    font-weight: 400;
+    line-height: 1.5;
+    transition:all $global-transition-duration $global-transition-function;
+    background-color: $default-color;
+    color:rgba(0, 0, 0, 0.87);
+    display: inline-flex;
+    align-items: center;
+
+    &>span{
+        line-height: 1;
+    }
+
+    @include marginAndMargin();
+    @include hoverMouse();
+    @include textTransform();
+    @include buttonSize($button-normal-height,0 ,16px,$button-normal-font-size,$button-normal-border-radius);
+
+    &:hover{
+        @include boxShadowLevel(4);
+        opacity:0.8;
+    }
+
+    &-sm{
+        @include buttonSize($button-small-height,0 ,8px,$button-small-font-size, $button-small-border-radius);
+    }
+    
+    &-lg{
+        @include buttonSize($button-large-height,0 ,32px,$button-large-font-size, $button-large-border-radius);
+    }
+}
+
+@mixin btn-default(){
+    @include boxShadowLevel(2);
+}
+
+@mixin btn-primary() {
+    @include buttonColor($button-primary-background-color,$normal-text-color);
+}
+
+@mixin btn-secord() {
+    @include buttonColor($second-color,$normal-text-color); 
+}
+
+@mixin btn-danger() {
+    @include buttonColor($danger-color,$normal-text-color); 
+}
+
+@mixin btn-info() {
+    @include buttonColor($info-color,$normal-text-color); 
+}
+
+@mixin btn-warning() {
+    @include buttonColor($warning-color,$normal-text-color); 
+}
+
+@mixin btn-disabled() {
+    @include buttonColor(rgba(0, 0, 0, 0.12),$disabled-text-color); 
+    box-shadow: none;
+    &:hover{
+        @include boxShadowLevel();
+        opacity:1;
+    }
+}
+
+@mixin btn-float() {
+    @include boxShadowLevel(4);
+    &:hover{
+        @include boxShadowLevel(10);
+        opacity:1;
+    }
+}

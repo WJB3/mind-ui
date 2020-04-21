@@ -1,0 +1,22 @@
+@import "./../components/styles/variable.scss";
+
+$prefixCls:"#{$global-prefix}-space";
+
+.#{$prefixCls}{
+    display: inline-flex;
+
+    &-horizontal{
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    &-vertical{
+        flex-direction: column;
+    }
+}
+
+ 
+ 
+ 
+
+

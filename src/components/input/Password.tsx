@@ -3,7 +3,7 @@ import { classNames } from './../helper/className';
 import Input from './Input';
 import "./../styles/input.scss";
 import Icon from './../icon';
-import Button from './../button';
+import Button from '../../ButtonBase';
  
 
 interface PageProps{

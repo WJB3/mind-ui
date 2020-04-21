@@ -3,67 +3,40 @@ import Layout from './../layout/index';
 import Title from './../components/text/Title';
 import Description from './../components/text/Description';
 import SubTitle from './../components/text/SubTitle';
+import Button from '../ButtonBase';
+import Space from './index';
 import Textlayout from './../components/text/Textlayout';
 import DescriptionTable from './../components/text/DescriptionTable';
-import Pager from './../components/pager';
-import { Fold,Fade } from './../components/animation';
-import Button from '../ButtonBase';
+//import  Notification from 'rc-notification';
 
+class ButtonPage extends React.Component {
 
-class Page extends React.Component {
-
-    state = {
-        foldIn:false,
-        fadeIn:false
-    }
 
     render() {
 
-
         return (
             <Layout >
-                <Title>过渡动画</Title>
+                <Title>Space间距</Title>
+                <Description>设置组件之间的间距。</Description>
                 <SubTitle>何时使用</SubTitle>
+                <Description>避免组件紧贴在一起，拉开统一的空间。</Description>
                 <SubTitle>代码演示</SubTitle>
 
                 <Textlayout
-                    layoutStyle={{ backgroundColor: "#f5f5f5" }}
-                    componentClassName={"pager-page-demo"}
+                    componentClassName={"button-page-demo"}
                     components={<React.Fragment>
-
-                        <Button type="primary" onClick={() => this.setState({ foldIn: !this.state.foldIn })}>点击展示</Button>
-                        <div style={{ display: "flex", justifyContent: "space-around" }}>
-                            <Fold in={this.state.foldIn}>
-                                <Pager deep={2} />
-                            </Fold>
-                            <Fold in={this.state.foldIn} foldHeight={"30px"}>
-                                <Pager deep={4} />
-                            </Fold>
-                            <Pager deep={6} />
-                        </div>
+                        <Space itemStyle={{marginBottom:"8px"}}>
+                            <Button>default</Button>
+                            <Button type={"primary"}>Primary</Button>
+                            <Button type={"second"}>Secondary</Button>
+                            <Button type={"danger"}>Danger</Button>
+                            <Button type={"info"}>Info</Button>
+                            <Button type={"warning"}>Warning</Button>
+                            <Button disabled>禁用</Button>
+                        </Space>
                     </React.Fragment>}
-                    title={"折叠"}
-                    description={"折叠"}
-                ></Textlayout>
-
-                <Textlayout
-                    layoutStyle={{ backgroundColor: "#f5f5f5" }}
-                    componentClassName={"pager-page-demo"}
-                    components={<React.Fragment>
-
-                        <Button type="primary" onClick={() => this.setState({ fadeIn: !this.state.fadeIn })}>点击展示</Button>
-                        <div style={{ display: "flex", justifyContent: "space-around" }}>
-                            <Fade in={this.state.fadeIn}>
-                                <Pager deep={2} />
-                            </Fade>
-                            <Fade in={this.state.fadeIn} foldHeight={"30px"}>
-                                <Pager deep={4} />
-                            </Fade>
-                            <Pager deep={6} />
-                        </div>
-                    </React.Fragment>}
-                    title={"fade"}
-                    description={"消失/展示渐隐"}
+                    title={"按钮类型"}
+                    description={"按钮有六种类型：主按钮、次按钮、危险按钮、提示按钮、警告按钮、禁用按钮。主按钮在同一个操作区域最多出现一次。"}
                 ></Textlayout>
 
 
@@ -92,4 +65,4 @@ class Page extends React.Component {
     }
 }
 
-export default Page;
+export default ButtonPage;

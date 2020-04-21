@@ -2,7 +2,7 @@ import *as ReactDOM from 'react-dom';
 import *as React from 'react';
 import { HashRouter, Route } from 'react-router-dom';
 import Layout from './layout/index';
-import ButtonPage from './buttonPage/index';
+import ButtonPage from './ButtonBase/buttonPage';
 import IconPage from './iconPage/index';
 import AnimationPage from './animationPage/index';
 import gridPage from './gridPage/index';
@@ -14,12 +14,14 @@ import radioPage from './radioPage/index';
 import layoutPage from './layoutPage/index';
 import switchPage from './switchPage/index';
 import typographyPage from './typographyPage/index';
+import spacePage from './Space/spacePage';
  
 import 'antd/dist/antd.css';
 import "./index.less";
 
 ReactDOM.render((<HashRouter>
-        <Route path="/" exact component={typographyPage} />
+        <Route path="/" exact component={spacePage} />
+        <Route path="/space" exact component={spacePage} />
         <Route path="/typography" exact component={typographyPage} />
         <Route path="/layout" exact component={layoutPage} />
         <Route path="/switch" exact component={switchPage} />

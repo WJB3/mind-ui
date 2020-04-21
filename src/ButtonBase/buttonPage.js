@@ -3,15 +3,16 @@ import Layout from './../layout/index';
 import Title from './../components/text/Title';
 import Description from './../components/text/Description';
 import SubTitle from './../components/text/SubTitle';
-import Button from './../components/button/index';
-import Icon  from './../components/icon/index';
+import Button from './index';
+import Icon from './../components/icon/index';
 import Textlayout from './../components/text/Textlayout';
 import DescriptionTable from './../components/text/DescriptionTable';
+import Space from '../Space';
 //import  Notification from 'rc-notification';
 
 class ButtonPage extends React.Component {
 
-    
+
     render() {
 
 
@@ -26,12 +27,15 @@ class ButtonPage extends React.Component {
                 <Textlayout
                     componentClassName={"button-page-demo"}
                     components={<React.Fragment>
-                        <Button type={"primary"}>Primary</Button>
-                        <Button type={"second"}>Secondary</Button>
-                        <Button type={"danger"}>Danger</Button>
-                        <Button type={"info"}>Info</Button>
-                        <Button type={"warning"}>Warning</Button>
-                        <Button disabled>禁用</Button>
+                        <Space itemStyle={{marginBottom:"8px"}}>
+                            <Button>default</Button>
+                            <Button type={"primary"}>Primary</Button>
+                            <Button type={"second"}>Secondary</Button>
+                            <Button type={"danger"}>Danger</Button>
+                            <Button type={"info"}>Info</Button>
+                            <Button type={"warning"}>Warning</Button>
+                            <Button disabled>禁用</Button>
+                        </Space>
                     </React.Fragment>}
                     title={"按钮类型"}
                     description={"按钮有六种类型：主按钮、次按钮、危险按钮、提示按钮、警告按钮、禁用按钮。主按钮在同一个操作区域最多出现一次。"}
@@ -40,9 +44,11 @@ class ButtonPage extends React.Component {
                 <Textlayout
                     componentClassName={"button-page-demo"}
                     components={<React.Fragment>
-                        <Button size={"small"} type={"primary"}>small</Button>
-                        <Button type={"danger"}>danger</Button>
-                        <Button type={"warning"} size={"large"}>Large</Button>
+                        <Space itemStyle={{marginBottom:"8px"}}>
+                            <Button size={"small"} type={"primary"}>small</Button>
+                            <Button type={"danger"}>danger</Button>
+                            <Button type={"warning"} size={"large"}>Large</Button>
+                        </Space>
                     </React.Fragment>}
                     title={"按钮尺寸"}
                     description={"通过设置 size 为 large small 分别把按钮设为大、小尺寸。若不设置 size，则尺寸为中。"}
@@ -51,12 +57,15 @@ class ButtonPage extends React.Component {
                 <Textlayout
                     componentClassName={"button-page-demo"}
                     components={<React.Fragment>
-                        <Button type={"primary"} flat size={"large"}>Primary</Button>
-                        <Button type={"second"} flat>Secondary</Button>
-                        <Button type={"danger"} flat>Danger</Button>
-                        <Button type={"info"} flat>Info</Button>
-                        <Button type={"warning"} flat>Warning</Button>
-                        <Button disabled flat>禁用</Button>
+                        <Space itemStyle={{marginBottom:"8px"}}>
+                            <Button flat size={"large"}>Default</Button>
+                            <Button type={"primary"} flat size={"large"}>Primary</Button>
+                            <Button type={"second"} flat>Secondary</Button>
+                            <Button type={"danger"} flat>Danger</Button>
+                            <Button type={"info"} flat>Info</Button>
+                            <Button type={"warning"} flat>Warning</Button>
+                            <Button disabled flat>禁用</Button>
+                        </Space>
                     </React.Fragment>}
                     title={"按钮扁平"}
                     description={"用于通用功能和减少分层在屏幕上,使其更具可读性。"}
@@ -65,12 +74,14 @@ class ButtonPage extends React.Component {
                 <Textlayout
                     componentClassName={"button-page-demo"}
                     components={<React.Fragment>
-                        <Button type={"primary"} shape={"circle"} size={"small"} flat>小</Button>
-                        <Button type={"danger"} shape={"circle"} flat >中</Button>
-                        <Button type={"warning"} shape={"circle"} size={"large"} flat>大</Button>
-                        <Button type={"primary"} shape={"round"} size={"small"} >小</Button>
-                        <Button type={"second"} shape={"round"}>中</Button>
-                        <Button type={"danger"} shape={"round"} size={"large"} flat>大</Button>
+                        <Space itemStyle={{marginBottom:"8px"}}>
+                            <Button type={"primary"} shape={"circle"} size={"small"} flat>小</Button>
+                            <Button type={"danger"} shape={"circle"} flat >中</Button>
+                            <Button type={"warning"} shape={"circle"} size={"large"} flat>大</Button>
+                            <Button type={"primary"} shape={"round"} size={"small"} >小</Button>
+                            <Button type={"second"} shape={"round"}>中</Button>
+                            <Button type={"danger"} shape={"round"} size={"large"} flat>大</Button>
+                        </Space>
                     </React.Fragment>}
                     title={"按钮形状"}
                     description={"通过设置 shape 为 circle 或者round（正方形）。设置icon为按钮的图标类型。此属性只适合单个字，多个字会有问题。"}
@@ -79,11 +90,13 @@ class ButtonPage extends React.Component {
                 <Textlayout
                     componentClassName={"button-page-demo"}
                     components={<React.Fragment>
-                        <Button type={"primary"} float>Primary</Button>
-                        <Button type={"second"} float>Secondary</Button>
-                        <Button type={"danger"} float>Danger</Button>
-                        <Button type={"info"} float>Info</Button>
-                        <Button type={"warning"} float>Warning</Button>
+                        <Space itemStyle={{marginBottom:"8px"}}>
+                            <Button type={"primary"} float>Primary</Button>
+                            <Button type={"second"} float>Secondary</Button>
+                            <Button type={"danger"} float>Danger</Button>
+                            <Button type={"info"} float>Info</Button>
+                            <Button type={"warning"} float>Warning</Button>
+                        </Space>
                     </React.Fragment>}
                     title={"图标按钮"}
                     description={"通过设置float来决定按钮是否悬浮，通常被用来作为网站的全局按钮操作。"}
@@ -92,15 +105,16 @@ class ButtonPage extends React.Component {
                 <Textlayout
                     componentClassName={"button-page-demo"}
                     components={<React.Fragment>
-                        <Button type={"primary"} float icon="add" shape="circle" ></Button>
-                        <Button type={"second"} size={"large"} float icon="car" shape="round" iconStyle={{color:"black",fontSize:32}}></Button>
-                        <Button type={"warning"} float >
-                            <Icon name={"edit"} size={16} style={{marginRight:"8px"}}/> 编辑
+                        <Space itemStyle={{marginBottom:"8px"}}>
+                            <Button type={"primary"} float icon="add" shape="circle" ></Button>
+                            <Button type={"second"} size={"large"} float icon="car" shape="round" iconStyle={{ color: "black", fontSize: 32 }}></Button>
+                            <Button type={"warning"} float >
+                                <Icon name={"edit"} size={16} style={{ marginRight: "8px" }} /> 编辑
                         </Button>
-                        <Button type={"danger"} float>
-                            删除<Icon name={"delete"} size={16} style={{marginLeft:"8px"}}/> 
-                        </Button>
-                       
+                            <Button type={"danger"} float>
+                                删除<Icon name={"delete"} size={16} style={{ marginLeft: "8px" }} />
+                            </Button>
+                        </Space>
                     </React.Fragment>}
                     title={"按钮浮动"}
                     description={"通过设置icon来生成具有单个图标的按钮。仅适合单个图标属性。"}
