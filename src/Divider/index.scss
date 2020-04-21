@@ -1,0 +1,108 @@
+@import "./../components/styles/variable.scss";
+
+$line-color:rgba(0,0,0,.22);
+
+$prefixCls:"#{$global-prefix}-divider";
+
+.#{$prefixCls}{
+    box-sizing: border-box;
+    margin:0;
+    padding:0;
+    color:rgba(0,0,0,.85);
+    font-size:14px;
+    font-variant: tabular-nums;
+    line-height: 1.5;
+    list-style: none;
+    font-feature-settings: 'tnum';
+    background-color:$line-color;
+
+    &-horizontal{
+        display: block;
+        clear: both;
+        width: 100%;
+        min-width: 100%;
+        height: 1px;
+        margin: 10px 0;
+    }
+
+    &-vertical{
+        position: relative;
+        top: -.06em;
+        display: inline-block;
+        width: 1px;
+        height: .9em;
+        margin: 0 8px;
+        vertical-align: middle;
+    }
+
+    &-dashed{
+        border-width:1px 0 0;
+        border-style:dashed;
+        border-color: $line-color;
+        background: 0;
+    }
+
+    &-with-text-center,&-with-text-left,&-with-text-right{
+        display: table;
+        margin: 16px 0;
+        color: rgba(0,0,0,.85);
+        font-weight: 500;
+        font-size: 16px;
+        white-space: nowrap;
+        text-align: center;
+        background: 0 0;
+        margin: 10px 0;
+        &:before{
+            position: relative;
+            top: 50%;
+            display: table-cell;
+            width: 50%;
+            border-top: 1px solid $line-color;
+            -webkit-transform: translateY(50%);
+            transform: translateY(50%);
+            content: '';
+        }
+        &:after{
+            position: relative;
+            top: 50%;
+            display: table-cell;
+            width: 50%;
+            border-top: 1px solid $line-color;
+            -webkit-transform: translateY(50%);
+            transform: translateY(50%);
+            content: '';
+        }
+    }
+
+    &-inner-text{
+        display: inline-block;
+        padding: 0 1em;
+    }
+
+    &-with-text-left{
+        &:before{
+            top: 50%;
+            width: 5%;
+        }
+        &:after{
+            top: 50%;
+            width: 95%;
+        }
+    }
+    &-with-text-right{
+        &:before{
+            top: 50%;
+            width: 95%;
+        }
+        &:after{
+            top: 50%;
+            width: 5%;
+        }
+    }
+}
+
+ 
+ 
+ 
+
+
