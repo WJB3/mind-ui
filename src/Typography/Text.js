@@ -10,11 +10,12 @@ const componentName = "Typography-Text";
 const Text = React.forwardRef((props, ref) => {
 
     const {
-        children
+        children,
+        ...restProps
     }=props;
 
     return (
-        <Base {...props} component={"span"}> 
+        <Base {...restProps} component={"span"}> 
             {children}
         </Base>
     )
