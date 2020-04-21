@@ -6,7 +6,7 @@ import { ConfigContext } from '../ConfigContext';
 import SizeContext from '../ConfigContext/SizeContext';
 import "./index.scss";
 
-const Button = (ButtonProps) => {
+const Button = React.forwardRef((ButtonProps,ref) => {
 
     const { getPrefixCls } =React.useContext(ConfigContext);
 
@@ -75,6 +75,6 @@ const Button = (ButtonProps) => {
 
         </SizeContext.Consumer>
     )
-}
+})
 
 export default Button;

@@ -12,6 +12,9 @@ import Space from '../Space';
 
 class ButtonPage extends React.Component {
 
+    componentDidMount(){
+        // console.log(this.buttonRef);
+    }
 
     render() {
 
@@ -28,7 +31,7 @@ class ButtonPage extends React.Component {
                     componentClassName={"button-page-demo"}
                     components={<React.Fragment>
                         <Space itemStyle={{marginBottom:"8px"}}>
-                            <Button>default</Button>
+                            <Button  >default</Button>
                             <Button type={"primary"}>Primary</Button>
                             <Button type={"second"}>Secondary</Button>
                             <Button type={"danger"}>Danger</Button>
