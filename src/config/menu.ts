@@ -9,6 +9,10 @@ const menuInfo=[
         key:"component",
         children:[
             {
+                title:"回到顶部",
+                key:"backtop",
+            },
+            {
                 title:"Divider",
                 key:"divider",
             },

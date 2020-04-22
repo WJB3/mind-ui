@@ -6,15 +6,16 @@ import SubTitle from './../components/text/SubTitle';
 import Textlayout from './../components/text/Textlayout';
 import DescriptionTable from './../components/text/DescriptionTable';
 import Pager from './../components/pager';
-import { Fold,Fade } from './../components/animation';
+import { Fold, Fade, Zoom } from './index';
 import Button from '../ButtonBase';
 
 
 class Page extends React.Component {
 
     state = {
-        foldIn:false,
-        fadeIn:false
+        foldIn: false,
+        fadeIn: false,
+        zoomIn:false
     }
 
     render() {
@@ -31,7 +32,7 @@ class Page extends React.Component {
                     componentClassName={"pager-page-demo"}
                     components={<React.Fragment>
 
-                        <Button type="primary" onClick={() => this.setState({ foldIn: !this.state.foldIn })}>点击展示</Button>
+                        <Button type="primary" onClick={() => { this.setState({ foldIn: !this.state.foldIn }) }}>点击展示</Button>
                         <div style={{ display: "flex", justifyContent: "space-around" }}>
                             <Fold in={this.state.foldIn}>
                                 <Pager deep={2} />
@@ -59,6 +60,26 @@ class Page extends React.Component {
                             <Fade in={this.state.fadeIn} foldHeight={"30px"}>
                                 <Pager deep={4} />
                             </Fade>
+                            <Pager deep={6} />
+                        </div>
+                    </React.Fragment>}
+                    title={"fade"}
+                    description={"消失/展示渐隐"}
+                ></Textlayout>
+
+                <Textlayout
+                    layoutStyle={{ backgroundColor: "#f5f5f5" }}
+                    componentClassName={"pager-page-demo"}
+                    components={<React.Fragment>
+
+                        <Button type="primary" onClick={() => this.setState({ zoomIn: !this.state.zoomIn })}>点击展示</Button>
+                        <div style={{ display: "flex", justifyContent: "space-around" }}>
+                            <Zoom in={this.state.zoomIn}>
+                                <Pager deep={2} />
+                            </Zoom>
+                            <Zoom in={this.state.zoomIn}  >
+                                <Pager deep={4} />
+                            </Zoom>
                             <Pager deep={6} />
                         </div>
                     </React.Fragment>}

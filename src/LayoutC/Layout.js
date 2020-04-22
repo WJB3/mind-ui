@@ -11,7 +11,6 @@ const LayoutC = React.forwardRef((props, ref) => {
     } = props;
 
     const hasSider=React.useCallback(()=>{
-        console.log(children);
         let siderArr=[]
         React.Children.forEach(children,(item)=>{
             let i=item.props.children;

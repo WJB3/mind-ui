@@ -13,7 +13,7 @@ import Space from '../Space';
 class ButtonPage extends React.Component {
 
     componentDidMount(){
-        // console.log(this.buttonRef);
+
     }
 
     render() {

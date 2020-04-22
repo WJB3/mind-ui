@@ -3,7 +3,7 @@ import { classNames } from './../helper/className';
 import "./../styles/notification.scss";
 import Animate from './../animate/Animate';
 import { useAnimate } from './../../components/_utils/hooks';
-import Ripple from './../ripple';
+import Ripple from '../../BaseRipple';
 import Icon from './../icon';
 
 let closeTimer: any={};//计算关闭的定时器
@@ -96,14 +96,15 @@ const Notice: React.FunctionComponent<NoticeProps> = (NoticeProps) => {
     const classes = classNames("wonderful-notice", "item-wrapper", [className]);
     
     return (
-            <div
+            <Ripple
+                component="div"
                 className={classes}
                 onMouseEnter={() => clearCloseTimer()}
                 onMouseLeave={() => startCloseTimer()}
                 key={keyIndex}
                 style={backgroundColor?{backgroundColor:backgroundColor,...style}:{...style}}
             >
-                <Ripple />
+               
                 <div className={"wonderful-notice-content"} style={(status||!!icon)?{display:"flex"}:{}}>
                     { status && <div  className={classNames(`wonderful-notice-icon-${status}`,'wonderful-notice-icon')} ><Icon name={status}/></div>}
                     {!status && !!icon && <div  className={classNames(`wonderful-notice-icon-${status}`,'wonderful-notice-icon')} >{icon}</div>}
@@ -116,7 +117,7 @@ const Notice: React.FunctionComponent<NoticeProps> = (NoticeProps) => {
                 <div className={"wonderful-notice-close"} onClick={handleClose}>
                     <Icon name={"close"} />
                 </div>
-            </div>
+            </Ripple>
 
     )
 }

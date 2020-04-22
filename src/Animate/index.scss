@@ -1,0 +1,61 @@
+@import "./../components/styles/variable.scss";
+
+$prefixCls:"#{$global-prefix}-animate";
+
+.#{$prefixCls}{
+ 
+        &-fold{
+      
+            height: 0;
+            overflow: hidden;
+            transition: height $global-transition-duration cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    
+            &-wrapper{
+                    display: flex;
+            }
+            &-wrapperInner{
+                    width:100%;
+            }
+           
+            &-hidden{
+                visibility: hidden;
+            }
+    
+            &-entered{
+                height: 'auto';
+                overflow: visible;
+            }
+        }
+
+        &-fade{
+            transition: opacity $global-transition-duration cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+            opacity: 0;
+            
+    
+            &-exited{
+                opacity: 0;
+                transition: opacity $global-transition-duration cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+                visibility: hidden;
+            }
+    
+            &-entered{
+                opacity:1;
+            }
+        }
+
+        &-zoom{
+            transform:scale(0);
+            transition: transform $global-transition-duration cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+
+            &-exited{
+                transform:scale(0);
+                transition: transform $global-transition-duration cubic-bezier(1, 0.4, 0.2, 1) 0ms;
+                visibility: hidden;
+            }
+
+            &-entered{
+                transform:scale(1);
+            }
+        }
+  
+}

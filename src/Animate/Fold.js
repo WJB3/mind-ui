@@ -1,24 +1,14 @@
-import React,{useRef} from 'react';
-import { classNames } from './../helper/className';
-import { prefixClassname } from './../_utils/config';
+import React  from 'react';
+import { classNames } from '../components/helper/className';
+import { ConfigContext } from '../ConfigContext';
 import { Transition } from 'react-transition-group';
-import "./../styles/animation.scss";
+import "./index.scss";
  
-interface Props{
-   in?:boolean,
-   onEnter?:any,
-   onEntered?:any,
-   onEntering?:any,
-   onExit?:any,
-   onExiting?:any,
-   children?:any,
-   component?:any,
-   foldHeight?:any
-}
-
-const Fold:React.FunctionComponent<Props>=React.forwardRef((Props,ref)=>{
+ 
+const Fold=React.forwardRef((Props,ref)=>{
 
     const {
+        prefixCls:customizePrefixCls,
         children,
         in:inProp,
         onEnter,
@@ -30,27 +20,28 @@ const Fold:React.FunctionComponent<Props>=React.forwardRef((Props,ref)=>{
         foldHeight="0px"
     }=Props;
 
-    const wrapperRef:any=React.useRef(null);
+    const wrapperRef=React.useRef(null);
 
-    const classes=classNames(
-        `${prefixClassname}-animation-fold`
-    );
+    const { getPrefixCls } =React.useContext(ConfigContext);
 
-    const handleEnter=(node:any,isAppearing:any)=>{
+    const prefixCls=getPrefixCls("animate-fold",customizePrefixCls);
+
+  
+    const handleEnter=(node,isAppearing)=>{
         node.style.height = foldHeight;
         if (onEnter) {
             onEnter(node, isAppearing);
         }
     }
 
-    const handleEntered=(node:any,isAppearing:any)=>{
+    const handleEntered=(node,isAppearing)=>{
         node.style.height = 'auto';
         if(onEntered){
             onEntered(node,isAppearing)
         }
     }
 
-    const handleEntering=(node:any,isAppearing:any)=>{
+    const handleEntering=(node,isAppearing)=>{
         const wrapperHeight=wrapperRef.current?wrapperRef.current.clientHeight:0;
 
         node.style.height = `${wrapperHeight}px`;
@@ -60,7 +51,7 @@ const Fold:React.FunctionComponent<Props>=React.forwardRef((Props,ref)=>{
         }
     }
 
-    const handleExit=(node:any)=>{
+    const handleExit=(node)=>{
         const wrapperHeight = wrapperRef.current ? wrapperRef.current.clientHeight : 0;
         node.style.height = `${wrapperHeight}px`;
 
@@ -69,7 +60,7 @@ const Fold:React.FunctionComponent<Props>=React.forwardRef((Props,ref)=>{
         }
     }
 
-    const handleExiting=(node:any)=>{
+    const handleExiting=(node)=>{
         const wrapperHeight = wrapperRef.current ? wrapperRef.current.clientHeight : 0;
         node.style.transitionDuration = `250ms`;
         node.style.height = foldHeight;
@@ -95,13 +86,13 @@ const Fold:React.FunctionComponent<Props>=React.forwardRef((Props,ref)=>{
             timeout={300}
         >
             {
-                (state:any,childrenProps:any)=>{
-                   
+                (state,childrenProps)=>{
+
                    return <Component
                         className={
-                            classNames(`${prefixClassname}-animation-fold-container`,{
-                                [`${prefixClassname}-animation-fold-entered`]:state==='entered',
-                                [`${prefixClassname}-animation-fold-hidden`]:state==='exited' && !inProp && foldHeight==='0px',
+                            classNames(`${prefixCls}`,{
+                                [`${prefixCls}-entered`]:state==='entered',
+                                [`${prefixCls}-hidden`]:state==='exited' && !inProp && foldHeight==='0px',
                             })
                         }
                         style={{
@@ -110,8 +101,8 @@ const Fold:React.FunctionComponent<Props>=React.forwardRef((Props,ref)=>{
                         ref={ref}
                         {...childrenProps}
                    >
-                        <div className={`${prefixClassname}-animation-fold-container-wrapper`} ref={wrapperRef}>
-                            <div className={`${prefixClassname}-animation-fold-container-wrapperInner`}>
+                        <div className={`${prefixCls}-wrapper`} ref={wrapperRef}>
+                            <div className={`${prefixCls}-wrapperInner`}>
                                 {children}
                             </div>
                         </div>

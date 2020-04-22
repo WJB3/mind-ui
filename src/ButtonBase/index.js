@@ -10,6 +10,8 @@ const Button = React.forwardRef((ButtonProps,ref) => {
 
     const { getPrefixCls } =React.useContext(ConfigContext);
 
+
+
     return (
         <SizeContext.Consumer>
             {
@@ -60,12 +62,19 @@ const Button = React.forwardRef((ButtonProps,ref) => {
                         }
                     );
 
+                    const handleClick=(event)=>{
+                        if(onClick){
+                            onClick(event)
+                        }
+                    }
+
                     return (
                         <BaseRipple
                             component="button"
                             className={classes}
                             centerRipple={centerRipple}
                             enabledTouchRipple={!disabled}
+                            onClick={handleClick}
                         >
                             {!icon ? children: <Icon name={icon} style={iconStyle} />}
                         </BaseRipple>

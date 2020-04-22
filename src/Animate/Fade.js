@@ -1,23 +1,15 @@
-import React,{useRef} from 'react';
-import { classNames } from './../helper/className';
-import { prefixClassname } from './../_utils/config';
+import React  from 'react';
+import { classNames } from '../components/helper/className';
+import { ConfigContext } from '../ConfigContext';
 import { Transition } from 'react-transition-group';
-import "./../styles/animation.scss";
- 
-interface Props{
-   in?:boolean,
-   onEnter?:any,
-   onEntered?:any,
-   onEntering?:any,
-   onExit?:any,
-   onExiting?:any,
-   children?:any,
-   component?:any
-}
+import "./index.scss";
 
-const Fade:React.FunctionComponent<Props>=React.forwardRef((Props,ref)=>{
+ 
+ 
+const Fade=React.forwardRef((Props,ref)=>{
 
     const {
+        prefixCls:customizePrefixCls,
         children,
         in:inProp,
         onEnter,
@@ -29,16 +21,18 @@ const Fade:React.FunctionComponent<Props>=React.forwardRef((Props,ref)=>{
  
     }=Props;
 
-   
+    const { getPrefixCls } =React.useContext(ConfigContext);
 
-    const handleEnter=(node:any,isAppearing:any)=>{
+    const prefixCls=getPrefixCls("animate-fade",customizePrefixCls);
+
+    const handleEnter=(node,isAppearing)=>{
         
         if (onEnter) {
             onEnter(node, isAppearing);
         }
     }
 
-    const handleEntered=(node:any,isAppearing:any)=>{
+    const handleEntered=(node,isAppearing)=>{
         
         node.style.transition="opacity 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms";
 
@@ -47,7 +41,7 @@ const Fade:React.FunctionComponent<Props>=React.forwardRef((Props,ref)=>{
         }
     }
 
-    const handleEntering=(node:any,isAppearing:any)=>{
+    const handleEntering=(node,isAppearing)=>{
        
 
         if(onEntering){
@@ -55,21 +49,20 @@ const Fade:React.FunctionComponent<Props>=React.forwardRef((Props,ref)=>{
         }
     }
 
-    const handleExit=(node:any)=>{
-
+    const handleExit=(node)=>{
         if(onExit){
             onExit(node)
         }
     }
 
-    const handleExiting=(node:any)=>{
+    const handleExiting=(node)=>{
         
         if(onExiting){
             onExiting(node)
         }
     }
 
-    const addEndListener=(_:any,next:any)=>{
+    const addEndListener=(_,next)=>{
        
     }
 
@@ -85,13 +78,13 @@ const Fade:React.FunctionComponent<Props>=React.forwardRef((Props,ref)=>{
             timeout={300}
         >
             {
-                (state:any,childrenProps:any)=>{
+                (state,childrenProps)=>{
                    
                    return <Component
                         className={
-                            classNames(`${prefixClassname}-animation-fade-container`,{
-                                [`${prefixClassname}-animation-fade-entered`]:state==='entered',
-                                [`${prefixClassname}-animation-fade-exited`]:state==='exited' && !inProp ,
+                            classNames(`${prefixCls}`,{
+                                [`${prefixCls}-entered`]:state==='entered',
+                                [`${prefixCls}-exited`]:state==='exited' && !inProp ,
                             })
                         }
                         ref={ref}
