@@ -1,10 +1,11 @@
 import React, { useEffect,useState,useRef,useContext,useCallback } from 'react';
 import { classNames } from '../components/helper/className';
-import { throttle,ScrollTo } from '../_utils/reactUtils';
+import { throttle,scrollTo,getScroll } from '../_utils/reactUtils';
 import { ConfigContext } from '../ConfigContext';
+import { Zoom,Fade } from '../Animate';
+import Pager from '../components/pager';
 import "./index.scss";
 import Button from '../ButtonBase';
-import per from 'performance-now';
 
 const BackTop = (Props) => {
 
@@ -13,7 +14,7 @@ const BackTop = (Props) => {
         className,
         target,
         children,
-        visibilityHeight="400px",
+        visibilityHeight=400,
         onClick,
         ...restProps
     } = Props;
@@ -22,18 +23,14 @@ const BackTop = (Props) => {
 
     const scrollEvent=useRef(null);
 
-    const [ visible ]=useState(false);
+    const [ visible,setVisible ]=useState(false);
 
     const { getPrefixCls } =useContext(ConfigContext);
 
     const prefixCls=getPrefixCls("backtop",customizePrefixCls);
- 
-    const renderChildren=({prefixCls})=>{
-
-    };
 
     const scrollToTop=useCallback((e)=>{
-        console.log(per());
+        
         scrollTo(0,{
             getContainer: target || getDefaultTarget()
         })
@@ -47,19 +44,24 @@ const BackTop = (Props) => {
     },[divRef]);
 
   
-    const handleScroll=useCallback((wait)=>{
+    const handleScroll=useCallback((e,wait)=>{
         return throttle(function(){
-             
+            let scroll=getScroll(e.target,true);
+            if(scroll>visibilityHeight){
+                setVisible(true)
+            }else{
+                setVisible(false)
+            }
         },wait) 
-    },[]);
+    },[visible]);
 
 
     const bindScrollEvent=()=>{
         const container=target || getDefaultTarget();
-        if(scrollEvent.current){
-            container.removeEventListener("scroll",handleScroll(100))
-        }
-        scrollEvent.current=container.addEventListener("scroll",handleScroll(100));
+        // if(scrollEvent.current){
+        //     container.removeEventListener("scroll",(e)=>handleScroll(e,100))
+        // }
+        scrollEvent.current=container.addEventListener("scroll",(e)=>handleScroll(e,20)());
     };
     
    
@@ -71,7 +73,8 @@ const BackTop = (Props) => {
         <div className={
             classNames(prefixCls,className)
         } {...restProps} ref={divRef} onClick={scrollToTop}>
-            <Button icon="arrow-up" type={"danger"} shape="circle" float />
+            <Zoom in={visible}><Button icon="arrow-up" type={"danger"} shape="circle" float /></Zoom>
+            {/* <Fade in={visible}><Pager deep={10} style={{width:"40px",height:"40px"}}/></Fade> */}
         </div>
     )
 }

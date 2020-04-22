@@ -5,7 +5,7 @@ import { Transition } from 'react-transition-group';
 import "./index.scss";
  
  
-const Fold=React.forwardRef((Props,ref)=>{
+const Zoom=React.forwardRef((Props,ref)=>{
 
     const {
         prefixCls:customizePrefixCls,
@@ -100,4 +100,4 @@ const Fold=React.forwardRef((Props,ref)=>{
     )
 });
 
-export default Fold;
+export default Zoom;

@@ -1,6 +1,6 @@
-import { func } from "prop-types";
+// import { raf,cancelRaf } from './raf';
 
-export default function throttleByAnimationFrameDecorator(fn){
+export default function throttleByAnimationFrame(fn){
     let requestId;
 
     const later=(args)=>()=>{
@@ -8,11 +8,15 @@ export default function throttleByAnimationFrameDecorator(fn){
         fn(...args);
     };
 
-    const throttled=(args)=>{
+    const throttled=(...args)=>{
         if(requestId==null){
-
+            requestId=raf(later(args))
         }
     }
+
+    throttled.cancel=()=>cancelRaf(requestId);
+
+    return throttled;
 }
 
 export function throttleByAnimationFrameDecorator(wait){

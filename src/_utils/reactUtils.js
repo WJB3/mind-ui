@@ -1,5 +1,5 @@
 import React from 'react';
-import raf from 'raf';
+import { raf } from './raf';
 
 //React对象转数组
 export function toArray(children){
@@ -11,6 +11,7 @@ export function toArray(children){
 }
 //节流函数
 export function throttle(func,wait){
+  
     let previous=0;
     return function(){
         let now=Date.now();
@@ -28,6 +29,7 @@ export function isWindow(obj){
 }
 
 export function getScroll(target,top){
+  
     if(typeof window==="undefined"){
         return 0;
     }

@@ -54,7 +54,7 @@ $prefixCls:"#{$global-prefix}-animate";
             }
 
             &-entered{
-                transform:scale(1);
+                transform:none;
             }
         }
   

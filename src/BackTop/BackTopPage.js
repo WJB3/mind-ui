@@ -25,7 +25,7 @@ class ButtonPage extends React.Component {
                 <Textlayout
                     componentClassName={"button-page-demo"}
                     components={<React.Fragment>
-                        <BackTop />
+                        <BackTop visibilityHeight={10}/>
                     </React.Fragment>}
                     title={"按钮类型"}
                     description={"按钮有六种类型：主按钮、次按钮、危险按钮、提示按钮、警告按钮、禁用按钮。主按钮在同一个操作区域最多出现一次。"}
