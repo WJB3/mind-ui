@@ -15,12 +15,14 @@ import layoutPage from './layoutPage/index';
 import switchPage from './switchPage/index';
 import typographyPage from './typographyPage/index';
 import spacePage from './Space/spacePage';
+import dividerPage from './Divider/dividerPage';
  
 import 'antd/dist/antd.css';
 import "./index.less";
 
 ReactDOM.render((<HashRouter>
-        <Route path="/" exact component={spacePage} />
+        <Route path="/" exact component={dividerPage} />
+        <Route path="/divider" exact component={dividerPage} />
         <Route path="/space" exact component={spacePage} />
         <Route path="/typography" exact component={typographyPage} />
         <Route path="/layout" exact component={layoutPage} />

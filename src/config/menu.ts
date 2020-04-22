@@ -9,6 +9,10 @@ const menuInfo=[
         key:"component",
         children:[
             {
+                title:"Divider",
+                key:"divider",
+            },
+            {
                 title:"Space",
                 key:"space",
             },
