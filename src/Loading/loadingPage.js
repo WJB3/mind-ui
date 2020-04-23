@@ -3,7 +3,8 @@ import Layout from '../layout/index';
 import Title from '../components/text/Title';
 import Description from '../components/text/Description';
 import SubTitle from '../components/text/SubTitle';
- 
+// import { createPopper } from '@popperjs/core';
+import { createPopper } from '../_utils/popper';
 import Loading from './index';
 import Textlayout from '../components/text/Textlayout';
 import DescriptionTable from '../components/text/DescriptionTable';
@@ -17,6 +18,16 @@ class ButtonPage extends React.Component {
     state={
         isLoading:false,
         isFullLoading:false
+    }
+
+    componentDidMount(){
+        const popcorn = document.querySelector('#popper');
+        const tooltip = document.querySelector('#tooltip');
+        console.log(popcorn)
+        console.log(tooltip)
+        createPopper(popcorn, tooltip, {
+            placement: 'top',
+        });
     }
 
     render() {
@@ -40,6 +51,10 @@ class ButtonPage extends React.Component {
                             <Loading color="danger" />
                             <Loading color="warning" />
                             <Loading color="green" />
+                            <div>
+                            <div id="popper" style={{width:"100px",height:"100px",backgroundColor:"rgba(0,0,0,.8)"}}>我是popper</div>
+                            <div id="tooltip">我是tooltip</div>
+                            </div>
                         </Space>
                     </React.Fragment>}
                     title={"基本用法"}
