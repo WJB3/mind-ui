@@ -11,28 +11,31 @@ import DescriptionTable from '../components/text/DescriptionTable';
 import Space from '../Space';
 import Button from '../ButtonBase';
 import Pager from '../components/pager';
+import Popper from '../_utils/demo';
 //import  Notification from 'rc-notification';
 
 class ButtonPage extends React.Component {
 
     state={
         isLoading:false,
-        isFullLoading:false
+        isFullLoading:false,
+        anchorEl:null
     }
 
     componentDidMount(){
-        const popcorn = document.querySelector('#popper');
-        const tooltip = document.querySelector('#tooltip');
-        console.log(popcorn)
-        console.log(tooltip)
-        createPopper(popcorn, tooltip, {
-            placement: 'top',
-        });
+        // const popcorn = document.querySelector('#popper');
+        // const tooltip = document.querySelector('#tooltip');
+        // console.log(popcorn)
+        // console.log(tooltip)
+        // const pop=createPopper(popcorn, tooltip, {
+        //     placement: 'top',
+        // });
+        // console.log(pop);
     }
 
     render() {
 
-        const { isLoading,isFullLoading }=this.state;
+        const { isLoading,isFullLoading,anchorEl }=this.state;
 
         return (
             <Layout >
@@ -51,10 +54,12 @@ class ButtonPage extends React.Component {
                             <Loading color="danger" />
                             <Loading color="warning" />
                             <Loading color="green" />
-                            <div>
-                            <div id="popper" style={{width:"100px",height:"100px",backgroundColor:"rgba(0,0,0,.8)"}}>我是popper</div>
-                            <div id="tooltip">我是tooltip</div>
-                            </div>
+                            <Button  type="primary" onClick={(e)=>this.setState({anchorEl:e.target})}>
+                                Toggle Popper
+                            </Button>
+                            <Popper open={!!anchorEl} anchorEl={anchorEl}>
+                                <div>The content of the Popper.</div>
+                            </Popper>
                         </Space>
                     </React.Fragment>}
                     title={"基本用法"}

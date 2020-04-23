@@ -53,6 +53,7 @@
     "less-loader": "^5.0.0",
     "mini-css-extract-plugin": "^0.8.0",
     "performance-now": "^2.1.0",
+    "popper.js": "^1.16.1",
     "prop-types": "^15.7.2",
     "rc-queue-anim": "^1.8.3",
     "rc-scroll-anim": "^2.7.4",
