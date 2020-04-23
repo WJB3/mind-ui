@@ -8,7 +8,16 @@ import BackTop from './index';
 import Textlayout from './../components/text/Textlayout';
 import DescriptionTable from './../components/text/DescriptionTable';
 //import  Notification from 'rc-notification';
-
+const style = {
+    height: 40,
+    width: 40,
+    lineHeight: '40px',
+    borderRadius: 4,
+    backgroundColor: '#1088e9',
+    color: '#fff',
+    textAlign: 'center',
+    fontSize: 14,
+};
 class ButtonPage extends React.Component {
 
 
@@ -25,11 +34,32 @@ class ButtonPage extends React.Component {
                 <Textlayout
                     componentClassName={"button-page-demo"}
                     components={<React.Fragment>
-                        <BackTop visibilityHeight={10}/>
+                        Scroll down to see the bottom-right button.
+                        <BackTop visibilityHeight={100} />
                     </React.Fragment>}
-                    title={"按钮类型"}
-                    description={"按钮有六种类型：主按钮、次按钮、危险按钮、提示按钮、警告按钮、禁用按钮。主按钮在同一个操作区域最多出现一次。"}
+                    title={"基本"}
+                    description={"最简单的用法。"}
                 ></Textlayout>
+
+                {/* <Textlayout
+                    componentClassName={"button-page-demo"}
+                    components={<React.Fragment>
+                        <div style={{ height: '600vh', padding: 8 }} ref={ref=>this.ScrollRef=ref}>
+                            <div>Scroll to bottom</div>
+                            <div>Scroll to bottom</div>
+                            <div>Scroll to bottom</div>
+                            <div>Scroll to bottom</div>
+                            <div>Scroll to bottom</div>
+                            <div>Scroll to bottom</div>
+                            <div>Scroll to bottom</div>
+                            <BackTop target={this.ScrollRef}>
+                               
+                            </BackTop>
+                        </div>
+                    </React.Fragment>}
+                    title={"自定义样式"}
+                    description={"可以自定义回到顶部按钮的样式，限制宽高：40px * 40px。"}
+                ></Textlayout> */}
 
 
                 <SubTitle>API</SubTitle>

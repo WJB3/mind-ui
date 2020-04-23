@@ -8,6 +8,7 @@ import Icon from './../components/icon/index';
 import Textlayout from './../components/text/Textlayout';
 import DescriptionTable from './../components/text/DescriptionTable';
 import Space from '../Space';
+import BackTop from '../BackTop';
 //import  Notification from 'rc-notification';
 
 class ButtonPage extends React.Component {
@@ -21,12 +22,15 @@ class ButtonPage extends React.Component {
 
         return (
             <Layout >
+
+                <BackTop />
+                
                 <Title>Button按钮</Title>
                 <Description>按钮用于开始一个即时操作。</Description>
                 <SubTitle>何时使用</SubTitle>
                 <Description>标记了一个（或封装一组）操作命令，响应用户点击行为，触发相应的业务逻辑。</Description>
                 <SubTitle>代码演示</SubTitle>
-
+            
                 <Textlayout
                     componentClassName={"button-page-demo"}
                     components={<React.Fragment>

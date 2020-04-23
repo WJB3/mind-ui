@@ -2,8 +2,7 @@ import React, { useEffect,useState,useRef,useContext,useCallback } from 'react';
 import { classNames } from '../components/helper/className';
 import { throttle,scrollTo,getScroll } from '../_utils/reactUtils';
 import { ConfigContext } from '../ConfigContext';
-import { Zoom,Fade } from '../Animate';
-import Pager from '../components/pager';
+import { Zoom } from '../Animate';
 import "./index.scss";
 import Button from '../ButtonBase';
 
@@ -16,6 +15,7 @@ const BackTop = (Props) => {
         children,
         visibilityHeight=400,
         onClick,
+        style,
         ...restProps
     } = Props;
 
@@ -73,8 +73,9 @@ const BackTop = (Props) => {
         <div className={
             classNames(prefixCls,className)
         } {...restProps} ref={divRef} onClick={scrollToTop}>
-            <Zoom in={visible}><Button icon="arrow-up" type={"danger"} shape="circle" float /></Zoom>
-            {/* <Fade in={visible}><Pager deep={10} style={{width:"40px",height:"40px"}}/></Fade> */}
+            <Zoom in={visible}><Button icon="arrow-upward" type={"danger"} shape="circle" float size={"large"} /></Zoom>
+            
+            
         </div>
     )
 }

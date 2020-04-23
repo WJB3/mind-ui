@@ -30,7 +30,8 @@ const Button = React.forwardRef((ButtonProps,ref) => {
                         icon,
                         iconStyle,
                         onClick,
-                        centerRipple
+                        centerRipple,
+                        style
                     } = ButtonProps;
 
                     const prefixCls=getPrefixCls("btn",customizePrefixCls);
@@ -75,6 +76,7 @@ const Button = React.forwardRef((ButtonProps,ref) => {
                             centerRipple={centerRipple}
                             enabledTouchRipple={!disabled}
                             onClick={handleClick}
+                            style={style}
                         >
                             {!icon ? children: <Icon name={icon} style={iconStyle} />}
                         </BaseRipple>

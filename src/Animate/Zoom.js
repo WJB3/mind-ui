@@ -1,7 +1,7 @@
 import React  from 'react';
 import { classNames } from '../components/helper/className';
 import { ConfigContext } from '../ConfigContext';
-import { Transition } from 'react-transition-group';
+import { CSSTransition } from 'react-transition-group';
 import "./index.scss";
  
  
@@ -68,34 +68,14 @@ const Zoom=React.forwardRef((Props,ref)=>{
     }
 
     return(
-        <Transition
+        <CSSTransition
             in={inProp}
-            onEnter={handleEnter}
-            onEntered={handleEntered}
-            onEntering={handleEntering}
-            onExit={handleExit}
-            onExiting={handleExiting}
             timeout={300}
+            classNames={prefixCls}
+            unmountOnExit
         >
-            {
-                (state,childrenProps)=>{
-
-                   return <Component
-                        className={
-                            classNames(`${prefixCls}`,{
-                                [`${prefixCls}-entered`]:state==='entered',
-                                [`${prefixCls}-exited`]:state==='exited' && !inProp,
-                            })
-                        }
-                        
-                        ref={ref}
-                        {...childrenProps}
-                   >
-                        {children}
-                    </Component>
-                }
-            }
-        </Transition>
+            {children}
+        </CSSTransition>
     
     )
 });

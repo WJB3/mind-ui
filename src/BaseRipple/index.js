@@ -17,6 +17,7 @@ const BaseRipple=React.forwardRef((props,ref)=>{
         children,
         className,
         onClick,
+        style,
         disabledTouchRipple=false,//禁用波纹
     }=props;
 
@@ -50,6 +51,7 @@ const BaseRipple=React.forwardRef((props,ref)=>{
             onMouseDown={handleMouseDown}
             onMouseUp={handleMouseUp}
             onClick={handleClick}
+            style={style}
         >
             {children}
             {enabledTouchRipple && <TouchRipple ref={rippleRef} center={centerRipple} />}

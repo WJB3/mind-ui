@@ -17,12 +17,14 @@ import typographyPage from './typographyPage/index';
 import spacePage from './Space/spacePage';
 import dividerPage from './Divider/dividerPage';
 import BackTopPage from './BackTop/BackTopPage';
+import loadingPage from './Loading/loadingPage';
  
 import 'antd/dist/antd.css';
 import "./index.less";
 
 ReactDOM.render((<HashRouter>
-        <Route path="/" exact component={BackTopPage} />
+        <Route path="/" exact component={loadingPage} />
+        <Route path="/loading" exact component={loadingPage} />
         <Route path="/backtop" exact component={BackTopPage} />
         <Route path="/divider" exact component={dividerPage} />
         <Route path="/space" exact component={spacePage} />
