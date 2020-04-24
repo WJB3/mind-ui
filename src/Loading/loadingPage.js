@@ -3,15 +3,14 @@ import Layout from '../layout/index';
 import Title from '../components/text/Title';
 import Description from '../components/text/Description';
 import SubTitle from '../components/text/SubTitle';
-// import { createPopper } from '@popperjs/core';
-import { createPopper } from '../_utils/popper';
 import Loading from './index';
 import Textlayout from '../components/text/Textlayout';
 import DescriptionTable from '../components/text/DescriptionTable';
 import Space from '../Space';
 import Button from '../ButtonBase';
 import Pager from '../components/pager';
-import Popper from '../_utils/demo';
+//import Popper from '../_utils/demo';
+import Popper from '../Popper';
 //import  Notification from 'rc-notification';
 
 class ButtonPage extends React.Component {
@@ -23,14 +22,7 @@ class ButtonPage extends React.Component {
     }
 
     componentDidMount(){
-        // const popcorn = document.querySelector('#popper');
-        // const tooltip = document.querySelector('#tooltip');
-        // console.log(popcorn)
-        // console.log(tooltip)
-        // const pop=createPopper(popcorn, tooltip, {
-        //     placement: 'top',
-        // });
-        // console.log(pop);
+         
     }
 
     render() {
@@ -54,10 +46,10 @@ class ButtonPage extends React.Component {
                             <Loading color="danger" />
                             <Loading color="warning" />
                             <Loading color="green" />
-                            <Button  type="primary" onClick={(e)=>this.setState({anchorEl:e.target})}>
+                            <Button  type="primary" onClick={(e)=>this.setState({anchorEl:anchorEl?null:e.target})}>
                                 Toggle Popper
                             </Button>
-                            <Popper open={!!anchorEl} anchorEl={anchorEl}>
+                            <Popper open={!!anchorEl} mountNode={anchorEl}>
                                 <div>The content of the Popper.</div>
                             </Popper>
                         </Space>
@@ -106,9 +98,7 @@ class ButtonPage extends React.Component {
                             
                             <Loading fullScreen isLoading={isFullLoading} overlayColor={"rgba(0,0,0,0.7)"} size={80}/>
 
-                            <Tooltip placement="left" trigger={['click']} overlay={<span>tooltip</span>}>
-                            <a href="#">hover</a>
-                            </Tooltip>
+                            
                             <Button type="primary" onClick={()=>{this.setState({
                                 isFullLoading:!isFullLoading
                             });

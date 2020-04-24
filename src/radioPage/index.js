@@ -125,11 +125,11 @@ class Page extends React.Component {
                 <Textlayout
                     components={<React.Fragment>
                         <div style={{ display: "flex", flexDirection:"column",alignItems: "center" }}>
-                            <Radio.Group options={plainOptions} onChange={(e,value)=>{console.log(value)}} value={optionValue1} />
-                            <Radio.Group options={options} onChange={(e,value)=>{console.log(value)}} value={optionValue2} />
+                            <Radio.Group options={plainOptions} onChange={(e,value)=>{ }} value={optionValue1} />
+                            <Radio.Group options={options} onChange={(e,value)=>{ }} value={optionValue2} />
                             <Radio.Group
                                 options={optionsWithDisabled}
-                                onChange={(e,value)=>{console.log(value)}}
+                                onChange={(e,value)=>{ }}
                                 value={optionValue3}
                             />
                         </div>

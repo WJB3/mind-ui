@@ -69,12 +69,6 @@ const Fold=React.forwardRef((Props,ref)=>{
         }
     }
 
-    const addEndListener=(_,next)=>{
-        // if(timeout==="auto"){
-
-        // }
-    }
-
     return(
         <Transition
             in={inProp}

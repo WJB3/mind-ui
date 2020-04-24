@@ -3,29 +3,25 @@ import Layout from '../layout/index';
 import Title from '../components/text/Title';
 import Description from '../components/text/Description';
 import SubTitle from '../components/text/SubTitle';
-import  Popper from './index';
+import Popper from './index';
 import Button from '../ButtonBase';
-import Loading from './index';
 import Textlayout from '../components/text/Textlayout';
 import DescriptionTable from '../components/text/DescriptionTable';
-import Space from '../Space';
-//import  Notification from 'rc-notification';
+import Tooltip from '../Tooltip';
 
-class ButtonPage extends React.Component {
+class Page extends React.Component {
 
     state={
-        isLoading:false,
-        isFullLoading:false,
-        poperRef:null
+         
     }
 
     render() {
 
-        const { isLoading,isFullLoading ,poperRef}=this.state;
+        const {  }=this.state;
 
         return (
             <Layout >
-                <Title>Spin加载中</Title>
+                <Title>Tooltip</Title>
                 <Description>页面局部处于等待异步数据或正在渲染过程时，合适的加载动效会有效缓解用户的焦虑。</Description>
                 <SubTitle>何时使用</SubTitle>
 
@@ -34,12 +30,9 @@ class ButtonPage extends React.Component {
                 <Textlayout
                     componentClassName={"button-page-demo"}
                     components={<React.Fragment>
-                        <Button type="primary" onClick={(e)=>{this.setState({
-                            poperRef:e.target
-                        })}}>获取</Button>
-                        <Popper container={poperRef} disablePortal={!poperRef}>
-                            {"The content of the Popper"}
-                        </Popper>
+                        <Tooltip title="prompt text">
+                            <span>Tooltip will show on mouse enter.</span>
+                        </Tooltip>
                     </React.Fragment>}
                     title={"基本用法"}
                     description={"一个简单的 loading 状态。"}
@@ -72,4 +65,4 @@ class ButtonPage extends React.Component {
     }
 }
 
-export default ButtonPage;
+export default Page;

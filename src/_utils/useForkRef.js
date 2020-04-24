@@ -9,7 +9,7 @@ export default function useForkRef(refA,refB){
     * with the ref. Cleanup naturally emerges from this behavior
     */
    return React.useMemo(()=>{
-    console.log("useForkRef")
+ 
        if(refA==null&&refB==null){
            return null;
        }

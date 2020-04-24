@@ -4,7 +4,7 @@ import { ConfigContext } from '../ConfigContext';
 import { CSSTransition } from 'react-transition-group';
 import "./index.scss";
  
-const Zoom=React.forwardRef((Props,ref)=>{
+const Grow=React.forwardRef((Props,ref)=>{
 
     const {
         prefixCls:customizePrefixCls,
@@ -15,7 +15,7 @@ const Zoom=React.forwardRef((Props,ref)=>{
 
     const { getPrefixCls } =React.useContext(ConfigContext);
 
-    const prefixCls=getPrefixCls("animate-zoom",customizePrefixCls);
+    const prefixCls=getPrefixCls("animate-grow",customizePrefixCls);
 
     return(
         <CSSTransition
@@ -30,4 +30,4 @@ const Zoom=React.forwardRef((Props,ref)=>{
     )
 });
 
-export default Zoom;
+export default Grow;

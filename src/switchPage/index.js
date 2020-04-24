@@ -31,7 +31,7 @@ class Page extends React.Component {
                 <Textlayout
                     components={<React.Fragment>
                         <div style={{ display: "flex", justifyContent: "space-around" }}>
-                            <Switch defaultChecked onChange={(event, checked) => { console.log(event); console.log(checked); }} />
+                            <Switch defaultChecked onChange={(event, checked) => {   }} />
                         </div>
                     </React.Fragment>}
                     title={"基本使用。"}

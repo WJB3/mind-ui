@@ -6,7 +6,8 @@ import SubTitle from './../components/text/SubTitle';
 import Textlayout from './../components/text/Textlayout';
 import DescriptionTable from './../components/text/DescriptionTable';
 import Pager from './../components/pager';
-import { Fold, Fade, Zoom } from './index';
+
+import { Fold, Fade, Zoom, Grow } from './index';
 import Button from '../ButtonBase';
 
 
@@ -15,7 +16,8 @@ class Page extends React.Component {
     state = {
         foldIn: false,
         fadeIn: false,
-        zoomIn:false
+        zoomIn: false,
+        growIn:false
     }
 
     render() {
@@ -33,6 +35,7 @@ class Page extends React.Component {
                     components={<React.Fragment>
 
                         <Button type="primary" onClick={() => { this.setState({ foldIn: !this.state.foldIn }) }}>点击展示</Button>
+
                         <div style={{ display: "flex", justifyContent: "space-around" }}>
                             <Fold in={this.state.foldIn}>
                                 <Pager deep={2} />
@@ -54,10 +57,10 @@ class Page extends React.Component {
 
                         <Button type="primary" onClick={() => this.setState({ fadeIn: !this.state.fadeIn })}>点击展示</Button>
                         <div style={{ display: "flex", justifyContent: "space-around" }}>
-                            <Fade in={this.state.fadeIn}>
+                            <Fade in={this.state.fadeIn} >
                                 <Pager deep={2} />
                             </Fade>
-                            <Fade in={this.state.fadeIn} foldHeight={"30px"}>
+                            <Fade in={this.state.fadeIn} foldHeight={"30px"}  >
                                 <Pager deep={4} />
                             </Fade>
                             <Pager deep={6} />
@@ -73,18 +76,34 @@ class Page extends React.Component {
                     components={<React.Fragment>
 
                         <Button type="primary" onClick={() => this.setState({ zoomIn: !this.state.zoomIn })}>点击展示</Button>
-                        <div style={{ display: "flex", justifyContent: "space-around" }}>
-                            <Zoom in={this.state.zoomIn}>
-                                <Pager deep={2} />
-                            </Zoom>
-                            <Zoom in={this.state.zoomIn}  >
-                                <Pager deep={4} />
-                            </Zoom>
+
+
+                        <Zoom in={this.state.zoomIn}  >
                             <Pager deep={6} />
-                        </div>
+                        </Zoom>
+
+
                     </React.Fragment>}
-                    title={"fade"}
+                    title={"zoom"}
                     description={"消失/展示渐隐"}
+                ></Textlayout>
+
+                <Textlayout
+                    layoutStyle={{ backgroundColor: "#f5f5f5" }}
+                    componentClassName={"pager-page-demo"}
+                    components={<React.Fragment>
+
+                        <Button type="primary" onClick={() => this.setState({ growIn: !this.state.growIn })}>点击展示</Button>
+
+
+                        <Grow in={this.state.growIn} >
+                            <Pager deep={6}  />
+                        </Grow>
+
+
+                    </React.Fragment>}
+                    title={"Grow"}
+                    description={"fade+zoom"}
                 ></Textlayout>
 
 

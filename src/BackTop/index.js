@@ -74,8 +74,6 @@ const BackTop = (Props) => {
             classNames(prefixCls,className)
         } {...restProps} ref={divRef} onClick={scrollToTop}>
             <Zoom in={visible}><Button icon="arrow-upward" type={"danger"} shape="circle" float size={"large"} /></Zoom>
-            
-            
         </div>
     )
 }

@@ -1,9 +1,10 @@
-import React from 'react';
-import { classNames } from '../components/helper/className';
+import React,{useEffect,useCallback,useRef} from 'react';
 import { ConfigContext } from '../ConfigContext';
+import { createPopper } from '../_utils/popper'
 import useForkRef from '../_utils/useForkRef';
 import Portals from '../Portals';
 import "./index.scss";
+import setRef from '../_utils/setRef';
 
 function getAnchorEl(anchorEl){
     return typeof anchorEl==="function"?anchorEl():anchorEl;
@@ -15,57 +16,78 @@ const Popper = React.forwardRef((Props,ref) => {
  
     const {
         prefixCls:customizePrefixCls,  
-        className,
+        open,
         children,
         container,
-        open,
         disablePortal=false,
-        popperOptions={},
         popperRef:popperRefProp,
-        ...restProps
+        popperOptions,
+        placement="top",
+        mountNode,
     } = Props;
 
-    const tooltipRef=React.useRef(null);
+    const tooltipRef=useRef(null);
     const ownRef=useForkRef(tooltipRef,ref);
 
-    const popperRef=React.useRef(null);
+    const popperRef=useRef(null);
     const handlePopperRef=useForkRef(popperRef,popperRefProp);
-    const handlePoperRefRef=React.useRef(handlePopperRef);
+    const handlePopperRefFunc=useRef(handlePopperRef);
 
-    useEnhancedEffect(()=>{
-        handlePoperRefRef.current=handlePopperRef;
+    useEffect(()=>{
+        handlePopperRefFunc.current=handlePopperRef;//实时更新handlePopperRefFunc
     },[handlePopperRef]);
 
-    React.useImperativeHandle(popperRefProp,()=>popperRef.current,[]);
-
-
-    const handleOpen=React.useCallback(()=>{
-        if(!open){
+    React.useImperativeHandle(popperRefProp, () => popperRef.current, []);
+    
+    const handleOpen=useCallback(()=>{
+        if(!tooltipRef.current || !mountNode ||!open){
             return ;
         }
-    })
 
-    const { getPrefixCls } =React.useContext(ConfigContext);
+        if(popperRef.current){
+            popperRef.current.destroy();
+            handlePopperRefFunc.current(null);
+        }
 
-    const prefixCls=getPrefixCls("popper",customizePrefixCls);
+        const resolvedAnchorEl=getAnchorEl(mountNode);
 
-    const classes = classNames(prefixCls,className,
-        
+        const popper=createPopper(getAnchorEl(mountNode),tooltipRef.current,{
+            placement
+        });
+
+        handlePopperRefFunc.current(popper);//更新popper实例到popperRef节点 方便后续操作popper实例
+    },[mountNode, disablePortal, open, placement, popperOptions]);
+
+    const handleClose=useCallback(()=>{
+      
+        if(!popperRef.current){
+            return ;
+        }
+        popperRef.current.destroy();
+        handlePopperRefFunc.current(null);
+    },[])
+    
+    const handleRef=React.useCallback(
+        (node)=>{
+            setRef(ownRef,node);//将div id=popper节点赋值给tooltipRef
+            handleOpen();
+        },
+        [ownRef,handleOpen]
     );
 
-    const handleRef=React.useCallback(
-        
-    )
+    useEffect(() => {
+  
+        if (!open) {
+          // Otherwise handleExited will call this.
+          handleClose();
+        }
+    }, [open]);
 
     return (
         <Portals container={container}  disablePortal={disablePortal}>
             <div
                 ref={handleRef}
-                style={{
-                    position:"absolute",
-                    top:0,
-                    left:0
-                }}
+                id="popper"
             >
                 {children}
             </div>

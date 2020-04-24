@@ -11,7 +11,7 @@ interface Props{
     style?:object
 }
 
-const Pager:React.FunctionComponent<Props>=(Props)=>{
+const Pager:React.FunctionComponent<Props>=React.forwardRef((Props,ref)=>{
 
     const {
         deep,
@@ -34,6 +34,6 @@ const Pager:React.FunctionComponent<Props>=(Props)=>{
         </div>
     
     )
-}
+})
 
 export default Pager;
