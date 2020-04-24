@@ -29,7 +29,7 @@ const Password:React.FunctionComponent<PageProps>=(PageProps)=>{
     }) 
     
     return(
-        <Input {...props} type={type} suffix={<Button shape={"circle"} onClick={()=>setIcon(icon==="eye-off"?"eye":"eye-off")} icon={icon} size={"small"} flat type={"primary"} iconStyle={{color:"black"}}/>}/>
+        <Input {...props} type={type} suffix={<Button shape={"circle"} onClick={()=>setIcon(icon==="eye-off"?"eye":"eye-off")} icon={icon} size={"small"} flat   iconStyle={{color:"black"}}/>}/>
     )
 }
 

@@ -106,17 +106,21 @@ class ButtonPage extends React.Component {
                             
                             <Loading fullScreen isLoading={isFullLoading} overlayColor={"rgba(0,0,0,0.7)"} size={80}/>
 
+                            <Tooltip placement="left" trigger={['click']} overlay={<span>tooltip</span>}>
+                            <a href="#">hover</a>
+                            </Tooltip>
                             <Button type="primary" onClick={()=>{this.setState({
                                 isFullLoading:!isFullLoading
                             });
+                           
 
                             setTimeout(() => {
-                                
+     
                                 this.setState({
                                     isFullLoading:false
                                 })
                          
-                            }, 1000);}}>全屏加载</Button>
+                            }, 1000);}}>全屏加载</Button> 
                         </Space>
                     </React.Fragment>}
                     title={"各种大小"}

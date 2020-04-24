@@ -18,12 +18,14 @@ import spacePage from './Space/spacePage';
 import dividerPage from './Divider/dividerPage';
 import BackTopPage from './BackTop/BackTopPage';
 import loadingPage from './Loading/loadingPage';
+import popperPage from './Popper/popperPage';
  
 import 'antd/dist/antd.css';
 import "./index.less";
 
 ReactDOM.render((<HashRouter>
         <Route path="/" exact component={loadingPage} />
+        <Route path="/popper" exact component={popperPage} />
         <Route path="/loading" exact component={loadingPage} />
         <Route path="/backtop" exact component={BackTopPage} />
         <Route path="/divider" exact component={dividerPage} />
