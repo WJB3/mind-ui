@@ -1,6 +1,5 @@
 import React ,{useState} from 'react';
 import { classNames } from '../components/helper/className';
-import { toArray } from '../_utils/reactUtils';
 import { ConfigContext } from '../ConfigContext';
 import Popper from '../Popper';
 import useForkRef from '../_utils/useForkRef';
