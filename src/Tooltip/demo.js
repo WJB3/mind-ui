@@ -2,7 +2,6 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import clsx from 'clsx';
 import { deepmerge } from '@material-ui/utils';
-import { fade } from '../styles/colorManipulator';
 import capitalize from '../utils/capitalize';
 import Grow from '../Grow';
 import Popper from '../Popper';
@@ -11,7 +10,6 @@ import useId from '../utils/unstable_useId';
 import setRef from '../utils/setRef';
 import useIsFocusVisible from '../utils/useIsFocusVisible';
 import useControlled from '../utils/useControlled';
-import useTheme from '../styles/useTheme';
 
 function round(value) {
   return Math.round(value * 1e5) / 1e5;
@@ -80,91 +78,7 @@ function arrowGenerator() {
   };
 }
 
-export const styles = (theme) => ({
-  /* Styles applied to the Popper component. */
-  popper: {
-    zIndex: theme.zIndex.tooltip,
-    pointerEvents: 'none',
-    flip: false, // disable jss-rtl plugin
-  },
-  /* Styles applied to the Popper component if `interactive={true}`. */
-  popperInteractive: {
-    pointerEvents: 'auto',
-  },
-  /* Styles applied to the Popper component if `arrow={true}`. */
-  popperArrow: arrowGenerator(),
-  /* Styles applied to the tooltip (label wrapper) element. */
-  tooltip: {
-    backgroundColor: fade(theme.palette.grey[700], 0.9),
-    borderRadius: theme.shape.borderRadius,
-    color: theme.palette.common.white,
-    fontFamily: theme.typography.fontFamily,
-    padding: '4px 8px',
-    fontSize: theme.typography.pxToRem(10),
-    lineHeight: `${round(14 / 10)}em`,
-    maxWidth: 300,
-    wordWrap: 'break-word',
-    fontWeight: theme.typography.fontWeightMedium,
-  },
-  /* Styles applied to the tooltip (label wrapper) element if `arrow={true}`. */
-  tooltipArrow: {
-    position: 'relative',
-    margin: '0',
-  },
-  /* Styles applied to the arrow element. */
-  arrow: {
-    position: 'absolute',
-    fontSize: 6,
-    color: fade(theme.palette.grey[700], 0.9),
-    '&::before': {
-      content: '""',
-      margin: 'auto',
-      display: 'block',
-      width: 0,
-      height: 0,
-      borderStyle: 'solid',
-    },
-  },
-  /* Styles applied to the tooltip (label wrapper) element if the tooltip is opened by touch. */
-  touch: {
-    padding: '8px 16px',
-    fontSize: theme.typography.pxToRem(14),
-    lineHeight: `${round(16 / 14)}em`,
-    fontWeight: theme.typography.fontWeightRegular,
-  },
-  /* Styles applied to the tooltip (label wrapper) element if `placement` contains "left". */
-  tooltipPlacementLeft: {
-    transformOrigin: 'right center',
-    margin: '0 24px ',
-    [theme.breakpoints.up('sm')]: {
-      margin: '0 14px',
-    },
-  },
-  /* Styles applied to the tooltip (label wrapper) element if `placement` contains "right". */
-  tooltipPlacementRight: {
-    transformOrigin: 'left center',
-    margin: '0 24px',
-    [theme.breakpoints.up('sm')]: {
-      margin: '0 14px',
-    },
-  },
-  /* Styles applied to the tooltip (label wrapper) element if `placement` contains "top". */
-  tooltipPlacementTop: {
-    transformOrigin: 'center bottom',
-    margin: '24px 0',
-    [theme.breakpoints.up('sm')]: {
-      margin: '14px 0',
-    },
-  },
-  /* Styles applied to the tooltip (label wrapper) element if `placement` contains "bottom". */
-  tooltipPlacementBottom: {
-    transformOrigin: 'center top',
-    margin: '24px 0',
-    [theme.breakpoints.up('sm')]: {
-      margin: '14px 0',
-    },
-  },
-});
+ 
 
 let hystersisOpen = false;
 let hystersisTimer = null;
@@ -199,7 +113,6 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     TransitionProps,
     ...other
   } = props;
-  const theme = useTheme();
 
   const [childNode, setChildNode] = React.useState();
   const [arrowRef, setArrowRef] = React.useState(null);
@@ -256,12 +169,6 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
       return;
     }
 
-    // Remove the title ahead of time.
-    // We don't want to wait for the next render commit.
-    // We would risk displaying two tooltips at the same time (native + this one).
-    if (childNode) {
-      childNode.removeAttribute('title');
-    }
 
     clearTimeout(enterTimer.current);
     clearTimeout(leaveTimer.current);
@@ -323,31 +230,6 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     }, theme.transitions.duration.shortest);
   };
 
-  const handleLeave = (forward = true) => (event) => {
-    const childrenProps = children.props;
-
-    if (event.type === 'blur') {
-      if (childrenProps.onBlur && forward) {
-        childrenProps.onBlur(event);
-      }
-      handleBlur();
-    }
-
-    if (
-      event.type === 'mouseleave' &&
-      childrenProps.onMouseLeave &&
-      event.currentTarget === childNode
-    ) {
-      childrenProps.onMouseLeave(event);
-    }
-
-    clearTimeout(enterTimer.current);
-    clearTimeout(leaveTimer.current);
-    event.persist();
-    leaveTimer.current = setTimeout(() => {
-      handleClose(event);
-    }, leaveDelay);
-  };
 
   const handleTouchStart = (event) => {
     ignoreNonTouchEvents.current = true;
@@ -439,16 +321,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     }
   }
 
-  if (process.env.NODE_ENV !== 'production') {
-    if (children.props.title) {
-      console.error(
-        [
-          'Material-UI: you have provided a `title` prop to the child of <Tooltip />.',
-          `Remove this title prop \`${children.props.title}\` or the Tooltip component.`,
-        ].join('\n'),
-      );
-    }
-  }
+   
 
   const mergedPopperProps = React.useMemo(() => {
     return deepmerge(
