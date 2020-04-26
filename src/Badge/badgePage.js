@@ -27,21 +27,55 @@ class ButtonPage extends React.Component {
                     componentClassName={"button-page-demo"}
                     components={<React.Fragment>
                         <Space size={"large"}>
-                            <Badge count={5}>
+                            <Badge count={9}>
                                 <Icon name="email"></Icon>
                             </Badge>
                             <Badge count={0} showZero>
                                 <Icon name="email"></Icon>
                             </Badge>
-                            <Badge count={6}>
+                            <Badge count={<Icon name={"error"} />}>
                                 <Icon name="email"></Icon>
                             </Badge>
                         </Space>
                     </React.Fragment>}
                     title={"基本"}
-                    description={"最简单的用法。"}
+                    description={"简单的徽章展示，当 count 为 0 时，默认不显示，但是可以使用 showZero 修改为显示。"}
                 ></Textlayout>
 
+                <Textlayout
+                    componentClassName={"button-page-demo"}
+                    components={<React.Fragment>
+                        <Space size="large">
+                            <Badge count={25} />
+                            <Badge count={4} className="site-badge-count-4" />
+                            <Badge className="site-badge-count-109" count={109} style={{ backgroundColor: '#52c41a' }} />
+                        </Space>
+                    </React.Fragment>}
+                    title={"独立使用"}
+                    description={"不包裹任何元素即是独立使用，可自定样式展现。"}
+                ></Textlayout>
+
+                <Textlayout
+                    componentClassName={"button-page-demo"}
+                    components={<React.Fragment>
+                        <Space size="large">
+                            <Badge count={99}>
+                                <Icon name="shopcar"></Icon>
+                            </Badge>
+                            <Badge count={100}>
+                                <Icon name="shopcar"></Icon>
+                            </Badge>
+                            <Badge count={99} overflowCount={10}>
+                                <Icon name="shopcar"></Icon>
+                            </Badge>
+                            <Badge count={1000} overflowCount={999}>
+                                <Icon name="shopcar"></Icon>
+                            </Badge>
+                        </Space>
+                    </React.Fragment>}
+                    title={"独立使用"}
+                    description={"不包裹任何元素即是独立使用，可自定样式展现。"}
+                ></Textlayout>
 
 
                 <SubTitle>API</SubTitle>

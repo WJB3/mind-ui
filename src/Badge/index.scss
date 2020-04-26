@@ -1,6 +1,8 @@
 @import "./../components/styles/variable.scss";
 
 $prefixCls:"#{$global-prefix}-badge";
+$scrollNumOnlyPrefixCls:"#{$global-prefix}-scroll-number-only";
+$scrollNumPrefixCls:"#{$global-prefix}-scroll-number";
 
 .#{$prefixCls}{
     box-sizing: border-box;
@@ -18,6 +20,22 @@ $prefixCls:"#{$global-prefix}-badge";
     color: unset;
     line-height: 1;
 
+    &-count,.#{$scrollNumPrefixCls}-custom-component{
+        position: absolute;
+        top: 0;
+        right: 0;
+        transform: translate(50%,-50%);
+    }
+
+    .#{$scrollNumPrefixCls}-custom-component{
+        &.wonderful-icon{
+            font-size: 14px!important;
+            color:$danger-color;
+        }
+    }
+
+    
+
     &-count{
         height:20px;
         min-width:20px;
@@ -28,17 +46,46 @@ $prefixCls:"#{$global-prefix}-badge";
         line-height: 20px;
         text-align: center;
         white-space: nowrap;
-        border-radius: 50%;
+        border-radius: 10px;
         background-color: $danger-color;
         position: absolute;
+        overflow: hidden;
 
-        position: absolute;
-        top: 0;
-        right: 0;
-        transform: translate(50%,-50%);
+       
+
+
+        .#{$scrollNumOnlyPrefixCls}{
+            display: inline-block;
+            height:20px;
+            transition: all .3s cubic-bezier(.645,.045,.355,1);
+
+            &-unit{
+                height: 20px;
+                margin: 0;
+            }
+            
+        }
+    }
+
+    &-multiple-words{
+        padding:0 8px;
+    }
+
+    &-not-a-wrapper{
+        .#{$prefixCls}-count{
+            position: relative;
+            top: auto;
+            display: block;
+            transform:none;
+        }
     }
 }
 
+.site-badge-count-4 .parrot-badge-count {
+    background-color: #fff;
+    color: #999;
+    box-shadow: 0 0 0 1px #d9d9d9 inset;
+}
  
  
  

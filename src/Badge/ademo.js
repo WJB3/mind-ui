@@ -2,12 +2,12 @@ import * as React from 'react';
 import Animate from 'rc-animate';
 import omit from 'omit.js';
 import classNames from 'classnames';
-import ScrollNumber from './ScrollNumber';
+import ScrollNumber from './scrollnumbera';
 import { PresetColorTypes, PresetColorType, PresetStatusColorType } from '../_util/colors';
 import { ConfigConsumer, ConfigConsumerProps } from '../config-provider';
 import { LiteralUnion } from '../_util/type';
 
-export { ScrollNumberProps } from './ScrollNumber';
+export { ScrollNumberProps } from './scrollnumbera';
 
 export interface BadgeProps {
   /** Number to show in badge */
