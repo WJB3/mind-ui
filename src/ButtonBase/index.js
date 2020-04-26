@@ -10,8 +10,6 @@ const Button = React.forwardRef((ButtonProps,ref) => {
 
     const { getPrefixCls } =React.useContext(ConfigContext);
 
-
-
     return (
         <SizeContext.Consumer>
             {
@@ -31,7 +29,9 @@ const Button = React.forwardRef((ButtonProps,ref) => {
                         iconStyle,
                         onClick,
                         centerRipple,
-                        style
+                        style,
+                        onMouseOver,
+                        onMouseLeave
                     } = ButtonProps;
 
                     const prefixCls=getPrefixCls("btn",customizePrefixCls);
@@ -77,7 +77,10 @@ const Button = React.forwardRef((ButtonProps,ref) => {
                             centerRipple={centerRipple}
                             enabledTouchRipple={!disabled}
                             onClick={handleClick}
+                            onMouseOver={onMouseOver}
+                            onMouseLeave={onMouseLeave}
                             style={style}
+                            ref={ref}
                         >
                             {!icon ? children: <Icon name={icon} style={iconStyle} />}
                         </BaseRipple>

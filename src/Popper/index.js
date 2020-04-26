@@ -1,6 +1,7 @@
 import React,{useEffect,useCallback,useRef} from 'react';
+import { classNames } from '../components/helper/className';
 import { ConfigContext } from '../ConfigContext';
-import { createPopper } from '../_utils/popper'
+import { createPopper } from '@popperjs/core'
 import useForkRef from '../_utils/useForkRef';
 import Portals from '../Portals';
 import "./index.scss";
@@ -24,6 +25,9 @@ const Popper = React.forwardRef((Props,ref) => {
         popperOptions,
         placement="top",
         mountNode,
+        className,
+        animation,
+        style
     } = Props;
 
     const tooltipRef=useRef(null);
@@ -52,7 +56,10 @@ const Popper = React.forwardRef((Props,ref) => {
         const resolvedAnchorEl=getAnchorEl(mountNode);
 
         const popper=createPopper(getAnchorEl(mountNode),tooltipRef.current,{
-            placement
+            placement,
+            modifiers: {
+                preventOverflow: { boundariesElement: 'window' },
+            },
         });
 
         handlePopperRefFunc.current(popper);//更新popper实例到popperRef节点 方便后续操作popper实例
@@ -83,13 +90,37 @@ const Popper = React.forwardRef((Props,ref) => {
         }
     }, [open]);
 
+    const { getPrefixCls } = React.useContext(ConfigContext);
+    const prefixCls = getPrefixCls("popper", customizePrefixCls);
+    const classes = classNames(prefixCls, className,`${prefixCls}-${placement}`);
+
+    const childProps = { placement };
+
+    if (animation) {
+        childProps.TransitionProps = {
+            in: open,
+         
+        };
+    }
+
     return (
         <Portals container={container}  disablePortal={disablePortal}>
+           
             <div
                 ref={handleRef}
                 id="popper"
+                className={classes}
+                // style={{
+                //     // Prevents scroll issue, waiting for Popper.js to add this style once initiated.
+                //     position: 'fixed',
+                //     // Fix Popper.js display issue
+                //     top: 0,
+                //     left: 0,
+                //     ...style,
+                // }}
             >
-                {children}
+                {typeof children === 'function' ? children(childProps) : children}
+   
             </div>
         </Portals>
     )

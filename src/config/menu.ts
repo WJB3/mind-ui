@@ -9,6 +9,10 @@ const menuInfo=[
         key:"component",
         children:[
             {
+                title:"badge",
+                key:"badge",
+            },
+            {
                 title:"tooltip",
                 key:"tooltip",
             },

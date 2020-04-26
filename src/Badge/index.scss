@@ -1,0 +1,46 @@
+@import "./../components/styles/variable.scss";
+
+$prefixCls:"#{$global-prefix}-badge";
+
+.#{$prefixCls}{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    color: rgba(0,0,0,.65);
+    font-size: 14px;
+    font-variant: tabular-nums;
+    line-height: 1.5715;
+    list-style: none;
+    -webkit-font-feature-settings: 'tnum';
+    font-feature-settings: 'tnum';
+    position: relative;
+    display: inline-block;
+    color: unset;
+    line-height: 1;
+
+    &-count{
+        height:20px;
+        min-width:20px;
+        padding:0 6px;
+        color:rgba(255,255,255,1);
+        font-weight:400;
+        font-size:12px;
+        line-height: 20px;
+        text-align: center;
+        white-space: nowrap;
+        border-radius: 50%;
+        background-color: $danger-color;
+        position: absolute;
+
+        position: absolute;
+        top: 0;
+        right: 0;
+        transform: translate(50%,-50%);
+    }
+}
+
+ 
+ 
+ 
+
+

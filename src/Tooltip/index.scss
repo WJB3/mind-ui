@@ -1,0 +1,20 @@
+@import "./../components/styles/variable.scss";
+
+$prefixCls:"#{$global-prefix}-tooltip";
+
+.#{$prefixCls}{
+    background: rgba(0,0,0,.75);
+    color: rgba(255,255,255);
+    padding: 6px;
+    border-radius: 4px;
+    line-height: 1;
+    max-width: 300px;
+    max-height: 250px;
+    font-size: 14px;
+}
+
+ 
+ 
+ 
+
+

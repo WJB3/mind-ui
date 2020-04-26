@@ -12,6 +12,8 @@ const BaseRipple=React.forwardRef((props,ref)=>{
         component:Component="span",
         onMouseDown,
         onMouseUp,
+        onMouseOver,
+        onMouseLeave,
         centerRipple=false,
         enabledTouchRipple=true,
         children,
@@ -44,6 +46,7 @@ const BaseRipple=React.forwardRef((props,ref)=>{
     const handleMouseDown = useRippleHandler('start', onMouseDown);
     const handleMouseUp = useRippleHandler('stop', onMouseUp);
     const handleClick = useRippleHandler('click', onClick);
+   
 
     return (
         <Component 
@@ -51,7 +54,10 @@ const BaseRipple=React.forwardRef((props,ref)=>{
             onMouseDown={handleMouseDown}
             onMouseUp={handleMouseUp}
             onClick={handleClick}
+            onMouseOver={onMouseOver}
+            onMouseLeave={onMouseLeave}
             style={style}
+            ref={ref}
         >
             {children}
             {enabledTouchRipple && <TouchRipple ref={rippleRef} center={centerRipple} />}
