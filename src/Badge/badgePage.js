@@ -77,6 +77,21 @@ class ButtonPage extends React.Component {
                     description={"不包裹任何元素即是独立使用，可自定样式展现。"}
                 ></Textlayout>
 
+                <Textlayout
+                    componentClassName={"button-page-demo"}
+                    components={<React.Fragment>
+                        <Space size="large">
+                            <Badge dot>
+                                <Icon name="shopcar"/>
+                            </Badge>
+                            <Badge dot>
+                                <a href="#">Link something</a>
+                            </Badge>
+                        </Space>
+                    </React.Fragment>}
+                    title={"独立使用"}
+                    description={"不包裹任何元素即是独立使用，可自定样式展现。"}
+                ></Textlayout>
 
                 <SubTitle>API</SubTitle>
                 <Description>通过设置 Button 的属性来产生不同的按钮样式，推荐顺序为：type -> shape -> size -> loading -> disabled。</Description>

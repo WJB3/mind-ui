@@ -21,6 +21,8 @@ const Badge = (Props) => {
         style,
         showZero,
         overflowCount=99,
+        dot,
+        color,
         ...restProps
     } = Props;
 
@@ -28,11 +30,24 @@ const Badge = (Props) => {
 
     const prefixCls = getPrefixCls("badge", customizePrefixCls);
 
-    const getNumberedDisplayCount = () => {
+    const hasStatus=React.useCallback(()=>{
+        return !!status || !!color;
+    },[status])
+
+    const isZero = React.useCallback(() => {
+        const numberedDisplayCount = getNumberedDisplayCount();
+        return numberedDisplayCount === '0' || numberedDisplayCount === 0;
+    },[]);
+
+    const isDot=React.useCallback(()=>{
+        return (dot && !isZero()) || hasStatus();
+    },[dot])
+
+    const getNumberedDisplayCount =React.useCallback(() => {
         const displayCount =
           count  > overflowCount ? `${overflowCount}+` : count;
         return displayCount ;
-    };
+    });
 
     const renderDisplayComponent = () => {
         const customNode = count ;
@@ -46,13 +61,17 @@ const Badge = (Props) => {
         });
     };
 
+    
+
     const renderBadgeNumber=({count,prefixCls})=>{
+        const dot = isDot();
         return <ScrollNumber 
             count={getNumberedDisplayCount()}
             style={style}
             className={classNames(
-                `${prefixCls}-count`,
                 {
+                    [`${prefixCls}-dot`]: dot,
+                    [`${prefixCls}-count`]: !dot,
                     [`${prefixCls}-multiple-words`]:
                         count && count.toString && count.toString().length > 1,
                     

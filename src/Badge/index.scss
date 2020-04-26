@@ -20,7 +20,17 @@ $scrollNumPrefixCls:"#{$global-prefix}-scroll-number";
     color: unset;
     line-height: 1;
 
-    &-count,.#{$scrollNumPrefixCls}-custom-component{
+    &-dot{
+        z-index: auto;
+        width: 6px;
+        height: 6px;
+        background: $danger-color;
+        border-radius: 100%;
+        -webkit-box-shadow: 0 0 0 1px #fff;
+        box-shadow: 0 0 0 1px #fff;
+    }
+
+    &-count,.#{$scrollNumPrefixCls}-custom-component,&-dot{
         position: absolute;
         top: 0;
         right: 0;
