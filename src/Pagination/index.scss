@@ -7,19 +7,73 @@ $prefixCls:"#{$global-prefix}-pagination";
     margin:0;
     padding: 0;
 
-    &-prev{
-        
+    &-circle{
+        .#{$prefixCls}{
+            &-item{
+                border-radius: 50%;
+            }
+            &-prev,&-next{
+                border-radius: 50%;
+            }
+        }
     }
- 
 
     &-item{
         display: inline-block;
         min-width:32px;
         width:32px;
         height:32px;
-        @include flexbox();
+        line-height: 32px;
         text-align:center;
-        border-radius: 100%;
+        border-radius: 4px;
+        margin-right:8px;
+    }
+
+    &-prev{
+        margin-right:8px;
+    }
+
+    &-prev,&-next{
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        min-width:32px;
+        width:32px;
+        height:32px;
+        line-height: 32px;
+        text-align:center;
+        border-radius: 4px;
+
+        .wonderful-icon{
+            font-size: 18px!important;
+        }
+    }
+
+    &-active{
+        background-color: rgba(0, 0, 0, 0.08);
+    }
+
+    &-disabled{
+        opacity: 0.38;
+        cursor: not-allowed;
+    }
+
+    &-primary{
+
+        &.#{$prefixCls}-active{
+            background-color: $primary-color;
+            color:#fff;
+            @include boxShadowLevel(4);
+        }
+       
+    }
+
+    &-danger{
+        &.#{$prefixCls}-active{
+            background-color: $danger-color;
+            color:#fff;
+            @include boxShadowLevel(4);
+        }
     }
 }
 

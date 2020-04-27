@@ -15,7 +15,7 @@ import Pagination from './index'
 class Page extends React.Component {
 
     state = {
-        
+
     }
 
     render() {
@@ -31,13 +31,30 @@ class Page extends React.Component {
                 <Textlayout
                     componentClassName={"button-page-demo"}
                     components={<React.Fragment>
-                        <Pagination defaultCurrent={1} total={50} />
+                        <div style={{ justifyContent: "center", alignItems: "center" }}>
+                            <Pagination defaultCurrent={1} total={55} />
+                            <Pagination defaultCurrent={2} total={55} circle/>
+                            <Pagination defaultCurrent={3} total={55} color="primary" />
+                            <Pagination defaultCurrent={4} total={55} color="primary" circle/>
+                            <Pagination defaultCurrent={5} total={55} color="danger" />
+                            <Pagination defaultCurrent={6} total={55} color="danger" circle/>
+                        </div>
                     </React.Fragment>}
                     title={"基本"}
                     description={"基础分页。"}
                 ></Textlayout>
 
-               
+                <Textlayout
+                    componentClassName={"button-page-demo"}
+                    components={<React.Fragment>
+                         
+                            <Pagination defaultCurrent={6} total={550} />
+                         
+                       
+                    </React.Fragment>}
+                    title={"更多"}
+                    description={"更多分页。"}
+                ></Textlayout>
 
                 <SubTitle>API</SubTitle>
                 <Description>通过设置 Button 的属性来产生不同的按钮样式，推荐顺序为：type -> shape -> size -> loading -> disabled。</Description>
