@@ -23,6 +23,8 @@ const Badge = (Props) => {
         overflowCount=99,
         dot,
         color,
+        status,
+        text,
         ...restProps
     } = Props;
 
@@ -40,6 +42,7 @@ const Badge = (Props) => {
     },[]);
 
     const isDot=React.useCallback(()=>{
+        console.log(hasStatus());
         return (dot && !isZero()) || hasStatus();
     },[dot])
 
@@ -61,10 +64,34 @@ const Badge = (Props) => {
         });
     };
 
-    
+    const getBadgeClassName = (prefixCls ) => {
+        return classNames(className, prefixCls, {
+          [`${prefixCls}-status`]: hasStatus(),
+          [`${prefixCls}-not-a-wrapper`]: !children
+        });
+    }
 
     const renderBadgeNumber=({count,prefixCls})=>{
         const dot = isDot();
+       
+        if (!children && hasStatus()) {
+      
+            return (
+              <span
+                className={getBadgeClassName(prefixCls)}
+              >
+                <span   className={classNames(`${prefixCls}-status-dot`,{
+                    
+                    [`${prefixCls}-${status}`]:status,
+                   
+                })} />
+                <span  className={`${prefixCls}-status-text`}>
+                  {text}
+                </span>
+              </span>
+            );
+        }
+    
         return <ScrollNumber 
             count={getNumberedDisplayCount()}
             style={style}
@@ -80,7 +107,8 @@ const Badge = (Props) => {
             displayComponent={renderDisplayComponent()}
         />
     }
-
+    console.log(isDot())
+    
     return (
         <span 
            
@@ -90,7 +118,7 @@ const Badge = (Props) => {
                 })
             }>
             {children}
-            {(!!count || (count===0 && showZero))&& renderBadgeNumber({...Props,prefixCls})}
+            {(!!count || showZero ||isDot()) && renderBadgeNumber({...Props,prefixCls})}
         </span>
     )
 }

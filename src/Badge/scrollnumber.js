@@ -153,7 +153,7 @@ const ScrollNumber = (props) => {
           ),
         });
     }
-
+     
     return React.createElement(component, newProps, renderNumberElement({ prefixCls, count }));
 }
 

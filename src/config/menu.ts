@@ -9,6 +9,10 @@ const menuInfo=[
         key:"component",
         children:[
             {
+                title:"pagination",
+                key:"pagination",
+            },
+            {
                 title:"badge",
                 key:"badge",
             },

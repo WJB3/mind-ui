@@ -4,6 +4,7 @@ import Title from './../components/text/Title';
 import Description from './../components/text/Description';
 import SubTitle from './../components/text/SubTitle';
 import Textlayout from './../components/text/Textlayout';
+import Button from '../ButtonBase';
 import Icon from '../components/icon';
 import Space from '../Space';
 import DescriptionTable from './../components/text/DescriptionTable';
@@ -12,12 +13,16 @@ import Badge from './index';
 
 class ButtonPage extends React.Component {
 
+    state = {
+        count: 1,
+        dot: false
+    }
 
     render() {
 
         return (
             <Layout >
-                <Title>BackTop回到顶部</Title>
+                <Title>Badge</Title>
                 <Description>返回页面顶部的操作按钮。</Description>
                 <SubTitle>何时使用</SubTitle>
                 <Description>当页面内容区域比较长时。</Description>
@@ -82,11 +87,60 @@ class ButtonPage extends React.Component {
                     components={<React.Fragment>
                         <Space size="large">
                             <Badge dot>
-                                <Icon name="shopcar"/>
+                                <Icon name="shopcar" />
                             </Badge>
                             <Badge dot>
                                 <a href="#">Link something</a>
                             </Badge>
+                        </Space>
+                    </React.Fragment>}
+                    title={"独立使用"}
+                    description={"不包裹任何元素即是独立使用，可自定样式展现。"}
+                ></Textlayout>
+
+                <Textlayout
+                    componentClassName={"button-page-demo"}
+                    components={<React.Fragment>
+                        <Space size="large">
+                            <Badge count={this.state.count}>
+                                <Icon name="shopcar" />
+                            </Badge>
+                            <Button type="primary" onClick={()=>this.setState({count:this.state.count+1})}>增加</Button>
+                            <Button type="primary"  onClick={()=>this.setState({count:this.state.count-1})}>减少</Button>
+                            <Badge dot={this.state.dot}>
+                                <Icon name="shopcar" />
+                            </Badge>
+                            <Button type="primary"  onClick={()=>this.setState({dot:!this.state.dot})}>切换</Button>
+                        </Space>
+                    </React.Fragment>}
+                    title={"独立使用"}
+                    description={"不包裹任何元素即是独立使用，可自定样式展现。"}
+                ></Textlayout>
+                <Textlayout
+                    componentClassName={"button-page-demo"}
+                    components={<React.Fragment>
+                        <Space size="large">
+                            <Badge status="success" />
+                            <Badge status="danger" />
+                            <Badge status="primary" />
+                            <Badge status="default" />
+                            <Badge status="second" />
+                            <Badge status="danger" />
+                            <Badge status="info" />
+                            <Badge status="warning" />
+                        </Space>
+                        <br />
+                        <Space size="small" direction="vertical">
+                            
+                            <Badge status="success" text="Success" />
+                        
+                            <Badge status="danger" text="danger" />
+                        
+                            <Badge status="default" text="Default" />
+                    
+                            <Badge status="info" text="Info" />
+                       
+                            <Badge status="warning" text="Warning" />
                         </Space>
                     </React.Fragment>}
                     title={"独立使用"}

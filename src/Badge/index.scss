@@ -4,6 +4,18 @@ $prefixCls:"#{$global-prefix}-badge";
 $scrollNumOnlyPrefixCls:"#{$global-prefix}-scroll-number-only";
 $scrollNumPrefixCls:"#{$global-prefix}-scroll-number";
 
+@keyframes wave {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(2.5);
+        opacity: 0;
+    }
+}
+
+
 .#{$prefixCls}{
     box-sizing: border-box;
     margin: 0;
@@ -19,6 +31,76 @@ $scrollNumPrefixCls:"#{$global-prefix}-scroll-number";
     display: inline-block;
     color: unset;
     line-height: 1;
+
+    &-status{
+        line-height: inherit;
+        vertical-align: baseline;
+    }
+
+    &-status-dot{
+        position: relative;
+        top: -1px;
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        min-width:8px;
+        vertical-align: middle;
+        border-radius: 50%;
+        box-shadow: 0 0 0 2px #fff;
+
+        &:after{
+            top: 0;
+            left: 0;
+            width: 100%;
+            border: 1px solid currentColor;
+            height: 100%;
+            content: "";
+            position: absolute;
+            animation: wave 1.2s infinite ease-in-out;
+            border-radius: 50%;
+        }
+    }
+
+    &-status-text{
+        margin-left: 8px;
+        color: rgba(44, 24, 24, 0.65);
+        font-size: 14px;
+    }
+
+    &-success{
+        background-color: $success-color;
+        color:$success-color;
+    }
+
+    &-primary{
+        background-color: $primary-color;
+        color:$primary-color;
+    }
+
+    &-danger{
+        background-color: $danger-color;
+        color:$danger-color;
+    }
+
+    &-second{
+        background-color: $second-color;
+        color:$second-color;
+    }
+
+    &-info{
+        background-color: $info-color;
+        color:$info-color;
+    }
+
+    &-warning{
+        background-color: $warning-color;
+        color:$warning-color;
+    }
+
+    &-default{
+        background-color: $default-color;
+        color:$default-color;
+    }
 
     &-dot{
         z-index: auto;
