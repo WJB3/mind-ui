@@ -25,7 +25,13 @@ const Pagination = (Props) => {
     const renderPagination=useCallback(()=>{
         const renderNum=Math.round(total/pageSize);
 
-        return  
+        return new Array(renderNum).fill("").map((item,index)=>(
+            <BaseRipple>
+                <li className={classNames(`${prefixCls}-prev`,`${prefixCls}-item`)}>
+                    <span>{index+1}</span>
+                </li>
+            </BaseRipple>
+        ));
     },[])
 
     return (

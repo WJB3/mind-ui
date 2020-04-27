@@ -7,6 +7,11 @@ $prefixCls:"#{$global-prefix}-pagination";
     margin:0;
     padding: 0;
 
+    &-prev{
+        
+    }
+ 
+
     &-item{
         display: inline-block;
         min-width:32px;
