@@ -7,7 +7,7 @@ import Textlayout from './../components/text/Textlayout';
 import DescriptionTable from './../components/text/DescriptionTable';
 import Button from '../ButtonBase';
 import Radio from './../Radio';
-import Input from './../components/input';
+ 
 const radioStyle = {
     display: 'block',
     height: '30px',

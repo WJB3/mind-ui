@@ -1,0 +1,28 @@
+@import "./../components/styles/variable.scss";
+
+$prefixCls:"#{$global-prefix}-input";
+
+.#{$prefixCls}{
+    position: relative;
+
+    &-inputwrapper{
+        input{
+            font:inherit;
+            color:currentColor;
+            width:100%;
+            outline: none;
+            border:0;
+            height:20px;
+            padding:6px 0;
+            width:100%;
+            display: block;
+            box-sizing: content-box;
+        }
+    }
+}
+
+ 
+ 
+ 
+
+

@@ -3,11 +3,9 @@ import Layout from './../layout/index';
 import Title from './../components/text/Title';
 import Description from './../components/text/Description';
 import SubTitle from './../components/text/SubTitle';
-import Button from '../ButtonBase/index';
 import Textlayout from './../components/text/Textlayout';
 import DescriptionTable from './../components/text/DescriptionTable';
-import Input from './../components/input';
-import Icon from './../components/icon';
+import Input from './input';
 
 
 class Page extends React.Component {
@@ -27,52 +25,14 @@ class Page extends React.Component {
                 <Textlayout
                     components={<React.Fragment>
                         <div style={{ display: "flex", justifyContent: "space-around" }}>
-                            <Input placeholder="基础" />
-                            <Input placeholder="请输入姓名" float />
-                            <Input placeholder="输入长度最大为10个字符" maxLength={10} />
+                            <Input placeholder="basic" />
                         </div>
                     </React.Fragment>}
                     title={"基本使用。"}
                     description={"设置float可浮动placeholder,通过设置maxLength实现输入最大长度"}
                 ></Textlayout>
 
-                <Textlayout
-                    components={<React.Fragment>
-                        <div style={{ display: "flex", justifyContent: "space-around" }}>
-                            <Input placeholder="请输入姓名" float />
-                            <Input placeholder="请输入姓名" float stylize="filled" />
-                            <Input placeholder="请输入姓名" float stylize="outline" />
-                        </div>
-                    </React.Fragment>}
-                    title={"stylize设置。"}
-                    description={"设置stylize可实现输入框风格，默认风格为normal"}
-                ></Textlayout>
-
-
-
-                <Textlayout
-                    components={<React.Fragment>
-                        <div style={{ display: "flex", justifyContent: "space-around", flexWrap: "wrap" }}>
-                            <Input.Password placeholder="默认显示密码框" float />
-                            <Input.Password placeholder="visibilityToggle=false" float stylize="filled" visibilityToggle={false} />
-                            <Input.Password placeholder="visibilityToggle=true" float stylize="outline" visibilityToggle={true} />
-                        </div>
-                    </React.Fragment>}
-                    title={"密码框"}
-                    description={"设置密码框。"}
-                ></Textlayout>
-
-                <Textlayout
-                    components={<React.Fragment>
-                        <div style={{ display: "flex", justifyContent: "space-around", flexWrap: "wrap" }}>
-                            <Input.Password placeholder="默认显示密码框" float allowClear/>
-                            <Input placeholder="默认显示密码框" float allowClear />
-
-                        </div>
-                    </React.Fragment>}
-                    title={"密码框"}
-                    description={"设置密码框。"}
-                ></Textlayout>
+             
 
                 <SubTitle>API</SubTitle>
                 <Description>通过设置 Button 的属性来产生不同的按钮样式，推荐顺序为：type -> shape -> size -> loading -> disabled。</Description>

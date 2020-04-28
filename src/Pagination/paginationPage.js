@@ -10,6 +10,7 @@ import Space from '../Space';
 import DescriptionTable from './../components/text/DescriptionTable';
 import Badge from './index';
 import Pagination from './index'
+import { Pagination as PaginationA } from 'antd'
 //import  Notification from 'rc-notification';
 
 class Page extends React.Component {
@@ -33,11 +34,11 @@ class Page extends React.Component {
                     components={<React.Fragment>
                         <div style={{ justifyContent: "center", alignItems: "center" }}>
                             <Pagination defaultCurrent={1} total={55} />
-                            <Pagination defaultCurrent={2} total={55} circle/>
+                            <Pagination defaultCurrent={2} total={55} circle disabled />
                             <Pagination defaultCurrent={3} total={55} color="primary" />
-                            <Pagination defaultCurrent={4} total={55} color="primary" circle/>
+                            <Pagination defaultCurrent={4} total={55} color="primary" circle />
                             <Pagination defaultCurrent={5} total={55} color="danger" />
-                            <Pagination defaultCurrent={6} total={55} color="danger" circle/>
+                            <Pagination defaultCurrent={6} total={55} color="danger" circle disabled />
                         </div>
                     </React.Fragment>}
                     title={"基本"}
@@ -47,13 +48,34 @@ class Page extends React.Component {
                 <Textlayout
                     componentClassName={"button-page-demo"}
                     components={<React.Fragment>
-                         
-                            <Pagination defaultCurrent={6} total={550} />
-                         
-                       
+
+                        <Pagination defaultCurrent={1} total={200} color="primary" />
+
                     </React.Fragment>}
                     title={"更多"}
                     description={"更多分页。"}
+                ></Textlayout>
+
+                <Textlayout
+                    componentClassName={"button-page-demo"}
+                    components={<React.Fragment>
+
+                        <Pagination defaultCurrent={1} total={200} color="primary" prevRender={"前一页"} nextRender={"后一页"} />
+
+                    </React.Fragment>}
+                    title={"替换前一页和后一页"}
+                    description={"替换前一页和后一页"}
+                ></Textlayout>
+
+                <Textlayout
+                    componentClassName={"button-page-demo"}
+                    components={<React.Fragment>
+
+                        <Pagination defaultCurrent={1} total={200} color="primary" onChange={(page,pageSize)=>{console.log(`当前页码：${page},每页条数：${pageSize}`)}}prevRender={"前一页"} nextRender={"后一页"} />
+
+                    </React.Fragment>}
+                    title={"通过onchange回调当前页码和每页条数"}
+                    description={"通过onchange回调当前页码和每页条数"}
                 ></Textlayout>
 
                 <SubTitle>API</SubTitle>
