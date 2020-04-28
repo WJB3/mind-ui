@@ -5,6 +5,7 @@ $prefixClsInputWrapper:"#{$prefixCls}-inputwrapper";//主
 
 .#{$prefixCls}{
     position: relative;
+    display:inline-flex;
 
     &-active{
         .#{$prefixClsInputWrapper}{
