@@ -2,6 +2,8 @@ import React, { useContext, useState,useCallback } from 'react';
 import { classNames } from '../components/helper/className';
 import { ConfigContext } from '../ConfigContext';
 import useControlled from '../_utils/useControlled';
+import Button from '../ButtonBase';
+import Icon from '../components/icon';
 import "./index.scss";
  
 const Input = (Props) => {
@@ -18,6 +20,9 @@ const Input = (Props) => {
         size,//输入框大小
         style,//input样式
         suffix,//后缀
+        enterButton,//是否有确认按钮，可设为按钮文字。
+        onChange,//input change事件
+        onSearch,
         ...restProps
     } = Props;
 
@@ -32,19 +37,39 @@ const Input = (Props) => {
 
     const prefixCls=getPrefixCls("input",customizePrefixCls);
 
-    const handleFocus=useCallback((...props)=>{
+    const handleFocus=useCallback((...props)=>{//input 焦点focus事件
         if(onFocus){
             onFocus(...props)
         }
         setFocused(true)
     },[])
 
-    const handleBlur=useCallback((...props)=>{
+    const handleBlur=useCallback((...props)=>{//input 移除焦点
         if(onBlur){
             onBlur(...props)
         }
         setFocused(false)
-    },[])
+    },[]);
+
+    const handleChange=useCallback((e)=>{//input框change事件
+        if(onChange){
+            onChange(e)
+        }
+        setValue(e.target.value); 
+    },[]);
+
+    const handleSearch=useCallback((e)=>{//点击搜索
+        if(onSearch){
+            onSearch(value,e);
+        }
+    },[value]);
+
+    const  sizeObj={
+        "small":"24px",
+        "large":"40px",
+        "default":"32px",
+        undefined:"32px"
+    }
   
     return (
         <div style={style} className={
@@ -63,7 +88,26 @@ const Input = (Props) => {
                     placeholder={placeholder}
                     onFocus={handleFocus}
                     onBlur={handleBlur}
+                    onChange={handleChange}
                 />
+
+                {
+                    suffix && <span className={classNames(`${prefixCls}-suffix`)}>
+                        {suffix}
+                    </span>
+                }
+
+                {
+                    enterButton && <span className={classNames(`${prefixCls}-enterButton`)}>
+                        <Button type="primary" style={{height:sizeObj[size]}} onClick={(e)=>handleSearch(e)}>
+                            {
+                                enterButton===true?
+                                <Icon name="find" style={{fontSize:"16px"}}/>:
+                                enterButton
+                            }
+                        </Button>
+                    </span>
+                }
             </div>
         </div>
     )

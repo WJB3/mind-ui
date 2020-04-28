@@ -113,6 +113,32 @@ $prefixCls:"#{$global-prefix}-btn";
     &-float{
         @include btn-float();
     }
+
+    &-loading{
+        opacity: .4;
+
+       
+    }
+
+    &-lg{
+        &.#{$prefixCls}-loading{
+           
+            .#{$prefixCls}-loading-icon{
+                margin-right: 16px;
+                width:24px!important;
+                height:24px!important;
+            }
+        }
+    }
+
+    
+    .#{$prefixCls}-loading-icon{
+        margin-right: 8px;
+        width:16px!important;
+        height:16px!important;
+
+       
+    }
 }
 
  

@@ -35,12 +35,12 @@ class ButtonPage extends React.Component {
                     componentClassName={"button-page-demo"}
                     components={<React.Fragment>
                         <Space itemStyle={{marginBottom:"8px"}}>
-                            <Button  >default</Button>
-                            <Button type={"primary"}>Primary</Button>
-                            <Button type={"second"}>Secondary</Button>
-                            <Button type={"danger"}>Danger</Button>
-                            <Button type={"info"}>Info</Button>
-                            <Button type={"warning"}>Warning</Button>
+                            <Button  loading>default</Button>
+                            <Button type={"primary"} loading>Primary</Button>
+                            <Button type={"second"} loading>Secondary</Button>
+                            <Button type={"danger"} loading>Danger</Button>
+                            <Button type={"info"} loading>Info</Button>
+                            <Button type={"warning"} loading>Warning</Button>
                             <Button disabled>禁用</Button>
                         </Space>
                     </React.Fragment>}
@@ -52,9 +52,9 @@ class ButtonPage extends React.Component {
                     componentClassName={"button-page-demo"}
                     components={<React.Fragment>
                         <Space itemStyle={{marginBottom:"8px"}}>
-                            <Button size={"small"} type={"primary"}>small</Button>
-                            <Button type={"danger"}>danger</Button>
-                            <Button type={"warning"} size={"large"}>Large</Button>
+                            <Button size={"small"} type={"primary"} loading>small</Button>
+                            <Button type={"danger"} loading>danger</Button>
+                            <Button type={"second"} size={"large"} loading>Large</Button>
                         </Space>
                     </React.Fragment>}
                     title={"按钮尺寸"}

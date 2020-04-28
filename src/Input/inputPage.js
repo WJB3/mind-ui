@@ -6,6 +6,8 @@ import SubTitle from './../components/text/SubTitle';
 import Textlayout from './../components/text/Textlayout';
 import DescriptionTable from './../components/text/DescriptionTable';
 import Input from './index';
+import { Input as InputA } from 'antd';
+import Icon from '../components/icon';
 import Space from '../Space';
 
 
@@ -58,10 +60,47 @@ class Page extends React.Component {
                 <Textlayout
                     components={<React.Fragment>
                         <Space size="large" direction="vertical" isBlock>
-                            <Input.Search 
+                            <Input.Search
                                 placeholder="input search text"
                                 onSearch={value => console.log(value)}
-                                style={{ width: 200 }}
+                                style={{ width: 300 }}
+                            />
+
+                            <Input.Search
+                                placeholder="input search text"
+                                border
+                                onSearch={value => console.log(value)}
+                                style={{ width: 300 }}
+                            />
+
+                            <Input.Search
+                                placeholder="input search text"
+                                onSearch={value => console.log(value)}
+                                style={{ width: 300 }}
+                                enterButton
+                            />
+
+                            <Input.Search
+                                placeholder="input search text"
+                                border
+                                onSearch={value => console.log(value)}
+                                style={{ width: 300 }}
+                                enterButton
+                            />
+
+                            <Input.Search
+                                placeholder="input search text"
+                                enterButton="Search"
+                                size="large"
+                                onSearch={value => console.log(value)}
+                            />
+
+                            <Input.Search
+                                placeholder="input search text"
+                                enterButton="Search"
+                                border
+                                size="large"
+                                onSearch={value => console.log(value)}
                             />
                         </Space>
 

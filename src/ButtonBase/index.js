@@ -4,6 +4,7 @@ import BaseRipple from '../BaseRipple';
 import Icon from '../components/icon';
 import { ConfigContext } from '../ConfigContext';
 import SizeContext from '../ConfigContext/SizeContext';
+import Loading from '../Loading';
 import "./index.scss";
 
 const Button = React.forwardRef((ButtonProps,ref) => {
@@ -31,7 +32,8 @@ const Button = React.forwardRef((ButtonProps,ref) => {
                         centerRipple,
                         style,
                         onMouseOver,
-                        onMouseLeave
+                        onMouseLeave,
+                        loading
                     } = ButtonProps;
 
                     const prefixCls=getPrefixCls("btn",customizePrefixCls);
@@ -59,6 +61,7 @@ const Button = React.forwardRef((ButtonProps,ref) => {
                             [`${prefixCls}-icon-only`]: !children && children !== 0 && icon,
                             [`${prefixCls}-disabled`]:disabled,
                             [`${prefixCls}-flat`]:flat,
+                            [`${prefixCls}-loading`]:loading,
                             [`${prefixCls}-float`]:float,
                         }
                     );
@@ -75,14 +78,15 @@ const Button = React.forwardRef((ButtonProps,ref) => {
                             component="button"
                             className={classes}
                             centerRipple={centerRipple}
-                            enabledTouchRipple={!disabled}
+                            enabledTouchRipple={!disabled && !loading}
                             onClick={handleClick}
                             onMouseOver={onMouseOver}
                             onMouseLeave={onMouseLeave}
                             style={style}
                             ref={ref}
                         >
-                            {!icon ? children: <Icon name={icon} style={iconStyle} />}
+                            {loading &&  <Loading color={type?"#fff":"primary"} className={`${prefixCls}-loading-icon`}/>}
+                            {!icon ? children: <Icon name={icon}  style={iconStyle} />}
                         </BaseRipple>
                     )
                 }

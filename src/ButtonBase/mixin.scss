@@ -1,3 +1,4 @@
+
 @mixin buttonSize($height,$padding-vertical,$padding-horizontal,$font-size,$border-radius:"4px"){//更换size
     height:$height;
     // line-height:$height;
@@ -39,7 +40,7 @@
     @include textTransform();
     @include buttonSize($button-normal-height,0 ,16px,$button-normal-font-size,$button-normal-border-radius);
 
-    &:hover{
+    &:not(.parrot-btn-loading):not(.parrot-btn-flat):hover{
         @include boxShadowLevel(4);
         opacity:0.8;
     }

@@ -5,7 +5,7 @@ $prefixClsInputWrapper:"#{$prefixCls}-inputwrapper";//主
 
 .#{$prefixCls}{
     position: relative;
-    display:inline-flex;
+    display:flex;
 
     &-active{
         .#{$prefixClsInputWrapper}{
@@ -15,9 +15,17 @@ $prefixClsInputWrapper:"#{$prefixCls}-inputwrapper";//主
         }
     }
    
+    &-suffix{
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 6px;
+    }
 
     &-inputwrapper{
         position: relative;
+        width:100%;
+        display: flex;
 
         &:before{
             content: "";

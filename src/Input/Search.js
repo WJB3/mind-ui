@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { classNames } from '../components/helper/className';
 import Input from './Input';
+import Icon from '../components/icon';
 import { ConfigContext } from '../ConfigContext';
  
 import "./index.scss";
@@ -9,6 +10,7 @@ const Search = (Props) => {
 
     const {
         prefixCls:customizePrefixCls,
+        enterButton,
         ...restProps
     } = Props;
 
@@ -17,7 +19,7 @@ const Search = (Props) => {
     const prefixCls=getPrefixCls("input-search",customizePrefixCls);
  
     return (
-        <Input className={classNames(prefixCls)} {...restProps}/>
+        <Input enterButton={enterButton} className={classNames(prefixCls)} {...restProps} suffix={!enterButton && <Icon name="find" style={{fontSize:"16px"}}/>}/>
     )
 }
 
