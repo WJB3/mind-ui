@@ -19,6 +19,7 @@ const Space = (Props) => {
         children,
         direction="horizontal",
         itemStyle,
+        isBlock,
         ...restProps
     } = Props;
 
@@ -29,7 +30,10 @@ const Space = (Props) => {
     const items=toArray(children);
      
     const classes = classNames(prefixCls,className,
-        direction?`${prefixCls}-${direction}`:`${prefixCls}-horizontal`
+        direction?`${prefixCls}-${direction}`:`${prefixCls}-horizontal`,
+        {
+            [`${prefixCls}-block`]:isBlock
+        }
     );
 
     const itemClassName = `${prefixCls}-item`;

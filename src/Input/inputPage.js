@@ -5,7 +5,8 @@ import Description from './../components/text/Description';
 import SubTitle from './../components/text/SubTitle';
 import Textlayout from './../components/text/Textlayout';
 import DescriptionTable from './../components/text/DescriptionTable';
-import Input from './input';
+import Input from './index';
+import Space from '../Space';
 
 
 class Page extends React.Component {
@@ -24,15 +25,50 @@ class Page extends React.Component {
 
                 <Textlayout
                     components={<React.Fragment>
-                        <div style={{ display: "flex", justifyContent: "space-around" }}>
+                        <div style={{ display: "flex", justifyContent: "space-around", alignItems: "center" }}>
                             <Input placeholder="basic" />
+                            <Input placeholder="basic" border />
                         </div>
                     </React.Fragment>}
                     title={"基本使用。"}
-                    description={"设置float可浮动placeholder,通过设置maxLength实现输入最大长度"}
+                    description={"有border与不border2种形式"}
                 ></Textlayout>
 
-             
+                <Textlayout
+                    components={<React.Fragment>
+                        <Space size="large" direction="vertical" isBlock>
+                            <Input size="large" placeholder="large size" border />
+
+                            <Input placeholder="default size" border />
+
+                            <Input size="small" placeholder="small size" border />
+
+                            <Input size="large" placeholder="large size" />
+
+                            <Input placeholder="default size" />
+
+                            <Input size="small" placeholder="small size" />
+                        </Space>
+
+                    </React.Fragment>}
+                    title={"三种大小。"}
+                    description={"我们为 <Input /> 输入框定义了三种尺寸（大、默认、小），高度分别为 40px、32px 和 24px。"}
+                ></Textlayout>
+
+                <Textlayout
+                    components={<React.Fragment>
+                        <Space size="large" direction="vertical" isBlock>
+                            <Input.Search 
+                                placeholder="input search text"
+                                onSearch={value => console.log(value)}
+                                style={{ width: 200 }}
+                            />
+                        </Space>
+
+                    </React.Fragment>}
+                    title={"搜索框。"}
+                    description={"带有搜索按钮的输入框。"}
+                ></Textlayout>
 
                 <SubTitle>API</SubTitle>
                 <Description>通过设置 Button 的属性来产生不同的按钮样式，推荐顺序为：type -> shape -> size -> loading -> disabled。</Description>
@@ -54,7 +90,7 @@ class Page extends React.Component {
                     ]}
                 />
 
-            </Layout>
+            </Layout >
         )
     }
 }

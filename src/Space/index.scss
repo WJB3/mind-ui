@@ -5,6 +5,10 @@ $prefixCls:"#{$global-prefix}-space";
 .#{$prefixCls}{
     display: inline-flex;
 
+    &-block{
+        display: flex;
+    }
+
     &-horizontal{
         align-items: center;
         flex-wrap: wrap;
