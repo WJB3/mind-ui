@@ -22,7 +22,7 @@ class Page extends React.Component {
 
         return (
             <Layout >
-                <Title>Input输入框</Title>
+                <Title>InputNumber输入框</Title>
                 <Description>通过鼠标或键盘输入内容，是最基础的表单域的包装。</Description>
                 <SubTitle>何时使用</SubTitle>
                 <Description>需要用户输入表单域内容时。提供组合型输入框，带搜索的输入框，还可以进行大小选择。</Description>
@@ -76,6 +76,29 @@ class Page extends React.Component {
                     </React.Fragment>}
                     title={"小数。"}
                     description={"和原生的数字输入框一样，value 的精度由 step 的小数位数决定。"}
+                ></Textlayout>
+
+                <Textlayout
+                    components={<React.Fragment>
+                        <div style={{ display: "flex", justifyContent: "space-around", alignItems: "center" }}>
+                            <InputNumber
+                                defaultValue={1000}
+                                formatter={value => `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                                parser={value => value.replace(/\$\s?|(,*)/g, '')}
+                                onChange={(e) => console.log(e)}
+                            />
+                            <InputNumber
+                                defaultValue={100}
+                                min={0}
+                                max={100}
+                                formatter={value => `${value}%`}
+                                parser={value => value.replace('%', '')}
+                                onChange={(e) => console.log(e)}
+                            />
+                        </div>
+                    </React.Fragment>}
+                    title={"格式化展示。"}
+                    description={"通过 formatter 格式化数字，以展示具有具体含义的数据，往往需要配合 parser 一起使用。"}
                 ></Textlayout>
 
                 <SubTitle>API</SubTitle>
