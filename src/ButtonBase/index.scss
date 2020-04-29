@@ -30,6 +30,8 @@ $prefixCls:"#{$global-prefix}-btn";
     &-disabled{
         @include btn-disabled();
         cursor: not-allowed;
+
+        
     }
 
     &-flat{

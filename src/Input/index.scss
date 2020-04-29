@@ -6,20 +6,44 @@ $prefixClsInputWrapper:"#{$prefixCls}-inputwrapper";//主
 .#{$prefixCls}{
     position: relative;
     display:flex;
+    overflow: hidden;
+
+    &-disabled{
+        background-color: rgba(0,0,0,0.1);
+
+        input{
+            cursor: not-allowed;
+        }
+
+        >*{
+            cursor: not-allowed;
+        }
+    }
 
     &-active{
         .#{$prefixClsInputWrapper}{
-            &:after{
+            &:not(.parrot-input-disabled):after{
                 transform: scaleX(1);
             }
         }
     }
    
-    &-suffix{
+    &-suffix,&-prefix{
         display: inline-flex;
         align-items: center;
         justify-content: center;
+        line-height: 1.5;
+        min-width: 16px;
+    }
+
+    &-suffix{
         margin-right: 6px;
+        flex:none;
+    }
+    &-prefix{
+        margin-left:6px;
+        // margin-right: 6px;
+        flex:none;
     }
 
     &-inputwrapper{
@@ -52,26 +76,35 @@ $prefixClsInputWrapper:"#{$prefixCls}-inputwrapper";//主
             transition: transform 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
         }
         
-        &:hover{
+        &:not(.parrot-input-disabled):hover{
             &::before{
                 border-bottom:2px solid rgba(0,0,0,.86);
             }        
         }
-    
-        input{
+
+      
+        input,textarea{
             font:inherit;
             color:currentColor;
             outline: none;
             border:0;
-            height:32px;
+            min-height:32px;
+            max-width:100%;
+            background: none;
+            flex:1;
+            line-height:1.5;
+        }
+
+        input{
             padding:6px 2px;
-            display: block;
-            position: relative;
-            box-sizing: inherit;
             width:100%;
             background: none;
             line-height:1.5;
         }
+        textarea{
+            padding:6px 20px 6px 6px;
+        }
+    
     }
 
     &-border{
@@ -94,7 +127,7 @@ $prefixClsInputWrapper:"#{$prefixCls}-inputwrapper";//主
                 border-radius: 4px;
             }
             
-            &:hover{
+            &:not(.parrot-input-disabled):hover{
                 &::before{
                     border:2px solid rgba(0,0,0,.86);
                 }        

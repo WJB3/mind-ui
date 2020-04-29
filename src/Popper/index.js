@@ -58,7 +58,7 @@ const Popper = React.forwardRef((Props,ref) => {
         const popper=createPopper(getAnchorEl(mountNode),tooltipRef.current,{
             placement,
             modifiers: {
-                preventOverflow: { boundariesElement: 'window' },
+                // preventOverflow: { boundariesElement: 'window' },
             },
         });
 

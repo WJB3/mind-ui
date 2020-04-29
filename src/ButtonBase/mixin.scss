@@ -40,7 +40,7 @@
     @include textTransform();
     @include buttonSize($button-normal-height,0 ,16px,$button-normal-font-size,$button-normal-border-radius);
 
-    &:not(.parrot-btn-loading):not(.parrot-btn-flat):hover{
+    &:not(.parrot-btn-loading):not(.parrot-btn-flat):not(.parrot-btn-disabled):hover{
         @include boxShadowLevel(4);
         opacity:0.8;
     }

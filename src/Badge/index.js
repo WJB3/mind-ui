@@ -42,7 +42,6 @@ const Badge = (Props) => {
     },[]);
 
     const isDot=React.useCallback(()=>{
-        console.log(hasStatus());
         return (dot && !isZero()) || hasStatus();
     },[dot])
 
@@ -107,7 +106,6 @@ const Badge = (Props) => {
             displayComponent={renderDisplayComponent()}
         />
     }
-    console.log(isDot())
     
     return (
         <span 

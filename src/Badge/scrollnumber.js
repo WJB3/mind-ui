@@ -80,7 +80,6 @@ const ScrollNumber = (props) => {
     const prefixCls = getPrefixCls('scroll-number', customizePrefixCls);
 
     const getPositionByNum = (num, i) => {//5 0
-        console.log(num +"," + i)
         const currentCount = Math.abs(Number(count));//5
         const lstCount = Math.abs(Number(lastCount));//5
         const currentDigit = Math.abs(getNumberArray(count)[i]);//5

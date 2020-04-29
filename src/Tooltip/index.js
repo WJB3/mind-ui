@@ -220,7 +220,6 @@ const Tooltip = React.forwardRef((Props, ref) => {
     //     setComponent(animate)
     // },[animate])
 
-    console.log(TooltipComponent);
 
     return (
         <React.Fragment>

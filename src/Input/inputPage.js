@@ -6,10 +6,10 @@ import SubTitle from './../components/text/SubTitle';
 import Textlayout from './../components/text/Textlayout';
 import DescriptionTable from './../components/text/DescriptionTable';
 import Input from './index';
-import { Input as InputA } from 'antd';
 import Icon from '../components/icon';
 import Space from '../Space';
-
+import { Input as InputA } from 'antd';
+const { TextArea } = InputA;
 
 class Page extends React.Component {
 
@@ -28,8 +28,9 @@ class Page extends React.Component {
                 <Textlayout
                     components={<React.Fragment>
                         <div style={{ display: "flex", justifyContent: "space-around", alignItems: "center" }}>
-                            <Input placeholder="basic" />
-                            <Input placeholder="basic" border />
+                            <Input placeholder="basic" disabled />
+                            <Input placeholder="basic" border allowClear style={{ width: 300 }} />
+                            <Input placeholder="basic" border allowClear />
                         </div>
                     </React.Fragment>}
                     title={"基本使用。"}
@@ -41,13 +42,13 @@ class Page extends React.Component {
                         <Space size="large" direction="vertical" isBlock>
                             <Input size="large" placeholder="large size" border />
 
-                            <Input placeholder="default size" border />
+                            <Input placeholder="default size" border disabled />
 
                             <Input size="small" placeholder="small size" border />
 
-                            <Input size="large" placeholder="large size" />
+                            <Input size="large" placeholder="large size" disabled />
 
-                            <Input placeholder="default size" />
+                            <Input placeholder="default size" disabled />
 
                             <Input size="small" placeholder="small size" />
                         </Space>
@@ -59,11 +60,12 @@ class Page extends React.Component {
 
                 <Textlayout
                     components={<React.Fragment>
-                        <Space size="large" direction="vertical" isBlock>
+                        <Space size="large" direction="vertical" isBlock >
                             <Input.Search
                                 placeholder="input search text"
                                 onSearch={value => console.log(value)}
                                 style={{ width: 300 }}
+
                             />
 
                             <Input.Search
@@ -71,6 +73,7 @@ class Page extends React.Component {
                                 border
                                 onSearch={value => console.log(value)}
                                 style={{ width: 300 }}
+                                disabled
                             />
 
                             <Input.Search
@@ -78,6 +81,7 @@ class Page extends React.Component {
                                 onSearch={value => console.log(value)}
                                 style={{ width: 300 }}
                                 enterButton
+                                disabled
                             />
 
                             <Input.Search
@@ -86,6 +90,7 @@ class Page extends React.Component {
                                 onSearch={value => console.log(value)}
                                 style={{ width: 300 }}
                                 enterButton
+
                             />
 
                             <Input.Search
@@ -93,6 +98,7 @@ class Page extends React.Component {
                                 enterButton="Search"
                                 size="large"
                                 onSearch={value => console.log(value)}
+
                             />
 
                             <Input.Search
@@ -101,13 +107,121 @@ class Page extends React.Component {
                                 border
                                 size="large"
                                 onSearch={value => console.log(value)}
+                                disabled
                             />
+
+                            <Input.Search
+                                placeholder="input search text"
+                                enterButton="Search"
+                                border
+                                loading
+                                size="large"
+                                onSearch={value => console.log(value)}
+
+                            />
+
                         </Space>
 
                     </React.Fragment>}
                     title={"搜索框。"}
                     description={"带有搜索按钮的输入框。"}
                 ></Textlayout>
+
+                <Textlayout
+                    components={<React.Fragment>
+                        <Space size="large" direction="vertical" isBlock>
+
+
+                            <Input.Search
+                                placeholder="input search text"
+                                onSearch={value => console.log(value)}
+                                style={{ width: 300 }}
+                                enterButton
+                                allowClear
+                                maxLength={5}
+
+                            />
+                            <Input.Search
+                                placeholder="input search text"
+                                onSearch={value => console.log(value)}
+                                style={{ width: 300 }}
+                                enterButton
+                                allowClear
+                                maxLength={5}
+                                disabled
+                            />
+
+                        </Space>
+
+                    </React.Fragment>}
+                    title={"搜索框。"}
+                    description={"带有清除标记。"}
+                ></Textlayout>
+
+                <Textlayout
+                    components={<React.Fragment>
+                        <Space size="large" direction="vertical" isBlock>
+
+
+                            <Input
+                                prefix={"www"}
+                                placeholder="input search text"
+
+                                style={{ width: 300 }}
+                                enterButton
+                                allowClear
+                                maxLength={5}
+                                suffix={"RMB"}
+                            />
+
+                            <Input
+                                prefix={"www"}
+                                placeholder="input search text"
+                                border
+                                style={{ width: 300 }}
+                                enterButton
+                                allowClear
+                                maxLength={5}
+                                disabled
+                                suffix={"RMB"}
+                            />
+
+                        </Space>
+
+                    </React.Fragment>}
+                    title={"前缀和后缀"}
+                    description={"在输入框上添加前缀或后缀图标。"}
+                ></Textlayout>
+
+
+
+                <Textlayout
+                    components={<React.Fragment>
+                        <Space size="large" direction="vertical" isBlock>
+
+                            <Input.Password placeholder="input password" />
+                            <Input.Password placeholder="input password" visibilityToggle border />
+
+                        </Space>
+
+                    </React.Fragment>}
+                    title={"密码框"}
+                    description={"在输入框上添加前缀或后缀图标。"}
+                ></Textlayout>
+
+                <Textlayout
+                    components={<React.Fragment>
+                        <Space size="large" direction="vertical" isBlock>
+                            <TextArea placeholder="textarea with clear icon" allowClear autoSize={{ minRows: 2, maxRows: 6 }} />
+                            <Input.TextArea placeholder="textarea with clear icon" allowClear rows={4} />
+                            <Input.TextArea border placeholder="textarea with clear icon" allowClear rows={4}/>
+                        </Space>
+
+                    </React.Fragment>}
+                    title={"前缀和后缀"}
+                    description={"在输入框上添加前缀或后缀图标。"}
+                ></Textlayout>
+
 
                 <SubTitle>API</SubTitle>
                 <Description>通过设置 Button 的属性来产生不同的按钮样式，推荐顺序为：type -> shape -> size -> loading -> disabled。</Description>
