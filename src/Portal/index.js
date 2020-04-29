@@ -9,7 +9,7 @@ function getContainer(container){
     return ReactDOM.findDOMNode(container);
 }
 
-const Portals=React.forwardRef((props,ref)=>{
+const Portal=React.forwardRef((props,ref)=>{
     const {
         children,
         disablePortal=false,
@@ -37,4 +37,4 @@ const Portals=React.forwardRef((props,ref)=>{
     return children && mountNode ? ReactDOM.createPortal(children,mountNode):children;
 });
 
-export default Portals;
+export default Portal;

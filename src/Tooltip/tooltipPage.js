@@ -7,6 +7,7 @@ import Textlayout from '../components/text/Textlayout';
 import DescriptionTable from '../components/text/DescriptionTable';
 import Tooltip from '../Tooltip';
 import Button from '../ButtonBase';
+import TooltipM from '@material-ui/core/Tooltip';
 import { Tooltip as TooltipA } from 'antd';
 const text = "asdasd";
 
@@ -35,6 +36,9 @@ class Page extends React.Component {
                         <Tooltip title="prompt text" arrow>
                             <span>Tooltip will show on mouse enter.</span>
                         </Tooltip>
+                        <TooltipM title="prompt text" arrow>
+                            <span>Tooltip will show on mouse enter.</span>
+                        </TooltipM>
                         <TooltipA title="prompt text" arrow visible>
                             <span>Tooltip will show on mouse enter.</span>
                         </TooltipA>

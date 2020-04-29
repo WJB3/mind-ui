@@ -22,12 +22,14 @@ import popperPage from './Popper/popperPage';
 import tooltipPage from './Tooltip/tooltipPage';
 import badgePage from './Badge/badgePage';
 import paginationPage from './Pagination/paginationPage';
+import inputnumberPage from './InputNumber/inputnumberPage';
  
 import 'antd/dist/antd.css';
 import "./index.less";
 
 ReactDOM.render((<HashRouter>
-        <Route path="/" exact component={paginationPage} />
+        <Route path="/" exact component={inputnumberPage} />
+        <Route path="/inputnumber" exact component={inputnumberPage} />
         <Route path="/pagination" exact component={paginationPage} />
         <Route path="/badge" exact component={badgePage} />
         <Route path="/tooltip" exact component={tooltipPage} />

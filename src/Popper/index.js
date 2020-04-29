@@ -3,9 +3,10 @@ import { classNames } from '../components/helper/className';
 import { ConfigContext } from '../ConfigContext';
 import { createPopper } from '@popperjs/core'
 import useForkRef from '../_utils/useForkRef';
-import Portals from '../Portals';
+import Portal from '../Portal';
 import "./index.scss";
 import setRef from '../_utils/setRef';
+
 
 function getAnchorEl(anchorEl){
     return typeof anchorEl==="function"?anchorEl():anchorEl;
@@ -24,7 +25,7 @@ const Popper = React.forwardRef((Props,ref) => {
         popperRef:popperRefProp,
         popperOptions,
         placement="top",
-        mountNode,
+        mountNode,//需要挂载的节点
         className,
         animation,
         style
@@ -104,7 +105,7 @@ const Popper = React.forwardRef((Props,ref) => {
     }
 
     return (
-        <Portals container={container}  disablePortal={disablePortal}>
+        <Portal container={container}  disablePortal={disablePortal}>
            
             <div
                 ref={handleRef}
@@ -122,7 +123,7 @@ const Popper = React.forwardRef((Props,ref) => {
                 {typeof children === 'function' ? children(childProps) : children}
    
             </div>
-        </Portals>
+        </Portal>
     )
 })
 

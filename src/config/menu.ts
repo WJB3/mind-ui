@@ -9,6 +9,10 @@ const menuInfo=[
         key:"component",
         children:[
             {
+                title:"inputnumber",
+                key:"inputnumber",
+            },
+            {
                 title:"pagination",
                 key:"pagination",
             },

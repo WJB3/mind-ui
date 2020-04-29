@@ -1,12 +1,13 @@
 @import "./../components/styles/variable.scss";
 
-$prefixCls:"#{$global-prefix}-input";//主
+$prefixCls:"#{$global-prefix}-input-number";//主
 $prefixClsInputWrapper:"#{$prefixCls}-inputwrapper";//主
 
 .#{$prefixCls}{
     position: relative;
     display:flex;
     overflow: hidden;
+    width:100px;
 
     &-disabled{
         background-color: rgba(0,0,0,0.1);
@@ -22,34 +23,17 @@ $prefixClsInputWrapper:"#{$prefixCls}-inputwrapper";//主
 
     &-active{
         .#{$prefixClsInputWrapper}{
-            &:not(.parrot-input-disabled):after{
+            &:not(.parrot-input-number-disabled):after{
                 transform: scaleX(1);
             }
         }
-    }
-   
-    &-suffix,&-prefix{
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        line-height: 1.5;
-        min-width: 16px;
-    }
-
-    &-suffix{
-        margin-right: 6px;
-        flex:none;
-    }
-    &-prefix{
-        margin-left:6px;
-        // margin-right: 6px;
-        flex:none;
     }
 
     &-inputwrapper{
         position: relative;
         width:100%;
         display: flex;
+        transition: all .3s ease-in-out;
 
         &:before{
             content: "";
@@ -76,32 +60,27 @@ $prefixClsInputWrapper:"#{$prefixCls}-inputwrapper";//主
             transition: transform 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
         }
         
-        &:not(.parrot-input-disabled):hover{
+        &:not(.parrot-input-number-disabled):hover{
             &::before{
                 border-bottom:2px solid rgba(0,0,0,.86);
             }        
         }
 
       
-        input,textarea{
+        input {
             font:inherit;
             color:currentColor;
             outline: none;
             border:0;
+            height:32px;
             max-width:100%;
             background: none;
             flex:1;
+            display: block;
             line-height:1.5;
-        }
-
-        input{
             padding:6px 2px;
-            width:100%;
             background: none;
-            line-height:1.5;
-        }
-        textarea{
-            padding:6px 20px 6px 6px;
+            
         }
     
     }
@@ -126,7 +105,7 @@ $prefixClsInputWrapper:"#{$prefixCls}-inputwrapper";//主
                 border-radius: 4px;
             }
             
-            &:not(.parrot-input-disabled):hover{
+            &:not(.parrot-input-number-disabled):hover{
                 &::before{
                     border:2px solid rgba(0,0,0,.86);
                 }        
