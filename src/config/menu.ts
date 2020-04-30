@@ -9,6 +9,10 @@ const menuInfo=[
         key:"component",
         children:[
             {
+                title:"checkbox",
+                key:"checkbox",
+            },
+            {
                 title:"inputnumber",
                 key:"inputnumber",
             },

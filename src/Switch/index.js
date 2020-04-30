@@ -31,7 +31,7 @@ const Switch = React.forwardRef((props, ref) => {
         const checkFlag = event.target.checked;
         setChecked(checkFlag);
         if (onChange) {
-            onChange(event, checkFlag);
+            onChange(checkFlag, event);
         }
     }
 

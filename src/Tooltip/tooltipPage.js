@@ -39,9 +39,9 @@ class Page extends React.Component {
                         <TooltipM title="prompt text" arrow>
                             <span>Tooltip will show on mouse enter.</span>
                         </TooltipM>
-                        <TooltipA title="prompt text" arrow visible>
+                        {/* <TooltipA title="prompt text" arrow visible>
                             <span>Tooltip will show on mouse enter.</span>
-                        </TooltipA>
+                        </TooltipA> */}
                     </React.Fragment>}
                     title={"基本用法"}
                     description={"一个简单的 loading 状态。"}
