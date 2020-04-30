@@ -84,8 +84,6 @@ const InputNumber = (Props) => {
         undefined: "32px"
     }
 
-    console.log(formatter(value))
-
     return (
         <div style={style} className={
             classNames(

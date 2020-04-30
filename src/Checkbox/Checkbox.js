@@ -52,7 +52,7 @@ const Checkbox = (Props) => {
     },[isChecked]);
 
     useEffect(()=>{
-        console.log(isChecked)
+        // console.log(isChecked)
     },[isChecked])
 
     return (
@@ -100,6 +100,7 @@ const Checkbox = (Props) => {
                         onChange={(e)=>handleChange(e)}
                         disabled={disabled}
                         value={Props.value}
+                        checked={isChecked}
                     />
 
                     <Icon style={{fontSize:22}} name={isChecked?"checkbox-checked":"checkbox-uncheck"} />

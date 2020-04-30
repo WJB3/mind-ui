@@ -3,7 +3,7 @@ import { classNames } from './../components/helper/className';
 import { ConfigContext } from '../ConfigContext';
 import CheckGroupContext from './CheckGroupContext';
 import Checkbox from './Checkbox';
-import useControlled from '../_utils/useControlled';
+import useControlled from '../_utils/useCheckboxControlled';
 import "./index.scss";
 
 const CheckboxGroup = React.forwardRef((props, ref) => {
@@ -30,6 +30,8 @@ const CheckboxGroup = React.forwardRef((props, ref) => {
 
     const optionsChildren=React.useRef([]);
 
+    console.log(defaultValue);
+
     const [value, setValue] = useControlled({
         controlled:valueProp,
         default:defaultValue
@@ -37,6 +39,7 @@ const CheckboxGroup = React.forwardRef((props, ref) => {
 
     const handleChangeCheckbox=React.useCallback((checked,e)=>{
         let index=value.indexOf(e.target.value);
+        
         if(index>-1){//当存在时
             if(checked===false){//当取消
                 value.splice(index,1);
@@ -46,8 +49,8 @@ const CheckboxGroup = React.forwardRef((props, ref) => {
                 value.push(e.target.value);
             }
         }
-        console.log(value)
-        setValue(value);
+        // console.log(value);
+        setValue([...value]);
         onChange && onChange(e,value)
         
     },[value])
@@ -73,10 +76,10 @@ const CheckboxGroup = React.forwardRef((props, ref) => {
     setOptionChildren();
 
     useEffect(() => {
-        console.log(value);
+        //console.log(value)
     }, []);
 
-    console.log(value)
+ 
 
     return (
         <CheckGroupContext.Provider value={{ name, onChange: handleChangeCheckbox, value }}>
