@@ -24,11 +24,12 @@ const InputNumber = (Props) => {
         onKeyDown,//按键事件
         onPressEnter,//回车的回调
         maxLength,//输入框输入的最大长度
-        type = "number",
+        type = "text",
         disabled,//禁用
         min,
         max,
         step=1,
+        formatter=(e)=>e,
         ...restProps
     } = Props;
 
@@ -83,6 +84,8 @@ const InputNumber = (Props) => {
         undefined: "32px"
     }
 
+    console.log(formatter(value))
+
     return (
         <div style={style} className={
             classNames(
@@ -107,7 +110,7 @@ const InputNumber = (Props) => {
                     onBlur={handleBlur}
                     onChange={handleChange}
                     onKeyDown={handleKeyDown}
-                    value={value ? value : ""}
+                    value={value ?  formatter(value): ""}
                     maxLength={maxLength}
                     disabled={disabled}
                     max={max}
