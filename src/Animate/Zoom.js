@@ -10,19 +10,38 @@ const Zoom=React.forwardRef((Props,ref)=>{
         prefixCls:customizePrefixCls,
         children,
         in:inProp,
-        isDestory=true
+        isDestory=true,
+        onEnter,
+        
     }=Props;
 
     const { getPrefixCls } =React.useContext(ConfigContext);
 
     const prefixCls=getPrefixCls("animate-zoom",customizePrefixCls);
 
+    const handleEnter = (node, isAppearing) => {
+        //reflow(node); // So the animation always start from the start.
+
+        if (onEnter) {
+          onEnter(node, isAppearing);
+        }
+    };
+
+    const handleExit=(node,isAppearing)=>{
+        if(onExit){
+            onExit(node, isAppearing);
+        }
+    }
+
     return(
         <CSSTransition
             in={inProp}
             timeout={300}
+            appear
             classNames={classNames(prefixCls)}
             unmountOnExit={isDestory}
+            onEnter={handleEnter}
+            onExit={handleExit}
         >
             {children}
         </CSSTransition>

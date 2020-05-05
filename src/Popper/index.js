@@ -97,12 +97,26 @@ const Popper = React.forwardRef((Props,ref) => {
 
     const childProps = { placement };
 
+    const handleEnter=()=>{
+         
+    }
+
+    const handleExit=()=>{
+         
+    }
+
     if (animation) {
         childProps.TransitionProps = {
             in: open,
-         
+            onEnter:handleEnter,
+            onExit:handleExit
         };
     }
+
+    if (!open) {
+        return null;
+    }
+    
 
     return (
         <Portal container={container}  disablePortal={disablePortal}>
@@ -111,6 +125,9 @@ const Popper = React.forwardRef((Props,ref) => {
                 ref={handleRef}
                 id="popper"
                 className={classes}
+                style={{
+                    willChange:'transform'
+                }}
                 // style={{
                 //     // Prevents scroll issue, waiting for Popper.js to add this style once initiated.
                 //     position: 'fixed',

@@ -34,6 +34,11 @@ $prefixCls:"#{$global-prefix}-checkbox";
                 z-index:1;
             }
         }
+
+        .indeterminate-icon{
+            position: absolute;
+            color:$primary-color;
+        }
     }
 
     &-checked{

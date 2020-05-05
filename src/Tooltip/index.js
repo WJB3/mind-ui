@@ -1,5 +1,6 @@
 import React, { useState, useEffect,useRef } from 'react';
 import { classNames } from '../components/helper/className';
+import { Transition } from 'react-transition-group';
 import ReactDOM from 'react-dom';
 import { ConfigContext } from '../ConfigContext';
 import Popper from '../Popper';
@@ -10,6 +11,18 @@ import setRef from '../_utils/setRef';
 import useIsFocusVisible from '../_utils/useIsFocusVisible';
 import "./index.scss";
 import { Zoom,Fade,Fold,Grow } from '../Animate';
+const duration = 300;
+const defaultStyle = {
+    transition: `opacity ${duration}ms ease-in-out`,
+    opacity: 0,
+}
+
+const transitionStyles = {
+    entering: { opacity: 1 },
+    entered:  { opacity: 1 },
+    exiting:  { opacity: 0 },
+    exited:  { opacity: 0 },
+};
 const TooltipComponent=Zoom;
 
 const getPlacement = (placement) => {
@@ -81,11 +94,8 @@ const Tooltip = React.forwardRef((Props, ref) => {
 
     let open = openState;
 
-    const closeTimer = React.useRef();
-    const enterTimer = React.useRef();
     const leaveTimer = React.useRef();
     const touchTimer = React.useRef();
-    const clickTimer = React.useRef();
 
     const { getPrefixCls } = React.useContext(ConfigContext);
 
@@ -196,33 +206,13 @@ const Tooltip = React.forwardRef((Props, ref) => {
 
     const classes = classNames(prefixCls, className);
 
-    // There is no point in displaying an empty tooltip.
     if (title === '') {
         open = false;
     }
-    
-    // const setComponent=React.useCallback((component)=>{
-    //     switch(component){
-    //         case "zoom":
-    //             TooltipComponent=Zoom;
-    //         case "fade":
-    //             TooltipComponent=Fade;
-    //         case "grow":
-    //             TooltipComponent=Grow;
-    //         case "Fold":
-    //             TooltipComponent=Fold;
-    //         default:
-    //             TooltipComponent="div";
-    //     }
-    // })
-
-    // useEffect(()=>{
-    //     setComponent(animate)
-    // },[animate])
-
-
+ 
     return (
         <React.Fragment>
+
             {React.cloneElement(children, childrenProps)}
             
             <Popper
@@ -233,6 +223,18 @@ const Tooltip = React.forwardRef((Props, ref) => {
                 animation={animation}
             >
                 {
+                    // ({ TransitionProps }) => (
+                    //     <Transition {...TransitionProps} timeout={duration}>
+                    //       {state => (
+                    //         <div style={{
+                    //           ...defaultStyle,
+                    //           ...transitionStyles[state]
+                    //         }}>
+                    //           I'm a fade Transition!
+                    //         </div>
+                    //       )}
+                    //     </Transition>
+                    //   )
                     ({TransitionProps})=>{
                         if(animation==="zoom"){
                             return <Zoom {...TransitionProps}>

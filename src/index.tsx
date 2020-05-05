@@ -30,7 +30,7 @@ import 'antd/dist/antd.css';
 import "./index.less";
 
 ReactDOM.render((<HashRouter>
-        <Route path="/" exact component={Demo} />
+        <Route path="/" exact component={checkboxPage} />
         <Route path="/checkbox" exact component={checkboxPage} />
         <Route path="/inputnumber" exact component={inputnumberPage} />
         <Route path="/pagination" exact component={paginationPage} />

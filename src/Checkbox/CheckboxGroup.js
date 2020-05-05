@@ -7,6 +7,8 @@ import useControlled from '../_utils/useCheckboxControlled';
 import "./index.scss";
 
 const CheckboxGroup = React.forwardRef((props, ref) => {
+
+   
     const {
         prefixCls:customizePrefixCls,
         Component = "div",
@@ -30,11 +32,9 @@ const CheckboxGroup = React.forwardRef((props, ref) => {
 
     const optionsChildren=React.useRef([]);
 
-    console.log(defaultValue);
-
     const [value, setValue] = useControlled({
         controlled:valueProp,
-        default:defaultValue
+        default:[...defaultValue]
     });
 
     const handleChangeCheckbox=React.useCallback((checked,e)=>{
@@ -49,23 +49,22 @@ const CheckboxGroup = React.forwardRef((props, ref) => {
                 value.push(e.target.value);
             }
         }
-        // console.log(value);
         setValue([...value]);
-        onChange && onChange(e,value)
+        onChange && onChange(value,e)
         
-    },[value])
+    },[])
 
     const setOptionChildren=React.useCallback(()=>{
         if(options && options.length>0){
             optionsChildren.current=options.map(option=>{
                 if(typeof option==="string"){
-                    return <Checkbox value={option} key={`${option}_key`} >
+                    return <Checkbox value={option} key={`${option}_key`} disabled={disabled}>
                         {option}
                     </Checkbox>
                 }
                 return <Checkbox 
                     value={option.value}
-                    disabled={option.disabled}
+                    disabled={option.disabled||disabled}
                     key={option.key?option.key:`${option.label}_key`}
                     {...option}
                 >{option.label}</Checkbox>
@@ -76,7 +75,7 @@ const CheckboxGroup = React.forwardRef((props, ref) => {
     setOptionChildren();
 
     useEffect(() => {
-        //console.log(value)
+        
     }, []);
 
  

@@ -5,10 +5,20 @@ import Description from './../components/text/Description';
 import SubTitle from './../components/text/SubTitle';
 import DescriptionTable from './../components/text/DescriptionTable';
 import Textlayout from './../components/text/Textlayout';
-import Icon from '../components/icon';
-import Switch from '../Switch';
 import Checkbox from './index';
+import Switch from '../Switch';
 //import  Notification from 'rc-notification';
+
+const options = [
+    { label: 'Apple', value: 'Apple' },
+    { label: 'Pear', value: 'Pear' },
+    { label: 'Orange', value: 'Orange' },
+  ];
+  const optionsWithDisabled = [
+    { label: 'Apple', value: 'Apple' },
+    { label: 'Pear', value: 'Pear' },
+    { label: 'Orange', value: 'Orange', disabled: false },
+  ];
 
 class checkboxPage extends React.Component {
 
@@ -18,6 +28,8 @@ class checkboxPage extends React.Component {
     }
 
     render() {
+
+        console.log("vjrvk page render")
         return (
             <Layout >
                 <Title>Checkbox</Title>
@@ -26,7 +38,7 @@ class checkboxPage extends React.Component {
                 <Description>单独使用可以表示两种状态之间的切换，和 switch 类似。区别在于切换 switch 会直接触发状态改变，而 checkbox 一般用于状态标记，需要和提交操作配合。</Description>
                 <SubTitle>代码演示</SubTitle>
 
-                {/* <Textlayout
+                <Textlayout
                     components={<React.Fragment>
                         <div style={{ display: "flex", justifyContent: "space-around" }}>
                             <Checkbox onChange={(e) => console.log(`checked ${e}`)}>Checkbox</Checkbox>
@@ -52,6 +64,7 @@ class checkboxPage extends React.Component {
                     components={<React.Fragment>
                         <div style={{ display: "flex", justifyContent: "space-around" }}>
                             <Checkbox
+                                indeterminate
                                 checked={this.state.checked}
                                 disabled={this.state.disabled}
                                 onChange={(checked) => { console.log(`当前选中状态:${checked}`) }}
@@ -61,17 +74,29 @@ class checkboxPage extends React.Component {
                     </React.Fragment>}
                     title={"基本使用。"}
                     description={"默认未选中，radio的选中状态可以通过onChange进行回调"}
-                ></Textlayout> */}
+                ></Textlayout> 
 
                 <Textlayout
                     components={<React.Fragment>
                         <div style={{ display: "flex", justifyContent: "space-around" }}>
-                            <Checkbox.Group options={['Apple', 'Pear', 'Orange']} defaultValue={['Apple']} onChange={(e)=>console.log()} />
+                            <Checkbox.Group options={['Apple', 'Pear', 'Orange']} defaultValue={['Apple']} onChange={(e)=>console.log(e)} />
+                            
+                        </div>
+                        <div style={{ display: "flex", justifyContent: "space-around" }}>
+                        <Checkbox.Group options={options} defaultValue={['Pear']} onChange={(e)=>console.log(e)} />
+                        </div>
+                        <div style={{ display: "flex", justifyContent: "space-around" }}>
+                        <Checkbox.Group
+                            options={optionsWithDisabled}
+                            disabled
+                            defaultValue={['Apple']}
+                            onChange={(e)=>console.log(e)}
+                        />
                         </div>
                     </React.Fragment>}
                     title={"基本使用。"}
                     description={"默认未选中，radio的选中状态可以通过onChange进行回调"}
-                ></Textlayout>
+                ></Textlayout> 
 
 
                 <SubTitle>API</SubTitle>

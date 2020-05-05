@@ -19,6 +19,7 @@ const Checkbox = (Props) => {
         checked:checkedProps,
         defaultChecked,
         onChange:onChangeProp,
+        indeterminate=false,
         ...restProps
     } = Props;
 
@@ -38,7 +39,7 @@ const Checkbox = (Props) => {
     
     const [isChecked,setChecked]=useControlled({
         controlled:checked,
-        default:defaultChecked
+        default:Boolean(defaultChecked)
     });
 
     const onChange = createChainedFunction(onChangeProp, checkboxGroup && checkboxGroup.onChange);
@@ -50,10 +51,6 @@ const Checkbox = (Props) => {
         onChange && onChange(e.target.checked,e);
 
     },[isChecked]);
-
-    useEffect(()=>{
-        // console.log(isChecked)
-    },[isChecked])
 
     return (
         <label
@@ -104,6 +101,7 @@ const Checkbox = (Props) => {
                     />
 
                     <Icon style={{fontSize:22}} name={isChecked?"checkbox-checked":"checkbox-uncheck"} />
+                    {indeterminate && !isChecked &&<Icon  style={{fontSize:16}} className={"indeterminate-icon"} name={"checkbox-indeterminate-fill"} />}
 
                 </Component>
 
