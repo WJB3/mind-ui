@@ -101,6 +101,7 @@ const Checkbox = (Props) => {
                     />
 
                     <Icon style={{fontSize:22}} name={isChecked?"checkbox-checked":"checkbox-uncheck"} />
+                    
                     {indeterminate && !isChecked &&<Icon  style={{fontSize:16}} className={"indeterminate-icon"} name={"checkbox-indeterminate-fill"} />}
 
                 </Component>

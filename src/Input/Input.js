@@ -7,7 +7,7 @@ import Icon from '../components/icon';
 import { Fade } from '../Animate';
 import "./index.scss";
 
-const Input = (Props) => {
+const Input = React.forwardRef((Props,ref) => {
 
     const {
         prefixCls: customizePrefixCls,
@@ -114,7 +114,7 @@ const Input = (Props) => {
     }
 
     return (
-        <div style={style} className={
+        <div   ref={ref} style={style} className={
             classNames(
                 prefixCls,
                 className,
@@ -147,7 +147,7 @@ const Input = (Props) => {
                     maxLength={maxLength}
                     disabled={disabled}
                     rows={rows}
-
+               
                 />
 
                 {
@@ -177,6 +177,6 @@ const Input = (Props) => {
             </div>
         </div>
     )
-}
+})
 
 export default Input;

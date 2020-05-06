@@ -31,7 +31,14 @@ $prefixCls:"#{$global-prefix}-animate";
             &-enter{
                 opacity: 0;
             }
+            &-appear{
+                opacity: 0;
+            }
             &-enter-active{
+                opacity:1;
+                transition: opacity 300ms;
+            }
+            &-appear-active{
                 opacity:1;
                 transition: opacity 300ms;
             }

@@ -27,6 +27,7 @@ const Popper = React.forwardRef((Props,ref) => {
         placement="top",
         mountNode,//需要挂载的节点
         className,
+        transition=true,
         animation,
         style
     } = Props;
@@ -53,8 +54,6 @@ const Popper = React.forwardRef((Props,ref) => {
             popperRef.current.destroy();
             handlePopperRefFunc.current(null);
         }
-
-        const resolvedAnchorEl=getAnchorEl(mountNode);
 
         const popper=createPopper(getAnchorEl(mountNode),tooltipRef.current,{
             placement,
@@ -83,44 +82,44 @@ const Popper = React.forwardRef((Props,ref) => {
         [ownRef,handleOpen]
     );
 
+    
+    const handleEnter=()=>{
+        setExited(false);
+    };
+
+    const handleExited=()=>{
+        setExited(true);
+        handleClose();
+    }
+
     useEffect(() => {
-  
-        if (!open) {
-          // Otherwise handleExited will call this.
+        if (!open && !transition) { 
           handleClose();
         }
-    }, [open]);
+    }, [open,transition]);
 
+    const [exited, setExited] = React.useState(true);//定义动画是否退出
     const { getPrefixCls } = React.useContext(ConfigContext);
     const prefixCls = getPrefixCls("popper", customizePrefixCls);
     const classes = classNames(prefixCls, className,`${prefixCls}-${placement}`);
 
-    const childProps = { placement };
-
-    const handleEnter=()=>{
-         
-    }
-
-    const handleExit=()=>{
-         
-    }
+    const childProps = { placement }
 
     if (animation) {
         childProps.TransitionProps = {
             in: open,
             onEnter:handleEnter,
-            onExit:handleExit
+            onExited:handleExited
         };
     }
 
-    if (!open) {
+    if (!open && (!transition || exited) ) {
         return null;
     }
-    
 
+  
     return (
-        <Portal container={container}  disablePortal={disablePortal}>
-           
+        <Portal container={container()}  disablePortal={disablePortal}>
             <div
                 ref={handleRef}
                 id="popper"
@@ -128,14 +127,7 @@ const Popper = React.forwardRef((Props,ref) => {
                 style={{
                     willChange:'transform'
                 }}
-                // style={{
-                //     // Prevents scroll issue, waiting for Popper.js to add this style once initiated.
-                //     position: 'fixed',
-                //     // Fix Popper.js display issue
-                //     top: 0,
-                //     left: 0,
-                //     ...style,
-                // }}
+                 
             >
                 {typeof children === 'function' ? children(childProps) : children}
    

@@ -37,14 +37,14 @@ const Icon:React.FunctionComponent<IconProps>=(IconProps)=>{
         className?className:""
     )
 
-    function handleClick(){
+    function handleClick(e:any){
         if(onClick){
-            onClick()
+            onClick(e)
         }
     }
 
     return(
-        <i  className={classes} style={{color:index===-1?color:"",fontSize:size?size:"24px",...style}} onClick={()=>handleClick()}>
+        <i  className={classes} style={{color:index===-1?color:"",fontSize:size?size:"24px",...style}} onClick={(e)=>handleClick(e)}>
             <svg width={"1em"} height={"1em"} fill={"currentcolor"} >
                 <use xlinkHref={`#${name}`}></use>
             </svg>

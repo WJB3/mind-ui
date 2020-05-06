@@ -12,7 +12,8 @@ const Zoom=React.forwardRef((Props,ref)=>{
         in:inProp,
         isDestory=true,
         onEnter,
-        
+        onExited,
+        onExit
     }=Props;
 
     const { getPrefixCls } =React.useContext(ConfigContext);
@@ -21,7 +22,7 @@ const Zoom=React.forwardRef((Props,ref)=>{
 
     const handleEnter = (node, isAppearing) => {
         //reflow(node); // So the animation always start from the start.
-
+ 
         if (onEnter) {
           onEnter(node, isAppearing);
         }
@@ -30,6 +31,13 @@ const Zoom=React.forwardRef((Props,ref)=>{
     const handleExit=(node,isAppearing)=>{
         if(onExit){
             onExit(node, isAppearing);
+        }
+    }
+
+    const handleExited=(node,isAppearing)=>{
+ 
+        if(onExited){
+            onExited(node, isAppearing);
         }
     }
 
@@ -42,6 +50,7 @@ const Zoom=React.forwardRef((Props,ref)=>{
             unmountOnExit={isDestory}
             onEnter={handleEnter}
             onExit={handleExit}
+            onExited={handleExited}
         >
             {children}
         </CSSTransition>

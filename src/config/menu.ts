@@ -9,6 +9,18 @@ const menuInfo=[
         key:"component",
         children:[
             {
+                title:"select",
+                key:"select",
+            },
+            {
+                title:"tag",
+                key:"tag",
+            },
+            {
+                title:"popover",
+                key:"popover",
+            },
+            {
                 title:"checkbox",
                 key:"checkbox",
             },

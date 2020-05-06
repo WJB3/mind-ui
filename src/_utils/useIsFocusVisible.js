@@ -30,7 +30,6 @@ const inputTypesWhitelist = {
  */
 function focusTriggersKeyboardModality(node) {
   const { type, tagName } = node;
-
   if (tagName === 'INPUT' && inputTypesWhitelist[type] && !node.readOnly) {
     return true;
   }
@@ -84,7 +83,7 @@ function handleVisibilityChange() {
 }
 
 function prepare(doc) {
-  doc.addEventListener('keydown', handleKeyDown, true);
+  doc.addEventListener('keydown', handleKeyDown, true);//按键被按下
   doc.addEventListener('mousedown', handlePointerDown, true);
   doc.addEventListener('pointerdown', handlePointerDown, true);
   doc.addEventListener('touchstart', handlePointerDown, true);
@@ -138,10 +137,6 @@ export default function useIsFocusVisible() {
     }
   }, []);
 
-  if (process.env.NODE_ENV !== 'production') {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    React.useDebugValue(isFocusVisible);
-  }
 
   return { isFocusVisible, onBlurVisible: handleBlurVisible, ref };
 }

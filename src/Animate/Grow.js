@@ -11,7 +11,8 @@ const Grow=React.forwardRef((Props,ref)=>{
         children,
         in:inProp,
         isDestory=true,
-        onEnter
+        onEnter,
+        Exited
     }=Props;
 
     const { getPrefixCls } =React.useContext(ConfigContext);
@@ -27,6 +28,11 @@ const Grow=React.forwardRef((Props,ref)=>{
       }
     };
   
+    const handleExited=(node,isAppearing)=>{
+      if (onExited) {
+        onExited(node, isAppearing);
+      }
+    }
 
     return(
         <CSSTransition
@@ -36,6 +42,7 @@ const Grow=React.forwardRef((Props,ref)=>{
             classNames={classNames(prefixCls)}
             unmountOnExit={isDestory}
             onEnter={handleEnter}
+            onExited={handleExited}
         >
             {(state,childProps)=>{
               return React.cloneElement(children)

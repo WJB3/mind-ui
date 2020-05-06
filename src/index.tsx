@@ -24,13 +24,19 @@ import badgePage from './Badge/badgePage';
 import paginationPage from './Pagination/paginationPage';
 import inputnumberPage from './InputNumber/inputnumberPage';
 import checkboxPage from './Checkbox/checkboxPage';
+import popoverPage from './Popover/popoverPage';
+import tagPage from './Tag/tagPage';
+import selectPage from './Select/selectPage';
 import Demo from './Demo';
  
 import 'antd/dist/antd.css';
 import "./index.less";
 
 ReactDOM.render((<HashRouter>
-        <Route path="/" exact component={checkboxPage} />
+        <Route path="/" exact component={selectPage} />
+        <Route path="/select" exact component={selectPage} />
+        <Route path="/tag" exact component={tagPage} />
+        <Route path="/popover" exact component={popoverPage} />
         <Route path="/checkbox" exact component={checkboxPage} />
         <Route path="/inputnumber" exact component={inputnumberPage} />
         <Route path="/pagination" exact component={paginationPage} />

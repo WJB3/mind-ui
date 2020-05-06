@@ -1,0 +1,34 @@
+@import "./../components/styles/variable.scss";
+
+$prefixCls:"#{$global-prefix}-select";
+ 
+
+.#{$prefixCls}{
+    .arrow-down{
+        transition:all .3s cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+
+        &-focus{
+            transform:rotate(180deg);
+            color:$primary-color;
+        }
+    }
+
+    &-select-lists,&-select-lists>li{
+        display: block;
+    }
+    
+    &-select-lists{
+        width: 100%;
+        padding: 8px 0;
+        position: relative;
+        overflow-x: hidden;
+        overflow-y: visible;
+    }
+    
+}
+
+ 
+ 
+ 
+
+

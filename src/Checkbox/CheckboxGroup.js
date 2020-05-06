@@ -20,7 +20,7 @@ const CheckboxGroup = React.forwardRef((props, ref) => {
         onChange,
         options
     } = props;
-
+    
     const { getPrefixCls } = useContext(ConfigContext);
 
     const prefixCls = getPrefixCls("checkbox-group", customizePrefixCls);

@@ -1,29 +1,15 @@
 import React, { useState, useEffect,useRef } from 'react';
 import { classNames } from '../components/helper/className';
-import { Transition } from 'react-transition-group';
 import ReactDOM from 'react-dom';
 import { ConfigContext } from '../ConfigContext';
 import Popper from '../Popper';
 import useForkRef from '../_utils/useForkRef';
 import useControlled from '../_utils/useControlled';
-
 import setRef from '../_utils/setRef';
 import useIsFocusVisible from '../_utils/useIsFocusVisible';
 import "./index.scss";
 import { Zoom,Fade,Fold,Grow } from '../Animate';
-const duration = 300;
-const defaultStyle = {
-    transition: `opacity ${duration}ms ease-in-out`,
-    opacity: 0,
-}
-
-const transitionStyles = {
-    entering: { opacity: 1 },
-    entered:  { opacity: 1 },
-    exiting:  { opacity: 0 },
-    exited:  { opacity: 0 },
-};
-const TooltipComponent=Zoom;
+ 
 
 const getPlacement = (placement) => {
     switch (placement) {
@@ -56,11 +42,11 @@ const getPlacement = (placement) => {
     }
 }
 
-const Tooltip = React.forwardRef((Props, ref) => {
+const Popover = React.forwardRef((Props, ref) => {
 
     const {
         prefixCls: customizePrefixCls,
-        arrow=true,
+        arrow=false,
         disableTouchListener = false,
         disableHoverListener = false,
         disableFocusListener = false,
@@ -68,6 +54,7 @@ const Tooltip = React.forwardRef((Props, ref) => {
         enterTouchDelay = 700,
         enterDelay = 100,
         className,
+        content,
         children,
         mountNode,
         title,
@@ -76,16 +63,17 @@ const Tooltip = React.forwardRef((Props, ref) => {
         leaveDelay = 0,
         onClose,
         placement,
-        trigger="hover",
+        trigger="click",
         animation="zoom",
         defaultVisible=false,
+        container,
         ...restProps
     } = Props;
  
-    const [tooltipOpen, setToolTipOpen] = useState(false);
+ 
     const [childNode, setChildNode] = React.useState();
-    const ignoreNonTouchEvents = React.useRef(false);
-    const { isFocusVisible, onBlurVisible, ref: focusVisibleRef } = useIsFocusVisible();
+    const { isFocusVisible,onBlurVisible,ref: focusVisibleRef } = useIsFocusVisible();
+    const [childIsFocusVisible, setChildIsFocusVisible] = React.useState(false);
 
     const [openState, setOpenState] = useControlled({
         controlled: openProp,
@@ -99,7 +87,7 @@ const Tooltip = React.forwardRef((Props, ref) => {
 
     const { getPrefixCls } = React.useContext(ConfigContext);
 
-    const prefixCls = getPrefixCls("tooltip", customizePrefixCls);
+    const prefixCls = getPrefixCls("popover", customizePrefixCls);
 
     const handleUseRef = useForkRef(setChildNode, ref);
     const handleFocusRef = useForkRef(focusVisibleRef, handleUseRef);
@@ -118,10 +106,7 @@ const Tooltip = React.forwardRef((Props, ref) => {
     }
 
     const handleOpen = (event) => {
-
-        // The mouseover event will trigger for every nested element in the tooltip.
-        // We can skip rerendering when the tooltip is already open.
-        // We are using the mouseover event instead of the mouseenter event to fix a hide/show issue.
+        
         setOpenState(true);
 
         if (onOpen) {
@@ -151,6 +136,10 @@ const Tooltip = React.forwardRef((Props, ref) => {
         if (event.type === 'click' && childrenProps.onClick && forward) {
             childrenProps.onClick(event);
         }
+  
+        if (event.type === 'focus' && childrenProps.onFocus && forward) {
+            childrenProps.onFocus(event);
+        }
 
         if(openState){
             handleClose(event);
@@ -162,46 +151,57 @@ const Tooltip = React.forwardRef((Props, ref) => {
 
     const handleLeave = (forward = true) => (event) => {
         const childrenProps = children.props;
-
-        if (
-            event.type === 'mouseleave' &&
-            childrenProps.onMouseLeave &&
-            event.currentTarget === childNode
-        ) {
-            childrenProps.onMouseLeave(event);
-        }
-
-        leaveTimer.current = setTimeout(() => {
-            handleClose(event);
-        }, leaveDelay);
-    };
-
-
-    const handleTouchStart = (event) => {
-
-        if (childrenProps.onTouchStart) {
-            childrenProps.onTouchStart(event);
-        }
-
-        touchTimer.current = setTimeout(() => {
-            handleEnter()(event);
-        }, enterTouchDelay);
-    };
-
     
- 
-    if (!disableHoverListener && trigger==="hover") {
-        childrenProps.onMouseOver = handleEnter();
-        childrenProps.onMouseLeave = handleLeave();
+        if (event.type === 'blur') {
+          if (childrenProps.onBlur && forward) {
+            childrenProps.onBlur(event);
+          }
+          handleBlur();
+        }
+    
+        if (
+          event.type === 'mouseleave' &&
+          childrenProps.onMouseLeave &&
+          event.currentTarget === childNode
+        ) {
+          childrenProps.onMouseLeave(event);
+        }
+
+        handleClose(event);
+        
+    };
+
+    const handleFocus=(forward=true)=>(event)=>{
+        if(!childNode){
+            setChildNode(event.currentTarget);
+        }
+        
+        if(isFocusVisible(event)){
+            setChildIsFocusVisible(true);
+            handleEnter()(event);
+        }
+        const childrenProps = children.props;
+        if (childrenProps.onFocus && forward) {
+            childrenProps.onFocus(event);
+        }
     }
 
-    if (!disableTouchListener) {
-        childrenProps.onTouchStart = handleTouchStart;
-        //childrenProps.onTouchEnd = handleTouchEnd;
-    }
+    const handleBlur = () => {
+        console.log("handleBlur");
+        if (childIsFocusVisible) {
+          setChildIsFocusVisible(false);
+          onBlurVisible();
+        }
+    };
 
-    if(!disableClickListener && trigger==="click" ){
+    if(!disableClickListener&& trigger==="click"){
         childrenProps.onClick=handleEnter();
+    }
+
+    if(!disableFocusListener && trigger==="focus" ){
+        childrenProps.onFocus=handleFocus();
+        childrenProps.onBlur=handleLeave();
+
     }
 
     const classes = classNames(prefixCls, className);
@@ -209,7 +209,8 @@ const Tooltip = React.forwardRef((Props, ref) => {
     if (title === '') {
         open = false;
     }
- 
+  
+
     return (
         <React.Fragment>
 
@@ -221,42 +222,60 @@ const Tooltip = React.forwardRef((Props, ref) => {
                 className={classNames("popper-tooltip")}
                 placement={getPlacement(placement)}
                 animation={animation}
+                container={container}
+                
             >
                 {
+                   
                     ({TransitionProps})=>{
                         if(animation==="zoom"){
                             return  <Zoom {...TransitionProps}>
                                 <div className={classes}>
-                                    {title}
+                                    <div className={classNames(`${prefixCls}-inner`)}>
+                                        {title && <div className={classNames(`${prefixCls}-inner-title`)}>{title}</div>}
+                                        <div className={classNames(`${prefixCls}-inner-content`)}>{content}</div>
+                                    </div>
                                     {arrow && <div className={classNames(`${prefixCls}-arrow`)} />}
                                 </div>
                             </Zoom>
                         }else if(animation==="fade"){
                             return <Fade {...TransitionProps}>
                                 <div className={classes}>
-                                    {title}
+                                    <div className={classNames(`${prefixCls}-inner`)}>
+                                        {title && <div className={classNames(`${prefixCls}-inner-title`)}>{title}</div>}
+                                        <div className={classNames(`${prefixCls}-inner-content`)}>{content}</div>
+                                    </div>
                                     {arrow && <div className={classNames(`${prefixCls}-arrow`)} />}
                                 </div>
                             </Fade>
                         }else if(animation==="fold"){
                             return <Fold {...TransitionProps}>
                                 <div className={classes}>
-                                    {title}
+                                    <div className={classNames(`${prefixCls}-inner`)}>
+                                        {title && <div className={classNames(`${prefixCls}-inner-title`)}>{title}</div>}
+                                        <div className={classNames(`${prefixCls}-inner-content`)}>{content}</div>
+                                    </div>
                                     {arrow && <div className={classNames(`${prefixCls}-arrow`)} />}
                                 </div>
                             </Fold>
                         }else if(animation==="grow"){
                             return <Grow {...TransitionProps}>
                                 <div className={classes}>
-                                    {title}
+                                    <div className={classNames(`${prefixCls}-inner`)}>
+                                        {title && <div className={classNames(`${prefixCls}-inner-title`)}>{title}</div>}
+                                        <div className={classNames(`${prefixCls}-inner-content`)}>{content}</div>
+                                    </div>
                                     {arrow && <div className={classNames(`${prefixCls}-arrow`)} />}
                                 </div>
                             </Grow>
                         }else{
                             return <div className={classes}>
-                                {title}
-                                {arrow && <div className={classNames(`${prefixCls}-arrow`)} />}
+                            <div className={classNames(`${prefixCls}-inner`)}>
+                                {title && <div className={classNames(`${prefixCls}-inner-title`)}>{title}</div>}
+                                <div className={classNames(`${prefixCls}-inner-content`)}>{content}</div>
                             </div>
+                            {arrow && <div className={classNames(`${prefixCls}-arrow`)} />}
+                        </div>
                         }
                         
                     }
@@ -268,4 +287,4 @@ const Tooltip = React.forwardRef((Props, ref) => {
     )
 });
 
-export default Tooltip;
+export default Popover;
