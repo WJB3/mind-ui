@@ -43,6 +43,8 @@ const Select = React.forwardRef((Props,ref) => {
 
     const [focused, setFocused] = useState(false);//是否触发焦点
 
+    const [visible,setVisible]=useState(false);
+
     const selectRef=React.useRef(null);
   
     const ownRef=useForkRef(selectRef,ref);
@@ -54,11 +56,13 @@ const Select = React.forwardRef((Props,ref) => {
     const classes = classNames(prefixCls, className);
 
     const handleFocus=useCallback(()=>{
-        setFocused(true)
+        setFocused(true);
+        setVisible(true);
     },[focused]);
 
     const handleBlur=useCallback(()=>{
-        setFocused(false)
+        setFocused(false);
+      
     },[focused]);
    
     const handleRef=React.useCallback(
@@ -73,9 +77,11 @@ const Select = React.forwardRef((Props,ref) => {
         <div className={classes} ref={handleRef}>
             <Popover 
                 trigger={"focus"} 
-                container={()=>selectRef.current}
+                container={()=>selectRef.current} 
                 placement={"bottom"}
-                visible
+                open={open}
+                visible={visible}
+                className={`${prefixCls}-popover`}
                 content={children && children.length>1 && <ul className={classNames(`${prefixCls}-select-lists`)}>
                         {children}
                 </ul>}
@@ -84,6 +90,7 @@ const Select = React.forwardRef((Props,ref) => {
                     suffix={<Icon name={"arrow-down"} className={classNames(`arrow-down`,focused?`arrow-down-focus`:"")}/>}
                     onFocus={handleFocus} 
                     onBlur={handleBlur}
+                    allowClear={allowClear}
                 />
             </Popover>
         </div>

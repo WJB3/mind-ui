@@ -10,6 +10,7 @@ const SelectOption = React.forwardRef((Props,ref) => {
         prefixCls: customizePrefixCls,
         className,
         children,
+        value,
         ...restProps
     } = Props;
 
@@ -23,10 +24,8 @@ const SelectOption = React.forwardRef((Props,ref) => {
         <BaseRipple 
             component="li"
             className={classes}
-           
         >
             {children}
-
         </BaseRipple>
     )
 });

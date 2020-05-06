@@ -66,7 +66,7 @@ const Popover = React.forwardRef((Props, ref) => {
         trigger="click",
         animation="zoom",
         defaultVisible=false,
-        container,
+        container=()=> null,
         ...restProps
     } = Props;
  
@@ -172,9 +172,6 @@ const Popover = React.forwardRef((Props, ref) => {
     };
 
     const handleFocus=(forward=true)=>(event)=>{
-        if(!childNode){
-            setChildNode(event.currentTarget);
-        }
         
         if(isFocusVisible(event)){
             setChildIsFocusVisible(true);
@@ -187,7 +184,6 @@ const Popover = React.forwardRef((Props, ref) => {
     }
 
     const handleBlur = () => {
-        console.log("handleBlur");
         if (childIsFocusVisible) {
           setChildIsFocusVisible(false);
           onBlurVisible();
@@ -208,8 +204,7 @@ const Popover = React.forwardRef((Props, ref) => {
 
     if (title === '') {
         open = false;
-    }
-  
+    }  
 
     return (
         <React.Fragment>
@@ -222,7 +217,7 @@ const Popover = React.forwardRef((Props, ref) => {
                 className={classNames("popper-tooltip")}
                 placement={getPlacement(placement)}
                 animation={animation}
-                container={container}
+                container={container()?container:()=>childNode}
                 
             >
                 {

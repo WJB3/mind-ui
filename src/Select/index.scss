@@ -1,9 +1,59 @@
 @import "./../components/styles/variable.scss";
 
 $prefixCls:"#{$global-prefix}-select";
+$prefixClsPopper:"#{$global-prefix}-popper";
+$prefixClsPopover:"#{$global-prefix}-popover";
  
 
 .#{$prefixCls}{
+    position: relative;
+
+    ul{
+        margin-bottom:0;
+    }
+
+    &-option{
+        height:36px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        padding:0 16px;
+        border-radius: 0;
+    }
+
+    &-popover{
+        max-height: 300px;
+        min-width:242px;
+        overflow-y: scroll;
+
+        .#{$prefixClsPopover}-inner-content{
+            padding:0;
+        }
+    }
+
+    .#{$prefixClsPopper}{
+        &-top,&-top-start,&-top-end{
+            &.popper-tooltip{
+                bottom:0px!important;
+            }
+        }
+        &-bottom,&-bottom-start,&-bottom-end{
+            &.popper-tooltip{
+                top:0px!important;
+            }
+        }
+        &-right,&-right-start,&-right-end{
+            &.popper-tooltip{
+                left:0px!important;
+            }
+        }
+        &-left,&-left-start,&-left-end{
+            &.popper-tooltip{
+                right:0px!important;
+            }
+        }
+    }
+
     .arrow-down{
         transition:all .3s cubic-bezier(0.4, 0, 0.2, 1) 0ms;
 
@@ -14,7 +64,7 @@ $prefixCls:"#{$global-prefix}-select";
     }
 
     &-select-lists,&-select-lists>li{
-        display: block;
+         
     }
     
     &-select-lists{

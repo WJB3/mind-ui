@@ -34,6 +34,13 @@ class Page extends React.Component {
                         Disabled
                     </Option>
                     <Option value="Yiminghe">yiminghe</Option>
+                    <Option value="Yiminghe">option1</Option>
+                    <Option value="Yiminghe">option1</Option>
+                    <Option value="Yiminghe">option1</Option>
+                    <Option value="Yiminghe">option1</Option>
+                    <Option value="Yiminghe">option1</Option>
+                    <Option value="Yiminghe">option1</Option>
+                    <Option value="Yiminghe">option1</Option>
                 </Select>
              
 
