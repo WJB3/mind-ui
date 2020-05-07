@@ -9,10 +9,14 @@ $prefixCls:"#{$global-prefix}-backdrop";
     bottom:0;
     right:0;
     position: fixed;
-    @include flexbox();
+   
     background-color: rgba(0, 0, 0, 0.7);
     -webkit-tap-highlight-color: transparent;
     z-index:$global-backdrop-zindex;
+
+    &-centered{
+        @include flexbox();
+    }
 }
 
  

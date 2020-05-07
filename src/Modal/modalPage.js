@@ -6,13 +6,15 @@ import SubTitle from '../components/text/SubTitle';
 import Textlayout from '../components/text/Textlayout';
 import DescriptionTable from '../components/text/DescriptionTable';
 import Space from '../Space';
+import Button from '../ButtonBase';
+import Modal from './index';
 //import Popper from '../_utils/demo';
 //import  Notification from 'rc-notification';
 
 class Page extends React.Component {
 
     state={
-        
+        visible:false
     }
 
     componentDidMount(){
@@ -21,7 +23,7 @@ class Page extends React.Component {
 
     render() {
 
-        const { isLoading,isFullLoading,anchorEl }=this.state;
+        const { visible }=this.state;
 
         return (
             <Layout >
@@ -36,7 +38,17 @@ class Page extends React.Component {
                     componentClassName={"button-page-demo"}
                     components={<React.Fragment>
                         <Space size={"large"}>
-                            <Button ></Button>
+                            <Button type="primary" onClick={()=>this.setState({visible:!visible})}>弹窗</Button>
+                            <Modal 
+                                visible={visible}
+                                title="Basic Title"    
+                                onCancel={()=>this.setState({visible:false})}
+                                onOk={()=>this.setState({visible:false})}
+                            >
+                                <p>Some contents...</p>
+                                <p>Some contents...</p>
+                                <p>Some contents...</p>
+                            </Modal>
                         </Space>
                     </React.Fragment>}
                     title={"基本用法"}
