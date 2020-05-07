@@ -29,7 +29,6 @@ class checkboxPage extends React.Component {
 
     render() {
 
-        console.log("vjrvk page render")
         return (
             <Layout >
                 <Title>Checkbox</Title>

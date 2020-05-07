@@ -1,11 +1,13 @@
-import React, { useContext, useState, useCallback } from 'react';
+import React, { useContext, useState, useCallback, useEffect } from 'react';
 import { ConfigContext } from '../ConfigContext';
 import { classNames } from '../components/helper/className';
+import useControlled from '../_utils/useControlled';
 import { toArray } from '../_utils/reactUtils';
 import Input from '../Input';
 import Icon from '../components/icon';
 import setRef from '../_utils/setRef';
 import useForkRef from '../_utils/useForkRef';
+import Loading from '../Loading';
 import Popover from '../Popover';
 import "./index.scss";
 
@@ -38,12 +40,20 @@ const Select = React.forwardRef((Props,ref) => {
         component:Component="input",
         rows,
         children,
+        onCloseBackdrop,
+        mode="single",
+        showSearch,
         ...restProps
     } = Props;
 
-    const [focused, setFocused] = useState(false);//是否触发焦点
+    const [value, setValue] = useControlled({
+        controlled: valueProps,
+        default: defaultValue
+    });
 
     const [visible,setVisible]=useState(false);
+
+    const [inputValue,setInputValue]=useState(undefined);
 
     const selectRef=React.useRef(null);
   
@@ -56,15 +66,9 @@ const Select = React.forwardRef((Props,ref) => {
     const classes = classNames(prefixCls, className);
 
     const handleFocus=useCallback(()=>{
-        setFocused(true);
         setVisible(true);
-    },[focused]);
+    },[visible]);
 
-    const handleBlur=useCallback(()=>{
-        setFocused(false);
-      
-    },[focused]);
-   
     const handleRef=React.useCallback(
         (node)=>{
             setRef(ownRef,node); 
@@ -72,25 +76,101 @@ const Select = React.forwardRef((Props,ref) => {
         [ownRef]
     );
 
- 
+    const handleClickBackdrop=React.useCallback(()=>{
+        setVisible(false);
+    },[visible]);
+
+    const handleItemClick=child=>event=>{
+        if(child.props.disabled){
+            return ;
+        }
+
+        if(mode==="single"){
+            setValue(child.props.value);
+            setVisible(false);
+            setInputValue(child.props.children);
+        }
+
+        
+        if(child.props.value!==value){
+            onChange && onChange(child.props.value,event)
+        }
+
+    }
+
+    const getSelectOption=React.useCallback(()=>{
+        return React.Children.map(children, (child, index) => {
+
+            if (child.props.value === value) {
+              
+
+                return React.cloneElement(child, {
+                    className:classNames(
+                        `${prefixCls}-option_selected`,
+                        {
+                            [`${prefixCls}-option_disabled`]:child.props.disabled
+                        }
+                    ),
+                    onClick:handleItemClick(child)
+                });
+            }
+        
+            return React.cloneElement(child, {
+                className:classNames(
+                     
+                    {
+                      [`${prefixCls}-option_disabled`]:child.props.disabled
+                    }
+                ),
+                onClick:handleItemClick(child)
+            });
+        });
+    },[value,inputValue]);
+
+    const getInputLabel=React.useCallback(()=>{
+        React.Children.map(children, (child, index) => {
+            if (child.props.value === value) {
+                setInputValue(child.props.children)
+            }
+        });
+    },[value]);
+
+    const handleClearValue=useCallback((_value,e)=>{
+        setInputValue(_value);
+        setValue(null);
+    },[inputValue]);
+
+    useEffect(()=>{
+        getInputLabel()
+    },[value]);
+    
+    console.log(inputValue);
+    
     return (
-        <div className={classes} ref={handleRef}>
+        <div className={classes} ref={handleRef} style={style}>
             <Popover 
                 trigger={"focus"} 
                 container={()=>selectRef.current} 
                 placement={"bottom"}
                 open={open}
+                onCloseBackdrop={handleClickBackdrop}
                 visible={visible}
                 className={`${prefixCls}-popover`}
-                content={children && children.length>1 && <ul className={classNames(`${prefixCls}-select-lists`)}>
-                        {children}
+                content={children && toArray(children).length>=1 && <ul className={classNames(`${prefixCls}-select-lists`)}>
+                        {getSelectOption()}
                 </ul>}
             >
                 <Input 
-                    suffix={<Icon name={"arrow-down"} className={classNames(`arrow-down`,focused?`arrow-down-focus`:"")}/>}
+                    suffix={loading ?<Loading size={14}/> :<Icon style={{fontSize:16                     }} name={(showSearch && visible)?"find":"arrow-down"} className={classNames(`arrow-down`,(visible && !showSearch)?`arrow-down-focus`:"")}/>}
                     onFocus={handleFocus} 
-                    onBlur={handleBlur}
                     allowClear={allowClear}
+                    value={inputValue}
+                    border={border}
+                    disabled={disabled}
+                    loading={loading}
+                    allowClear={allowClear}
+                    onClear={handleClearValue}
+                    placeholder={placeholder}
                 />
             </Popover>
         </div>

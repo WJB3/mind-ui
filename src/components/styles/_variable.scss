@@ -2,6 +2,7 @@
 @import "./mixin";
 @import "./_animation";
 
+$global-backdrop-zindex:1000;
  
 //normal按钮样式
 $button-normal-font-size:$normal-font-size;

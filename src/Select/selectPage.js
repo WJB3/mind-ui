@@ -5,19 +5,21 @@ import Description from '../components/text/Description';
 import SubTitle from '../components/text/SubTitle';
 import Select from './index';
 import DescriptionTable from '../components/text/DescriptionTable';
- 
-const { Option }=Select;
+import Textlayout from '../components/text/Textlayout';
+import Space from '../Space';
+
+const { Option } = Select;
 //import  Notification from 'rc-notification';
 
 class Page extends React.Component {
 
-    state={
-        
+    state = {
+
     }
 
     render() {
 
-        const { isLoading,isFullLoading ,poperRef}=this.state;
+        const { isLoading, isFullLoading, poperRef } = this.state;
 
         return (
             <Layout >
@@ -26,23 +28,70 @@ class Page extends React.Component {
                 <SubTitle>何时使用</SubTitle>
 
                 <SubTitle>代码演示</SubTitle>
- 
-                <Select defaultValue="lucy" style={{ width: 120 }} onChange={(value)=>console.log(value)}>
-                    <Option value="jack">Jack</Option>
-                    <Option value="lucy">Lucy</Option>
-                    <Option value="disabled" disabled>
-                        Disabled
-                    </Option>
-                    <Option value="Yiminghe">yiminghe</Option>
-                    <Option value="Yiminghe">option1</Option>
-                    <Option value="Yiminghe">option1</Option>
-                    <Option value="Yiminghe">option1</Option>
-                    <Option value="Yiminghe">option1</Option>
-                    <Option value="Yiminghe">option1</Option>
-                    <Option value="Yiminghe">option1</Option>
-                    <Option value="Yiminghe">option1</Option>
-                </Select>
-             
+                <Textlayout
+                    componentClassName={"button-page-demo"}
+                    components={<React.Fragment>
+                        <Space>
+
+                            <Select defaultValue="lucy" style={{ width: 120 }} border onChange={(value) => console.log(`selected:${value}`)}>
+                                <Option value="jack">Jack</Option>
+                                <Option value="lucy">Lucy</Option>
+                                <Option value="disabled" disabled>
+                                    Disabled
+                                </Option>
+                                <Option value="Yiminghe">yiminghe</Option>
+                            </Select>
+{/* 
+                            <Select defaultValue="lucy" style={{ width: 120 }} disabled border>
+                                <Option value="lucy">Lucy</Option>
+                            </Select>
+
+                            <Select defaultValue="lucy" style={{ width: 120 }} loading border>
+                                <Option value="lucy">Lucy</Option>
+                            </Select> */}
+
+                            {/* <Select style={{ width: 120 }} allowClear>
+                                <Option value="lucy">Lucy</Option>
+                            </Select> */}
+                        </Space>
+
+
+                    </React.Fragment>}
+                    title={"基本用法"}
+                    description={"一个简单的 loading 状态。"}
+                ></Textlayout>
+
+                {/* <Textlayout
+                    componentClassName={"button-page-demo"}
+                    components={<React.Fragment>
+                        <Space>
+
+                            <Select
+                                showSearch
+                                style={{ width: 200 }}
+                                placeholder="Select a person"
+                                optionFilterProp="children"
+                                onChange={()=>console.log("onchange")}
+                                onFocus={()=>console.log("onFocus")}
+                                onBlur={()=>console.log("onBlur")}
+                                onSearch={()=>console.log("onSearch")}
+                                filterOption={(input, option) =>
+                                    option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                                }
+                            >
+                                <Option value="jack">Jack</Option>
+                                <Option value="lucy">Lucy</Option>
+                                <Option value="tom">Tom</Option>
+                            </Select>
+                        </Space>
+
+
+                    </React.Fragment>}
+                    title={"带搜索框"}
+                    description={"展开后可对选项进行搜索。"}
+                ></Textlayout> */}
+
+
 
                 <SubTitle>API</SubTitle>
                 <Description>通过设置 Button 的属性来产生不同的按钮样式，推荐顺序为：type -> shape -> size -> loading -> disabled。</Description>

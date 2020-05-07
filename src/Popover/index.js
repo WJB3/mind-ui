@@ -7,6 +7,7 @@ import useForkRef from '../_utils/useForkRef';
 import useControlled from '../_utils/useControlled';
 import setRef from '../_utils/setRef';
 import useIsFocusVisible from '../_utils/useIsFocusVisible';
+import BackDrop from '../BackDrop';
 import "./index.scss";
 import { Zoom,Fade,Fold,Grow } from '../Animate';
  
@@ -62,6 +63,7 @@ const Popover = React.forwardRef((Props, ref) => {
         visible: openProp,
         leaveDelay = 0,
         onClose,
+        onCloseBackdrop,
         placement,
         trigger="click",
         animation="zoom",
@@ -190,6 +192,12 @@ const Popover = React.forwardRef((Props, ref) => {
         }
     };
 
+    const handleCloseBackdrop=(e)=>{
+        if(onCloseBackdrop){
+            onCloseBackdrop(e)
+        }
+    }
+
     if(!disableClickListener&& trigger==="click"){
         childrenProps.onClick=handleEnter();
     }
@@ -205,11 +213,14 @@ const Popover = React.forwardRef((Props, ref) => {
     if (title === '') {
         open = false;
     }  
+ 
 
     return (
         <React.Fragment>
 
             {React.cloneElement(children, childrenProps)}
+
+            <BackDrop open={childNode ? open : false} style={{background:'transparent'}} onClick={handleCloseBackdrop}/>
             
             <Popper
                 mountNode={childNode}

@@ -27,13 +27,17 @@ import checkboxPage from './Checkbox/checkboxPage';
 import popoverPage from './Popover/popoverPage';
 import tagPage from './Tag/tagPage';
 import selectPage from './Select/selectPage';
+import backdropPage from './BackDrop/backdropPage';
+import modalPage from './Modal/modalPage';
 import Demo from './Demo';
  
 import 'antd/dist/antd.css';
 import "./index.less";
 
 ReactDOM.render((<HashRouter>
-        <Route path="/" exact component={selectPage} />
+        <Route path="/" exact component={modalPage} />
+        <Route path="/modal" exact component={modalPage} />
+        <Route path="/backdrop" exact component={backdropPage} />
         <Route path="/select" exact component={selectPage} />
         <Route path="/tag" exact component={tagPage} />
         <Route path="/popover" exact component={popoverPage} />

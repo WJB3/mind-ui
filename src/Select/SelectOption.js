@@ -11,6 +11,7 @@ const SelectOption = React.forwardRef((Props,ref) => {
         className,
         children,
         value,
+        disabled,
         ...restProps
     } = Props;
 
@@ -24,6 +25,9 @@ const SelectOption = React.forwardRef((Props,ref) => {
         <BaseRipple 
             component="li"
             className={classes}
+            value={value}
+            enabledTouchRipple={!disabled}
+            {...restProps}
         >
             {children}
         </BaseRipple>

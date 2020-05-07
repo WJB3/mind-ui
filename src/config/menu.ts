@@ -9,6 +9,14 @@ const menuInfo=[
         key:"component",
         children:[
             {
+                title:"modal",
+                key:"modal",
+            },
+            {
+                title:"backdrop",
+                key:"backdrop",
+            },
+            {
                 title:"select",
                 key:"select",
             },

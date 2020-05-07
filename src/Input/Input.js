@@ -1,7 +1,7 @@
 import React, { useContext, useState, useCallback } from 'react';
 import { classNames } from '../components/helper/className';
 import { ConfigContext } from '../ConfigContext';
-import useControlled from '../_utils/useControlled';
+import useControlled from '../_utils/useInputControlled';
 import Button from '../ButtonBase';
 import Icon from '../components/icon';
 import { Fade } from '../Animate';
@@ -44,6 +44,8 @@ const Input = React.forwardRef((Props,ref) => {
         controlled: valueProps,
         default: defaultValue
     });
+
+    console.log(value);
 
     const { getPrefixCls } = useContext(ConfigContext);
 
@@ -113,6 +115,7 @@ const Input = React.forwardRef((Props,ref) => {
         undefined: "32px"
     }
 
+
     return (
         <div   ref={ref} style={style} className={
             classNames(
@@ -152,7 +155,7 @@ const Input = React.forwardRef((Props,ref) => {
 
                 {
                     (suffix || allowClear)  && <span className={classNames(`${prefixCls}-suffix`)}>
-                        {allowClear && <Fade in={value ? true : false}><Icon name="close-circle" style={{ fontSize: 16 }} onClick={(e) => handleClearValue(e)} /></Fade>}
+                        {allowClear && <Fade in={value ? true : false}><Icon name="close-circle" style={{ fontSize: 16,color:"rgba(0,0,0,.4)" }} onClick={(e) => handleClearValue(e)} /></Fade>}
                         {suffix}
                     </span>
                 }

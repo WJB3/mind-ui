@@ -7,6 +7,7 @@ $prefixClsPopover:"#{$global-prefix}-popover";
 
 .#{$prefixCls}{
     position: relative;
+    display: inline-block;
 
     ul{
         margin-bottom:0;
@@ -19,6 +20,16 @@ $prefixClsPopover:"#{$global-prefix}-popover";
         justify-content: flex-start;
         padding:0 16px;
         border-radius: 0;
+
+        &_selected{
+            color:$primary-color;
+            background-color: rgba(0,0,0,.1);
+        }
+
+        &_disabled{
+            color:rgba(0,0,0,.2);
+            cursor: not-allowed;
+        }
     }
 
     &-popover{
@@ -32,6 +43,7 @@ $prefixClsPopover:"#{$global-prefix}-popover";
     }
 
     .#{$prefixClsPopper}{
+        z-index: #{$global-backdrop-zindex}+1;
         &-top,&-top-start,&-top-end{
             &.popper-tooltip{
                 bottom:0px!important;

@@ -34,6 +34,7 @@ const BaseRipple=React.forwardRef((props,ref)=>{
     function useRippleHandler(rippleAction,eventCallback,skipRippleAction=disabledTouchRipple){
       
         return useEventCallback((event)=>{
+           
             if(eventCallback){        
                 eventCallback(event);
             }

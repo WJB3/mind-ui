@@ -116,8 +116,6 @@ const Popper = React.forwardRef((Props,ref) => {
     if (!open && (!transition || exited) ) {
         return null;
     }
-
-    console.log(container());
   
     return (
         <Portal container={container()}  disablePortal={disablePortal}>
