@@ -22,12 +22,11 @@ const Modal = (Props) => {
         closable=true,//是否显示右上角的
         closeIcon,//自定义关闭按钮
         confirmLoading,//确定按钮loading
-        destroyOnClose,//关闭时销毁Modal里的子元素
         footer,//底部内容，当不需要默认底部按钮时，可以设为 footer={null}
-        forceRender,//强制渲染Modal
         getContainer,//指定 Modal 挂载的 HTML 节点, false 为挂载在当前 dom
         keyboard,//	是否支持键盘 esc 关闭
-        mask,//是否展示遮罩
+        keyboardCode=27,//	默认esc键盘
+        mask=true,//是否展示遮罩
         maskClosable=true,//点击蒙层是否允许关闭,
         maskStyle,//遮罩样式
         okText,//确认按钮文字
@@ -37,7 +36,6 @@ const Modal = (Props) => {
         title,//标题
         visible:visibleProps,//对话框是否可见
         width = 520,//宽度
-        wrapClassName,//对话框外层容器的类名
         zIndex,//设置 Modal 的 z-index
         onCancel,//点击遮罩层或右上角叉或取消按钮的回调
         onOk,//点击确定回调
@@ -50,10 +48,18 @@ const Modal = (Props) => {
 
     const [visible,setVisible]=useState(visibleProps);
 
-    const handleCancel=useCallback((ignore=false)=>(event)=>{
+    const handleCancel=useCallback((ignore=false,label)=>(event)=>{
+        if(label==="backdrop"){
+            if(!maskClosable){
+                return ;
+            }
+        }
+
         if(ignore){
+           
             onCancel && onCancel(event);
         }
+
         if(!ignore){
             if(event.target===event.currentTarget){
                 onCancel && onCancel(event);
@@ -70,17 +76,41 @@ const Modal = (Props) => {
 
     useEffect(()=>{
         setVisible(visibleProps);
-    },[visibleProps])
+        document.onkeydown = function (event) {
+            let e = event || window.event || arguments.callee.caller.arguments[0]
+            if (e && e.keyCode === keyboardCode && keyboard) { 
+                onCancel && onCancel(event)
+            }
+        }
+    },[visibleProps]);
 
-    return <Portal>
-        <BackDrop open={visible} disabledScroll centered={centered} onClick={handleCancel()}>
-            <Zoom in={visible}>
+    const handleExited=(node)=>{
+        afterClose && afterClose(node);
+    };
+
+    return <Portal container={getContainer}>
+        <BackDrop 
+            open={visible} 
+            disabledScroll 
+            centered={centered} 
+            onClick={handleCancel(false,"backdrop")} 
+            className={classNames(
+                {
+                    [`${prefixCls}-backdrop-nomask`]:!mask
+                }
+            )}
+            style={{...maskStyle}}
+        >
+            <Zoom in={visible} onExited={handleExited}>
                 <div
-                    style={{ width, ...style }}
+                    style={{zIndex,width, ...style }}
                     className={
                         classNames(
                             prefixCls,
-                            className
+                            className,
+                            {
+                                [`${prefixCls}-centered`]:centered
+                            }
                         )
                     }>
                     
@@ -90,23 +120,27 @@ const Modal = (Props) => {
                         {closable && <div className={classNames(
                             `${prefixCls}-header-closeIcon`
                         )} >
-                            <Icon name={"close"} onClick={handleCancel(true)}/>
+                            {closeIcon?closeIcon: <Icon name={"close"} onClick={handleCancel(true)}/>}
                         </div>}
                         {title}
                     </div>
                     <div className={classNames(
                         `${prefixCls}-body`
-                    )}>
+                    )} style={{...bodyStyle}}>
                         {children}
                     </div>
-                    <div className={classNames(
+                    {(footer===undefined || footer===true)&& <div className={classNames(
                         `${prefixCls}-footer`
                     )}>
                         <div>
-                            <Button onClick={handleCancel()}>取消</Button>
-                            <Button type="primary" onClick={handleOk}>确定</Button>
+                            <Button onClick={handleCancel()} {...okButtonProps}>{cancelText?cancelText:"取消"}</Button>
+                            <Button type="primary" onClick={handleOk} {...cancelButtonProps} loading={confirmLoading}>{okText?okText:"确定"}</Button>
                         </div>
-                    </div>
+                    </div>}
+
+                    {
+                        footer
+                    }
                 </div>
             </Zoom>
         </BackDrop>

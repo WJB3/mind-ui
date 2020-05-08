@@ -13,17 +13,19 @@ import Modal from './index';
 
 class Page extends React.Component {
 
-    state={
-        visible:false
+    state = {
+        visible: false,
+        visible2: false,
+        visible3: false,
     }
 
-    componentDidMount(){
-         
+    componentDidMount() {
+        
     }
 
     render() {
 
-        const { visible }=this.state;
+        const { visible,visible2,visible3 } = this.state;
 
         return (
             <Layout >
@@ -38,12 +40,12 @@ class Page extends React.Component {
                     componentClassName={"button-page-demo"}
                     components={<React.Fragment>
                         <Space size={"large"}>
-                            <Button type="primary" onClick={()=>this.setState({visible:!visible})}>弹窗</Button>
-                            <Modal 
+                            <Button type="primary" onClick={() => this.setState({ visible: !visible })}>弹窗</Button>
+                            <Modal
                                 visible={visible}
-                                title="Basic Title"    
-                                onCancel={()=>this.setState({visible:false})}
-                                onOk={()=>this.setState({visible:false})}
+                                title="Basic Title"
+                                onCancel={(event) => this.setState({ visible: false })}
+                                onOk={() => this.setState({ visible: false })}
                             >
                                 <p>Some contents...</p>
                                 <p>Some contents...</p>
@@ -55,7 +57,59 @@ class Page extends React.Component {
                     description={"一个简单的 loading 状态。"}
                 ></Textlayout>
 
-            
+
+                <Textlayout
+                    componentClassName={"button-page-demo"}
+                    components={<React.Fragment>
+                        <Space size={"large"}>
+                            <Button type="primary" onClick={() => this.setState({ visible2: !visible2 })}>弹窗</Button>
+                            <Modal
+                                visible={visible2}
+                                title="Basic Title"
+                                onCancel={() => this.setState({ visible2: false })}
+                                onOk={() => this.setState({ visible2: false })}
+                                mask={false}
+                            
+                            >
+                                <p>Some contents...</p>
+                                <p>Some contents...</p>
+                                <p>Some contents...</p>
+                            </Modal>
+                        </Space>
+                    </React.Fragment>}
+                    title={"基本用法"}
+                    description={"一个简单的 loading 状态。"}
+                ></Textlayout>
+
+                <Textlayout
+                    componentClassName={"button-page-demo"}
+                    components={<React.Fragment>
+                        <Space size={"large"}>
+                            <Button type="primary"  onClick={() => this.setState({ visible3: !visible3 })}>弹窗</Button>
+                            <Modal
+                                visible={visible3}
+                                title="Basic Title"
+                                onCancel={() => this.setState({ visible3: false })}
+                                onOk={() => this.setState({ visible3: false })}
+                                mask={false}
+                                zIndex={2000}
+                                okText={"ok"}
+                                cancelText={"cancel"}
+                                maskClosable={false}
+                                keyboard
+                                confirmLoading
+                                centered
+                                afterClose={()=>{console.log("modal完全关闭")}}
+                            >
+                                <p>Some contents...</p>
+                                <p>Some contents...</p>
+                                <p>Some contents...</p>
+                            </Modal>
+                        </Space>
+                    </React.Fragment>}
+                    title={"基本用法"}
+                    description={"一个简单的 loading 状态。"}
+                ></Textlayout>
 
                 <SubTitle>API</SubTitle>
                 <Description>通过设置 Button 的属性来产生不同的按钮样式，推荐顺序为：type -> shape -> size -> loading -> disabled。</Description>

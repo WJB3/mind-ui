@@ -23,11 +23,16 @@ const BackDrop = React.forwardRef((Props,ref) => {
     const prefixCls=getPrefixCls("backdrop",customizePrefixCls);
 
     useEffect(()=>{
-        if(disabledScroll){
+        if(disabledScroll && open){
             document.body.style="overflow:hidden";
         }
-    },[disabledScroll])
- 
+        return ()=>{
+            document.body.style="overflow:auto";
+        }
+    },[disabledScroll]);
+
+   
+     
     return (
         <Fade in={open}>
             <div className={
