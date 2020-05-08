@@ -7,7 +7,6 @@ import useForkRef from '../_utils/useForkRef';
 
 function getTranslateValue(direction,node){
     const rect=node.getBoundingClientRect();
-    console.log(node)
     let transform;
     if(node.fakeTransform){
         transform=node.fakeTransform;
@@ -25,12 +24,26 @@ function getTranslateValue(direction,node){
     }
 
     if(direction==="left"){
-        return `translateX(${window.innerWidth}px) `
+        return `translateX(${window.innerWidth}px)`;
     }
+
+    if(direction==="right"){
+        return `translateX(-${rect.left+rect.width-offsetX}px)`;
+    }
+
+    if(direction==="up"){
+        return `translateY(${window.innerHeight}px)`;
+    }
+
+    return `translateY(-${rect.top+rect.height-offsetY}px)`
 }
 
 export function setTranslateValue(direction,node){
-
+    const transform=getTranslateValue(direction,node);
+    if(transform){
+        node.style.webkitTransform=transform;
+        node.style.transform=transform;
+    }
 }
 
 const Slide = forwardRef((props, ref) => {
@@ -39,6 +52,12 @@ const Slide = forwardRef((props, ref) => {
         prefixCls: customizePrefixCls,
         children,
         in: inProps,
+        onEnter,
+        onEntering,
+        onExit,
+        onExited,
+        onExtered,
+        direction="down",
         ...restProps
     } = props;
 
@@ -56,7 +75,49 @@ const Slide = forwardRef((props, ref) => {
     const prefixCls = getPrefixCls("animate-slide", customizePrefixCls);
 
     const handleEnter = (_, isAppearing) => {
+ 
         const node=childrenRef.current;
+        setTranslateValue(direction,node);
+        if(onEnter){
+            onEnter(node,isAppearing);
+        }
+    }
+
+    const handleEntered = (_, isAppearing) => {
+        const node=childrenRef.current;
+        if(onExtered){
+            onExtered(node, isAppearing)
+        }
+    }
+
+    const handleEntering=(_,isAppearing)=>{
+        const node=childrenRef.current;
+        node.style.webkitTransition="transform 225ms cubic-bezier(0, 0, 0.2, 1) 0ms";
+        node.style.transition="transform 225ms cubic-bezier(0, 0, 0.2, 1) 0ms";
+        node.style.webkitTransform = 'none';
+        node.style.transform = 'none';
+        if(onEntering){
+            onEntering(node,isAppearing);
+        }
+    }
+
+    const handleExit=()=>{
+        const node = childrenRef.current;
+        node.style.webkitTransition="transform 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms";
+        node.style.transition="transform 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms";
+        setTranslateValue(direction,node);
+        if(onExit){
+            onExit(node)
+        }
+    }
+
+    const handleExited=()=>{
+        const node = childrenRef.current;
+        node.style.webkitTransition="";
+        node.style.transition="";
+        if(onExited){
+            onExited(node);
+        }
     }
 
     return <CSSTransition
@@ -65,6 +126,10 @@ const Slide = forwardRef((props, ref) => {
         in={inProps}
         timeout={300}
         onEnter={handleEnter}
+        onEntering={handleEntering}
+        onExit={handleExit}
+        onExited={handleExited}
+        onEntered={handleEntered}
         {...restProps}
     >
         {

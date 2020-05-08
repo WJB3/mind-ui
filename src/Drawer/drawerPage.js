@@ -6,7 +6,7 @@ import SubTitle from '../components/text/SubTitle';
 import Textlayout from '../components/text/Textlayout';
 import DescriptionTable from '../components/text/DescriptionTable';
 import Space from '../Space';
-import Slide from '@material-ui/core/Slide';
+import { Slide } from '../Animate';
 import Button from '../ButtonBase';
 import Paper from '@material-ui/core/Paper';
 import Modal from './index';
@@ -44,7 +44,7 @@ class Page extends React.Component {
                     components={<React.Fragment>
                         <Space size={"large"}>
                             <Button type="primary" onClick={() => this.setState({ visible: !visible })}>弹窗</Button>
-                            <Slide direction="left" in={visible}  mountOnEnter >
+                            <Slide direction="right" in={visible}   >
                                 <Paper elevation={4} >
                                     {"AAAAAAA"}
                                 </Paper>
