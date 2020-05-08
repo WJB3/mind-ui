@@ -20,12 +20,12 @@ class Page extends React.Component {
     }
 
     componentDidMount() {
-        
+
     }
 
     render() {
 
-        const { visible,visible2,visible3 } = this.state;
+        const { visible, visible2, visible3 } = this.state;
 
         return (
             <Layout >
@@ -69,7 +69,7 @@ class Page extends React.Component {
                                 onCancel={() => this.setState({ visible2: false })}
                                 onOk={() => this.setState({ visible2: false })}
                                 mask={false}
-                            
+
                             >
                                 <p>Some contents...</p>
                                 <p>Some contents...</p>
@@ -85,7 +85,7 @@ class Page extends React.Component {
                     componentClassName={"button-page-demo"}
                     components={<React.Fragment>
                         <Space size={"large"}>
-                            <Button type="primary"  onClick={() => this.setState({ visible3: !visible3 })}>弹窗</Button>
+                            <Button type="primary" onClick={() => this.setState({ visible3: !visible3 })}>弹窗</Button>
                             <Modal
                                 visible={visible3}
                                 title="Basic Title"
@@ -99,7 +99,7 @@ class Page extends React.Component {
                                 keyboard
                                 confirmLoading
                                 centered
-                                afterClose={()=>{console.log("modal完全关闭")}}
+                                afterClose={() => { console.log("modal完全关闭") }}
                             >
                                 <p>Some contents...</p>
                                 <p>Some contents...</p>

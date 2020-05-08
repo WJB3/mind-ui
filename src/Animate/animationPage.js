@@ -6,8 +6,8 @@ import SubTitle from './../components/text/SubTitle';
 import Textlayout from './../components/text/Textlayout';
 import DescriptionTable from './../components/text/DescriptionTable';
 import Pager from './../components/pager';
-
-import { Fold, Fade, Zoom, Grow } from './index';
+import Tooltip from '../Tooltip';
+import { Fold, Fade, Zoom, Grow, Slide } from './index';
 import Button from '../ButtonBase';
 
 
@@ -17,7 +17,8 @@ class Page extends React.Component {
         foldIn: false,
         fadeIn: false,
         zoomIn: false,
-        growIn:false
+        growIn: false,
+        slideIn:false
     }
 
     render() {
@@ -97,13 +98,30 @@ class Page extends React.Component {
 
 
                         <Grow in={this.state.growIn} >
-                            <Pager deep={6}  />
+                            <Pager deep={6} />
                         </Grow>
 
 
                     </React.Fragment>}
                     title={"Grow"}
                     description={"fade+zoom"}
+                ></Textlayout>
+
+                <Textlayout
+                    layoutStyle={{ backgroundColor: "#f5f5f5" }}
+                    componentClassName={"pager-page-demo"}
+                    components={<React.Fragment>
+
+                        <Button type="primary" onClick={() => this.setState({ slideIn: !this.state.slideIn })}>点击展示</Button>
+
+                        <Slide in={this.state.slideIn} direction="left">
+                            <Pager deep={6} />
+                        </Slide>
+
+                         
+                    </React.Fragment>}
+                    title={"Slide"}
+                    description={"Slide"}
                 ></Textlayout>
 
 

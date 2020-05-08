@@ -45,7 +45,7 @@ const Input = React.forwardRef((Props,ref) => {
         default: defaultValue
     });
 
-    console.log(value);
+ 
 
     const { getPrefixCls } = useContext(ConfigContext);
 

@@ -27,9 +27,12 @@ const BackDrop = React.forwardRef((Props,ref) => {
             document.body.style="overflow:hidden";
         }
         return ()=>{
-            document.body.style="overflow:auto";
+            if(open){
+                document.body.style="overflow:auto";
+            }
         }
-    },[disabledScroll]);
+      
+    },[disabledScroll,open]);
 
    
      

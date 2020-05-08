@@ -106,6 +106,7 @@ const Tooltip = React.forwardRef((Props, ref) => {
 
     const handleOwnRef = React.useCallback(
         (instance) => {
+          
             setRef(handleFocusRef, ReactDOM.findDOMNode(instance))
         },
         [handleFocusRef]

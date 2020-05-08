@@ -1,0 +1,88 @@
+@import "./../components/styles/variable.scss";
+
+$prefixCls:"#{$global-prefix}-modal";
+ 
+
+.#{$prefixCls}{
+    position: relative;
+    background-color: rgba(255,255,255,1);
+    background-clip: padding-box;
+    border: 0;
+    border-radius: 4px;
+    pointer-events: auto;
+    @include boxShadowLevel(4);
+    top:100px;
+    margin:0 auto;
+
+    &-centered{
+        top:0px;
+    }
+
+    &-backdrop-nomask{
+        background-color: transparent;
+    }
+
+    &-header{
+        padding: 16px 24px;
+        color: rgba(0,0,0,.65);
+        background: rgba(255,255,255,1);
+        border-bottom: 1px solid #f0f0f0;
+        border-radius: 4px 4px 0 0;
+
+        &-closeIcon{
+            top: 0;
+            right: 0;
+            z-index: 10;
+            padding: 0;
+            color: rgba(0,0,0,.45);
+            font-weight: 700;
+            line-height: 1;
+            text-decoration: none;
+            background: 0 0;
+            border: 0;
+            outline: 0;
+            cursor: pointer;
+            -webkit-transition: color .3s;
+            transition: color .3s;
+            display: block;
+            width: 56px;
+            height: 56px;
+            font-size: 16px;
+            font-style: normal;
+            text-align: center;
+            text-transform: none;
+            text-rendering: auto;
+            position: absolute;
+            @include flexbox();
+
+            &:hover{
+                color: rgba(0,0,0,.85);
+            }
+        }
+    }
+
+    &-body{
+        padding:24px;
+    }
+
+    &-footer{
+        padding: 10px 16px;
+        text-align: right;
+        background: 0 0;
+        border-top: 1px solid #f0f0f0;
+        border-radius: 0 0 4px 4px;
+
+        button+button{
+            margin-left:8px;
+        }
+    }
+}
+     
+     
+
+ 
+
+ 
+ 
+
+

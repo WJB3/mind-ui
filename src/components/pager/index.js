@@ -1,17 +1,10 @@
 import React from 'react';
-import { classNames } from './../helper/className';
-import { prefixClassname } from './../_utils/config';
+import { classNames } from '../helper/className';
+import { prefixClassname } from '../_utils/config';
 import "./../styles/pager.scss";
  
-interface Props{
-    deep?:number,
-    children?:any,
-    circle?:boolean,
-    className?:any,
-    style?:object
-}
-
-const Pager:React.FunctionComponent<Props>=React.forwardRef((Props,ref)=>{
+ 
+const Pager=React.forwardRef((Props,ref)=>{
 
     const {
         deep,
@@ -29,7 +22,7 @@ const Pager:React.FunctionComponent<Props>=React.forwardRef((Props,ref)=>{
     );
 
     return(
-        <div className={classes} style={style}>
+        <div className={classes} style={style} ref={ref}>
             {children}
         </div>
     

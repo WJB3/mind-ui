@@ -1,97 +1,84 @@
-import React from 'react';
-import { classNames } from '../components/helper/className';
-import { ConfigContext } from '../ConfigContext';
+import React, { forwardRef, cloneElement, useRef, useCallback } from 'react';
+import ReactDOM from 'react-dom';
 import { CSSTransition } from 'react-transition-group';
+import { ConfigContext } from '../ConfigContext';
+import { classNames } from '../components/helper/className';
 import useForkRef from '../_utils/useForkRef';
-import "./index.scss";
 
-function getTranslateValue(direction, node) {
-    const rect = node.getBoundingClientRect();
+function getTranslateValue(direction,node){
+    const rect=node.getBoundingClientRect();
+    console.log(node)
     let transform;
-    if (node.fakeTransform) {
-        transform = node.fakeTransform;
-    } else {
-        const computedStyle = window.getComputedStyle(node);
-        transform = computedStyle.getPropertyValue('-webkit-transform') ||
-            computedStyle.getPropertyValue('transform');
+    if(node.fakeTransform){
+        transform=node.fakeTransform;
+    }else{
+        const computedStyle=window.getComputedStyle(node);
+        transform=computedStyle.getPropertyValue("-webkit-transform")||
+            compoutedStyle.getPropertyValue("transform");
     }
-    let offsetX = 0;
-    let offsetY = 0;
-    if (transform && transform !== 'none' && typeof transform === 'string') {
+    let offsetX=0;
+    let offsetY=0;
+    if(transform && transform!=="none"&&typeof transform==="string"){
         const transformValues = transform.split('(')[1].split(')')[0].split(',');
         offsetX = parseInt(transformValues[4], 10);
         offsetY = parseInt(transformValues[5], 10);
     }
-    if (direction === 'left') {
-        return `translateX(${window.innerWidth}px) translateX(-${rect.left - offsetX}px)`;
-    }
 
-    if (direction === 'right') {
-        return `translateX(-${rect.left + rect.width - offsetX}px)`;
-    }
-
-    if (direction === 'up') {
-        return `translateY(${window.innerHeight}px) translateY(-${rect.top - offsetY}px)`;
-    }
-
-    // direction === 'down'
-    return `translateY(-${rect.top + rect.height - offsetY}px)`;
-}
-
-export function setTranslateValue(direction, node) {
-    const transform = getTranslateValue(direction, node);
-    if (transform) {
-        node.style.webkitTransform = transform;
-        node.style.transform = transform;
+    if(direction==="left"){
+        return `translateX(${window.innerWidth}px) `
     }
 }
 
-const Slide = React.forwardRef((Props, ref) => {
+export function setTranslateValue(direction,node){
+
+}
+
+const Slide = forwardRef((props, ref) => {
 
     const {
         prefixCls: customizePrefixCls,
         children,
-        in: inProp,
-        direction = "down",
-        isDestory = true
-    } = Props;
+        in: inProps,
+        ...restProps
+    } = props;
 
-    const { getPrefixCls } = React.useContext(ConfigContext);
+    const childrenRef = useRef(null);
 
-    const prefixCls = getPrefixCls("animate-zoom", customizePrefixCls);
-
-    const childrenRef = React.useRef(null);
-
-    const handleOwnRef = React.useCallback((instance) => {
-        // #StrictMode ready
+    const handleOwnRef = useCallback((instance) => {
+        //findDOMNode是获取真实节点的
         childrenRef.current = ReactDOM.findDOMNode(instance);
     }, []);
 
-    const handleRefIntermediary = useForkRef(children.ref, handleOwnRef);
+    const handleRef = useForkRef(ref, handleOwnRef);
 
-    const handleRef = useForkRef(handleRefIntermediary, ref);
+    const { getPrefixCls } = React.useContext(ConfigContext);
+
+    const prefixCls = getPrefixCls("animate-slide", customizePrefixCls);
 
     const handleEnter = (_, isAppearing) => {
-        const node = childrenRef.current;
-        setTranslateValue(direction, node);
+        const node=childrenRef.current;
     }
 
-    return (
-        <CSSTransition
-            in={inProp}
-            timeout={300}
-            classNames={classNames(prefixCls)}
-            onEnter={handleEnter}
-            unmountOnExit={isDestory}
-        >
-            {
-                React.cloneElement(children, {
-                    ref: handleRef
+    return <CSSTransition
+        classNames={classNames(classNames(prefixCls))}
+        appear
+        in={inProps}
+        timeout={300}
+        onEnter={handleEnter}
+        {...restProps}
+    >
+        {
+            (state, childProps) => {
+                return cloneElement(children, {
+                    ref: handleRef,
+                    style: {
+                        visibility: state === 'exited' && !inProps ? "hidden" : undefined
+                    },
+                    ...childProps
                 })
             }
-        </CSSTransition>
-
-    )
+        }
+    </CSSTransition>
 });
 
 export default Slide;
