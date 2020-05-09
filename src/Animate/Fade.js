@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{cloneElement} from 'react';
 import { classNames } from '../components/helper/className';
 import { ConfigContext } from '../ConfigContext';
 import { CSSTransition } from 'react-transition-group';
@@ -8,11 +8,11 @@ const Fade = React.forwardRef((Props, ref) => {
     const {
         prefixCls: customizePrefixCls,
         children,
-        in: inProp,
-        isDestory=true,
+        in: inProps,
         onEnter,
         onExited,
-        onExit
+        onExit,
+        ...restProps
     } = Props;
 
     const { getPrefixCls } = React.useContext(ConfigContext);
@@ -43,16 +43,26 @@ const Fade = React.forwardRef((Props, ref) => {
 
     return (
         <CSSTransition
-            in={inProp}
+            in={inProps}
             timeout={300}
             appear
             classNames={classNames(prefixCls)}
-            unmountOnExit={isDestory}
             onEnter={handleEnter}
             onExit={handleExit}
             onExited={handleExited}
+            {...restProps}
         >
-            {children}
+            {
+            (state, childProps) => {
+                return cloneElement(children, {
+                    style: {
+                        visibility: state === 'exited' && !inProps ? "hidden" : undefined,
+                        ...children.props.style,
+                    },
+                    ...childProps
+                })
+            }
+        }
         </CSSTransition>
 
     )

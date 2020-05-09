@@ -2,7 +2,9 @@ import React, { useState, useContext, useEffect } from 'react';
 import { classNames } from './../components/helper/className';
 import { globalPrefix } from './../_config/variable';
 import RadioGroupContext from './RadioGroupContext';
+import useControlled from "./../_utils/useControlled";
 import transformString from './../_utils/transformString';
+
 import Radio from './Radio';
 import "./index.scss";
 
@@ -14,6 +16,7 @@ const RadioGroup = React.forwardRef((props, ref) => {
         disabled,
         children,
         value:valueProp,
+        defaultValue,
         name="radio-group",
         onChange,
         options
@@ -26,7 +29,10 @@ const RadioGroup = React.forwardRef((props, ref) => {
 
     const optionsChildren=React.useRef([]);
 
-    const [value, setValue] = useState(transformString(valueProp));
+    const [value, setValue] = useControlled({
+        controlled:transformString(valueProp),
+        default:defaultValue
+    });
 
     const handleChangeRadio=React.useCallback((event)=>{
         setValue(event.target.value);

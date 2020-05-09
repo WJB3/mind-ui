@@ -1,0 +1,83 @@
+@import "./../components/styles/variable.scss";
+
+$prefixCls:"#{$global-prefix}-avatar";
+
+.#{$prefixCls}{
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    font-variant: tabular-nums;
+    line-height: 1.5715;
+    list-style: none;
+    -webkit-font-feature-settings: 'tnum';
+    font-feature-settings: 'tnum';
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    color: #fff;
+    white-space: nowrap;
+    background: #ccc;
+    width: 32px;
+    height: 32px;
+    @include inlineflexbox();
+    border-radius: 50%;
+
+    img{
+        display: block;
+        width: 100%;
+        height: 100%;
+        -o-object-fit: cover;
+        object-fit: cover;
+    }
+
+    &-inner{
+        line-height: 1;
+    }
+
+    &-icon{
+        .wonderful-icon{
+            font-size: 20px;
+        }
+    }
+
+    &-lg{
+        width: 40px;
+        height: 40px;
+
+        .wonderful-icon{
+            font-size: 28px;
+        }
+    }
+
+    &-sm{
+        width: 24px;
+        height: 24px;
+
+        .wonderful-icon{
+            font-size: 16px;
+        }
+    }
+
+    &-square{
+        border-radius: 4px;
+        
+    }
+
+    &-string{
+        transform-origin: 0 center;
+        left: 50%;
+        position: absolute;
+    }
+
+    &-img{
+        background-color: rgba(255,255,255,1);
+    }
+}
+
+ 
+ 
+ 
+
+

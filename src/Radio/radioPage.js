@@ -95,7 +95,7 @@ class Page extends React.Component {
                 <Textlayout
                     components={<React.Fragment>
                         <div style={{ display: "flex", justifyContent: "center" }}>
-                            <Radio.Group onChange={this.handleChangeRadioThree} value={1}>
+                            <Radio.Group onChange={this.handleChangeRadioThree} defaultValue={1}>
                                 <Radio value={1}>A</Radio>
                                 <Radio value={2}>B</Radio>
                                 <Radio value={3}>C</Radio>
@@ -110,7 +110,7 @@ class Page extends React.Component {
                 <Textlayout
                     components={<React.Fragment>
                         <div style={{ display: "flex", justifyContent: "center" }}>
-                            <Radio.Group onChange={this.handleChangeRadioThree} value={1}>
+                            <Radio.Group onChange={(this.handleChangeRadioThree)} value={1}>
                                 <Radio value={1} labelPlacement="top">上</Radio>
                                 <Radio value={2} labelPlacement="bottom">下</Radio>
                                 <Radio value={3} labelPlacement="left">左</Radio>

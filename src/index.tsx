@@ -30,13 +30,17 @@ import selectPage from './Select/selectPage';
 import backdropPage from './BackDrop/backdropPage';
 import modalPage from './Modal/modalPage';
 import drawerPage from './Drawer/drawerPage';
+import avatarPage from './Avatar/avatarPage';
+import skeletonPage from './Skeleton/skeletonPage';
 import Demo from './Demo';
  
 import 'antd/dist/antd.css';
 import "./index.less";
 
 ReactDOM.render((<HashRouter>
-        <Route path="/" exact component={drawerPage} />
+        <Route path="/" exact component={skeletonPage} />
+        <Route path="/skeleton" exact component={skeletonPage} />
+        <Route path="/avatar" exact component={avatarPage} />
         <Route path="/drawer" exact component={drawerPage} />
         <Route path="/modal" exact component={modalPage} />
         <Route path="/backdrop" exact component={backdropPage} />

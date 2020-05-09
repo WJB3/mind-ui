@@ -12,6 +12,7 @@ $prefixCls:"#{$global-prefix}-space";
     &-horizontal{
         align-items: center;
         flex-wrap: wrap;
+        line-height: 0;
     }
 
     &-vertical{

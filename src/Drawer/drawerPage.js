@@ -5,10 +5,12 @@ import Description from '../components/text/Description';
 import SubTitle from '../components/text/SubTitle';
 import Textlayout from '../components/text/Textlayout';
 import DescriptionTable from '../components/text/DescriptionTable';
+import Radio from '../Radio';
 import Space from '../Space';
 import { Slide } from '../Animate';
 import Button from '../ButtonBase';
 import Paper from '@material-ui/core/Paper';
+import Drawer from './index';
 import Modal from './index';
 //import Popper from '../_utils/demo';
 //import  Notification from 'rc-notification';
@@ -19,6 +21,9 @@ class Page extends React.Component {
         visible: false,
         visible2: false,
         visible3: false,
+        placement: "top",
+        fatherVisible:false,
+        sonVisible:false
     }
 
     componentDidMount() {
@@ -27,7 +32,7 @@ class Page extends React.Component {
 
     render() {
 
-        const { visible, visible2, visible3 } = this.state;
+        const { visible, placement, visible2,fatherVisible, sonVisible} = this.state;
 
         return (
             <Layout >
@@ -42,21 +47,82 @@ class Page extends React.Component {
                 <Textlayout
                     componentClassName={"button-page-demo"}
                     components={<React.Fragment>
-                        <Space size={"large"}>
-                            <Button type="primary" onClick={() => this.setState({ visible: !visible })}>弹窗</Button>
-                            <Slide direction="right" in={visible}   >
-                                <Paper elevation={4} >
-                                    {"AAAAAAA"}
-                                </Paper>
-                            </Slide>
-                        </Space>
+
+                        <Button type="primary" onClick={() => this.setState({ visible: !visible })}>弹窗</Button>
+                        <Drawer
+                            visible={visible}
+                            title="Basic Drawer"
+                            placement="right"
+                            closable={false}
+                            onClose={() => this.setState({ visible: !visible })}
+                        >
+                            <p>Some contents...</p>
+                            <p>Some contents...</p>
+                            <p>Some contents...</p>
+                        </Drawer>
+
                     </React.Fragment>}
                     title={"基本用法"}
-                    description={"一个简单的 loading 状态。"}
+                    description={"基础抽屉，点击触发按钮抽屉从右滑出，点击遮罩区关闭。"}
                 ></Textlayout>
 
+                <Textlayout
+                    componentClassName={"button-page-demo"}
+                    components={<React.Fragment>
+                        <Radio.Group defaultValue={placement} onChange={(e, v) => this.setState({ placement: v })}>
+                            <Radio value="top">top</Radio>
+                            <Radio value="right">right</Radio>
+                            <Radio value="bottom">bottom</Radio>
+                            <Radio value="left">left</Radio>
+                        </Radio.Group>
+                        <Button type="primary" onClick={() => this.setState({ visible2: !visible2 })}>弹窗</Button>
+                        <Drawer
+                            title="Basic Drawer"
+                            placement={placement}
+                            closable={false}
+                            onClose={() => this.setState({ visible2: false })}
+                            visible={this.state.visible2}
+                        >
+                            <p>Some contents...</p>
+                            <p>Some contents...</p>
+                            <p>Some contents...</p>
+                        </Drawer>
 
-               
+                    </React.Fragment>}
+                    title={"基本用法"}
+                    description={"基础抽屉，点击触发按钮抽屉从右滑出，点击遮罩区关闭。"}
+                ></Textlayout>
+
+                <Textlayout
+                    componentClassName={"button-page-demo"}
+                    components={<React.Fragment>
+                        <Button type="primary" onClick={()=>this.setState({fatherVisible:true})}>
+                            Open drawer
+                        </Button>
+                        <Drawer
+                            title="Multi-level drawer"
+                            width={520}
+                            closable={false}
+                            onClose={()=>this.setState({fatherVisible:false})}
+                            visible={fatherVisible}
+                        >
+                            <Button type="primary" onClick={()=>this.setState({sonVisible:true})}>
+                                Two-level drawer
+                            </Button>
+                            <Drawer
+                                title="Two-level Drawer"
+                                width={320}
+                                closable={false}
+                                onClose={()=>this.setState({sonVisible:false})}
+                                visible={sonVisible}
+                            >
+                                This is two-level drawer
+                            </Drawer>
+                        </Drawer>
+                    </React.Fragment>}
+                    title={"基本用法"}
+                    description={"基础抽屉，点击触发按钮抽屉从右滑出，点击遮罩区关闭。"}
+                ></Textlayout>
 
                 <SubTitle>API</SubTitle>
                 <Description>通过设置 Button 的属性来产生不同的按钮样式，推荐顺序为：type -> shape -> size -> loading -> disabled。</Description>

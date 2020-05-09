@@ -5,6 +5,12 @@
     justify-content:$justify-content-position;
     align-items:$align-items-position;
 }
+
+@mixin inlineflexbox($justify-content-position:center,$align-items-position:center){
+    display:inline-flex;
+    justify-content:$justify-content-position;
+    align-items:$align-items-position;
+}
 //定义文字内的大小写
 @mixin textTransform($mode:uppercase){
     text-transform: $mode;

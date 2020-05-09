@@ -1,6 +1,6 @@
 @import "./../components/styles/variable.scss";
 
-$prefixCls:"#{$global-prefix}-modal";
+$prefixCls:"#{$global-prefix}-drawer";
  
 
 .#{$prefixCls}{
@@ -10,12 +10,35 @@ $prefixCls:"#{$global-prefix}-modal";
     border: 0;
     border-radius: 4px;
     pointer-events: auto;
-    @include boxShadowLevel(4);
-    top:100px;
+    @include boxShadowLevel(10);
     margin:0 auto;
 
-    &-centered{
-        top:0px;
+    &-right{
+        height:100%;
+        position: absolute;
+        right:0;
+        border-radius: 4px 0 0 4px;
+    }
+
+    &-left{
+        height:100%;
+        position: absolute;
+        left:0;
+        border-radius: 0 4px 4px 0;
+    }
+
+    &-top{
+        width:100%;
+        position: absolute;
+        top:0;
+        border-radius: 0 0 4px 4px;
+    }
+
+    &-bottom{
+        width:100%;
+        position: absolute;
+        bottom:0;
+        border-radius: 4px 4px 0 0;
     }
 
     &-backdrop-nomask{

@@ -23,19 +23,23 @@ function getTranslateValue(direction,node){
         offsetY = parseInt(transformValues[5], 10);
     }
 
-    if(direction==="left"){
+    if(direction==="right"){
         return `translateX(${window.innerWidth}px)`;
     }
 
-    if(direction==="right"){
+    if(direction==="left"){
         return `translateX(-${rect.left+rect.width-offsetX}px)`;
     }
 
-    if(direction==="up"){
+    if(direction==="top"){
+        return `translateY(-${rect.top+rect.height-offsetY}px)`;
+    }
+
+    if(direction==="bottom"){
         return `translateY(${window.innerHeight}px)`;
     }
 
-    return `translateY(-${rect.top+rect.height-offsetY}px)`
+    return `translateX(-${rect.top+rect.height-offsetY}px)`
 }
 
 export function setTranslateValue(direction,node){
@@ -137,7 +141,8 @@ const Slide = forwardRef((props, ref) => {
                 return cloneElement(children, {
                     ref: handleRef,
                     style: {
-                        visibility: state === 'exited' && !inProps ? "hidden" : undefined
+                        visibility: state === 'exited' && !inProps ? "hidden" : undefined,
+                        ...children.props.style,
                     },
                     ...childProps
                 })
