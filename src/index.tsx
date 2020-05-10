@@ -32,13 +32,15 @@ import modalPage from './Modal/modalPage';
 import drawerPage from './Drawer/drawerPage';
 import avatarPage from './Avatar/avatarPage';
 import skeletonPage from './Skeleton/skeletonPage';
+import treePage from './Tree/treePage';
 import Demo from './Demo';
  
 import 'antd/dist/antd.css';
 import "./index.less";
 
 ReactDOM.render((<HashRouter>
-        <Route path="/" exact component={skeletonPage} />
+        <Route path="/" exact component={treePage} />
+        <Route path="/tree" exact component={treePage} />
         <Route path="/skeleton" exact component={skeletonPage} />
         <Route path="/avatar" exact component={avatarPage} />
         <Route path="/drawer" exact component={drawerPage} />
