@@ -7,6 +7,7 @@ import Textlayout from '../components/text/Textlayout';
 import DescriptionTable from '../components/text/DescriptionTable';
 import Skeleton from './index';
 import { Tree as ATree } from 'antd';
+import Tree from './index';
 
 const treeData = [
     {
@@ -18,20 +19,18 @@ const treeData = [
                 key: '0-0-0',
                 children: [
                     {
-                        title: 'leaf',
+                        title: 'parent 2-0',
                         key: '0-0-0-0',
+                        children: [
+                            {
+                                title: 'left',
+                                key: '0-0-0-0-0',
+                            }
+                        ],
                     },
-                    {
-                        title: 'leaf',
-                        key: '0-0-0-1',
-                    },
+                    
                 ],
-            },
-            {
-                title: 'parent 1-1',
-                key: '0-0-1',
-                children: [{ title: <span style={{ color: '#1890ff' }}>sss</span>, key: '0-0-1-0' }],
-            },
+            },           
         ],
     },
 ];
@@ -68,9 +67,10 @@ class Page extends React.Component {
                             treeData={treeData}
                         />
 
-                        <ATree
+                        <Tree
                             treeData={treeData}
                         />
+ 
                     </React.Fragment>}
                     title={"基本用法"}
                     description={"最简单的占位效果。"}

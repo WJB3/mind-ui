@@ -33,6 +33,7 @@
     "react-dom": "^16.12.0",
     "react-router": "^5.1.2",
     "react-router-dom": "^5.1.2",
+    "react-slick": "^0.26.1",
     "react-touch-ripple": "^0.2.1",
     "react-transition-group": "^4.3.0",
     "rimraf": "^3.0.2"

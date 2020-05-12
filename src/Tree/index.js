@@ -1,10 +1,48 @@
 import React, { useCallback,useState,useEffect } from 'react';
 import { classNames } from '../components/helper/className';
 import { ConfigContext } from '../ConfigContext';
-import Avatar from '../Avatar';
 import "./index.scss";
 
-const Tree = (Props) => {
+const treeData = [
+    {
+        title: 'parent 1',
+        key: '0-0',
+        children: [
+            {
+                title: 'parent 1-0',
+                key: '0-0-0',
+                children: [
+                    {
+                        title: 'parent 2-0',
+                        key: '0-0-0-0',
+                        children: [
+                            {
+                                title: 'left',
+                                key: '0-0-0-0-0',
+                            }
+                        ],
+                    },
+                    
+                ],
+            },           
+        ],
+    },
+];
+
+const getNodeMap=(node,parentNode)=>{
+    node.parentNode=parentNode;
+}
+
+const getTreeMap=(treeData)=>{
+    if(treeData instanceof Array) return ;
+    const treeMap=[];
+    treeData.forEach(node=>{
+        treeMap.push(...getNodeMap(node,treeData));
+    });
+    return treeMap;
+}
+
+const Tree = (props) => {
 
     const {
         prefixCls: customizePrefixCls,//自定义class类名
@@ -19,19 +57,30 @@ const Tree = (Props) => {
         defaultExpandedKeys,//默认展开制定的树节点
         defaultExpandParent=true,//默认展开父节点
         disabled,//将树禁用
-        
+        treeData,
         ...restProps
-    } = Props;
+    } = props;
  
     const { getPrefixCls } = React.useContext(ConfigContext);
 
-    const prefixCls = getPrefixCls("skeleton", customizePrefixCls);
+    const prefixCls = getPrefixCls("tree", customizePrefixCls);
 
-    
+    const renderTreeItem=React.useCallback((data=[])=>{
+        return data.map((item,index)=>{
+            if(item.children){
+                 
+            }
+        })
+    },[treeData]);
 
-   
-    return  <div>
-        
+    return  <div className={classNames(
+        prefixCls
+    )}>
+        <div className={classNames(`${prefixCls}-list`)}>
+            <div className={classNames(`${prefixCls}-list-holder-inner`)}>
+                {renderTreeItem(treeData)}
+            </div>
+        </div>
     </div>
 }
 
