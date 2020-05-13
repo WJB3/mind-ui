@@ -22,47 +22,12 @@ export default class Slider extends React.Component {
 
   render() {
     var settings;
-
-    // force scrolling by one if centerMode is on
-    if (settings.centerMode) {
-      
-      settings.slidesToScroll = 1;
-    }
-    // force showing one slide and scrolling by one if the fade mode is on
-    if (settings.fade) {
-     
-      
-      settings.slidesToShow = 1;
-      settings.slidesToScroll = 1;
-    }
-
-    // makes sure that children is an array, even when there is only 1 child
+ 
     let children = React.Children.toArray(this.props.children);
-
-    // Children may contain false or null, so we should filter them
-    // children may also contain string filled with spaces (in certain cases where we use jsx strings)
-    children = children.filter(child => {
-      if (typeof child === "string") {
-        return !!child.trim();
-      }
-      return !!child;
-    });
-
-    // rows and slidesPerRow logic is handled here
-    if (
-      settings.variableWidth &&
-      (settings.rows > 1 || settings.slidesPerRow > 1)
-    ) {
-       
-      settings.variableWidth = false;
-    }
+    
     let newChildren = [];
     let currentWidth = null;
-    for (
-      let i = 0;
-      i < children.length;
-      i += settings.rows * settings.slidesPerRow
-    ) {
+    for (let i = 0;i < children.length;i += settings.rows * settings.slidesPerRow) {
       let newSlide = [];
       for (
         let j = i;
@@ -105,7 +70,7 @@ export default class Slider extends React.Component {
     } else if (newChildren.length <= settings.slidesToShow) {
       settings.unslick = true;
     }
-    
+
     return (
       <InnerSlider
         style={this.props.style}

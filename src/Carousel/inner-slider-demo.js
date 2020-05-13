@@ -95,11 +95,7 @@ export class InnerSlider extends React.Component {
         slide.onblur = this.props.pauseOnFocus ? this.onSlideBlur : null;
       }
     );
-    if (window.addEventListener) {
-      window.addEventListener("resize", this.onWindowResized);
-    } else {
-      window.attachEvent("onresize", this.onWindowResized);
-    }
+    
   };
   componentWillUnmount = () => {
     if (this.animationEndCallback) {
@@ -112,11 +108,7 @@ export class InnerSlider extends React.Component {
       this.callbackTimers.forEach(timer => clearTimeout(timer));
       this.callbackTimers = [];
     }
-    if (window.addEventListener) {
-      window.removeEventListener("resize", this.onWindowResized);
-    } else {
-      window.detachEvent("onresize", this.onWindowResized);
-    }
+    
     if (this.autoplayTimer) {
       clearInterval(this.autoplayTimer);
     }
