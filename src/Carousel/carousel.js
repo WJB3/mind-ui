@@ -19,13 +19,12 @@ class Carousel extends React.Component {
     super(props)
 
     this.state = {
-      frames: [].concat(props.frames || props.children || []),
+      frames: [].concat(props.children || []),
       current: 0
     }
 
     this.mounted = false
     this.debounceTimeoutId = null
-    this.onTouchStart = this.onTouchStart.bind(this)
     this.onTouchMove = this.onTouchMove.bind(this)
     this.onTouchEnd = this.onTouchEnd.bind(this)
     this.onResize = this.onResize.bind(this)
@@ -33,18 +32,14 @@ class Carousel extends React.Component {
     this.prev = this.prev.bind(this)
     this.next = this.next.bind(this)
 
-    if (props.loop === false && props.auto) {
-      console.warn('[re-carousel] Auto-slide only works in loop mode.')
-    }
+     
   }
 
   componentDidMount () {
     this.mounted = true
     this.prepareAutoSlide()
     this.hideFrames()
-
-    this.refs.wrapper.addEventListener('touchmove', this.onTouchMove, {capture: true})
-    this.refs.wrapper.addEventListener('touchend', this.onTouchEnd, {capture: true})
+ 
     window.addEventListener('resize', this.onResize);
   }
 
@@ -52,8 +47,7 @@ class Carousel extends React.Component {
     this.mounted = false
     this.clearAutoTimeout()
 
-    this.refs.wrapper.removeEventListener('touchmove', this.onTouchMove, {capture: true})
-    this.refs.wrapper.removeEventListener('touchend', this.onTouchEnd, {capture: true})
+   
     window.removeEventListener('resize', this.onResize);
   }
 
@@ -89,26 +83,7 @@ class Carousel extends React.Component {
     }, 25);
   }
 
-  onTouchStart (e) {
-    if (this.state.total < 2) return
-    // e.preventDefault()
-
-    this.clearAutoTimeout()
-    this.updateFrameSize()
-    this.prepareSiblingFrames()
-
-    const { pageX, pageY } = (e.touches && e.touches[0]) || e
-    this.setState({
-      startX: pageX,
-      startY: pageY,
-      deltaX: 0,
-      deltaY: 0
-    })
-
-    this.refs.wrapper.addEventListener('mousemove', this.onTouchMove, {capture: true})
-    this.refs.wrapper.addEventListener('mouseup', this.onTouchEnd, {capture: true})
-    this.refs.wrapper.addEventListener('mouseleave', this.onTouchEnd, {capture: true})
-  }
+   
 
   onTouchMove (e) {
     if (e.touches && e.touches.length > 1) return
@@ -371,36 +346,23 @@ class Carousel extends React.Component {
 
   render () {
     const { frames, current } = this.state
-    const { widgets, axis, loop, auto, interval } = this.props
-    const wrapperStyle = objectAssign(styles.wrapper, this.props.style)
+    const { axis, loop, auto, interval } = this.props
+    const wrapperStyle = objectAssign(styles.wrapper)
 
     return (
       <div style={wrapperStyle}>
         <div
           ref='wrapper'
           style={objectAssign({overflow: 'hidden'}, wrapperStyle)}
-          onTouchStart={this.onTouchStart}
-          className={this.props.className}
-          onMouseDown={this.onTouchStart} >
+          >
           {
             frames.map((frame, i) => {
               const frameStyle = objectAssign({zIndex: 99 - i}, styles.frame)
               return <div ref={'f' + i} key={i} style={frameStyle}>{frame}</div>
             })
           }
-          { this.props.frames && this.props.children }
         </div>
-        {
-          widgets && [].concat(widgets).map((Widget, i) => (
-            <Widget
-              key={i}
-              index={current}
-              total={frames.length}
-              prevHandler={this.prev}
-              nextHandler={this.next}
-              axis={axis} loop={loop} auto={auto} interval={interval} />
-          ))
-        }
+       
       </div>
     )
   }
@@ -412,7 +374,6 @@ Carousel.propTypes = {
   loop: PropTypes.bool,
   interval: PropTypes.number,
   duration: PropTypes.number,
-  widgets: PropTypes.arrayOf(PropTypes.func),
   frames: PropTypes.arrayOf(PropTypes.element),
   style: PropTypes.object,
   minMove: PropTypes.number,
