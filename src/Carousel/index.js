@@ -31,7 +31,10 @@ const Carousel = forwardRef((props,ref) => {
     },[]);
 
     const setDimensions=React.useCallback(()=>{
-        console.log(frameRef.current.offsetWidth)
+        
+        setTimeout(()=>{
+            console.log(frameRef.current.offsetWidth)
+        },0)
     },[frameRef])
 
     return (

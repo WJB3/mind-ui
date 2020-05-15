@@ -34,13 +34,15 @@ import avatarPage from './Avatar/avatarPage';
 import skeletonPage from './Skeleton/skeletonPage';
 import treePage from './Tree/treePage';
 import carouselPage from './Carousel/carouselPage';
+import stepsPage from './Steps/stepsPage';
 import Demo from './Demo';
  
 import 'antd/dist/antd.css';
 import "./index.less";
 
 ReactDOM.render((<HashRouter>
-        <Route path="/" exact component={carouselPage} />
+        <Route path="/" exact component={stepsPage} />
+        <Route path="/steps" exact component={stepsPage} />
         <Route path="/carousel" exact component={carouselPage} />
         <Route path="/tree" exact component={treePage} />
         <Route path="/skeleton" exact component={skeletonPage} />
