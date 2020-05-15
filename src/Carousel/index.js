@@ -27,13 +27,12 @@ const Carousel = forwardRef((props,ref) => {
     const [itemWidth,setItemWidth]=useState(0);
     
     useEffect(()=>{
-        console.log("useEffect");
-        console.log(frameRef.current.clientWidth);
-        console.log(window.getComputedStyle(frameRef.current));
-        let itemWidth=Number(window.getComputedStyle(frameRef.current).width.replace("px",""));
-        console.log(itemWidth)
-        setItemWidth(itemWidth);
-    },[])
+        setDimensions()
+    },[]);
+
+    const setDimensions=React.useCallback(()=>{
+        console.log(frameRef.current.offsetWidth)
+    },[frameRef])
 
     return (
         <div className={classes} {...restProps} style={style} ref={ref}>
@@ -48,7 +47,6 @@ const Carousel = forwardRef((props,ref) => {
                                         {
                                             style:{
                                                 ...child.props.style,
-                                                
                                             }
                                         }
                                     )

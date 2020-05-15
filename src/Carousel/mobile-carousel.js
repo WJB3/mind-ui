@@ -50,8 +50,7 @@ export default class Carousel extends React.Component {
       prefixCls,
       dotActiveStyle,
       dotStyle,
-      className,
-      vertical,
+      className
     } = restProps;
 
     const newProps = {
@@ -94,9 +93,7 @@ export default class Carousel extends React.Component {
       ];
     }
 
-    const wrapCls = classnames(prefixCls, className, {
-      [`${prefixCls}-vertical`]: vertical,
-    });
+    const wrapCls = classnames(prefixCls, className);
 
     return (
       <ReactCarousel

@@ -5,7 +5,8 @@ import Description from './../components/text/Description';
 import SubTitle from './../components/text/SubTitle';
 import Textlayout from './../components/text/Textlayout';
 import DescriptionTable from './../components/text/DescriptionTable';
-import Carousel from './mobile-carousel';
+// import Carousel from './mobile-carousel';
+import Carousel from './index';
 import Button from '../ButtonBase';
 
 class ButtonPage extends React.Component {
