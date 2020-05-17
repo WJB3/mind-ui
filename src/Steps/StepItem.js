@@ -17,6 +17,7 @@ const StepItem = (Props) => {
         isWait,
         isActive,
         current,
+        isLast,
         ...restProps
     } = Props;
 
@@ -26,7 +27,9 @@ const StepItem = (Props) => {
      
     const classes = classNames(prefixCls,className, {
         [`isWait`]:isWait,
-        [`isActive`]:isActive
+        [`isActive`]:isActive,
+        ['isFinish']:isFinish,
+        ['isLast']:isLast
     });
 
     const getIcon=useCallback(()=>{
@@ -45,10 +48,14 @@ const StepItem = (Props) => {
                     {getIcon()}
                 </div>
                 <div className={classNames(`${prefixCls}-content`)}>
-                    <div className={classNames(`${prefixCls}-title`)}>{title}</div>
-                    <div className={classNames(`${prefixCls}-description`)}>
+                    {title && <div className={classNames(`${prefixCls}-title`)}>{title}
+                        {subTitle &&<div className={classNames(`${prefixCls}-subTitle`)}>
+                            {subTitle}
+                        </div>}
+                    </div>}
+                    {description && <div className={classNames(`${prefixCls}-description`)}>
                         {description}
-                    </div>
+                    </div>}
                 </div>
             </div>
         </div>

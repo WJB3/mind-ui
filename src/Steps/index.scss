@@ -17,6 +17,37 @@ $prefixClsItem:"#{$global-prefix}-steps-item";
     width: 100%;
     font-size: 0;
 
+    &-small{
+        .#{$prefixClsItem}{
+            margin-right:8px;
+        }
+        .#{$prefixClsItem}-icon{
+            .wonderful-icon{
+                font-size: 24px;
+            }
+            .number{
+                width:24px;
+                height:24px;
+                line-height: 24px;
+                color:white;
+                font-size: 14px;
+                text-align: center;
+                border-radius: 50%;
+                font-weight: 600;
+            }
+        }
+        .#{$prefixClsItem}-title{
+            line-height:24px;
+            padding-right:4px;
+
+            &::after{
+                     
+                top:12px;
+                
+            }
+        }
+    }
+
     &-item{
         position: relative;
         display: inline-block;
@@ -26,6 +57,18 @@ $prefixClsItem:"#{$global-prefix}-steps-item";
         margin-right: 16px;
         white-space: nowrap;
 
+        &.isLast{
+            .#{$prefixClsItem}-title{
+                &::after{
+                     
+                    background: white!important;
+                    
+                }
+              
+            }
+        }
+        
+
         &.isWait{
             .#{$prefixClsItem}-icon{
                 .number{
@@ -33,20 +76,48 @@ $prefixClsItem:"#{$global-prefix}-steps-item";
                 }
                 
             }
+
+            .#{$prefixClsItem}-title{
+                color:rgba(0,0,0,.45);
+                
+            }
+
+            .#{$prefixClsItem}-subTitle{
+                color:rgba(0,0,0,.45);
+            }
            
         }
 
         &.isActive{
+
+            .#{$prefixClsItem}-title{
+                color:rgba(0,0,0,.85);
+                font-weight: 600;
+            }
+
             .#{$prefixClsItem}-icon{
                 .number{
-                    background-color: $info-color;
+                    background-color: $primary-color;
                 }
               
             }
            
         }
 
+        &.isFinish{
+            .#{$prefixClsItem}-title{
+                &::after{
+                     
+                    background: $primary-color;
+                    
+                }
+              
+            }
+        }
+
         &-icon{
+            display: inline-block;
+            margin-right:8px;
            
             .wonderful-icon{
                 color:$success-color;
@@ -77,8 +148,34 @@ $prefixClsItem:"#{$global-prefix}-steps-item";
             display: inline-block;
             padding-right: 16px;
             color: rgba(0,0,0,.65);
-            font-size: 18px;
+            font-size: 16px;
             line-height: 36px;
+
+            &::after{
+                position: absolute;
+                top: 16px;
+                left: 100%;
+                display: block;
+                width: 9999px;
+                height: 1px;
+                background: #f0f0f0;
+                content: '';
+            }
+        }
+
+        &-subTitle{
+            display: inline;
+            margin-left: 8px;
+            color: rgba(0,0,0,.45);
+            font-weight: 400;
+            font-size: 14px;
+        }
+
+        &-description{
+            font-size:14px;
+            color:rgba(0,0,0,.45);
+            max-width: 140px;
+            white-space: normal;
         }
     }
 }

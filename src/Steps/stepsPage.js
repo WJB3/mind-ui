@@ -3,18 +3,26 @@ import Layout from './../layout/index';
 import Title from './../components/text/Title';
 import Description from './../components/text/Description';
 import SubTitle from './../components/text/SubTitle';
-import Button from '../ButtonBase';
 import Steps from './index';
-
+import Button from '../ButtonBase';
 import Textlayout from './../components/text/Textlayout';
 import DescriptionTable from './../components/text/DescriptionTable';
 //import  Notification from 'rc-notification';
-const StepsItem=Steps.Item;
+const StepsItem = Steps.Item;
 
 class Page extends React.Component {
 
 
+    state={
+        current:0
+    }
+
     render() {
+
+        const rawHtml = `<span>富文本内容<i>斜体</i><b>加粗</b></span>`
+        const rawHtmlData = {
+            __html: rawHtml//必须是这种格式
+        }
 
         return (
             <Layout >
@@ -31,7 +39,41 @@ class Page extends React.Component {
                             <StepsItem title="Finished" description="This is a description." />
                             <StepsItem title="In Progress" subTitle="Left 00:00:08" description="This is a description." />
                             <StepsItem title="Waiting" description="This is a description." />
+                            <StepsItem title="Waiting" description="This is a description." />
                         </Steps>
+
+
+
+                    </React.Fragment>}
+                    title={"按钮类型"}
+                    description={"按钮有六种类型：主按钮、次按钮、危险按钮、提示按钮、警告按钮、禁用按钮。主按钮在同一个操作区域最多出现一次。"}
+                ></Textlayout>
+
+                <Textlayout
+                    componentClassName={"button-page-demo"}
+                    components={<React.Fragment>
+                        <Steps size="small" current={1}>
+                            <StepsItem title="Finished" />
+                            <StepsItem title="In Progress" />
+                            <StepsItem title="Waiting" />
+                            <StepsItem title="Waiting" />
+                        </Steps>
+                    </React.Fragment>}
+                    title={"按钮类型"}
+                    description={"按钮有六种类型：主按钮、次按钮、危险按钮、提示按钮、警告按钮、禁用按钮。主按钮在同一个操作区域最多出现一次。"}
+                ></Textlayout>
+
+                <Textlayout
+                    componentClassName={"button-page-demo"}
+                    components={<React.Fragment>
+                        <Steps size="small" current={this.state.current}>
+                            <StepsItem title="Finished" />
+                            <StepsItem title="In Progress" />
+                            <StepsItem title="Waiting" />
+                            <StepsItem title="Waiting" />
+                        </Steps>
+                        <Button type="primary" onClick={()=>this.setState({current:this.state.current+1})}>下一步</Button>
+                        <Button type="primary" onClick={()=>this.setState({current:this.state.current-1})}>上一步</Button>
                     </React.Fragment>}
                     title={"按钮类型"}
                     description={"按钮有六种类型：主按钮、次按钮、危险按钮、提示按钮、警告按钮、禁用按钮。主按钮在同一个操作区域最多出现一次。"}

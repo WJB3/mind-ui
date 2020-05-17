@@ -39,21 +39,17 @@ class ButtonPage extends React.Component {
                     componentClassName={"button-page-demo"}
                     components={<React.Fragment>
                         <Carousel
-
-                            autoplay={false}
-                            infinite
-                            beforeChange={(from, to) => console.log(`slide from ${from} to ${to}`)}
-                            afterChange={index => console.log('slide to', index)}
+ 
                         >
                             {
                                 ['1', '2', '3'].map(val => (
-                                     <div style={{width:'100%',height:'100%',background:"green",fontSize:50,color:"white"}}>
+                                     <div key={val} style={{width:'100%',height:'100%',background:"green",fontSize:50,color:"white"}}>
                                         {val}
                                      </div>
                                 ))
                             }
                         </Carousel>
-                        <Button type="primary" onClick={() => this.CRef.next()}>下一步</Button>
+                       
 
                     </React.Fragment>}
                     title={"水平分割线"}

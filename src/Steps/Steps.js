@@ -7,7 +7,7 @@ const Steps = (Props) => {
  
     const {
         prefixCls:customizePrefixCls,
-        size="small",
+        size,
         className,
         children:childrenProps,
         direction="horizontal",
@@ -20,7 +20,8 @@ const Steps = (Props) => {
     const prefixCls=getPrefixCls("steps",customizePrefixCls);
      
     const classes = classNames(prefixCls,className,{
-        [`${prefixCls}-${direction}`]:direction
+        [`${prefixCls}-${direction}`]:direction,
+        [`${prefixCls}-${size}`]:size
     });
 
 
@@ -37,7 +38,8 @@ const Steps = (Props) => {
                                     isFinish:current>index,//是否是结束
                                     isWait:current<index,//是否是等待
                                     isActive:current===index,//是否是激活
-                                    current:index+1
+                                    current:index+1,
+                                    isLast:index===React.Children.count(childrenProps)-1
                                 }
                     )
                 })
