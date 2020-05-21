@@ -6,7 +6,8 @@ import SubTitle from '../components/text/SubTitle';
 import Textlayout from '../components/text/Textlayout';
 import DescriptionTable from '../components/text/DescriptionTable';
 import Skeleton from './index';
-import Tree from './antd-tree/index';
+import Tree from './antd-tree-demo/index';
+import MyTree from './index';
  
 // import Tree from './index';
 
@@ -49,7 +50,11 @@ class Page extends React.Component {
 
     render() {
 
-        const { visible, visible2, visible3 } = this.state;
+        const { visible, visible2, visible3,demo=true } = this.state;
+
+        if(demo){
+            return  <MyTree treeData={treeData}/>
+        }
 
         return (
             <Layout >
@@ -68,10 +73,12 @@ class Page extends React.Component {
                             treeData={treeData}
                         /> */}
 
-                        <Tree
+                        {/* <Tree
                             treeData={treeData}
                              
-                        />
+                        /> */}
+
+                       
  
                     </React.Fragment>}
                     title={"基本用法"}

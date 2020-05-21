@@ -41,7 +41,7 @@ import 'antd/dist/antd.css';
 import "./index.less";
 
 ReactDOM.render((<HashRouter>
-        <Route path="/" exact component={stepsPage} />
+        <Route path="/" exact component={treePage} />
         <Route path="/steps" exact component={stepsPage} />
         <Route path="/carousel" exact component={carouselPage} />
         <Route path="/tree" exact component={treePage} />

@@ -102,6 +102,7 @@ class Tree extends React.Component {
     } else if (needSync('children')) {
      
       treeData = convertTreeToData(props.children);
+      console.log(treeData)
 
     }
 
