@@ -162,6 +162,7 @@ class Tree extends React.Component {
     const { treeData } = this.state;
 
     const flattenNodes  = flattenTreeData(treeData, expandedKeys);
+    console.log(flattenNodes);
     this.setUncontrolledState(
       {
         expandedKeys,

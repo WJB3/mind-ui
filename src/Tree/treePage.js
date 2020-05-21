@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import Layout from '../layout/index';
 import Title from '../components/text/Title';
 import Description from '../components/text/Description';
@@ -53,7 +53,10 @@ class Page extends React.Component {
         const { visible, visible2, visible3,demo=true } = this.state;
 
         if(demo){
-            return  <MyTree treeData={treeData}/>
+            return  <Fragment>
+                {/* <Tree treeData={treeData}/> */}
+                <MyTree treeData={treeData}/>
+            </Fragment>
         }
 
         return (

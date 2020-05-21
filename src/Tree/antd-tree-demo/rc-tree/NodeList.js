@@ -127,8 +127,7 @@ const RefNodeList = (props, ref) => {
     keyEntities,
   };
 
-  console.log(data);
-
+ 
   return (
    
       <VirtualList 
