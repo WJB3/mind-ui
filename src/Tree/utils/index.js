@@ -182,3 +182,28 @@ export function traverseDataNodes(dataNodes,callback) {//递归展示上下级�
 
   processNode(null);
 }
+
+export function getTreeNodeProps(key,{expandedKeys}) {
+
+  const treeNodeProps = {
+    eventKey: key,
+    expanded: expandedKeys.indexOf(key) !== -1,
+
+  };
+
+  return treeNodeProps;
+}
+
+export function convertNodePropsToEventData(props) {
+  const {
+    expanded,
+    data,
+  } = props;
+
+  const eventData = {
+    expanded,
+    ...data
+  };
+
+  return eventData;
+}

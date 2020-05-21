@@ -48,49 +48,8 @@ const MotionTreeNode = (
     [],
   );
 
-  if (motionNodes) {
-    return (
-      <CSSMotion
-        ref={ref}
-        visible={visible}
-        {...motion}
-        motionAppear={motionType === 'show'}
-        onAppearEnd={onMotionEnd}
-        onLeaveEnd={onMotionEnd}
-      >
-        {({ className: motionClassName, style: motionStyle }, motionRef) => (
-          <div
-            ref={motionRef}
-            className={classNames(`${prefixCls}-treenode-motion`, motionClassName)}
-            style={motionStyle}
-          >
-            {motionNodes.map((treeNode) => {
-              const {
-                data: { key, ...restProps },
-                isStart,
-                isEnd,
-              } = treeNode;
-              delete restProps.children;
-
-              const treeNodeProps = getTreeNodeProps(key, treeNodeRequiredProps);
-
-              return (
-                <TreeNode
-                  {...restProps}
-                  {...treeNodeProps}
-                  active={active}
-                  data={treeNode.data}
-                  key={key}
-                  isStart={isStart}
-                  isEnd={isEnd}
-                />
-              );
-            })}
-          </div>
-        )}
-      </CSSMotion>
-    );
-  }
+  console.log(props)
+  
   return <TreeNode domRef={ref} className={className} style={style} {...props} active={active} />;
 };
 

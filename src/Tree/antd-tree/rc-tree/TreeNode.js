@@ -435,6 +435,8 @@ class InternalTreeNode extends React.Component  {
     const dataOrAriaAttributeProps = getDataAndAria(otherProps);
     const { level } = keyEntities[eventKey] || {};
 
+    console.log(expanded)
+
     return (
       <div
         ref={domRef}

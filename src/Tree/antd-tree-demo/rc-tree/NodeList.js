@@ -134,6 +134,7 @@ const RefNodeList = (props, ref) => {
         data={data}
       >
         {(treeNode) => {
+          console.log(treeNode)
           const {
             pos,
             data: { key, ...restProps },
@@ -144,7 +145,8 @@ const RefNodeList = (props, ref) => {
           delete restProps.children;
 
           const treeNodeProps = getTreeNodeProps(mergedKey, treeNodeRequiredProps);
-
+          console.log(restProps)
+          console.log(treeNodeProps)
           return (
             <MotionTreeNode
               {...restProps}
