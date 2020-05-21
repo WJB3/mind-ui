@@ -6,6 +6,7 @@ import setRef from '../_utils/setRef';
 import Button from '../ButtonBase';
 
 import "./index.scss";
+import { auto } from '@popperjs/core';
 
 const Carousel = forwardRef((props,ref) => {
 
@@ -14,7 +15,7 @@ const Carousel = forwardRef((props,ref) => {
         className,
         children:childrenProps,
         style,
-        ...restProps
+        autoPlay
     } = props;
 
     const { getPrefixCls } =React.useContext(ConfigContext);
@@ -25,26 +26,59 @@ const Carousel = forwardRef((props,ref) => {
 
     const frameRef=useRef(null);
     const containerRef=useRef(null);
+    const childrenNum=useRef(React.Children.count(childrenProps));
 
     const [itemWidth,setItemWidth]=useState(0);
     const [itemHeight,setItemHeight]=useState(0);
     const [current,setCurrent]=useState(1);
     
     useEffect(()=>{
-        var firstSlide = frameRef.current.childNodes[0].childNodes[0];
+        var firstSlide = containerRef.current.childNodes[0];
+        var lastSlide = containerRef.current.childNodes[childrenNum.current-1];
+
+        // if(autoPlay){
+        //     setAuto();
+        // }
+
         setDimensions();
 
-        if(current===React.Children.count(childrenProps)+1){
-            setTransition()
+        if(current===childrenNum.current+1){
+            setTransition();
         }
+       
+         
+        if(current+1===childrenNum.current){
+            firstSlide.style.left=`${((current+1)*itemWidth)}px`;
+        }
+
+        if(current===0){
+            setPrevTransition(lastSlide);
+        }
+
+        if(current===childrenNum.current-2){
+            lastSlide.style.left=`${(current+1)*itemWidth}px`;
+        }
+
+        if(current+1===childrenNum.current){
+            firstSlide.style.left=`${((current+1)*itemWidth)}px`;
+        }
+
         if(current===1){
             firstSlide.style.left=`0px`;
+            lastSlide.style.left=`-${itemWidth}px`;
             containerRef.current.style.transform =`translate3d(0,0,0)`;  
         }
-    },[current]);
+    },[current,itemWidth,autoPlay]);
+
+    const setAuto=React.useCallback(()=>{
+        let timer=setInterval(()=>{
+            handleNext();
+        },3000);
+      
+    },[])
 
     const setDimensions=React.useCallback(()=>{
-        var firstSlide = frameRef.current.childNodes[0].childNodes[0];
+        var firstSlide = containerRef.current.childNodes[0];
         setTimeout(()=>{
             setItemWidth(frameRef.current.offsetWidth);
             setItemHeight(firstSlide.offsetHeight);
@@ -64,33 +98,67 @@ const Carousel = forwardRef((props,ref) => {
         
     }
 
-    const handleNext=()=>{
-        containerRef.current.style.transitionProperty="transform";
-        if(current===React.Children.count(childrenProps)+1){
-            return ;
+    const setPrevTransition=(lastSlide)=>{
+        
+        function transitionend(){
+            //动画结束就关闭动画
+            containerRef.current.style.transitionProperty="none";
+
+            containerRef.current.style.transform=`translate3d(-${(childrenNum.current-1)*itemWidth}px,0,0)`;
+
+            lastSlide.style.left=`${((childrenNum.current-1)*itemWidth)}px`;
+
+            setCurrent(childrenNum.current);
+            
+            containerRef.current.removeEventListener('transitionend', transitionend, false);
         }
 
-        let firstSlide=frameRef.current.childNodes[0].childNodes[0];
-         
-        containerRef.current.style.transform =`translate3d(-${((current-1)+1)*itemWidth}px,0,0)`;
+        containerRef.current.addEventListener('transitionend', transitionend, false);
+        
+    }
 
-        setCurrent(current=>{
-            if(current+1===React.Children.count(childrenProps)){
-                firstSlide.style.left=`${((current+1)*itemWidth)}px`;
-            }
-            return current+1;
-        });
+
+    const handleNext=()=>{
+
+        containerRef.current.style.transitionProperty="transform";
+
+        if(current===childrenNum.current+1){
+            return ;
+        }
+    
+        containerRef.current.style.transform =`translate3d(-${current*itemWidth}px,0,0)`;
+
+        setCurrent(current+1);
     }
 
     const handlePrev=()=>{
+        containerRef.current.style.transitionProperty="transform";
 
+        let firstSlide=containerRef.current.childNodes[0];
+
+        if(current===1){//当是第一个时，应该要跳转到第三个
+            containerRef.current.style.transform =`translate3d(${itemWidth}px,0,0)`;
+        }else{
+            containerRef.current.style.transform =`translate3d(-${(current-2)*itemWidth}px,0,0)`;
+        }
+
+        setCurrent(current=>{
+            
+            return current-1;
+        });
     }
 
+    const handleClickDotItem=React.useCallback((item)=>{
+        containerRef.current.style.transitionProperty="transform";
+        containerRef.current.style.transform =`translate3d(-${(item-1)*itemWidth}px,0,0)`;
+        setCurrent(item);
+    },[childrenProps,itemWidth])
+
     return (
-        <div className={classes} {...restProps} style={style} ref={ref}>
+        <div className={classes} style={style} ref={ref}>
              <div className={classNames(`${prefixCls}-frame`)} ref={frameRef}>
-                 <ul className={classNames(`${prefixCls}-list`)} style={{
-                        width:itemWidth*React.Children.count(childrenProps),    
+                <ul className={classNames(`${prefixCls}-list`)} style={{
+                        width:itemWidth*childrenNum.current,    
                         height:itemHeight
                     }} ref={containerRef}>
                     {
@@ -110,8 +178,20 @@ const Carousel = forwardRef((props,ref) => {
                             </li>
                         })
                     }
-                    </ul>
-                </div>
+                </ul>
+
+                <ul className={classNames(`${prefixCls}-dots`)}>
+                    {
+                        Array.from({length:childrenNum.current},(item,i)=>i+1).map((item)=>{
+                            return <li key={item} className={classNames({
+                                ['dot_active']:item===current
+                            })}>
+                             <button onClick={()=>handleClickDotItem(item)}>{item}</button>
+                        </li>
+                        })
+                    }
+                </ul>
+            </div>
 
                 <Button onClick={handleNext}>下一张</Button>
                 <Button onClick={handlePrev}>上一张</Button>

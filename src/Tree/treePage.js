@@ -6,8 +6,9 @@ import SubTitle from '../components/text/SubTitle';
 import Textlayout from '../components/text/Textlayout';
 import DescriptionTable from '../components/text/DescriptionTable';
 import Skeleton from './index';
-import { Tree as ATree } from 'antd';
-import Tree from './index';
+import Tree from './antd-tree/index';
+ 
+// import Tree from './index';
 
 const treeData = [
     {
@@ -63,12 +64,13 @@ class Page extends React.Component {
                     componentClassName={"button-page-demo"}
                     components={<React.Fragment>
 
-                        <ATree
+                        {/* <ATree
                             treeData={treeData}
-                        />
+                        /> */}
 
                         <Tree
                             treeData={treeData}
+                             
                         />
  
                     </React.Fragment>}

@@ -39,17 +39,22 @@ class ButtonPage extends React.Component {
                     componentClassName={"button-page-demo"}
                     components={<React.Fragment>
                         <Carousel
- 
+                            autoPlay
                         >
-                            {
-                                ['1', '2', '3'].map(val => (
-                                     <div key={val} style={{width:'100%',height:'100%',background:"green",fontSize:50,color:"white"}}>
-                                        {val}
-                                     </div>
-                                ))
-                            }
+                            <div className="item_width">
+                                <h3>1</h3>
+                            </div>
+                            <div className="item_width">
+                                <h3>2</h3>
+                            </div>
+                            <div className="item_width">
+                                <h3>3</h3>
+                            </div>
+                            <div className="item_width">
+                                <h3>4</h3>
+                            </div>
                         </Carousel>
-                       
+
 
                     </React.Fragment>}
                     title={"水平分割线"}
