@@ -32,18 +32,15 @@ export function toArray(children)  {
 }
 
 export function flattenTreeData(treeNodeList = [],expandedKeys = [])  {//转化数据
-  
-    // const expandedKeySet = new Set(expandedKeys === true ? [] : expandedKeys);
+    
+    const expandedKeySet = new Set(expandedKeys);
     const flattenList  = [];
   
-    function dig(list , parent )  {
+    function dig(list,parent)  {
       return list.map((treeNode, index) => {
-        //第一次渲染0-0
         const pos  = getPosition(parent ? parent.pos : '0', index);
-        //如果有key就用key否则就用pos
-        // const mergedKey = getKey(treeNode.key, pos);
-  
-        // Add FlattenDataNode into list
+        const mergedKey = getKey(treeNode.key, pos);
+
         const flattenNode = {
           ...treeNode,
           parent,
@@ -56,12 +53,12 @@ export function flattenTreeData(treeNodeList = [],expandedKeys = [])  {//转化�
   
         flattenList.push(flattenNode);
   
-        // // Loop treeNode children
-        // if (expandedKeys === true || expandedKeySet.has(mergedKey)) {
-        //   flattenNode.children = dig(treeNode.children || [], flattenNode);
-        // } else {
-        //   flattenNode.children = [];
-        // }
+        // Loop treeNode children
+        if (expandedKeySet.has(mergedKey)) {
+          flattenNode.children = dig(treeNode.children || [], flattenNode);
+        } else {
+          flattenNode.children = [];
+        }
   
         return flattenNode;
       });
@@ -183,12 +180,16 @@ export function traverseDataNodes(dataNodes,callback) {//递归展示上下级�
   processNode(null);
 }
 
-export function getTreeNodeProps(key,{expandedKeys}) {
+export function getTreeNodeProps(key,{expandedKeys,keyEntities}) {
+  
+  const entity = keyEntities[key];
+
+ 
 
   const treeNodeProps = {
     eventKey: key,
     expanded: expandedKeys.indexOf(key) !== -1,
-
+    level:entity.level
   };
 
   return treeNodeProps;
@@ -206,4 +207,24 @@ export function convertNodePropsToEventData(props) {
   };
 
   return eventData;
+}
+
+export function arrDel(list, value) {
+  const clone = list.slice();
+  const index = clone.indexOf(value);
+  if (index >= 0) {
+    clone.splice(index, 1);
+  }
+  return clone;
+}
+
+export function arrAdd(list, value) {
+ 
+  const clone = list.slice();
+  if (clone.indexOf(value) === -1) {
+    clone.push(value);
+  }
+ 
+ 
+  return clone;
 }

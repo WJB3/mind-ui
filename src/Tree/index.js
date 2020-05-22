@@ -7,7 +7,9 @@ import {
     convertTreeToData,
     convertDataToEntities,
     getTreeNodeProps,//获取接待你node
-    convertNodePropsToEventData
+    convertNodePropsToEventData,
+    arrDel,
+    arrAdd
 } from './utils/index';
 import "./index.scss";
 import TreeNode from './TreeNode';
@@ -24,10 +26,11 @@ const Tree = (props) => {
 
     const [flattenData, setFlattenData] = useState([]);//定义flatten数据
     const [keyEntities, setKeyEntities] = useState({});//定义enti数据
-    const [expandedKeys, setExpandedKeys] = useState([]);//定义展开的key
+    let [expandedKeys, setExpandedKeys] = useState([]);//定义展开的key
 
     const treeNodeRequiredProps = {
-        expandedKeys
+        expandedKeys,
+        keyEntities
     };
 
 
@@ -37,25 +40,28 @@ const Tree = (props) => {
 
     useEffect(() => {
         if (treeData) {
-            const flattenData = flattenTreeData(treeData);//平铺数组
+            const flattenData = flattenTreeData(treeData,expandedKeys);//平铺数组
             const entitiesMap = convertDataToEntities(treeData);//转化数据
             setFlattenData(flattenData);
             setKeyEntities(entitiesMap.keyEntities);
         }
-    }, [treeData]);
-
-
+    }, [treeData,expandedKeys]);
 
     const onNodeExpand = (e, treeNode) => {
-        console.log(treeNode)
+        const { key, expanded } = treeNode;
+        const targetExpanded = !expanded;
+        if (targetExpanded) {//如果没有选中
+            expandedKeys = arrAdd(expandedKeys, key);
+        } else {
+            expandedKeys = arrDel(expandedKeys, key);
+        }
+        setExpandedKeys(expandedKeys)
     };
-
- 
 
     return <div className={classNames(prefixCls, className)}>
         {
             flattenData.map((treeNode, index) => {
-                console.log(treeNode)
+                 
                 const {
                     data: { key }
                 } = treeNode;

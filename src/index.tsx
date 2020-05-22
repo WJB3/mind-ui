@@ -7,7 +7,7 @@ import IconPage from './iconPage/index';
 import AnimationPage from './animationPage/index';
 import gridPage from './gridPage/index';
 import notificationPage from './notificationPage/index';
-import inputPage from './Input/inputPage';
+import inputPage from './InputC/inputPage';
 import pagerPage from './pagerPage/index';
 import animationPage from './Animate/animationPage';
 import radioPage from './Radio/radioPage';
@@ -41,7 +41,7 @@ import 'antd/dist/antd.css';
 import "./index.less";
 
 ReactDOM.render((<HashRouter>
-        <Route path="/" exact component={treePage} />
+        <Route path="/" exact component={inputPage} />
         <Route path="/steps" exact component={stepsPage} />
         <Route path="/carousel" exact component={carouselPage} />
         <Route path="/tree" exact component={treePage} />
