@@ -179,6 +179,10 @@ $inputWrapperPrefixCls:"#{$prefixCls}-inputWrapper";//主
         }
 
     }
+
+    &-disabled{
+        cursor: not-allowed;
+    }
 }
 
  

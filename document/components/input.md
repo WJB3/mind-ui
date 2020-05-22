@@ -643,4 +643,4 @@ const handleChange=(e)=>{
 
 # 六、实现disabled API
 
->disabled属性几乎是每个可点击/可输入的一个必备功能了
+>disabled属性几乎是每个可点击/可输入的一个必备功能了,开启以后不可点击

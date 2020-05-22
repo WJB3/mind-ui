@@ -33,12 +33,14 @@ class Page extends React.Component {
                                 placeholder="basic"  
                                 addonBefore={"https//"}
                                 addonAfter={".com"}
+                                disabled
                             />
                             <Input 
                                 placeholder="basic"  
                                 border
                                 addonBefore={"https//"}
                                 addonAfter={".com"}
+                                disabled
                             />
 
  
