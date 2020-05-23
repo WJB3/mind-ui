@@ -189,15 +189,7 @@ $prefixCls:"#{$global-prefix}-input";//主
 
 >resize 回调
 
-## 19.Input.Group的compact
-
->是否用紧凑模式
-
-## 20.Input.Group的size
-
->Input.Group 中所有的 Input 的大小，可选 large default small
-
-## 21.Input.Password的visibilityToggle
+## 19.Input.Password的visibilityToggle
 
 >是否显示切换按钮
 
@@ -367,8 +359,8 @@ $inputWrapperPrefixCls:"#{$prefixCls}-inputWrapper";
 
 <details>
 <summary>完整代码</summary>
-
 ```js
+
 ......
 ......
 
@@ -575,6 +567,7 @@ $inputWrapperPrefixCls:"#{$prefixCls}-inputWrapper";//主
     }
 }
 ```
+
 </details>
 
 # 五、实现value/defaultValue API
@@ -644,3 +637,714 @@ const handleChange=(e)=>{
 # 六、实现disabled API
 
 >disabled属性几乎是每个可点击/可输入的一个必备功能了,开启以后不可点击
+
+<details>
+<summary>重点代码</summary>
+
+```js
+......
+
+const Input = forwardRef((props, ref) => {
+
+    const {
+        .......
+        disabled
+    } = props;
+
+    ........
+
+    return (
+        <div ref={ref} className={classNames(
+                ......
+            {
+                .......
+                [`${prefixCls}-disabled`]:disabled
+            }
+        )}>
+        ......
+
+            <div className={classNames(
+                .......
+                {
+                    [`${prefixCls}-disabled`]:disabled
+                }
+            )}>
+                <input
+                    ......
+                    ......
+                    disabled={disabled}
+                />
+            </div>
+  ......
+  ......
+        </div>
+    )
+})
+
+export default Input;
+```
+
+```css
+.......
+
+.#{$prefixCls}{
+    ....
+
+    &-disabled{
+        background-color: rgba(0,0,0,0.1);
+
+        input{
+            cursor: not-allowed;
+            background-color: rgba(0,0,0,0.1);
+        }
+
+        >*{
+            cursor: not-allowed;
+        }
+    }
+
+    &-focus{
+        .#{$inputWrapperPrefixCls}{
+            &:not(.#{$prefixCls}-disabled):after{
+                transform: scaleX(1);
+            }
+        }
+    }
+
+     &-border{
+        .#{$inputWrapperPrefixCls}{
+            ......
+
+            &:not(.#{$prefixCls}-disabled):hover{
+                &::before{
+                    border:2px solid rgba(0,0,0,.86);
+                }        
+            }
+    
+            ......
+            
+        }
+        
+        
+    }
+
+
+    &-inputWrapper{
+
+        ......
+
+        &:not(.#{$prefixCls}-disabled):hover{
+            &::before{
+                border-bottom:2px solid rgba(0,0,0,.86);
+            }        
+        }
+       
+        ......
+
+    }
+
+   
+}
+```
+</details>
+
+>css属性:cursor:not-allowed;
+
+# 七、id和maxLength
+>由于id和maxLength都是原生属性，所以我们只需要传到组件并赋值给input标签就行了
+
+<details>
+<summary>重点代码</summary>
+
+```js
+......
+const {
+    ......
+    id,maxLength
+}=props
+......
+<input
+    ......
+    id={id}
+    maxLength={maxLength}
+    .....
+/>
+......
+```
+</details>
+
+# 八、实现prefix和suffix
+
+>实现框内前缀、后缀
+
+<details>
+<summary>重点代码</summary>
+
+```js
+......
+
+const Input = forwardRef((props, ref) => {
+
+    const {
+        ......,
+        suffix,
+        prefix,
+    } = props;
+
+   
+                {
+                    prefix && <span className={classNames(`${prefixCls}-prefix`)}>
+                        {prefix}
+                    </span>
+                }
+
+                <input
+                    ......
+                />
+
+                {
+                    suffix && <span className={classNames(`${prefixCls}-suffix`)}>
+                        {suffix}
+                    </span>
+                }
+
+         .....
+```
+
+```css
+    &-suffix,&-prefix{
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        line-height: 1.5;
+        min-width: 16px;
+    }
+
+    &-prefix{
+        margin-left:4px;
+    }
+
+    &-suffix{
+        margin-right: 4px;
+        flex:none;
+    }
+```
+</details>
+
+# 九、实现size和type
+
+>在这里，我们和antd的size尺寸保持一致，small="24px",default="32px",large="40px"
+
+>type是原生input框属性，只要将属性赋予给input就行
+
+<details>
+<summary>重点代码</summary>
+
+```js
+const {
+    size,
+    type
+}=props;
+......
+......
+     [`${prefixCls}-${size}`]: size
+
+     <input
+        ......
+        type={type}
+     />
+......
+```
+
+```css
+&-small{
+        input{
+            padding:2px 2px;
+            height:20px;
+        }
+        
+        &.#{$prefixCls}-border{
+            input{
+                padding:2px 2px;
+                height:20px;
+            }
+        }
+
+        .#{$prefixCls}-addonBefore{
+            line-height: 1.5;
+        }
+        .#{$prefixCls}-addonAfter{
+            line-height: 1.5;
+        }
+    }
+
+    &-large{
+        input{
+            padding:4px 4px;
+            height:32px;
+        }
+        
+        &.#{$prefixCls}-border{
+            input{
+                padding:4px 4px;
+                height:32px;
+            }
+        }
+
+        .#{$prefixCls}-addonBefore{
+            line-height: 40px;
+        }
+        .#{$prefixCls}-addonAfter{
+            line-height: 40px;
+        }
+    }
+```
+
+</details>
+
+# 十、实现onChange和onPressEnter、onKeyDown
+
+>onChange只需在input的change事件进行回调就行
+
+>onPressEnter在按下回车键时进行回调，传出此时的input框value值就行
+
+>onKeyDown是在input按键被按下时的回调
+
+<details>
+<summary>重点代码</summary>
+
+```js
+const {
+    onChange,
+    onKeyDown,
+    onPressEnter
+}=props;
+
+const handleChange = (e) => {//change事件
+        if(onChange){
+            onChange(e.target.value,e)
+        }
+        setValue(e.target.value);
+}
+
+const handleKeyDown = (e) => {//keydown事件
+        if (onKeyDown) {
+            onKeyDown(e.keyCode, e);
+        }
+        if (e.keyCode === 13) {
+            if (onPressEnter) {
+                onPressEnter(e)
+            }
+         
+        }
+};
+
+<input 
+    value={value?value:""}
+/>
+
+```
+</details>
+
+>这里有一点需要⚠️，就是input的标签要写成上面这种形式，如果初始化值为undefined，他默认认为组件是非受控组件，如果赋值为value，就变成了受控组件，而他会报警告!所以没有value时赋值为一个空字符串。
+
+# 十一、实现allowClear和对应的onClear函数
+
+>分析：当input内有值时，展示一个圆叉按钮，可以清除出入框里面的内容,这个圆叉位置应该和suffix的位置保持一致
+
+<details>
+<summary>重点代码</summary>
+
+```js
+    ....
+    const {
+        allowClear,
+        onClear
+    }=props;
+
+    ....
+
+    const handleClearValue=(e)=>{
+        if (!value) {
+            return;
+        }
+        if (onClear) {
+            onClear("", e);
+        }
+        setValue("");
+        if (onChange) {
+            onChange("",e);
+        }
+    }
+    ....
+
+    {
+                    (suffix||allowClear) && <span className={classNames(`${prefixCls}-suffix`)}>
+                        {allowClear && <Fade in={value ? true : false}><Icon name="close-circle" style={{ fontSize: 16,color:"rgba(0,0,0,.4)" }} onClick={(e) => handleClearValue(e)} /></Fade>}
+                        {suffix}
+                    </span>
+    }
+    ....
+```
+</details>
+
+>上面的Fade和Icon都是我们的组件，后续我们会说到，只负责圆叉图标和css特效
+
+
+# 十二、实现Input.Search的API
+
+>我们以Input为基础组件，扩展Input.Search方法,新建Search.js文件
+
+<details>
+<summary>重点代码</summary>
+
+```js
+//Search.js
+import React, { useContext } from 'react';
+import { classNames } from '../components/helper/className';
+import Input from './Input';
+import Icon from '../components/icon';
+import { ConfigContext } from '../ConfigContext';
+ 
+import "./index.scss";
+ 
+const Search = (Props) => {
+
+    const {
+        prefixCls:customizePrefixCls,
+        enterButton,
+        ...restProps
+    } = Props;
+
+    const { getPrefixCls } =useContext(ConfigContext);
+
+    const prefixCls=getPrefixCls("input-search",customizePrefixCls);
+ 
+    return (
+        <Input enterButton={enterButton} className={classNames(prefixCls)} {...restProps} suffix={!enterButton && <Icon name="find" style={{fontSize:"16px"}}/>}/>
+    )
+}
+
+export default Search;
+
+//Input.js
+......
+const Input = forwardRef((props, ref) => {
+
+    const {
+        ......
+        enterButton,
+        onSearch,
+        loading
+    } = props;
+
+     
+
+    ......
+
+    const handleSearch=(e)=>{
+        if(onSearch){
+            onSearch(value,e);
+        }
+    }
+    
+    const sizeObj = {
+        "small": "24px",
+        "large": "40px",
+        "default": "32px",
+        undefined: "32px"
+    }
+    
+    return (
+        ......
+                {
+                    enterButton && <span className={classNames(
+                        `${prefixCls}-enterButton`,
+                        {
+                            [`${prefixCls}-disabled`]: disabled,
+                        }
+                    )}>
+                        <Button disabled={disabled} loading={loading} type="primary" style={{ height: sizeObj[size] }} onClick={(e) => handleSearch(e)}>
+                            {
+                                enterButton === true ?
+                                    <Icon name="find" style={{ fontSize: "16px" }} /> :
+                                    enterButton
+                            }
+                        </Button>
+                    </span>
+                }
+
+            </div>
+
+        ......
+
+        </div>
+    )
+})
+
+export default Input;
+```
+</details>
+
+# 十三、实现Input.TextArea
+
+>我们以Input为基础组件，扩展Input.Textarea方法,新建Textarea.js文件，这里原生的Textarea是不支持高度随着内容区域变化的，所以这里TextArea的实现稍微有些复杂
+
+>为了实现onResize API 我们使用js的一个API:ResizeObserver,具体可以百度下，这个API在样式变化等情况下会触发回调。
+
+```js
+//这个组件在样式变化是触发一个回调
+import React,{forwardRef,useRef, useEffect} from 'react';
+import { toArray } from '../_utils/reactUtils';
+import { supportRef,composeRef } from '../_utils/ref';
+import setRef from '../_utils/setRef';
+import useForkRef from '../_utils/useForkRef';
+import ResizeObserver from 'resize-observer-polyfill';
+import { findDOMNode } from 'react-dom';
+
+const ResizeObserverComponent=forwardRef((props,ref)=>{
+
+    const {
+        children:childrenProps,
+        onResize
+    }=props;
+
+    const childNode=useRef(null);
+
+    const currentELement=useRef(null);
+
+    const resizeObserver=useRef(null);
+
+    const onComponentUpdated=()=>{
+        const element=findDOMNode(childNode.current);
+        const elementChanged=element!==currentELement.current;
+
+        if(elementChanged){
+            destroyObserver();
+            currentELement.current=element;
+        }
+
+        if(!resizeObserver.current && element){
+            resizeObserver.current=new ResizeObserver(handleResize);
+            resizeObserver.current.observe(element);
+        }
+    }
+
+    const destroyObserver=()=>{
+        if(resizeObserver.current){
+            resizeObserver.current.discount();
+            resizeObserver.current=null;
+        }
+    }
+
+    const handleResize=()=>{
+        if(onResize){
+            onResize();
+        }
+    }
+
+    useEffect(()=>{
+        onComponentUpdated()
+        return ()=>destroyObserver()
+    },[]);
+
+    const handleNodeRef=(node)=>{
+        setRef(childNode,node)
+    }
+
+    const handleRef =useForkRef(handleNodeRef,childrenProps.ref);
+
+    return  React.cloneElement(childrenProps,{
+        ref:handleRef
+    });
+}); 
+
+export default ResizeObserverComponent;
+```
+
+<details>
+<summary>重点代码</summary>
+
+```js
+//TextArea方法
+import React, { useContext, useEffect,useRef,useState } from 'react';
+import { classNames } from '../components/helper/className';
+import Input from './Input';
+import { ConfigContext } from '../ConfigContext';
+import calculateNodeHeight from './calculateNodeHeight'
+import ResizeObserver from '../ResizeObserver';
+import "./index.scss";
+ 
+const TextArea = (Props) => {
+
+    const {
+        prefixCls:customizePrefixCls,
+        autoSize,
+        onResize,
+        onChange,
+        ...restProps
+    } = Props;
+
+    const { getPrefixCls } =useContext(ConfigContext);
+
+    const [textareaStyles,setTextareaStyles]=useState({});
+
+    const isChange=useRef(null);
+
+    const textAreaRef=useRef(null);
+
+    const prefixCls=getPrefixCls("input-textarea",customizePrefixCls);
+
+    const resizeTextarea=()=>{
+        if(!autoSize||!textAreaRef.current){
+            return ;
+        }
+        const {minRows,maxRows}=autoSize;
+        const textareaStyles = calculateNodeHeight(textAreaRef.current, false, minRows, maxRows);
+        setTextareaStyles(textareaStyles);
+
+    }
+
+    useEffect(()=>{
+        resizeTextarea();
+    },[autoSize]);
+
+    const saveTextArea=(node)=>{
+        textAreaRef.current=node;
+    }
+
+    const handleChange=(value,e)=>{
+        resizeTextarea();
+        isChange.current=value;
+        if(onChange){
+            
+            onChange(value,e);
+        }
+    }
+
+    const handleResize=()=>{
+        if(!isChange.current){
+            return ;
+        }
+        if(onResize){
+            onResize();
+        }
+    }
+ 
+    return (
+        <ResizeObserver onResize={handleResize}>
+            <Input 
+                component={"textarea"} 
+                className={classNames(prefixCls)} 
+                onChange={handleChange}
+                ref={saveTextArea} 
+                textareaStyles={{
+                    ...textareaStyles
+                }} 
+                {...restProps} 
+            />
+        </ResizeObserver>
+    )
+}
+
+export default TextArea;
+ 
+```
+
+>实现高度自适应的原理是，计算每一个textarea的滚动高度，然后将滚动高度赋值给textare即可。
+
+```js
+......
+    const {
+......       
+        component:Component="input",
+        textareaStyles
+    } = props;
+......
+                <Component
+                    .....
+                    style={textareaStyles}
+                    ref={ref}
+                />
+.....
+       
+```
+
+```css
+input,textarea{
+            font:inherit;
+            color:currentColor;
+            outline: none;
+            border:0;
+            max-width:100%;
+            background: none;
+            flex:1;
+            line-height:1.5;
+}
+textarea{
+            padding:5px 0px 5px 6px;
+            box-sizing: content-box;
+}
+input{
+            height: 20px;
+            line-height: 20px;
+            padding: 6px 2px;
+            box-sizing: content-box;
+}
+```
+
+</details>
+
+# 十四、实现Input.Password的visibilityToggle和onToggle方法
+
+<details>
+<summary>重点代码</summary>
+
+```js
+//Password.js
+import React, { useContext, useState, useCallback } from 'react';
+import { classNames } from '../components/helper/className';
+import Input from './Input';
+import Icon from '../components/icon';
+import { ConfigContext } from '../ConfigContext';
+
+import "./index.scss";
+ 
+const Password = (Props) => {
+
+    const {
+        prefixCls:customizePrefixCls,
+        visibilityToggle=false,
+        onToggle,
+        ...restProps
+    } = Props;
+
+    const [type,setType]=useState("password");
+
+    const { getPrefixCls } =useContext(ConfigContext);
+
+    const prefixCls=getPrefixCls("input-password",customizePrefixCls);
+
+    const toggleVisible=useCallback((e)=>{
+        if(onToggle){
+            onToggle(type==="password"?false:true)
+        }
+        if(type==="password"){
+            setType("text");
+        }else{
+            setType("password");
+        }
+    },[type]);
+ 
+    return (
+        <Input  
+            type={type} 
+            suffix={visibilityToggle && <Icon name={type==="password"?"eye-off":"eye"} style={{fontSize:16}} onClick={(e)=>toggleVisible(e)}/>} 
+            className={classNames(prefixCls)} {...restProps} 
+        />
+    )
+}
+
+export default Password;
+```
+</details>

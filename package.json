@@ -38,6 +38,7 @@
     "react-slick": "^0.26.1",
     "react-touch-ripple": "^0.2.1",
     "react-transition-group": "^4.3.0",
+    "resize-observer-polyfill": "^1.5.1",
     "rimraf": "^3.0.2",
     "rmc-nuka-carousel": "^3.0.1"
   },

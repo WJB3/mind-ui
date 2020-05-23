@@ -5,17 +5,20 @@ import Description from './../components/text/Description';
 import SubTitle from './../components/text/SubTitle';
 import Textlayout from './../components/text/Textlayout';
 import DescriptionTable from './../components/text/DescriptionTable';
-import Input from './Input';
-import InputC from '../Input';
-import Icon from '../components/icon';
+import Input from './index';
 import Space from '../Space';
 import { Input as InputA } from 'antd';
 const { TextArea } = InputA;
 
 class Page extends React.Component {
 
+    state={
+        loading:false
+    }
 
     render() {
+
+        const { loading }=this.state;
 
 
         return (
@@ -29,22 +32,25 @@ class Page extends React.Component {
                 <Textlayout
                     components={<React.Fragment>
                         <div style={{ display: "flex", justifyContent: "space-around", alignItems: "center" }}>
+
+
                             <Input 
-                                placeholder="basic"  
-                                addonBefore={"https//"}
-                                addonAfter={".com"}
-                                disabled
-                            />
-                            <Input 
-                                placeholder="basic"  
+                                allowClear
+                                size={"default"}
+                                enterButton="搜索"
                                 border
-                                addonBefore={"https//"}
-                                addonAfter={".com"}
-                                disabled
+                                onSearch={(value) => console.log(value)}
                             />
 
- 
- 
+                         
+                            <Input.Password
+                                allowClear
+                                visibilityToggle
+                            />
+
+                            
+
+
                         </div>
                     </React.Fragment>}
                     title={"基本使用。"}
@@ -54,9 +60,9 @@ class Page extends React.Component {
                 <Textlayout
                     components={<React.Fragment>
                         <Space size="large" direction="vertical" isBlock>
-                             
 
-                         
+
+
                         </Space>
 
                     </React.Fragment>}
@@ -67,7 +73,7 @@ class Page extends React.Component {
                 <Textlayout
                     components={<React.Fragment>
                         <Space size="large" direction="vertical" isBlock >
-                            
+
                         </Space>
 
                     </React.Fragment>}
@@ -79,7 +85,7 @@ class Page extends React.Component {
                     components={<React.Fragment>
                         <Space size="large" direction="vertical" isBlock>
 
- 
+
 
                         </Space>
 
@@ -93,7 +99,7 @@ class Page extends React.Component {
                         <Space size="large" direction="vertical" isBlock>
 
 
-                          
+
                         </Space>
 
                     </React.Fragment>}
@@ -106,7 +112,7 @@ class Page extends React.Component {
                 <Textlayout
                     components={<React.Fragment>
                         <Space size="large" direction="vertical" isBlock>
- 
+
 
                         </Space>
 
@@ -118,7 +124,7 @@ class Page extends React.Component {
                 <Textlayout
                     components={<React.Fragment>
                         <Space size="large" direction="vertical" isBlock>
-                       
+
                         </Space>
 
                     </React.Fragment>}
