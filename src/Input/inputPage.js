@@ -1,20 +1,24 @@
-import React from 'react';
-import Layout from './../layout/index';
-import Title from './../components/text/Title';
-import Description from './../components/text/Description';
-import SubTitle from './../components/text/SubTitle';
-import Textlayout from './../components/text/Textlayout';
-import DescriptionTable from './../components/text/DescriptionTable';
+import React from './node_modules/react';
+import Layout from '../layout/index';
+import Title from '../components/text/Title';
+import Description from '../components/text/Description';
+import SubTitle from '../components/text/SubTitle';
+import Textlayout from '../components/text/Textlayout';
+import DescriptionTable from '../components/text/DescriptionTable';
 import Input from './index';
-import Icon from '../components/icon';
 import Space from '../Space';
-import { Input as InputA } from 'antd';
+import { Input as InputA } from './node_modules/antd';
 const { TextArea } = InputA;
 
 class Page extends React.Component {
 
+    state={
+        loading:false
+    }
 
     render() {
+
+        const { loading }=this.state;
 
 
         return (
@@ -28,9 +32,25 @@ class Page extends React.Component {
                 <Textlayout
                     components={<React.Fragment>
                         <div style={{ display: "flex", justifyContent: "space-around", alignItems: "center" }}>
-                            <Input placeholder="basic" disabled />
-                            <Input placeholder="basic" border allowClear style={{ width: 300 }} />
-                            <Input placeholder="basic" border allowClear />
+
+
+                            <Input 
+                                allowClear
+                                size={"default"}
+                                enterButton="搜索"
+                                border
+                                onSearch={(value) => console.log(value)}
+                            />
+
+                         
+                            <Input.Password
+                                allowClear
+                                visibilityToggle
+                            />
+
+                            
+
+
                         </div>
                     </React.Fragment>}
                     title={"基本使用。"}
@@ -40,17 +60,9 @@ class Page extends React.Component {
                 <Textlayout
                     components={<React.Fragment>
                         <Space size="large" direction="vertical" isBlock>
-                            <Input size="large" placeholder="large size" border />
 
-                            <Input placeholder="default size" border disabled />
 
-                            <Input size="small" placeholder="small size" border />
 
-                            <Input size="large" placeholder="large size" disabled />
-
-                            <Input placeholder="default size" disabled />
-
-                            <Input size="small" placeholder="small size" />
                         </Space>
 
                     </React.Fragment>}
@@ -61,64 +73,6 @@ class Page extends React.Component {
                 <Textlayout
                     components={<React.Fragment>
                         <Space size="large" direction="vertical" isBlock >
-                            <Input.Search
-                                placeholder="input search text"
-                                onSearch={value => console.log(value)}
-                                style={{ width: 300 }}
-
-                            />
-
-                            <Input.Search
-                                placeholder="input search text"
-                                border
-                                onSearch={value => console.log(value)}
-                                style={{ width: 300 }}
-                                disabled
-                            />
-
-                            <Input.Search
-                                placeholder="input search text"
-                                onSearch={value => console.log(value)}
-                                style={{ width: 300 }}
-                                enterButton
-                                disabled
-                            />
-
-                            <Input.Search
-                                placeholder="input search text"
-                                border
-                                onSearch={value => console.log(value)}
-                                style={{ width: 300 }}
-                                enterButton
-
-                            />
-
-                            <Input.Search
-                                placeholder="input search text"
-                                enterButton="Search"
-                                size="large"
-                                onSearch={value => console.log(value)}
-
-                            />
-
-                            <Input.Search
-                                placeholder="input search text"
-                                enterButton="Search"
-                                border
-                                size="large"
-                                onSearch={value => console.log(value)}
-                                disabled
-                            />
-
-                            <Input.Search
-                                placeholder="input search text"
-                                enterButton="Search"
-                                border
-                                loading
-                                size="large"
-                                onSearch={value => console.log(value)}
-
-                            />
 
                         </Space>
 
@@ -132,24 +86,6 @@ class Page extends React.Component {
                         <Space size="large" direction="vertical" isBlock>
 
 
-                            <Input.Search
-                                placeholder="input search text"
-                                onSearch={value => console.log(value)}
-                                style={{ width: 300 }}
-                                enterButton
-                                allowClear
-                                maxLength={5}
-
-                            />
-                            <Input.Search
-                                placeholder="input search text"
-                                onSearch={value => console.log(value)}
-                                style={{ width: 300 }}
-                                enterButton
-                                allowClear
-                                maxLength={5}
-                                disabled
-                            />
 
                         </Space>
 
@@ -163,28 +99,6 @@ class Page extends React.Component {
                         <Space size="large" direction="vertical" isBlock>
 
 
-                            <Input
-                                prefix={"www"}
-                                placeholder="input search text"
-
-                                style={{ width: 300 }}
-                                enterButton
-                                allowClear
-                                maxLength={5}
-                                suffix={"RMB"}
-                            />
-
-                            <Input
-                                prefix={"www"}
-                                placeholder="input search text"
-                                border
-                                style={{ width: 300 }}
-                                enterButton
-                                allowClear
-                                maxLength={5}
-                                disabled
-                                suffix={"RMB"}
-                            />
 
                         </Space>
 
@@ -199,8 +113,6 @@ class Page extends React.Component {
                     components={<React.Fragment>
                         <Space size="large" direction="vertical" isBlock>
 
-                            <Input.Password placeholder="input password" />
-                            <Input.Password placeholder="input password" visibilityToggle border />
 
                         </Space>
 
@@ -212,9 +124,7 @@ class Page extends React.Component {
                 <Textlayout
                     components={<React.Fragment>
                         <Space size="large" direction="vertical" isBlock>
-                            <TextArea placeholder="textarea with clear icon" allowClear autoSize={{ minRows: 2, maxRows: 6 }} />
-                            <Input.TextArea placeholder="textarea with clear icon" allowClear rows={4} />
-                            <Input.TextArea border placeholder="textarea with clear icon" allowClear rows={4}/>
+
                         </Space>
 
                     </React.Fragment>}

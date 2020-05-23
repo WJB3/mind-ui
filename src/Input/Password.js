@@ -1,4 +1,4 @@
-import React, { useContext, useState, useCallback } from 'react';
+import React, { useContext, useState, useCallback } from './node_modules/react';
 import { classNames } from '../components/helper/className';
 import Input from './Input';
 import Icon from '../components/icon';
@@ -11,6 +11,7 @@ const Password = (Props) => {
     const {
         prefixCls:customizePrefixCls,
         visibilityToggle=false,
+        onToggle,
         ...restProps
     } = Props;
 
@@ -21,6 +22,9 @@ const Password = (Props) => {
     const prefixCls=getPrefixCls("input-password",customizePrefixCls);
 
     const toggleVisible=useCallback((e)=>{
+        if(onToggle){
+            onToggle(type==="password"?false:true)
+        }
         if(type==="password"){
             setType("text");
         }else{

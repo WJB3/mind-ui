@@ -7,7 +7,7 @@ import IconPage from './iconPage/index';
 import AnimationPage from './animationPage/index';
 import gridPage from './gridPage/index';
 import notificationPage from './notificationPage/index';
-import inputPage from './InputC/inputPage';
+import inputPage from './Input/inputPage';
 import pagerPage from './pagerPage/index';
 import animationPage from './Animate/animationPage';
 import radioPage from './Radio/radioPage';

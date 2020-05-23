@@ -1,88 +1,68 @@
-import React, { useContext, useState, useCallback } from 'react';
+import React, { forwardRef, useContext, useState } from './node_modules/react';
 import { classNames } from '../components/helper/className';
 import { ConfigContext } from '../ConfigContext';
-import useControlled from '../_utils/useInputControlled';
+import useControlled from '../_utils/useControlled';
+import { Fade } from '../Animate';
 import Button from '../ButtonBase';
 import Icon from '../components/icon';
-import { Fade } from '../Animate';
 import "./index.scss";
 
-const Input = React.forwardRef((Props,ref) => {
+const Input = forwardRef((props, ref) => {
 
     const {
         prefixCls: customizePrefixCls,
-        border,//是否有边框
         className,
-        defaultValue,//默认值
-        value: valueProps,//值
-        onFocus,//foucs事件
-        onBlur,//离开焦点事件
-        placeholder,//input placeholder
-        size,//输入框大小
-        style,//input样式
-        suffix,//后缀
-        enterButton,//是否有确认按钮，可设为按钮文字。
-        onChange,//input change事件
-        onSearch,//按下搜索按钮的回调
-        loading,//loading加载状态
-        onKeyDown,//按键事件
-        allowClear,//是否允许清除
-        onClear,//点击清除按钮的回调
-        onPressEnter,//回车的回调
-        maxLength,//输入框输入的最大长度
-        type = "text",
-        disabled,//禁用
-        prefix,//前缀
+        placeholder,//占位符 原生input框属性
+        border,
+        addonAfter,
+        addonBefore,
+        value: valueProps,
+        defaultValue,
+        disabled,
+        id,
+        maxLength,
+        suffix,
+        prefix,
+        size,
+        type,
+        onChange,
+        onKeyDown,
+        onPressEnter,
+        allowClear,
+        onClear,
+        enterButton,
+        onSearch,
+        loading,
         component:Component="input",
-        rows,
-        ...restProps
-    } = Props;
+        textareaStyles
+    } = props;
 
-    const [focused, setFocused] = useState(false);//是否触发焦点
+    const { getPrefixCls } = useContext(ConfigContext);
+
+    const [active, setActive] = useState(false);
 
     const [value, setValue] = useControlled({
         controlled: valueProps,
         default: defaultValue
     });
 
- 
-
-    const { getPrefixCls } = useContext(ConfigContext);
-
     const prefixCls = getPrefixCls("input", customizePrefixCls);
 
-    const handleFocus = useCallback((...props) => {//input 焦点focus事件
-        if (onFocus) {
-            onFocus(...props)
-        }
-        setFocused(true)
-    }, [])
+    const handleFocus = (e) => {//input触发焦点事件
+        setActive(true);
+    }
+    const handleBlur = (e) => {//input离开焦点事件
+        setActive(false);
+    }
 
-    const handleBlur = useCallback((...props) => {//input 移除焦点
-        if (onBlur) {
-            onBlur(...props)
-        }
-        setFocused(false)
-    }, []);
-
-    const handleChange = useCallback((e) => {//input框change事件
+    const handleChange = (e) => {//change时间
         if (onChange) {
-            onChange(e.target.value,e)
+            onChange(e.target.value, e)
         }
         setValue(e.target.value);
-    }, []);
+    }
 
-    const handleSearch = useCallback((e) => {//点击搜索
-        if (loading) {
-            return;
-        }
-
-        if (onSearch) {
-            onSearch(value, e);
-        }
-    }, [value]);
-
-    const handleKeyDown = useCallback((e) => {//键盘按下回车事件
+    const handleKeyDown = (e) => {//键盘按下回车事件
         if (onKeyDown) {
             onKeyDown(e.keyCode, e);
         }
@@ -90,11 +70,11 @@ const Input = React.forwardRef((Props,ref) => {
             if (onPressEnter) {
                 onPressEnter(e)
             }
-            handleSearch(e);
-        }
-    }, [value]);
 
-    const handleClearValue = useCallback((e) => {
+        }
+    };
+
+    const handleClearValue = (e) => {
         if (!value) {
             return;
         }
@@ -103,35 +83,48 @@ const Input = React.forwardRef((Props,ref) => {
         }
         setValue("");
         if (onChange) {
-            onChange(e);
+            onChange("", e);
         }
+    }
 
-    }, [value]);
-
+    const handleSearch=(e)=>{
+        if(onSearch){
+            onSearch(value,e);
+        }
+    }
+    
     const sizeObj = {
         "small": "24px",
         "large": "40px",
         "default": "32px",
         undefined: "32px"
     }
-
-
+    
     return (
-        <div   ref={ref} style={style} className={
-            classNames(
-                prefixCls,
-                className,
-                {
-                    [`${prefixCls}-active`]: focused,
-                    [`${prefixCls}-border`]: border,
-                    [`${prefixCls}-${size}`]: size,
-                    [`${prefixCls}-disabled`]: disabled,
-                }
-            )
-        } >
-            <div className={classNames(`${prefixCls}-inputwrapper`, {
+        <div  className={classNames(
+            prefixCls,
+            className,
+            {
+                [`${prefixCls}-focus`]: active,
+                [`${prefixCls}-border`]: border,
+                [`${prefixCls}-addonAfterExtra`]: !!addonAfter,
                 [`${prefixCls}-disabled`]: disabled,
-            })}>
+                [`${prefixCls}-${size}`]: size,
+            }
+        )}>
+
+            {addonBefore && <div className={classNames(
+                `${prefixCls}-addonBefore`
+            )}>
+                {addonBefore}
+            </div>}
+
+            <div className={classNames(
+                `${prefixCls}-inputWrapper`,
+                {
+                    [`${prefixCls}-disabled`]: disabled
+                }
+            )}>
 
                 {
                     prefix && <span className={classNames(`${prefixCls}-prefix`)}>
@@ -140,22 +133,23 @@ const Input = React.forwardRef((Props,ref) => {
                 }
 
                 <Component
-                    type={type}
                     placeholder={placeholder}
+                    value={value ? value : ""}
                     onFocus={handleFocus}
                     onBlur={handleBlur}
                     onChange={handleChange}
                     onKeyDown={handleKeyDown}
-                    value={value ? value : ""}
-                    maxLength={maxLength}
                     disabled={disabled}
-                    rows={rows}
-               
+                    id={id}
+                    maxLength={maxLength}
+                    type={type}
+                    style={textareaStyles}
+                    ref={ref}
                 />
 
                 {
-                    (suffix || allowClear)  && <span className={classNames(`${prefixCls}-suffix`)}>
-                        {allowClear && <Fade in={value ? true : false}><Icon name="close-circle" style={{ fontSize: 16,color:"rgba(0,0,0,.4)" }} onClick={(e) => handleClearValue(e)} /></Fade>}
+                    (suffix || allowClear) && <span className={classNames(`${prefixCls}-suffix`)}>
+                        {allowClear && <Fade in={value ? true : false}><Icon name="close-circle" style={{ fontSize: 16, color: "rgba(0,0,0,.4)" }} onClick={(e) => handleClearValue(e)} /></Fade>}
                         {suffix}
                     </span>
                 }
@@ -178,6 +172,13 @@ const Input = React.forwardRef((Props,ref) => {
                 }
 
             </div>
+
+            {addonAfter && <div className={classNames(
+                `${prefixCls}-addonAfter`
+            )}>
+                {addonAfter}
+            </div>}
+
         </div>
     )
 })
