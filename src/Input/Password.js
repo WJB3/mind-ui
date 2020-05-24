@@ -1,4 +1,4 @@
-import React, { useContext, useState, useCallback } from './node_modules/react';
+import React, { useContext, useState, useCallback } from 'react';
 import { classNames } from '../components/helper/className';
 import Input from './Input';
 import Icon from '../components/icon';

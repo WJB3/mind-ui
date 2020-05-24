@@ -33,7 +33,7 @@ class Page extends React.Component {
                 <Textlayout
                     componentClassName={"button-page-demo"}
                     components={<React.Fragment>
-                        <Tooltip title="prompt text" arrow>
+                        <Tooltip title="prompt text" arrow visible>
                             <span>Tooltip will show on mouse enter.</span>
                         </Tooltip>
                         

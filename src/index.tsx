@@ -35,13 +35,15 @@ import skeletonPage from './Skeleton/skeletonPage';
 import treePage from './Tree/treePage';
 import carouselPage from './Carousel/carouselPage';
 import stepsPage from './Steps/stepsPage';
+import ratePage from './Rate/ratePage';
 import Demo from './Demo';
  
 import 'antd/dist/antd.css';
 import "./index.less";
 
 ReactDOM.render((<HashRouter>
-        <Route path="/" exact component={inputPage} />
+        <Route path="/" exact component={ratePage} />
+        <Route path="/rate" exact component={ratePage} />
         <Route path="/steps" exact component={stepsPage} />
         <Route path="/carousel" exact component={carouselPage} />
         <Route path="/tree" exact component={treePage} />

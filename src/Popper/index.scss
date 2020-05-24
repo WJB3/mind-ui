@@ -7,7 +7,7 @@ $prefixClsPopover:"#{$global-prefix}-popover";
 .#{$prefixCls}{
 
     will-change: transform;
-    width:100%; 
+    // width:100%; 
 
     &-top,&-top-start,&-top-end{
         &.popper-tooltip{

@@ -1,4 +1,4 @@
-import React, { forwardRef, useContext, useState } from './node_modules/react';
+import React, { forwardRef, useContext, useState } from 'react';
 import { classNames } from '../components/helper/className';
 import { ConfigContext } from '../ConfigContext';
 import useControlled from '../_utils/useControlled';

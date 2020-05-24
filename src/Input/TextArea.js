@@ -1,4 +1,4 @@
-import React, { useContext, useEffect,useRef,useState } from './node_modules/react';
+import React, { useContext, useEffect,useRef,useState } from 'react';
 import { classNames } from '../components/helper/className';
 import Input from './Input';
 import { ConfigContext } from '../ConfigContext';

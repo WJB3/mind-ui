@@ -5,8 +5,9 @@ import Description from '../components/text/Description';
 import SubTitle from '../components/text/SubTitle';
 import Textlayout from '../components/text/Textlayout';
 import DescriptionTable from '../components/text/DescriptionTable';
-import Input from './index';
+import Rate from './index';
 import Space from '../Space';
+import Icon from '../components/icon';
 import { Input as InputA } from 'antd';
 const { TextArea } = InputA;
 
@@ -23,7 +24,7 @@ class Page extends React.Component {
 
         return (
             <Layout >
-                <Title>Input输入框</Title>
+                <Title>Rate评分</Title>
                 <Description>通过鼠标或键盘输入内容，是最基础的表单域的包装。</Description>
                 <SubTitle>何时使用</SubTitle>
                 <Description>需要用户输入表单域内容时。提供组合型输入框，带搜索的输入框，还可以进行大小选择。</Description>
@@ -32,17 +33,8 @@ class Page extends React.Component {
                 <Textlayout
                     components={<React.Fragment>
                         <div style={{ display: "flex", justifyContent: "space-around", alignItems: "center" }}>
-
- 
-
-                         
-                            <Input.TextArea
-                                allowClear
-                                disabled
-                            />
-
-                            
-
+                           
+                            <Rate  />
 
                         </div>
                     </React.Fragment>}

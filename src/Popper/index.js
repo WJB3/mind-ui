@@ -118,7 +118,7 @@ const Popper = React.forwardRef((Props,ref) => {
     }
   
     return (
-        <Portal container={container()}  disablePortal={disablePortal}>
+        <Portal container={container}  disablePortal={disablePortal}>
             <div
                 ref={handleRef}
                 id="popper"
