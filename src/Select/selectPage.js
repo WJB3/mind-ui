@@ -33,7 +33,7 @@ class Page extends React.Component {
                     components={<React.Fragment>
                         <Space>
 
-                            <Select defaultValue="lucy" style={{ width: 120 }} border onChange={(value) => console.log(`selected:${value}`)}>
+                            <Select defaultValue="lucy"   border onChange={(value) => console.log(`selected:${value}`)}>
                                 <Option value="jack">Jack</Option>
                                 <Option value="lucy">Lucy</Option>
                                 <Option value="disabled" disabled>

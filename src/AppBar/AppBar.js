@@ -5,7 +5,7 @@ import { ConfigContext } from '../ConfigContext';
 import capitalize from '../_utils/capitalize';
 import useThemeColor from '../_utils/useThemeColor';
 import Paper from '../Paper';
-
+import useMediaQuery from '../useMediaQuery';
 
 const AppBar=React.forwardRef((props,ref)=>{
     const {
@@ -20,6 +20,10 @@ const AppBar=React.forwardRef((props,ref)=>{
     const { getPrefixCls } = React.useContext(ConfigContext);
 
     const prefixCls = getPrefixCls("appbar", customizePrefixCls);
+
+    const match=useMediaQuery('(min-width:600px)');
+
+    console.log(match)
 
     return (
         <Paper 

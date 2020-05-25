@@ -37,13 +37,15 @@ import carouselPage from './Carousel/carouselPage';
 import stepsPage from './Steps/stepsPage';
 import ratePage from './Rate/ratePage';
 import appBarPage from './AppBar/appBarPage';
+import menuPage from './Menu/menuPage';
 import Demo from './Demo';
  
 import 'antd/dist/antd.css';
 import "./index.less";
 
 ReactDOM.render((<HashRouter>
-        <Route path="/" exact component={appBarPage} />
+        <Route path="/" exact component={menuPage} />
+        <Route path="/menu" exact component={menuPage} />
         <Route path="/appBar" exact component={appBarPage} />
         <Route path="/rate" exact component={ratePage} />
         <Route path="/steps" exact component={stepsPage} />

@@ -34,7 +34,9 @@ const Input = forwardRef((props, ref) => {
         onSearch,
         loading,
         component:Component="input",
-        textareaStyles
+        textareaStyles,
+        onBlur,
+        onFocus
     } = props;
 
     const { getPrefixCls } = useContext(ConfigContext);
@@ -50,9 +52,15 @@ const Input = forwardRef((props, ref) => {
 
     const handleFocus = (e) => {//input触发焦点事件
         setActive(true);
+        if(onFocus){
+            onFocus(e);
+        }
     }
     const handleBlur = (e) => {//input离开焦点事件
         setActive(false);
+        if(onBlur){
+            onBlur(e);
+        }
     }
 
     const handleChange = (e) => {//change时间

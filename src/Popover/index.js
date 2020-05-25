@@ -196,6 +196,7 @@ const Popover = React.forwardRef((Props, ref) => {
         if(onCloseBackdrop){
             onCloseBackdrop(e)
         }
+        setOpenState(false)
     }
 
     if(!disableClickListener&& trigger==="click"){

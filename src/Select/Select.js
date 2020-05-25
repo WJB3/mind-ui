@@ -66,6 +66,7 @@ const Select = React.forwardRef((Props,ref) => {
     const classes = classNames(prefixCls, className);
 
     const handleFocus=useCallback(()=>{
+
         setVisible(true);
     },[visible]);
 
@@ -144,13 +145,13 @@ const Select = React.forwardRef((Props,ref) => {
         getInputLabel()
     },[value]);
     
-    console.log(inputValue);
+    console.log(visible);
     
     return (
         <div className={classes} ref={handleRef} style={style}>
             <Popover 
                 trigger={"focus"} 
-                container={()=>selectRef.current} 
+                // container={()=>selectRef.current} 
                 placement={"bottom"}
                 open={open}
                 onCloseBackdrop={handleClickBackdrop}
@@ -161,7 +162,7 @@ const Select = React.forwardRef((Props,ref) => {
                 </ul>}
             >
                 <Input 
-                    suffix={loading ?<Loading size={14}/> :<Icon style={{fontSize:16                     }} name={(showSearch && visible)?"find":"arrow-down"} className={classNames(`arrow-down`,(visible && !showSearch)?`arrow-down-focus`:"")}/>}
+                    suffix={loading ?<Loading size={14}/> :<Icon style={{fontSize:16}} name={(showSearch && visible)?"find":"arrow-down"} className={classNames(`arrow-down`,(visible && !showSearch)?`arrow-down-focus`:"")}/>}
                     onFocus={handleFocus} 
                     allowClear={allowClear}
                     value={inputValue}
