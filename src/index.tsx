@@ -8,7 +8,7 @@ import AnimationPage from './animationPage/index';
 import gridPage from './gridPage/index';
 import notificationPage from './notificationPage/index';
 import inputPage from './Input/inputPage';
-import pagerPage from './pagerPage/index';
+import paperPage from './Paper/paperPage';
 import animationPage from './Animate/animationPage';
 import radioPage from './Radio/radioPage';
 import layoutPage from './layoutPage/index';
@@ -36,13 +36,15 @@ import treePage from './Tree/treePage';
 import carouselPage from './Carousel/carouselPage';
 import stepsPage from './Steps/stepsPage';
 import ratePage from './Rate/ratePage';
+import appBarPage from './AppBar/appBarPage';
 import Demo from './Demo';
  
 import 'antd/dist/antd.css';
 import "./index.less";
 
 ReactDOM.render((<HashRouter>
-        <Route path="/" exact component={ratePage} />
+        <Route path="/" exact component={appBarPage} />
+        <Route path="/appBar" exact component={appBarPage} />
         <Route path="/rate" exact component={ratePage} />
         <Route path="/steps" exact component={stepsPage} />
         <Route path="/carousel" exact component={carouselPage} />
@@ -70,7 +72,7 @@ ReactDOM.render((<HashRouter>
         <Route path="/switch" exact component={switchPage} />
         <Route path="/radio" exact component={radioPage} />
         <Route path="/animation" exact component={animationPage} />
-        <Route path="/pager" exact component={pagerPage} />
+        <Route path="/paper" exact component={paperPage} />
         <Route path="/notification" exact component={notificationPage} />
         <Route path="/button" component={ButtonPage}></Route>
         <Route path="/layout" component={Layout}></Route>

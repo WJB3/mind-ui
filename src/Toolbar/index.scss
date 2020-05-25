@@ -1,0 +1,42 @@
+ 
+@import "../Theme/styles/variable";
+
+$prefixCls:"#{$global-prefix}-toolbar";
+
+.#{$prefixCls}{
+
+    display: flex;
+    position: relative;
+    align-items: center;
+
+    &-normal{
+        min-height: 56px;
+    }
+
+    //landscape为高度<宽度 为pc端
+    //portrait为高度>宽度 为手机端
+    @media (min-width: 0px) and (orientation: portrait){
+        &-normal{
+            min-height: 48px;
+        }
+    }
+
+    @media (min-width: 600px){
+        &-normal{
+            min-height: 64px;
+        }
+    }
+
+    &-gutters{
+        padding-left: 16px;
+        padding-right: 16px;    
+    }
+
+    @media (min-width: 600px){
+        &-gutters{
+            padding-left: 24px;
+            padding-right: 24px;  
+        }
+    }
+
+}
