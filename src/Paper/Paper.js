@@ -12,7 +12,8 @@ const Paper=React.forwardRef((props,ref)=>{
         className,
         deep=0,
         square=false,
-        style
+        style,
+        deepDirection
     }=props;
 
     const { getPrefixCls } = React.useContext(ConfigContext);
@@ -30,7 +31,8 @@ const Paper=React.forwardRef((props,ref)=>{
                     className,
                     {
                         [`${prefixCls}-round`]:!square,
-                        [`${prefixCls}-deep-${deep}`]:deep
+                        [`${prefixCls}-deep-${deep}`]:deep,
+                        [`${prefixCls}-deepDirection-${deepDirection}`]:deepDirection
                     }
                 )
             }
@@ -52,7 +54,9 @@ Paper.propTypes={
     //自定义prefixCls
     prefixCls:PropTypes.string,
     //自定义样式
-    style:PropTypes.object
+    style:PropTypes.object,
+    //阴影的方向
+    deepDirection:PropTypes.oneOf(['left','right','top','bottom'])
 };
 
 export default Paper;

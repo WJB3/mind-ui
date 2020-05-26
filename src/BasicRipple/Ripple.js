@@ -1,22 +1,27 @@
-import React,{useState} from 'react';
+import React,{useState,useContext} from 'react';
 import { classNames } from './../components/helper/className';
 import { Transition } from 'react-transition-group';
+import { ConfigContext } from '../ConfigContext';
+import PropTypes from 'prop-types';
 import "./index.scss";
  
 
-const Ripple=React.forwardRef((props,ref)=>{
+const Ripple=(props)=>{
 
     const {
-        mergeStyle,
-        color,
-        backgroundColor,
-        opacity,
+        style,
+        className,
+        in:inProps,
+        prefixCls: customizePrefixCls,
         ...other
     }=props;
 
-    const styles={...mergeStyle,backgroundColor,opacity}
+    const { getPrefixCls } = useContext(ConfigContext);
+
+    const prefixCls = getPrefixCls("ripple", customizePrefixCls);
 
     const [ rippleEntering,setRippleEntering ]=useState(false);
+
     const [ rippleExiting,setRippleExiting ]=useState(false);
 
     function handleEnter(){
@@ -28,10 +33,15 @@ const Ripple=React.forwardRef((props,ref)=>{
     }
 
     const classes=classNames(
-        `${globalPrefix}-${componentName}`,
-        rippleEntering?`${globalPrefix}-${componentName}-entering`:"",
-        rippleExiting?`${globalPrefix}-${componentName}-exiting`:""
+        prefixCls,
+        className,
+        {
+            [`${prefixCls}-entering`]:rippleEntering,
+            [`${prefixCls}-exiting`]:rippleExiting
+        }
     )
+
+  
 
     return (
         <Transition
@@ -41,17 +51,27 @@ const Ripple=React.forwardRef((props,ref)=>{
             enter
             timeout={500}
             unmountOnExit
-            {...other}
+            in={inProps}
+            style={style}
         >
                 <span
                     className={
                         classes
                     }
-                    style={styles}
+                 
                 />
         </Transition>
         
     )
-});
+};
+
+Ripple.propTypes={
+    //传入的className
+    className: PropTypes.string,
+    //自定义类名前缀
+    prefixCls:PropTypes.string,
+    //自定义样式
+    style:PropTypes.object
+};
 
 export default Ripple;

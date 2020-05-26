@@ -4,7 +4,6 @@ import { ConfigContext } from '../ConfigContext';
 import { Transition } from 'react-transition-group';
 import "./index.scss";
  
- 
 const Fold=React.forwardRef((Props,ref)=>{
 
     const {
@@ -17,7 +16,8 @@ const Fold=React.forwardRef((Props,ref)=>{
         onExit,
         onExiting,
         component:Component='div',
-        foldHeight="0px"
+        foldHeight="0px",
+        unmountOnExit
     }=Props;
 
     const wrapperRef=React.useRef(null);
@@ -78,6 +78,7 @@ const Fold=React.forwardRef((Props,ref)=>{
             onExit={handleExit}
             onExiting={handleExiting}
             timeout={300}
+            unmountOnExit={unmountOnExit}
         >
             {
                 (state,childrenProps)=>{

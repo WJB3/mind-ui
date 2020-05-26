@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { classNames } from '../components/helper/className';
 import { ConfigContext } from '../ConfigContext';
+import useControlled from '../_utils/useControlled';
 import Paper from '../Paper';
 
 const Menu=React.forwardRef((props,ref)=>{
@@ -10,28 +11,50 @@ const Menu=React.forwardRef((props,ref)=>{
         children,
         className,
         style,
+        selectedKeys:selectedKeysProp=[],
+        defaultSelectedKeys=[]
     }=props;
 
     const { getPrefixCls } = React.useContext(ConfigContext);
 
     const prefixCls = getPrefixCls("menu", customizePrefixCls);
+
+    const [selectedKeys,setSelectedKeys]=useControlled({
+        controlled:selectedKeysProp,
+        default:defaultSelectedKeys
+    });
+
+    const handleClickItem=(e,props,key)=>{
+        if(selectedKeys.indexOf(key)===-1){
+            setSelectedKeys([key]);
+        }
+    }
  
     return (
         <Paper 
             square
             children={children}
+            deep={5}
+            deepDirection="right"
             component="ul"
             ref={ref}
-            style={{
-                ...style
-            }}
+            style={style}
             className={
                 classNames(
                     prefixCls,
                     className
                 )
             }
-        />
+        >
+            {
+                React.Children.map(children,child=>{
+                    return React.cloneElement(child,{
+                       isSelected:selectedKeys.indexOf(child.key)>-1,
+                       onItemClick:(e,props)=>handleClickItem(e,props,child.key),
+                    })
+                })
+            }
+        </Paper>
     )
 });
 

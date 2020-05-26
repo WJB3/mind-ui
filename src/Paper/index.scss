@@ -23,4 +23,18 @@ $prefixCls:"#{$global-prefix}-paper";
             @include boxShadowLevel($i)
         }
     }
+
+    &-deepDirection{
+
+        &-left{
+            box-shadow:-2px 0 2px -1px rgba(0, 0, 0, 0.2);
+        }
+
+        &-right{
+            box-shadow:2px 0 2px -1px rgba(0, 0, 0, 0.2);
+        }
+        
+    }   
+
+    
 }

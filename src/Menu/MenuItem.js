@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { classNames } from '../components/helper/className';
 import { ConfigContext } from '../ConfigContext';
-import BaseRipple from '../BaseRipple';
+import Icon from '../components/icon';
+import BasicRipple from '../BasicRipple';
 import "./index.scss";
 
 const MenuItem=React.forwardRef((props,ref)=>{
@@ -11,15 +12,23 @@ const MenuItem=React.forwardRef((props,ref)=>{
         children,
         className,
         style,
+        isSelected,
+        onItemClick,
+        icon
     }=props;
 
     const { getPrefixCls } = React.useContext(ConfigContext);
 
     const prefixCls = getPrefixCls("menuitem", customizePrefixCls);
+
+    const handleItemClick=(e)=>{
+        if(onItemClick){
+            onItemClick(e,props);
+        }
+    }
  
     return (
-        <BaseRipple
-            children={children}
+        <BasicRipple
             component="li"
             ref={ref}
             style={{
@@ -28,10 +37,18 @@ const MenuItem=React.forwardRef((props,ref)=>{
             className={
                 classNames(
                     prefixCls,
-                    className
+                    className,
+                    {
+                        [`${prefixCls}-isSelected`]:isSelected,
+                        [`${prefixCls}-icon`]:icon,
+                    }
                 )
             }
-        />
+            onClick={handleItemClick}
+        >
+            {!!icon && <Icon name={icon} />}
+            {children}
+        </BasicRipple>
     )
 });
 
@@ -44,7 +61,12 @@ MenuItem.propTypes={
     prefixCls:PropTypes.string,
     //自定义样式
     style:PropTypes.object,
-    
+    //表示是否选中
+    isSelected:PropTypes.bool,
+    //点击item
+    onItemClick:PropTypes.func,
+    //图标
+    icon:PropTypes.string
 };
 
 export default MenuItem;

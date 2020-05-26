@@ -1,0 +1,41 @@
+ 
+ 
+
+@import "../Theme/styles/variable";
+
+$prefixCls:"#{$global-prefix}-collapse";
+
+.#{$prefixCls}{
+
+    color: #fff;
+
+    &-positionFixed{
+        top: 0;
+        left: auto;
+        right: 0;
+        position: fixed;
+    }
+
+    &-positionStatic{
+        position: static;
+        transform: translateZ(0);
+    }
+
+    &-positionRelative{
+        position: relative;
+    }
+
+    &-positionAbsolute{
+        top: 0;
+        left: auto;
+        right: 0;
+        position: absolute;
+    }
+
+    &-positionSticky{
+        top: 0;
+        left: auto;
+        right: 0;
+        position: sticky;
+    }
+}

@@ -7,8 +7,10 @@
 @import "../Theme/styles/variable";
 
 $prefixCls:"#{$global-prefix}-menu";
+$prefixClsMenuItem:"#{$global-prefix}-menuitem";
 
 .#{$prefixCls}{
+    
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -24,15 +26,36 @@ $prefixCls:"#{$global-prefix}-menu";
     list-style: none;
     background: #fff;
     outline: none;
+    padding:15px;
 
-    &-menuitem{
-        height: 40px;
-        line-height: 40px;
-        display: block;
-        margin: 0;
-        padding: 0 20px;
-        white-space: nowrap;
-        cursor: pointer;
+    .#{$prefixClsMenuItem}-isSelected{
+        background-color: $primary-color;
+        @include boxShadowLevel(4);
+        
+        color:#fff;
     }
-     
+    
+}
+
+.#{$prefixClsMenuItem}{
+    height: 40px;
+    line-height: 40px;
+    display: block;
+    margin: 0;
+    padding: 0 20px;
+    white-space: nowrap;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    border-radius: 4px;
+    margin:10px 0;
+
+    &-icon{
+        padding:0 10px;
+
+        .wonderful-icon{
+            margin-right:10px;
+        }
+    }
+    
 }

@@ -2,9 +2,16 @@
 
 import React from 'react';
 
-export default function useControlled({controlled,default:defaultProps}){
+function isEmptyArr(arr){//判断是否是空数组
+    if(typeof arr==="object" && Array.isArray(arr) && arr.length===0){
+        return true;
+    }
+    return false;
+}
 
-    const { current:isControlled}=React.useRef(controlled!==undefined);
+export default function useControlled({controlled,default:defaultProps}){
+    
+    const { current:isControlled}=React.useRef(controlled!==undefined && !isEmptyArr(controlled));
     
     const [valueState,setValueState]=React.useState(defaultProps);
 
