@@ -8,8 +8,13 @@
 
 $prefixCls:"#{$global-prefix}-menu";
 $prefixClsMenuItem:"#{$global-prefix}-menuitem";
+$prefixClsSubMenu:"#{$global-prefix}-submenu";
 
 .#{$prefixCls}{
+
+    ul,li{
+        list-style: none;
+    }
     
     box-sizing: border-box;
     margin: 0;
@@ -26,12 +31,11 @@ $prefixClsMenuItem:"#{$global-prefix}-menuitem";
     list-style: none;
     background: #fff;
     outline: none;
-    padding:15px;
+    padding: 10px 5px;
 
     .#{$prefixClsMenuItem}-isSelected{
         background-color: $primary-color;
         @include boxShadowLevel(4);
-        
         color:#fff;
     }
     
@@ -42,13 +46,14 @@ $prefixClsMenuItem:"#{$global-prefix}-menuitem";
     line-height: 40px;
     display: block;
     margin: 0;
-    padding: 0 20px;
+    padding-left:10px;
     white-space: nowrap;
     cursor: pointer;
     display: flex;
     align-items: center;
     border-radius: 4px;
-    margin:10px 0;
+    overflow: hidden;
+    margin-bottom:10px;
 
     &-icon{
         padding:0 10px;
@@ -56,6 +61,67 @@ $prefixClsMenuItem:"#{$global-prefix}-menuitem";
         .wonderful-icon{
             margin-right:10px;
         }
+    }
+    
+}
+
+.#{$prefixClsSubMenu}{
+    
+    border-radius: 4px;
+    margin-bottom:10px;
+
+    ul{
+        padding-left: none;
+    }
+
+    &-icon{
+        padding:0 10px;
+
+        .wonderful-icon{
+            margin-right:10px;
+        }
+    }
+
+    &-title{
+        min-height: 40px;
+        line-height: 40px;
+        display: block;
+        margin: 0;
+        padding-left:10px;
+        white-space: nowrap;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        margin-bottom:10px;
+        
+        .wonderful-icon{
+            transition: transform .3s;
+        }
+
+        span:nth-child(2){
+            flex:1;
+        }
+
+        i:nth-child(3){
+            margin-right: 0;
+        }
+
+        &.#{$prefixClsSubMenu}-expanded{
+            .wonderful-icon{
+                transform: rotate(-180deg);
+                
+            }
+        }
+    }
+
+    &-fold{
+        padding-left: 20px;
+   
     }
     
 }

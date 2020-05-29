@@ -17,7 +17,8 @@ const Fold=React.forwardRef((Props,ref)=>{
         onExiting,
         component:Component='div',
         foldHeight="0px",
-        unmountOnExit
+        unmountOnExit,
+        className
     }=Props;
 
     const wrapperRef=React.useRef(null);
@@ -85,7 +86,7 @@ const Fold=React.forwardRef((Props,ref)=>{
 
                    return <Component
                         className={
-                            classNames(`${prefixCls}`,{
+                            classNames(`${prefixCls}`,className,{
                                 [`${prefixCls}-entered`]:state==='entered',
                                 [`${prefixCls}-hidden`]:state==='exited' && !inProp && foldHeight==='0px',
                             })

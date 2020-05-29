@@ -22,7 +22,7 @@ $prefixCls:"#{$global-prefix}-animate";
             }
     
             &-entered{
-                height: 'auto';
+                height: auto;
                 overflow: visible;
             }
         }

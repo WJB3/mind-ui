@@ -10,17 +10,39 @@ const Collapse=React.forwardRef((props,ref)=>{
         prefixCls:customizePrefixCls,
         children,
         className,
-        style
+        style,
+        activeKey:activeKeyProp=[],
+        defaultActiveKey=[],
+        onChange
     }=props;
 
     const { getPrefixCls } = React.useContext(ConfigContext);
 
     const prefixCls = getPrefixCls("collapse", customizePrefixCls);
 
+    const [activeKey,setActiveKey]=useControlled({
+        controlled:activeKeyProp,
+        default:defaultActiveKey
+    });
+
+    const handleHeaderClick=(e,key)=>{
+        const newActiveKey=[...activeKey];
+        let index=activeKey.indexOf(key);
+        if(index>-1){
+            newActiveKey.splice(index,1);
+        }else{
+            newActiveKey.push(key);
+        }
+        setActiveKey(newActiveKey);
+        if(onChange){
+            onChange(e,newActiveKey)
+        }
+    }
+
     return (
         <Paper 
             deep={2}
-            children={children}
+            
             ref={ref}
             style={{
                 ...style
@@ -31,7 +53,16 @@ const Collapse=React.forwardRef((props,ref)=>{
                     className
                 )
             }
-        />
+        >
+            {
+                React.Children.map(children,child=>{
+                    return React.cloneElement(child,{
+                        isActive:activeKey.indexOf(child.key)>-1,
+                        onHeaderClick:(e)=>handleHeaderClick(e,child.key)
+                    })
+                })
+            }
+        </Paper>
     )
 });
 
@@ -49,7 +80,9 @@ Collapse.propTypes={
     //初始化选中面板的 key
     defaultActiveKey:PropTypes.array,
     //带边框风格的折叠面板
-    bordered:PropTypes.bool
+    bordered:PropTypes.bool,
+    //change事件
+    onChange:PropTypes.func
 };
 
 export default Collapse;

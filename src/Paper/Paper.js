@@ -13,7 +13,9 @@ const Paper=React.forwardRef((props,ref)=>{
         deep=0,
         square=false,
         style,
-        deepDirection
+        deepDirection,
+        onClick,
+        role
     }=props;
 
     const { getPrefixCls } = React.useContext(ConfigContext);
@@ -36,6 +38,8 @@ const Paper=React.forwardRef((props,ref)=>{
                     }
                 )
             }
+            onClick={onClick}
+            role={role}
         />
     )
 });
@@ -56,7 +60,11 @@ Paper.propTypes={
     //自定义样式
     style:PropTypes.object,
     //阴影的方向
-    deepDirection:PropTypes.oneOf(['left','right','top','bottom'])
+    deepDirection:PropTypes.oneOf(['left','right','top','bottom']),
+    //点击事件
+    onClick:PropTypes.func,
+    //role角色
+    role:PropTypes.string
 };
 
 export default Paper;
