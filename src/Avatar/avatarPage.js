@@ -1,9 +1,9 @@
 import React from 'react';
-import Layout from './../layout/index';
+import Layout from './../Layout/index';
 import Title from './../components/text/Title';
 import Description from './../components/text/Description';
 import SubTitle from './../components/text/SubTitle';
-import Textlayout from './../components/text/Textlayout';
+import TextLayout from './../components/text/TextLayout';
 import DescriptionTable from './../components/text/DescriptionTable';
 import Avatar from './index';
 import Space from '../Space';
@@ -21,7 +21,7 @@ class Page extends React.Component {
                 <Description>用来代表用户或事物，支持图片、图标或字符展示。</Description>
 
 
-                <Textlayout
+                <TextLayout
                     componentClassName={"button-page-demo"}
                     components={<React.Fragment>
                         <Space size={"large"} direction={"vertical"}>
@@ -41,9 +41,9 @@ class Page extends React.Component {
                     </React.Fragment>}
                     title={"基本"}
                     description={"最简单的用法。"}
-                ></Textlayout>
+                ></TextLayout>
 
-                <Textlayout
+                <TextLayout
                     componentClassName={"button-page-demo"}
                     components={<React.Fragment>
 
@@ -71,9 +71,9 @@ class Page extends React.Component {
                     </React.Fragment>}
                     title={"基本"}
                     description={"最简单的用法。"}
-                ></Textlayout>
+                ></TextLayout>
 
-                <Textlayout
+                <TextLayout
                     componentClassName={"button-page-demo"}
                     components={<React.Fragment>
 
@@ -89,7 +89,7 @@ class Page extends React.Component {
                     </React.Fragment>}
                     title={"基本"}
                     description={"最简单的用法。"}
-                ></Textlayout>
+                ></TextLayout>
 
                 <SubTitle>API</SubTitle>
                 <Description>通过设置 Button 的属性来产生不同的按钮样式，推荐顺序为：type -> shape -> size -> loading -> disabled。</Description>

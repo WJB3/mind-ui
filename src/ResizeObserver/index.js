@@ -1,6 +1,4 @@
 import React,{forwardRef,useRef, useEffect} from 'react';
-import { toArray } from '../_utils/reactUtils';
-import { supportRef,composeRef } from '../_utils/ref';
 import setRef from '../_utils/setRef';
 import useForkRef from '../_utils/useForkRef';
 import ResizeObserver from 'resize-observer-polyfill';
@@ -36,7 +34,8 @@ const ResizeObserverComponent=forwardRef((props,ref)=>{
 
     const destroyObserver=()=>{
         if(resizeObserver.current){
-            resizeObserver.current.discount();
+            console.log(resizeObserver.current)
+            resizeObserver.current.disconnect();
             resizeObserver.current=null;
         }
     }

@@ -1,123 +1,104 @@
-import React from 'react';
-import Layout from '../layout/index';
+import React, { useRef, useState } from 'react';
+import Layout from '../Layout/index';
 import Title from '../components/text/Title';
 import Description from '../components/text/Description';
 import SubTitle from '../components/text/SubTitle';
-import Textlayout from '../components/text/Textlayout';
-import DescriptionTable from '../components/text/DescriptionTable';
-import Tooltip from '../Tooltip';
+import Tooltip from './index';
 import Button from '../ButtonBase';
-import TooltipM from '@material-ui/core/Tooltip';
-import { Tooltip as TooltipA } from 'antd';
-const text = "asdasd";
+import TextLayout from '../components/text/TextLayout';
+import DescriptionTable from '../components/text/DescriptionTable';
+import Grid from '../components/grid';
 
-const buttonWidth = 70;
-class Page extends React.Component {
+//import  Notification from 'rc-notification';
+const TooltipPage = () => {
 
-    state = {
+    return (
+        <Layout >
+            <Title>Tooltip文字提示</Title>
+            <SubTitle>何时使用</SubTitle>
+            <Description>Tooltip文字提示</Description>
+            <SubTitle>代码演示</SubTitle>
 
-    }
+            <TextLayout
+                componentClassName={"button-page-demo"}
+                components={<React.Fragment>
 
-    render() {
-
-        const { } = this.state;
-
-        return (
-            <Layout >
-                <Title>Tooltip</Title>
-                <Description>页面局部处于等待异步数据或正在渲染过程时，合适的加载动效会有效缓解用户的焦虑。</Description>
-                <SubTitle>何时使用</SubTitle>
-
-                <SubTitle>代码演示</SubTitle>
-
-                <Textlayout
-                    componentClassName={"button-page-demo"}
-                    components={<React.Fragment>
-                        <Tooltip title="prompt text" arrow visible>
-                            <span>Tooltip will show on mouse enter.</span>
-                        </Tooltip>
-                        
-                    </React.Fragment>}
-                    title={"基本用法"}
-                    description={"一个简单的 loading 状态。"}
-                ></Textlayout>
-
-                <Textlayout
-                    componentClassName={"tooltip-page-demo"}
-                    components={<React.Fragment>
-                        <div style={{ marginLeft: buttonWidth, whiteSpace: 'nowrap' }}>
-                            <Tooltip placement="topStart" title={text} trigger="click">
-                                <Button>TL</Button>
-                            </Tooltip>
-                            <Tooltip placement="top" title={text}>
-                                <Button>Top</Button>
-                            </Tooltip>
-                            <Tooltip placement="topEnd" title={text} >
-                                <Button>TR</Button>
-                            </Tooltip>
-                        </div>
-                        <div style={{ width: buttonWidth, float: 'left' }}>
-                            <Tooltip placement="leftStart" title={text} animation="fade"> 
-                                <Button>LT</Button>
-                            </Tooltip>
-                            <Tooltip placement="left" title={text} >
-                                <Button>Left</Button>
-                            </Tooltip>
-                            <Tooltip placement="leftEnd" title={text} >
-                                <Button>LB</Button>
-                            </Tooltip>
-                        </div>
-                        <div style={{ width: buttonWidth, marginLeft: buttonWidth * 4 + 24 }}>
-                            <Tooltip placement="rightStart" title={text}>
-                                <Button>RT</Button>
-                            </Tooltip>
-                            <Tooltip placement="right" title={text}>
-                                <Button>Right</Button>
-                            </Tooltip>
-                            <Tooltip placement="rightEnd" title={text}>
-                                <Button>RB</Button>
-                            </Tooltip>
-                        </div>
-                        <div style={{ marginLeft: buttonWidth, clear: 'both', whiteSpace: 'nowrap' }} >
-                            <Tooltip placement="bottomStart" title={text} >
-                                <Button>BL</Button>
-                            </Tooltip>
-                            <Tooltip placement="bottom" title={text} >
-                                <Button>Bottom</Button>
-                            </Tooltip>
-                            <Tooltip placement="bottomEnd" title={text} >
-                                <Button>BR</Button>
-                            </Tooltip>
-                        </div>
-                    </React.Fragment>}
-                    title={"基本用法"}
-                    description={"一个简单的 loading 状态。"}
-                ></Textlayout>
+                    <Tooltip title="我是提示" defaultVisible={true} placement={"top"} onVisibleChange={(value) => { console.log("此时" + value) }}>
+                        <Button>展示文字提示(默认上)</Button>
+                    </Tooltip>
 
 
-                        <SubTitle>API</SubTitle>
-                        <Description>通过设置 Button 的属性来产生不同的按钮样式，推荐顺序为：type -> shape -> size -> loading -> disabled。</Description>
-                        <Description>按钮的属性说明如下：</Description>
-                        <DescriptionTable
-                            columns={[
-                                { title: "属性", dataIndex: "attr" },
-                                { title: "说明", dataIndex: "description" },
-                                { title: "类型", dataIndex: "type", render: (text, record) => { return (<div style={{ color: "rgba(242,49,127,1)" }}>{text}</div>) } },
-                                { title: "默认值", dataIndex: "default" }
-                            ]}
-                            dataSource={[
-                                { attr: "disabled", description: "按钮失效状态", type: "boolean", default: "false" },
-                                { attr: "type", description: "设置按钮类型，可选值为 primary dashed danger link或者不设", type: "string", default: "-" },
-                                { attr: "size", description: "设置按钮大小，可选值为 small large 或者不设", type: "string", default: "default" },
-                                { attr: "shape", description: "设置按钮形状，可选值为 circle 或者不设", type: "string", default: "-" },
-                                { attr: "float", description: "设置按钮是否悬浮", type: "boolean", default: "false" },
-                                { attr: "flat", description: "设置按钮的扁平状态", type: "boolean", default: "false" },
-                            ]}
-                        />
+                </React.Fragment>}
+                title={"基本用法"}
+                description={""}
+            ></TextLayout>
 
-            </Layout>
-        )
-    }
+            <TextLayout
+                componentClassName={"button-page-demo"}
+                components={<React.Fragment>
+                    
+
+                    <Tooltip title="我是提示" defaultVisible={true} placement={"top-start"} onVisibleChange={(value) => { console.log("此时" + value) }}>
+                        <Button>展示文字提示(上左)</Button>
+                    </Tooltip>
+
+                    <Tooltip title="我是提示" defaultVisible={true} placement={"top"} onVisibleChange={(value) => { console.log("此时" + value) }}>
+                        <Button>展示文字提示(上左)</Button>
+                    </Tooltip>
+
+                    <Tooltip title="我是提示" defaultVisible={true} placement={"top-end"} onVisibleChange={(value) => { console.log("此时" + value) }}>
+                        <Button>展示文字提示(上右)</Button>
+                    </Tooltip>
+
+                    <Tooltip title="我是提示" defaultVisible={true} placement={"left-start"} onVisibleChange={(value) => { console.log("此时" + value) }}>
+                        <Button>展示文字提示(左上)</Button>
+                    </Tooltip>
+
+                    <Tooltip title="我是提示" defaultVisible={true} placement={"left"} onVisibleChange={(value) => { console.log("此时" + value) }}>
+                        <Button>展示文字提示(左)</Button>
+                    </Tooltip>
+
+                    <Tooltip title="我是提示" defaultVisible={true} placement={"left-end"} onVisibleChange={(value) => { console.log("此时" + value) }}>
+                        <Button>展示文字提示(左下)</Button>
+                    </Tooltip>
+
+
+                </React.Fragment>}
+                title={"基本用法"}
+                description={""}
+            ></TextLayout>
+
+
+
+            <SubTitle>API</SubTitle>
+            <Description>通过设置Protal</Description>
+            <Description>按钮的属性说明如下：</Description>
+            <DescriptionTable
+                columns={[
+                    { title: "属性", dataIndex: "attr" },
+                    { title: "说明", dataIndex: "description" },
+                    { title: "类型", dataIndex: "type", render: (text, record) => { return (<div style={{ color: "rgba(242,49,127,1)" }}>{text}</div>) } },
+                    { title: "默认值", dataIndex: "default" }
+                ]}
+                dataSource={[
+                    { attr: "children", description: "需要挂载的元素", type: "node/string", default: "false" },
+                    { attr: "title", description: "提示内容", type: "node/string", default: "" },
+                    { attr: "prefixCls", description: "自定义类名前缀", type: "string", default: "" },
+                    { attr: "className", description: "额外添加的类名", type: "string", default: "false" },
+                    { attr: "arrow", description: "是否有箭头", type: "boolean", default: "true" },
+                    { attr: "animation", description: "动画名称", type: "string", default: "grow" },
+                    { attr: "visible", description: "是否显示", type: "boolean", default: "" },
+                    { attr: "defaultVisible", description: "默认是否显示", type: "boolean", default: "" },
+                    { attr: "placement", description: "位置", type: "string", default: "top" },
+                    { attr: "onVisibleChange", description: "弹框消失/隐藏的回调", type: "string", default: "top" },
+
+
+                ]}
+            />
+
+        </Layout>
+    )
+
 }
 
-export default Page;
+export default TooltipPage;

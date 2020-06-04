@@ -1,11 +1,11 @@
-import React from 'react';
-import Layout from './../layout/index';
+import React, { Fragment } from 'react';
+import Layout from './../Layout/index';
 import Title from './../components/text/Title';
 import Description from './../components/text/Description';
 import SubTitle from './../components/text/SubTitle';
 import Button from './index';
 import Icon from './../components/icon/index';
-import Textlayout from './../components/text/Textlayout';
+import TextLayout from './../components/text/TextLayout';
 import DescriptionTable from './../components/text/DescriptionTable';
 import Space from '../Space';
 import BackTop from '../BackTop';
@@ -27,7 +27,7 @@ class ButtonPage extends React.Component {
 
 
         return (
-            <Layout >
+            <Fragment >
 
                 <BackTop />
                 
@@ -37,7 +37,7 @@ class ButtonPage extends React.Component {
                 <Description>标记了一个（或封装一组）操作命令，响应用户点击行为，触发相应的业务逻辑。</Description>
                 <SubTitle>代码演示</SubTitle>
             
-                <Textlayout
+                <TextLayout
                     componentClassName={"button-page-demo"}
                     components={<React.Fragment>
                         <Space itemStyle={{marginBottom:"8px"}}>
@@ -52,9 +52,9 @@ class ButtonPage extends React.Component {
                     </React.Fragment>}
                     title={"按钮类型"}
                     description={"按钮有六种类型：主按钮、次按钮、危险按钮、提示按钮、警告按钮、禁用按钮。主按钮在同一个操作区域最多出现一次。"}
-                ></Textlayout>
+                ></TextLayout>
 
-                <Textlayout
+                <TextLayout
                     componentClassName={"button-page-demo"}
                     components={<React.Fragment>
                         <Space itemStyle={{marginBottom:"8px"}}>
@@ -65,9 +65,9 @@ class ButtonPage extends React.Component {
                     </React.Fragment>}
                     title={"按钮尺寸"}
                     description={"通过设置 size 为 large small 分别把按钮设为大、小尺寸。若不设置 size，则尺寸为中。"}
-                ></Textlayout>
+                ></TextLayout>
 
-                <Textlayout
+                <TextLayout
                     componentClassName={"button-page-demo"}
                     components={<React.Fragment>
                         <Space itemStyle={{marginBottom:"8px"}}>
@@ -82,9 +82,9 @@ class ButtonPage extends React.Component {
                     </React.Fragment>}
                     title={"按钮扁平"}
                     description={"用于通用功能和减少分层在屏幕上,使其更具可读性。"}
-                ></Textlayout>
+                ></TextLayout>
 
-                <Textlayout
+                <TextLayout
                     componentClassName={"button-page-demo"}
                     components={<React.Fragment>
                         <Space itemStyle={{marginBottom:"8px"}}>
@@ -98,9 +98,9 @@ class ButtonPage extends React.Component {
                     </React.Fragment>}
                     title={"按钮形状"}
                     description={"通过设置 shape 为 circle 或者round（正方形）。设置icon为按钮的图标类型。此属性只适合单个字，多个字会有问题。"}
-                ></Textlayout>
+                ></TextLayout>
 
-                <Textlayout
+                <TextLayout
                     componentClassName={"button-page-demo"}
                     components={<React.Fragment>
                         <Space itemStyle={{marginBottom:"8px"}}>
@@ -113,9 +113,9 @@ class ButtonPage extends React.Component {
                     </React.Fragment>}
                     title={"图标按钮"}
                     description={"通过设置float来决定按钮是否悬浮，通常被用来作为网站的全局按钮操作。"}
-                ></Textlayout>
+                ></TextLayout>
 
-                <Textlayout
+                <TextLayout
                     componentClassName={"button-page-demo"}
                     components={<React.Fragment>
                         <Space itemStyle={{marginBottom:"8px"}}>
@@ -131,7 +131,7 @@ class ButtonPage extends React.Component {
                     </React.Fragment>}
                     title={"按钮浮动"}
                     description={"通过设置icon来生成具有单个图标的按钮。仅适合单个图标属性。"}
-                ></Textlayout>
+                ></TextLayout>
 
 
                 <SubTitle>API</SubTitle>
@@ -154,7 +154,7 @@ class ButtonPage extends React.Component {
                     ]}
                 />
 
-            </Layout>
+            </Fragment>
         )
     }
 }

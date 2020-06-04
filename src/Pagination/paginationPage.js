@@ -1,9 +1,9 @@
 import React from 'react';
-import Layout from './../layout/index';
+import Layout from './../Layout/index';
 import Title from './../components/text/Title';
 import Description from './../components/text/Description';
 import SubTitle from './../components/text/SubTitle';
-import Textlayout from './../components/text/Textlayout';
+import TextLayout from './../components/text/TextLayout';
 import Button from '../ButtonBase';
 import Icon from '../components/icon';
 import Space from '../Space';
@@ -29,7 +29,7 @@ class Page extends React.Component {
                 <Description>当页面内容区域比较长时。</Description>
                 <SubTitle>代码演示</SubTitle>
 
-                <Textlayout
+                <TextLayout
                     componentClassName={"button-page-demo"}
                     components={<React.Fragment>
                         <div style={{ justifyContent: "center", alignItems: "center" }}>
@@ -43,9 +43,9 @@ class Page extends React.Component {
                     </React.Fragment>}
                     title={"基本"}
                     description={"基础分页。"}
-                ></Textlayout>
+                ></TextLayout>
 
-                <Textlayout
+                <TextLayout
                     componentClassName={"button-page-demo"}
                     components={<React.Fragment>
 
@@ -54,9 +54,9 @@ class Page extends React.Component {
                     </React.Fragment>}
                     title={"更多"}
                     description={"更多分页。"}
-                ></Textlayout>
+                ></TextLayout>
 
-                <Textlayout
+                <TextLayout
                     componentClassName={"button-page-demo"}
                     components={<React.Fragment>
 
@@ -65,9 +65,9 @@ class Page extends React.Component {
                     </React.Fragment>}
                     title={"替换前一页和后一页"}
                     description={"替换前一页和后一页"}
-                ></Textlayout>
+                ></TextLayout>
 
-                <Textlayout
+                <TextLayout
                     componentClassName={"button-page-demo"}
                     components={<React.Fragment>
 
@@ -76,7 +76,7 @@ class Page extends React.Component {
                     </React.Fragment>}
                     title={"通过onchange回调当前页码和每页条数"}
                     description={"通过onchange回调当前页码和每页条数"}
-                ></Textlayout>
+                ></TextLayout>
 
                 <SubTitle>API</SubTitle>
                 <Description>通过设置 Button 的属性来产生不同的按钮样式，推荐顺序为：type -> shape -> size -> loading -> disabled。</Description>

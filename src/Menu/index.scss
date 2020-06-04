@@ -9,6 +9,7 @@
 $prefixCls:"#{$global-prefix}-menu";
 $prefixClsMenuItem:"#{$global-prefix}-menuitem";
 $prefixClsSubMenu:"#{$global-prefix}-submenu";
+$prefixClsDivider:"#{$global-prefix}-divider";
 
 .#{$prefixCls}{
 
@@ -18,7 +19,6 @@ $prefixClsSubMenu:"#{$global-prefix}-submenu";
     
     box-sizing: border-box;
     margin: 0;
-    padding: 0;
     font-size: 14px;
     font-variant: tabular-nums;
     line-height: 1.5715;
@@ -30,20 +30,93 @@ $prefixClsSubMenu:"#{$global-prefix}-submenu";
     line-height: 0;
     list-style: none;
     background: #fff;
+    position: relative;
     outline: none;
-    padding: 10px 5px;
-
+ 
+  
+    
     .#{$prefixClsMenuItem}-isSelected{
         background-color: $primary-color;
         @include boxShadowLevel(4);
         color:#fff;
     }
+
+    &-dark{
+        
+        @include boxShadowLevel(8);
+       
+        background-color: rgba(0, 0, 0,.8);
+
+        &.#{$prefixCls}-backgroundImg{
+            // background-image: url('./assets/background-menu.jpg');
+            background-blend-mode: multiply;
+        }
+        
+        .#{$prefixClsMenuItem}{
+            color:#fff;
+
+            &:not(.#{$prefixClsMenuItem}-isSelected):hover{
+                background-color: rgba(255,255,255,.4);
+            }
+        }
+
+        .#{$prefixClsSubMenu}{
+            color:#fff;
+
+            &-title{
+                &:hover{
+                    background-color: rgba(255,255,255,.4);
+                }
+            }
+
+        }
+
+        // .#{$prefixCls}-background {
+        //         position: absolute;
+        //         left:0;
+        //         top:0;
+        //         right:0;
+        //         bottom:0;
+        //         content:"";
+        //         //background-image: url('./assets/background-menu.jpg');
+        //         width:100%;
+        //         height:100%;
+        //         background-size: cover;
+        //         background-position: center center;
+        //         z-index: -1;
+        // }
+      
+        // &::before{
+        //     top: 0;
+        //     bottom: 0;
+        //     width: 100%;
+        //     height: 100%;
+        //     content: "";
+        //     display: block;
+        //     z-index: 3;
+        //     position: absolute;
+        // }
+
+        // &::after{
+        //     top: 0;
+        //     bottom: 0;
+        //     width: 100%;
+        //     height: 100%;
+        //     content: "";
+        //     display: block;
+        //     z-index: 3;
+        //     position: absolute;
+        //     opacity: .8;
+        //     background: #000;
+        // }
+    }
+ 
     
 }
 
 .#{$prefixClsMenuItem}{
-    height: 40px;
-    line-height: 40px;
+    height: 42px;
+    line-height: 42px;
     display: block;
     margin: 0;
     padding-left:10px;
@@ -53,14 +126,24 @@ $prefixClsSubMenu:"#{$global-prefix}-submenu";
     align-items: center;
     border-radius: 4px;
     overflow: hidden;
-    margin-bottom:10px;
+    width:100%;
+    border-radius: 3px;
+
+    &:not(.#{$prefixClsMenuItem}-isSelected):hover{
+        background-color: $primary-color-opacity2;
+    }
 
     &-icon{
-        padding:0 10px;
+        // padding:0 10px;
 
         .wonderful-icon{
             margin-right:10px;
         }
+    }
+
+    &-isHasSubMenu{
+        height:36px;
+        line-height: 36px;
     }
     
 }
@@ -68,14 +151,16 @@ $prefixClsSubMenu:"#{$global-prefix}-submenu";
 .#{$prefixClsSubMenu}{
     
     border-radius: 4px;
-    margin-bottom:10px;
+    width:100%;
 
     ul{
-        padding-left: none;
+        padding-left: 0;
     }
 
+   
+
     &-icon{
-        padding:0 10px;
+        // padding:0 10px;
 
         .wonderful-icon{
             margin-right:10px;
@@ -88,6 +173,7 @@ $prefixClsSubMenu:"#{$global-prefix}-submenu";
         display: block;
         margin: 0;
         padding-left:10px;
+        padding-right:10px;
         white-space: nowrap;
         cursor: pointer;
         display: flex;
@@ -97,10 +183,10 @@ $prefixClsSubMenu:"#{$global-prefix}-submenu";
         align-items: center;
         justify-content: space-between;
         width: 100%;
-        margin-bottom:10px;
         
-        .wonderful-icon{
+        .arrow-down{
             transition: transform .3s;
+            font-size: 16px;
         }
 
         span:nth-child(2){
@@ -119,9 +205,21 @@ $prefixClsSubMenu:"#{$global-prefix}-submenu";
         }
     }
 
-    &-fold{
-        padding-left: 20px;
+    // &-fold{
+    //     padding-left: 20px;
    
-    }
+    // }
     
+    // &:hover{
+    //     background-color: $primary-color-opacity2;
+    // }
+
+}
+
+.#{$prefixClsDivider}{
+    bottom: 0;
+    height: 1px;
+    content: "";
+    position: absolute;
+    background-color: hsla(0,0%,100%,.3);
 }

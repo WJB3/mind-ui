@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { classNames } from '../components/helper/className';
 import { ConfigContext } from '../ConfigContext';
+import "./index.scss";
 
 
 const Paper=React.forwardRef((props,ref)=>{

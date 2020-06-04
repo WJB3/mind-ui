@@ -1,11 +1,11 @@
 import React from 'react';
-import Layout from './../layout/index';
+import Layout from './../Layout/index';
 import Title from './../components/text/Title';
 import Description from './../components/text/Description';
 import SubTitle from './../components/text/SubTitle';
 import Button from '../ButtonBase';
 import Space from './index';
-import Textlayout from './../components/text/Textlayout';
+import TextLayout from './../components/text/TextLayout';
 import DescriptionTable from './../components/text/DescriptionTable';
 //import  Notification from 'rc-notification';
 
@@ -22,7 +22,7 @@ class ButtonPage extends React.Component {
                 <Description>避免组件紧贴在一起，拉开统一的空间。</Description>
                 <SubTitle>代码演示</SubTitle>
 
-                <Textlayout
+                <TextLayout
                     componentClassName={"button-page-demo"}
                     components={<React.Fragment>
                         <Space itemStyle={{marginBottom:"8px"}}>
@@ -37,7 +37,7 @@ class ButtonPage extends React.Component {
                     </React.Fragment>}
                     title={"按钮类型"}
                     description={"按钮有六种类型：主按钮、次按钮、危险按钮、提示按钮、警告按钮、禁用按钮。主按钮在同一个操作区域最多出现一次。"}
-                ></Textlayout>
+                ></TextLayout>
 
 
                 <SubTitle>API</SubTitle>

@@ -1,9 +1,9 @@
 import React from 'react';
-import Layout from './../layout/index';
+import Layout from './../Layout';
 import Title from './../components/text/Title';
 import Description from './../components/text/Description';
 import SubTitle from './../components/text/SubTitle';
-import Textlayout from './../components/text/Textlayout';
+import TextLayout from './../components/text/TextLayout';
 import DescriptionTable from './../components/text/DescriptionTable';
 import Pager from './../components/pager';
 import Tooltip from '../Tooltip';
@@ -30,8 +30,8 @@ class Page extends React.Component {
                 <SubTitle>何时使用</SubTitle>
                 <SubTitle>代码演示</SubTitle>
 
-                <Textlayout
-                    layoutStyle={{ backgroundColor: "#f5f5f5" }}
+                <TextLayout
+                    LayoutStyle={{ backgroundColor: "#f5f5f5" }}
                     componentClassName={"pager-page-demo"}
                     components={<React.Fragment>
 
@@ -49,10 +49,10 @@ class Page extends React.Component {
                     </React.Fragment>}
                     title={"折叠"}
                     description={"折叠"}
-                ></Textlayout>
+                ></TextLayout>
 
-                <Textlayout
-                    layoutStyle={{ backgroundColor: "#f5f5f5" }}
+                <TextLayout
+                    LayoutStyle={{ backgroundColor: "#f5f5f5" }}
                     componentClassName={"pager-page-demo"}
                     components={<React.Fragment>
 
@@ -69,10 +69,10 @@ class Page extends React.Component {
                     </React.Fragment>}
                     title={"fade"}
                     description={"消失/展示渐隐"}
-                ></Textlayout>
+                ></TextLayout>
 
-                <Textlayout
-                    layoutStyle={{ backgroundColor: "#f5f5f5" }}
+                <TextLayout
+                    LayoutStyle={{ backgroundColor: "#f5f5f5" }}
                     componentClassName={"pager-page-demo"}
                     components={<React.Fragment>
 
@@ -87,10 +87,10 @@ class Page extends React.Component {
                     </React.Fragment>}
                     title={"zoom"}
                     description={"消失/展示渐隐"}
-                ></Textlayout>
+                ></TextLayout>
 
-                <Textlayout
-                    layoutStyle={{ backgroundColor: "#f5f5f5" }}
+                <TextLayout
+                    LayoutStyle={{ backgroundColor: "#f5f5f5" }}
                     componentClassName={"pager-page-demo"}
                     components={<React.Fragment>
 
@@ -105,10 +105,10 @@ class Page extends React.Component {
                     </React.Fragment>}
                     title={"Grow"}
                     description={"fade+zoom"}
-                ></Textlayout>
+                ></TextLayout>
 
-                <Textlayout
-                    layoutStyle={{ backgroundColor: "#f5f5f5" }}
+                <TextLayout
+                    LayoutStyle={{ backgroundColor: "#f5f5f5" }}
                     componentClassName={"pager-page-demo"}
                     components={<React.Fragment>
 
@@ -122,7 +122,7 @@ class Page extends React.Component {
                     </React.Fragment>}
                     title={"Slide"}
                     description={"Slide"}
-                ></Textlayout>
+                ></TextLayout>
 
 
                 <SubTitle>API</SubTitle>

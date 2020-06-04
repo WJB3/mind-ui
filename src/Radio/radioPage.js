@@ -1,9 +1,9 @@
 import React from 'react';
-import Layout from './../layout/index';
+import Layout from './../Layout/index';
 import Title from './../components/text/Title';
 import Description from './../components/text/Description';
 import SubTitle from './../components/text/SubTitle';
-import Textlayout from './../components/text/Textlayout';
+import TextLayout from './../components/text/TextLayout';
 import DescriptionTable from './../components/text/DescriptionTable';
 import Button from '../ButtonBase';
 import Radio from './../Radio';
@@ -63,7 +63,7 @@ class Page extends React.Component {
                 <Description>和 Select 的区别是，Radio 所有选项默认可见，方便用户在比较中选择，因此选项不宜过多。</Description>
                 <SubTitle>代码演示</SubTitle>
 
-                <Textlayout
+                <TextLayout
                     components={<React.Fragment>
                         <div style={{ display: "flex", justifyContent: "space-around" }}>
                     <Radio>{"aa"}</Radio>
@@ -71,9 +71,9 @@ class Page extends React.Component {
                     </React.Fragment>}
                     title={"基本使用。"}
                     description={"默认未选中，radio的选中状态可以通过onChange进行回调"}
-                ></Textlayout>
+                ></TextLayout>
 
-                <Textlayout
+                <TextLayout
                     components={<React.Fragment>
                         <div style={{ display: "flex", justifyContent: "space-around" }}>
                             <Radio defaultChecked={false} disabled={this.state.disabled2}>
@@ -90,9 +90,9 @@ class Page extends React.Component {
                     </React.Fragment>}
                     title={"基本使用。"}
                     description={"默认未选中，radio的选中状态可以通过onChange进行回调"}
-                ></Textlayout>
+                ></TextLayout>
 
-                <Textlayout
+                <TextLayout
                     components={<React.Fragment>
                         <div style={{ display: "flex", justifyContent: "center" }}>
                             <Radio.Group onChange={this.handleChangeRadioThree} defaultValue={1}>
@@ -105,9 +105,9 @@ class Page extends React.Component {
                     </React.Fragment>}
                     title={"单选组合。"}
                     description={"一组互斥的 Radio 配合使用。"}
-                ></Textlayout>
+                ></TextLayout>
 
-                <Textlayout
+                <TextLayout
                     components={<React.Fragment>
                         <div style={{ display: "flex", justifyContent: "center" }}>
                             <Radio.Group onChange={(this.handleChangeRadioThree)} value={1}>
@@ -120,9 +120,9 @@ class Page extends React.Component {
                     </React.Fragment>}
                     title={"label文字的位置。"}
                     description={"通过设置label来设置label文字的位置。默认为right"}
-                ></Textlayout>
+                ></TextLayout>
 
-                <Textlayout
+                <TextLayout
                     components={<React.Fragment>
                         <div style={{ display: "flex", flexDirection:"column",alignItems: "center" }}>
                             <Radio.Group options={plainOptions} onChange={(e,value)=>{ }} value={optionValue1} />
@@ -136,7 +136,7 @@ class Page extends React.Component {
                     </React.Fragment>}
                     title={"label文字的位置。"}
                     description={"通过设置label来设置label文字的位置。默认为right"}
-                ></Textlayout>
+                ></TextLayout>
 
                 <SubTitle>API</SubTitle>
                 <Description>通过设置 Button 的属性来产生不同的按钮样式，推荐顺序为：type -> shape -> size -> loading -> disabled。</Description>

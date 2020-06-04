@@ -1,75 +1,75 @@
-import React from 'react';
-import Layout from '../layout/index';
+import React, { useRef, useState } from 'react';
+import Layout from '../Layout/index';
 import Title from '../components/text/Title';
 import Description from '../components/text/Description';
 import SubTitle from '../components/text/SubTitle';
-import  Popper from './index';
+import Popper from './index';
 import Button from '../ButtonBase';
-import Loading from './index';
-import Textlayout from '../components/text/Textlayout';
+import TextLayout from '../components/text/TextLayout';
 import DescriptionTable from '../components/text/DescriptionTable';
-import Space from '../Space';
+
 //import  Notification from 'rc-notification';
+const PopperPage = () => {
 
-class ButtonPage extends React.Component {
+    const [mountNode, setMountNode] = React.useState(null);
 
-    state={
-        isLoading:false,
-        isFullLoading:false,
-        poperRef:null
+    const handleClick = (e) => {
+        setMountNode(mountNode?null:e.currentTarget);
     }
 
-    render() {
+    const visible=Boolean(mountNode);
 
-        const { isLoading,isFullLoading ,poperRef}=this.state;
+    return (
+        <Layout >
+            <Title>Popper弹出提示工具</Title>
+            <SubTitle>何时使用</SubTitle>
+            <Description>弹出提示工具Popper</Description>
+            <SubTitle>代码演示</SubTitle>
 
-        return (
-            <Layout >
-                <Title>Spin加载中</Title>
-                <Description>页面局部处于等待异步数据或正在渲染过程时，合适的加载动效会有效缓解用户的焦虑。</Description>
-                <SubTitle>何时使用</SubTitle>
+            <TextLayout
+                componentClassName={"button-page-demo"}
+                components={<React.Fragment>
 
-                <SubTitle>代码演示</SubTitle>
+                    <Button onClick={handleClick}>点击出现弹框</Button>
 
-                <Textlayout
-                    componentClassName={"button-page-demo"}
-                    components={<React.Fragment>
-                        <Button type="primary" onClick={(e)=>{this.setState({
-                            poperRef:e.target
-                        })}}>获取</Button>
-                        <Popper container={poperRef} disablePortal={!poperRef}>
-                            {"The content of the Popper"}
-                        </Popper>
-                    </React.Fragment>}
-                    title={"基本用法"}
-                    description={"一个简单的 loading 状态。"}
-                ></Textlayout>
+                    <Popper visible={visible} mountNode={mountNode} placement="top-start">
+                        {"popper"}
+                    </Popper>
 
-             
+                </React.Fragment>}
+                title={"基本用法"}
+                description={"一个简单的 loading 状态。"}
+            ></TextLayout>
 
-                <SubTitle>API</SubTitle>
-                <Description>通过设置 Button 的属性来产生不同的按钮样式，推荐顺序为：type -> shape -> size -> loading -> disabled。</Description>
-                <Description>按钮的属性说明如下：</Description>
-                <DescriptionTable
-                    columns={[
-                        { title: "属性", dataIndex: "attr" },
-                        { title: "说明", dataIndex: "description" },
-                        { title: "类型", dataIndex: "type", render: (text, record) => { return (<div style={{ color: "rgba(242,49,127,1)" }}>{text}</div>) } },
-                        { title: "默认值", dataIndex: "default" }
-                    ]}
-                    dataSource={[
-                        { attr: "disabled", description: "按钮失效状态", type: "boolean", default: "false" },
-                        { attr: "type", description: "设置按钮类型，可选值为 primary dashed danger link或者不设", type: "string", default: "-" },
-                        { attr: "size", description: "设置按钮大小，可选值为 small large 或者不设", type: "string", default: "default" },
-                        { attr: "shape", description: "设置按钮形状，可选值为 circle 或者不设", type: "string", default: "-" },
-                        { attr: "float", description: "设置按钮是否悬浮", type: "boolean", default: "false" },
-                        { attr: "flat", description: "设置按钮的扁平状态", type: "boolean", default: "false" },
-                    ]}
-                />
 
-            </Layout>
-        )
-    }
+
+            <SubTitle>API</SubTitle>
+            <Description>通过设置Protal</Description>
+            <Description>按钮的属性说明如下：</Description>
+            <DescriptionTable
+                columns={[
+                    { title: "属性", dataIndex: "attr" },
+                    { title: "说明", dataIndex: "description" },
+                    { title: "类型", dataIndex: "type", render: (text, record) => { return (<div style={{ color: "rgba(242,49,127,1)" }}>{text}</div>) } },
+                    { title: "默认值", dataIndex: "default" }
+                ]}
+                dataSource={[
+                    { attr: "children", description: "孩子节点", type: "node", default: "false" },
+                    { attr: "disablePortal", description: "是否禁用传送门", type: "boolean", default: "" },
+                    { attr: "container", description: "传送门挂载", type: "func/node", default: "document.body" },
+                    { attr: "transition", description: "是否开启动画", type: "boolean", default: "true" },
+                    { attr: "prefixCls", description: "自定义类名", type: "string", default: "true" },
+                    { attr: "placement", description: "弹出的位置", type: "string", default: "top" },
+                    { attr: "className", description: "添加的类名", type: "string", default: "" },
+                    { attr: "mountNode", description: "需要挂载的节点", type: "node", default: "" },
+                    { attr: "visible", description: "显示或隐藏节点", type: "node", default: "" },
+                    
+                ]}
+            />
+
+        </Layout>
+    )
+
 }
 
-export default ButtonPage;
+export default PopperPage;

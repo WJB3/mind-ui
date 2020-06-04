@@ -1,9 +1,9 @@
 import React from 'react';
-import Layout from './../layout/index';
+import Layout from './../Layout/index';
 import Title from './../components/text/Title';
 import Description from './../components/text/Description';
 import SubTitle from './../components/text/SubTitle';
-import Textlayout from './../components/text/Textlayout';
+import TextLayout from './../components/text/TextLayout';
 import Button from '../ButtonBase';
 import Icon from '../components/icon';
 import Space from '../Space';
@@ -28,7 +28,7 @@ class ButtonPage extends React.Component {
                 <Description>当页面内容区域比较长时。</Description>
                 <SubTitle>代码演示</SubTitle>
 
-                <Textlayout
+                <TextLayout
                     componentClassName={"button-page-demo"}
                     components={<React.Fragment>
                         <Space size={"large"}>
@@ -45,9 +45,9 @@ class ButtonPage extends React.Component {
                     </React.Fragment>}
                     title={"基本"}
                     description={"简单的徽章展示，当 count 为 0 时，默认不显示，但是可以使用 showZero 修改为显示。"}
-                ></Textlayout>
+                ></TextLayout>
 
-                <Textlayout
+                <TextLayout
                     componentClassName={"button-page-demo"}
                     components={<React.Fragment>
                         <Space size="large">
@@ -58,9 +58,9 @@ class ButtonPage extends React.Component {
                     </React.Fragment>}
                     title={"独立使用"}
                     description={"不包裹任何元素即是独立使用，可自定样式展现。"}
-                ></Textlayout>
+                ></TextLayout>
 
-                <Textlayout
+                <TextLayout
                     componentClassName={"button-page-demo"}
                     components={<React.Fragment>
                         <Space size="large">
@@ -80,9 +80,9 @@ class ButtonPage extends React.Component {
                     </React.Fragment>}
                     title={"独立使用"}
                     description={"不包裹任何元素即是独立使用，可自定样式展现。"}
-                ></Textlayout>
+                ></TextLayout>
 
-                <Textlayout
+                <TextLayout
                     componentClassName={"button-page-demo"}
                     components={<React.Fragment>
                         <Space size="large">
@@ -96,9 +96,9 @@ class ButtonPage extends React.Component {
                     </React.Fragment>}
                     title={"独立使用"}
                     description={"不包裹任何元素即是独立使用，可自定样式展现。"}
-                ></Textlayout>
+                ></TextLayout>
 
-                <Textlayout
+                <TextLayout
                     componentClassName={"button-page-demo"}
                     components={<React.Fragment>
                         <Space size="large">
@@ -115,8 +115,8 @@ class ButtonPage extends React.Component {
                     </React.Fragment>}
                     title={"独立使用"}
                     description={"不包裹任何元素即是独立使用，可自定样式展现。"}
-                ></Textlayout>
-                <Textlayout
+                ></TextLayout>
+                <TextLayout
                     componentClassName={"button-page-demo"}
                     components={<React.Fragment>
                         <Space size="large">
@@ -145,7 +145,7 @@ class ButtonPage extends React.Component {
                     </React.Fragment>}
                     title={"独立使用"}
                     description={"不包裹任何元素即是独立使用，可自定样式展现。"}
-                ></Textlayout>
+                ></TextLayout>
 
                 <SubTitle>API</SubTitle>
                 <Description>通过设置 Button 的属性来产生不同的按钮样式，推荐顺序为：type -> shape -> size -> loading -> disabled。</Description>

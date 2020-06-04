@@ -22,8 +22,7 @@ const AppBar=React.forwardRef((props,ref)=>{
     const prefixCls = getPrefixCls("appbar", customizePrefixCls);
 
     const match=useMediaQuery('(min-width:600px)');
-
-    console.log(match)
+ 
 
     return (
         <Paper 

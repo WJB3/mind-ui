@@ -1,9 +1,9 @@
 import React, { Fragment } from 'react';
-import Layout from '../layout/index';
+import Layout from '../Layout/index';
 import Title from '../components/text/Title';
 import Description from '../components/text/Description';
 import SubTitle from '../components/text/SubTitle';
-import Textlayout from '../components/text/Textlayout';
+import TextLayout from '../components/text/TextLayout';
 import DescriptionTable from '../components/text/DescriptionTable';
 import Skeleton from './index';
 import Tree from './antd-tree-demo/index';
@@ -68,7 +68,7 @@ class Page extends React.Component {
 
                 <SubTitle>代码演示</SubTitle>
 
-                <Textlayout
+                <TextLayout
                     componentClassName={"button-page-demo"}
                     components={<React.Fragment>
 
@@ -86,18 +86,18 @@ class Page extends React.Component {
                     </React.Fragment>}
                     title={"基本用法"}
                     description={"最简单的占位效果。"}
-                ></Textlayout>
+                ></TextLayout>
 
-                <Textlayout
+                <TextLayout
                     componentClassName={"button-page-demo"}
                     components={<React.Fragment>
                         <Skeleton avatar={{ size: 40 }} paragraph={{ rows: 5 }} />
                     </React.Fragment>}
                     title={"更复杂的组合"}
                     description={"更复杂的组合。"}
-                ></Textlayout>
+                ></TextLayout>
 
-                <Textlayout
+                <TextLayout
                     componentClassName={"button-page-demo"}
                     components={<React.Fragment>
                         <Skeleton avatar={{ size: 40 }} paragraph={{ rows: 5 }} animation={"pulse"} />
@@ -106,7 +106,7 @@ class Page extends React.Component {
                     </React.Fragment>}
                     title={"更复杂的组合"}
                     description={"更复杂的组合。"}
-                ></Textlayout>
+                ></TextLayout>
 
 
                 <SubTitle>API</SubTitle>

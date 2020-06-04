@@ -1,10 +1,10 @@
 import * as React from 'react';
-import Layout from './../layout/index';
+import Layout from './../Layout/index';
 import Title from './../components/text/Title';
 import Description from './../components/text/Description';
 import SubTitle from './../components/text/SubTitle';
 import Button from '../ButtonBase/index';
-import Textlayout from './../components/text/Textlayout';
+import TextLayout from './../components/text/TextLayout';
 import DescriptionTable from './../components/text/DescriptionTable';
 import BattaryCharging from "./BattaryCharging";
 import BatteryChargingHigh from "./BatteryChargingHigh";
@@ -16,15 +16,15 @@ class ButtonPage extends React.Component {
                 <Title>动画合集</Title>
                 <Description>动画合集用于开始一个动画。</Description>
 
-                <Textlayout
-                    layoutStyle={{backgroundColor:"#f5f5f5"}}
+                <TextLayout
+                    LayoutStyle={{backgroundColor:"#f5f5f5"}}
                     components={<React.Fragment>
                         <BattaryCharging />
                         <BatteryChargingHigh />
                     </React.Fragment>}
                     title={"动画组件"}
                     description={"动画组件：充电动画"}
-                ></Textlayout>
+                ></TextLayout>
 
              
 

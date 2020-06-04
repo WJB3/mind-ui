@@ -1,11 +1,11 @@
 import * as React from 'react';
-import Layout from './../layout/index';
+import Layout from './../Layout/index';
 import Title from './../components/text/Title';
 import Description from './../components/text/Description';
 import SubTitle from './../components/text/SubTitle';
 import Button from '../ButtonBase/index';
 import Icon from './../components/icon/index';
-import Textlayout from './../components/text/Textlayout';
+import TextLayout from './../components/text/TextLayout';
 import DescriptionTable from './../components/text/DescriptionTable';
 
 class ButtonPage extends React.Component {
@@ -18,7 +18,7 @@ class ButtonPage extends React.Component {
                 <Description>Icon图标用于定义一个图标。</Description>
                 <SubTitle>代码演示</SubTitle>
 
-                <Textlayout
+                <TextLayout
                     components={<React.Fragment>
                          <div className="icon_container">
                             <Icon  name="car" color="black" size={16}/>
@@ -51,9 +51,9 @@ class ButtonPage extends React.Component {
                     </React.Fragment>}
                     title={"基本用法"}
                     description={"使用 <Icon /> 标签声明组件，指定图标对应的 name 属性。"}
-                ></Textlayout>
+                ></TextLayout>
 
-                <Textlayout
+                <TextLayout
                     components={<React.Fragment>
                          
                         <div className="icon_container">
@@ -68,7 +68,7 @@ class ButtonPage extends React.Component {
                     </React.Fragment>}
                     title={"动画"}
                     description={"支持旋转、抖动动画"}
-                ></Textlayout>
+                ></TextLayout>
  
                 <SubTitle>API</SubTitle>
                 <Description>通过设置 Icon 的属性来产生不同的按钮样式</Description>

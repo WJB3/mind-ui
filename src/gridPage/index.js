@@ -1,9 +1,9 @@
 import React from 'react';
-import Layout from '../layout/index';
+import Layout from '../Layout/index';
 import Title from '../components/text/Title';
 import Description from '../components/text/Description';
 import SubTitle from '../components/text/SubTitle';
-import Textlayout from '../components/text/Textlayout';
+import TextLayout from '../components/text/TextLayout';
 import DescriptionTable from '../components/text/DescriptionTable';
 import Row from '../components/row';
 import Col from '../components/col';
@@ -27,7 +27,7 @@ class ButtonPage extends React.Component {
                 <Description>在多数业务情况下，需要在设计区域内解决大量信息收纳的问题，因此在 12 栅格系统的基础上，我们将整个设计建议区域按照 24 等分的原则进行划分。划分之后的信息区块我们称之为『盒子』。建议横向排列的盒子数量最多四个，最少一个。『盒子』在整个屏幕上占比见上图。设计部分基于盒子的单位定制盒子内部的排版规则，以保证视觉层面的舒适感。</Description>
                 <SubTitle>代码演示</SubTitle>
 
-                <Textlayout
+                <TextLayout
                     components={<React.Fragment>
                         <Row>
                             <Col span={24}>col-24</Col>
@@ -51,9 +51,9 @@ class ButtonPage extends React.Component {
                     </React.Fragment>}
                     title={"基础栅格"}
                     description={"从堆叠到水平排列。使用单一的一组 Row 和 Col 栅格组件，就可以创建一个基本的栅格系统，所有列（Col）必须放在 Row 内。"}
-                ></Textlayout>
+                ></TextLayout>
 
-                <Textlayout
+                <TextLayout
                     components={<React.Fragment>
                         <Row gutter={16}>
                             <Col span={6}>
@@ -84,9 +84,9 @@ class ButtonPage extends React.Component {
                     </React.Fragment>}
                     title={"区块间隔"}
                     description={"栅格常常需要和间隔进行配合，你可以使用 Row 的 gutter 属性，我们推荐使用 (16+8n)px 作为栅格间隔。(n 是自然数)如果要支持响应式，可以写成 { xs: 8, sm: 16, md: 24, lg: 32 }。如果需要垂直间距，可以写成数组形式 [水平间距, 垂直间距] [16, { xs: 8, sm: 16, md: 24, lg: 32 }]。"}
-                ></Textlayout>
+                ></TextLayout>
 
-                <Textlayout
+                <TextLayout
                     components={<React.Fragment>
                         <Row>
                             <Col span={8}>col-8</Col>
@@ -110,9 +110,9 @@ class ButtonPage extends React.Component {
                     </React.Fragment>}
                     title={"左右偏移"}
                     description={"列偏移。使用 offset 可以将列向右侧偏。例如，offset={4} 将元素向右侧偏移了 4 个列（column）的宽度。"}
-                ></Textlayout>
+                ></TextLayout>
 
-                <Textlayout
+                <TextLayout
                     components={<React.Fragment>
                         <Row>
                             <Col span={18} push={6}>
@@ -125,9 +125,9 @@ class ButtonPage extends React.Component {
                     </React.Fragment>}
                     title={"栅格排序"}
                     description={"列排序。通过使用 push 和 pull 类就可以很容易的改变列（column）的顺序。"}
-                ></Textlayout>
+                ></TextLayout>
 
-                <Textlayout
+                <TextLayout
                     components={<React.Fragment>
                         <Row>
                             <Col span={6} order={4}>
@@ -146,9 +146,9 @@ class ButtonPage extends React.Component {
                     </React.Fragment>}
                     title={"排序"}
                     description={"通过 Order 来改变元素的排序。"}
-                ></Textlayout>
+                ></TextLayout>
 
-                <Textlayout
+                <TextLayout
                     components={<React.Fragment>
                         <Row justify="start">
                             <Col span={4}>col-4</Col>
@@ -183,9 +183,9 @@ class ButtonPage extends React.Component {
                     </React.Fragment>}
                     title={"排版"}
                     description={"布局基础。子元素根据不同的值 start,center,end,space-between,space-around，分别定义其在父节点里面的排版方式。"}
-                ></Textlayout>
+                ></TextLayout>
 
-                <Textlayout
+                <TextLayout
                     components={<React.Fragment>
 
                         <Row>
@@ -203,7 +203,7 @@ class ButtonPage extends React.Component {
                     </React.Fragment>}
                     title={"Flex 填充"}
                     description={"Col 提供 flex 属性以支持填充。"}
-                ></Textlayout>
+                ></TextLayout>
 
                 <SubTitle>API</SubTitle>
                 <Description>通过设置 Button 的属性来产生不同的按钮样式，推荐顺序为：type -> shape -> size -> loading -> disabled。</Description>

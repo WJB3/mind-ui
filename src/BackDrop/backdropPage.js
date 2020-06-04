@@ -1,11 +1,11 @@
 import React from 'react';
-import Layout from './../layout/index';
+import Layout from './../Layout/index';
 import Title from './../components/text/Title';
 import Description from './../components/text/Description';
 import SubTitle from './../components/text/SubTitle';
 import Button from '../ButtonBase';
 import BackDrop from './index';
-import Textlayout from './../components/text/Textlayout';
+import TextLayout from './../components/text/TextLayout';
 import DescriptionTable from './../components/text/DescriptionTable';
 import Loading from '../Loading';
 //import  Notification from 'rc-notification';
@@ -37,7 +37,7 @@ class ButtonPage extends React.Component {
                 <Description>当页面内容区域比较长时。</Description>
                 <SubTitle>代码演示</SubTitle>
 
-                <Textlayout
+                <TextLayout
                     componentClassName={"button-page-demo"}
                     components={<React.Fragment>
                         <Button type="primary" onClick={()=>this.setState({
@@ -51,9 +51,9 @@ class ButtonPage extends React.Component {
                     </React.Fragment>}
                     title={"基本"}
                     description={"最简单的用法。"}
-                ></Textlayout>
+                ></TextLayout>
 
-                {/* <Textlayout
+                {/* <TextLayout
                     componentClassName={"button-page-demo"}
                     components={<React.Fragment>
                         <div style={{ height: '600vh', padding: 8 }} ref={ref=>this.ScrollRef=ref}>
@@ -71,7 +71,7 @@ class ButtonPage extends React.Component {
                     </React.Fragment>}
                     title={"自定义样式"}
                     description={"可以自定义回到顶部按钮的样式，限制宽高：40px * 40px。"}
-                ></Textlayout> */}
+                ></TextLayout> */}
 
 
                 <SubTitle>API</SubTitle>

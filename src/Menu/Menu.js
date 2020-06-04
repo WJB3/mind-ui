@@ -4,6 +4,7 @@ import { classNames } from '../components/helper/className';
 import { ConfigContext } from '../ConfigContext';
 import useControlled from '../_utils/useControlled';
 import { MenuContext } from './MenuContext';
+import defaultBackgroundImg from './assets/background-menu.jpg';
 import Paper from '../Paper';
 
 const Menu = React.forwardRef((props, ref) => {
@@ -16,7 +17,10 @@ const Menu = React.forwardRef((props, ref) => {
         defaultSelectedKeys = [],
         name="menu",
         openKeys:openKeysProp=[],
-        defaultOpenKeys=[]
+        defaultOpenKeys=[],
+        theme,
+        backgroundImg=defaultBackgroundImg,
+        onItemClick
     } = props;
 
     const { getPrefixCls } = React.useContext(ConfigContext);
@@ -34,6 +38,9 @@ const Menu = React.forwardRef((props, ref) => {
     });
 
     const handleClickItem = (e, key) => {
+        if(onItemClick){
+            onItemClick(e,key)
+        }
         if (selectedKeys.indexOf(key) === -1) {
             setSelectedKeys([key]);
         }
@@ -61,11 +68,15 @@ const Menu = React.forwardRef((props, ref) => {
                 deepDirection="right"
                 component="ul"
                 ref={ref}
-                style={style}
+                style={{...style,backgroundImage:`url(${backgroundImg})`}}
                 className={
                     classNames(
                         prefixCls,
-                        className
+                        className,
+                        {
+                            [`${prefixCls}-${theme}`]:theme,
+                            [`${prefixCls}-backgroundImg`]:!!backgroundImg
+                        }
                     )
                 }
             >
@@ -76,7 +87,10 @@ const Menu = React.forwardRef((props, ref) => {
                         })
                     })
                 }
+
+             
             </Paper>
+            
         </MenuContext.Provider>
     )
 });
@@ -127,7 +141,9 @@ Menu.propTypes = {
     //submenu打开
     openKeys:PropTypes.array,
     //默认打开submenu
-    defaultOpenKeys:PropTypes.array
+    defaultOpenKeys:PropTypes.array,
+    //点击菜单项
+    onItemClick:PropTypes.func
 };
 
 export default Menu;

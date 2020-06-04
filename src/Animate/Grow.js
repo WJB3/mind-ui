@@ -12,7 +12,7 @@ const Grow=React.forwardRef((Props,ref)=>{
         in:inProp,
         isDestory=true,
         onEnter,
-        Exited
+        onExited
     }=Props;
 
     const { getPrefixCls } =React.useContext(ConfigContext);

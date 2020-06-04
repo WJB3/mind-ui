@@ -2,7 +2,7 @@
   "name": "mind-ui",
   "version": "1.0.0",
   "description": "a react ui-component",
-  "main": "./src/index.tsx",
+  "main": "./src/index",
   "scripts": {
     "delete": "rimraf node_modules",
     "start": "cross-env webpack-dev-server --config build/webpack.dev.config.js",
@@ -31,8 +31,8 @@
     "rc-animate": "^2.10.3",
     "rc-notification": "^4.0.0",
     "re-carousel": "^2.4.0",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0",
+    "react": "16.13.0",
+    "react-dom": "16.13.0",
     "react-router": "^5.1.2",
     "react-router-dom": "^5.1.2",
     "react-slick": "^0.26.1",
@@ -41,6 +41,7 @@
     "resize-observer-polyfill": "^1.5.1",
     "rimraf": "^3.0.2",
     "rmc-nuka-carousel": "^3.0.1",
+    "url-loader": "^4.1.0",
     "vikingship": "^1.0.0"
   },
   "devDependencies": {

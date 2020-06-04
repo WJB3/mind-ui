@@ -1,9 +1,9 @@
 import React from 'react';
-import Layout from '../layout/index';
+import Layout from '../Layout/index';
 import Title from '../components/text/Title';
 import Description from '../components/text/Description';
 import SubTitle from '../components/text/SubTitle';
-import Textlayout from '../components/text/Textlayout';
+import TextLayout from '../components/text/TextLayout';
 import DescriptionTable from '../components/text/DescriptionTable';
 import Radio from '../Radio';
 import Space from '../Space';
@@ -44,7 +44,7 @@ class Page extends React.Component {
                 <Description>当需要在当前任务流中插入临时任务，创建或预览附加内容。比如展示协议条款，创建子对象。</Description>
                 <SubTitle>代码演示</SubTitle>
 
-                <Textlayout
+                <TextLayout
                     componentClassName={"button-page-demo"}
                     components={<React.Fragment>
 
@@ -64,9 +64,9 @@ class Page extends React.Component {
                     </React.Fragment>}
                     title={"基本用法"}
                     description={"基础抽屉，点击触发按钮抽屉从右滑出，点击遮罩区关闭。"}
-                ></Textlayout>
+                ></TextLayout>
 
-                <Textlayout
+                <TextLayout
                     componentClassName={"button-page-demo"}
                     components={<React.Fragment>
                         <Radio.Group defaultValue={placement} onChange={(e, v) => this.setState({ placement: v })}>
@@ -91,9 +91,9 @@ class Page extends React.Component {
                     </React.Fragment>}
                     title={"基本用法"}
                     description={"基础抽屉，点击触发按钮抽屉从右滑出，点击遮罩区关闭。"}
-                ></Textlayout>
+                ></TextLayout>
 
-                <Textlayout
+                <TextLayout
                     componentClassName={"button-page-demo"}
                     components={<React.Fragment>
                         <Button type="primary" onClick={()=>this.setState({fatherVisible:true})}>
@@ -122,7 +122,7 @@ class Page extends React.Component {
                     </React.Fragment>}
                     title={"基本用法"}
                     description={"基础抽屉，点击触发按钮抽屉从右滑出，点击遮罩区关闭。"}
-                ></Textlayout>
+                ></TextLayout>
 
                 <SubTitle>API</SubTitle>
                 <Description>通过设置 Button 的属性来产生不同的按钮样式，推荐顺序为：type -> shape -> size -> loading -> disabled。</Description>

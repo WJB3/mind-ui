@@ -1,16 +1,38 @@
 import {NavLink} from 'react-router-dom';
 const menuInfo=[
     {
-        title:"介绍",
-        key:"introduce"
+        title:"introduce介绍",
+        key:"introduce",
+        icon:"introduce"
     },
     {
         title:"组件",
         key:"component",
+        icon:"menu",
         children:[
             {
-                title:"rate",
-                key:"rate",
+                title:"Button 按钮",
+                key:"button",  
+            },
+            {
+                title:"Input 输入框",
+                key:"input",
+            },
+            {
+                title:"Tooltip 文字提示",
+                key:"tooltip",
+            },
+            {
+                title:"Portal 传送门",
+                key:"portal",
+            },
+            {
+                title:"Popper 弹送提示工具",
+                key:"popper",
+            },
+            {
+                title:"Select 选择框",
+                key:"select",
             },
             {
                 title:"steps",
@@ -44,10 +66,7 @@ const menuInfo=[
                 title:"backdrop",
                 key:"backdrop",
             },
-            {
-                title:"select",
-                key:"select",
-            },
+            
             {
                 title:"tag",
                 key:"tag",
@@ -72,14 +91,8 @@ const menuInfo=[
                 title:"badge",
                 key:"badge",
             },
-            {
-                title:"tooltip",
-                key:"tooltip",
-            },
-            {
-                title:"popper",
-                key:"popper",
-            },
+           
+             
             {
                 title:"Loading",
                 key:"loading",
@@ -102,7 +115,7 @@ const menuInfo=[
             },
             {
                 title:"Layout布局",
-                key:"layout",
+                key:"Layout",
             },
             {
                 title:"Switch",
@@ -120,10 +133,7 @@ const menuInfo=[
                 title:"Pager",
                 key:"pager",
             },
-            {
-                title:"Input",
-                key:"input",
-            },
+            
             {
                 title:"Notification",
                 key:"notification",
@@ -133,11 +143,7 @@ const menuInfo=[
                 key:"grid",
                 
             },
-            {
-                title:"按钮",
-                key:"button",
-                
-            },
+           
             {
                 title:"Icon",
                 key:"icon",

@@ -1,0 +1,43 @@
+@import "./../components/styles/variable.scss";
+
+$prefixCls:"#{$global-prefix}-Layout";//Layout
+$contentPrefixCls:"#{$global-prefix}-Layout-content";//主
+$headerPrefixCls:"#{$global-prefix}-Layout-header";//头部
+$footerPrefixCls:"#{$global-prefix}-Layout-footer";//尾部
+$siderPrefixCls:"#{$global-prefix}-Layout-sider";//尾部
+
+.#{$prefixCls}{
+
+    display: flex;
+    flex:1;
+    min-height: 0;
+    flex-direction: column;
+    
+    &-hasSider{
+        flex-direction: row;
+    }
+}
+
+.#{$contentPrefixCls}{
+    flex:1;
+    min-height: 0;
+}
+ 
+.#{$headerPrefixCls}{
+    flex: 0 0 auto;
+}
+
+.#{$footerPrefixCls}{
+    flex: 0 0 auto;
+}
+ 
+.#{$siderPrefixCls}{
+    position: relative;
+    min-width: 0;
+    -webkit-transition: all .2s;
+    transition: all .2s;
+}
+ 
+
+
+

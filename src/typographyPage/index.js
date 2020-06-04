@@ -1,9 +1,9 @@
 import * as React from 'react';
-import Layout from './../layout/index';
+import Layout from './../Layout/index';
 import Title from './../components/text/Title';
 import Description from './../components/text/Description';
 import SubTitle from './../components/text/SubTitle';
-import Textlayout from './../components/text/Textlayout';
+import TextLayout from './../components/text/TextLayout';
 import Typography from '../Typography';
 
 
@@ -15,7 +15,7 @@ class Page extends React.Component {
                 <Description>协助进行页面级整体排版。</Description>
                 <SubTitle>何时使用</SubTitle>
 
-                <Textlayout
+                <TextLayout
                     components={<React.Fragment>
                         <Typography.Text isBr>default type</Typography.Text>
                         <Typography.Text color="primary" isBr>primary type</Typography.Text>
@@ -34,9 +34,9 @@ class Page extends React.Component {
                     </React.Fragment>}
                     title={"基本使用。"}
                     description={"默认未选中，radio的选中状态可以通过onChange进行回调"}
-                ></Textlayout>
+                ></TextLayout>
 
-                <Textlayout
+                <TextLayout
                     components={<React.Fragment>
                         <Typography.Title>默认文字</Typography.Title>
 
@@ -48,9 +48,9 @@ class Page extends React.Component {
                     </React.Fragment>}
                     title={"基本使用。"}
                     description={"默认未选中，radio的选中状态可以通过onChange进行回调"}
-                ></Textlayout>
+                ></TextLayout>
 
-                <Textlayout
+                <TextLayout
                     components={<React.Fragment>
                         <Typography.Paragraph ellipsis>
                             Ant Design, a design language for background applications, is refined by Ant UED Team. Ant
@@ -72,7 +72,7 @@ class Page extends React.Component {
                     </React.Fragment>}
                     title={"省略号。"}
                     description={"多行文本省略。"}
-                ></Textlayout>
+                ></TextLayout>
             </Layout>
         )
     }

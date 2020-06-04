@@ -1,9 +1,9 @@
 import React from 'react';
-import Layout from './../layout/index';
+import Layout from './../Layout/index';
 import Title from './../components/text/Title';
 import Description from './../components/text/Description';
 import SubTitle from './../components/text/SubTitle';
-import Textlayout from './../components/text/Textlayout';
+import TextLayout from './../components/text/TextLayout';
 import DescriptionTable from './../components/text/DescriptionTable';
 // import Carousel from './mobile-carousel';
 import Carousel from './index';
@@ -35,7 +35,7 @@ class ButtonPage extends React.Component {
                 <Description>常用于一组图片或卡片轮播。</Description>
                 <SubTitle>代码演示</SubTitle>
 
-                <Textlayout
+                <TextLayout
                     componentClassName={"button-page-demo"}
                     components={<React.Fragment>
                         <Carousel
@@ -59,7 +59,7 @@ class ButtonPage extends React.Component {
                     </React.Fragment>}
                     title={"水平分割线"}
                     description={"默认为水平分割线，可在中间加入文字。"}
-                ></Textlayout>
+                ></TextLayout>
 
 
                 <SubTitle>API</SubTitle>

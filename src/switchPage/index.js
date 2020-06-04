@@ -1,9 +1,9 @@
 import React from 'react';
-import Layout from './../layout/index';
+import Layout from './../Layout/index';
 import Title from './../components/text/Title';
 import Description from './../components/text/Description';
 import SubTitle from './../components/text/SubTitle';
-import Textlayout from './../components/text/Textlayout';
+import TextLayout from './../components/text/TextLayout';
 import DescriptionTable from './../components/text/DescriptionTable';
 import Radio from './../Radio';
 import Switch from './../Switch';
@@ -28,7 +28,7 @@ class Page extends React.Component {
                 <Description>和 checkbox的区别是，切换 switch 会直接触发状态改变，而 checkbox 一般用于状态标记，需要和提交操作配合。</Description>
                 <SubTitle>代码演示</SubTitle>
 
-                <Textlayout
+                <TextLayout
                     components={<React.Fragment>
                         <div style={{ display: "flex", justifyContent: "space-around" }}>
                             <Switch defaultChecked onChange={(event, checked) => {   }} />
@@ -36,9 +36,9 @@ class Page extends React.Component {
                     </React.Fragment>}
                     title={"基本使用。"}
                     description={"默认未选中，radio的选中状态可以通过onChange进行回调"}
-                ></Textlayout>
+                ></TextLayout>
 
-                <Textlayout
+                <TextLayout
                     components={<React.Fragment>
                         <Switch disabled={this.state.disabled} defaultChecked />
                         <br />
@@ -48,9 +48,9 @@ class Page extends React.Component {
                     </React.Fragment>}
                     title={"基本使用。"}
                     description={"默认未选中，radio的选中状态可以通过onChange进行回调"}
-                ></Textlayout>
+                ></TextLayout>
 
-                <Textlayout
+                <TextLayout
                     components={<React.Fragment>
                         <Switch checkedChildren="开" unCheckedChildren="关" defaultChecked />
                         <br />
@@ -59,7 +59,7 @@ class Page extends React.Component {
                     </React.Fragment>}
                     title={"基本使用。"}
                     description={"默认未选中，radio的选中状态可以通过onChange进行回调"}
-                ></Textlayout>
+                ></TextLayout>
 
 
                 <SubTitle>API</SubTitle>

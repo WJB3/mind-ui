@@ -1,10 +1,10 @@
 import React from 'react';
-import Layout from './../layout/index';
+import Layout from './../Layout/index';
 import Title from './../components/text/Title';
 import Description from './../components/text/Description';
 import SubTitle from './../components/text/SubTitle';
 import DescriptionTable from './../components/text/DescriptionTable';
-import Textlayout from './../components/text/Textlayout';
+import TextLayout from './../components/text/TextLayout';
 import Checkbox from './index';
 import Switch from '../Switch';
 //import  Notification from 'rc-notification';
@@ -37,7 +37,7 @@ class checkboxPage extends React.Component {
                 <Description>单独使用可以表示两种状态之间的切换，和 switch 类似。区别在于切换 switch 会直接触发状态改变，而 checkbox 一般用于状态标记，需要和提交操作配合。</Description>
                 <SubTitle>代码演示</SubTitle>
 
-                <Textlayout
+                <TextLayout
                     components={<React.Fragment>
                         <div style={{ display: "flex", justifyContent: "space-around" }}>
                             <Checkbox onChange={(e) => console.log(`checked ${e}`)}>Checkbox</Checkbox>
@@ -45,9 +45,9 @@ class checkboxPage extends React.Component {
                     </React.Fragment>}
                     title={"基本使用。"}
                     description={"默认未选中，radio的选中状态可以通过onChange进行回调"}
-                ></Textlayout>
+                ></TextLayout>
 
-                <Textlayout
+                <TextLayout
                     components={<React.Fragment>
                         <div style={{ display: "flex", justifyContent: "space-around" }}>
                             <Checkbox defaultChecked={false} disabled />
@@ -57,9 +57,9 @@ class checkboxPage extends React.Component {
                     </React.Fragment>}
                     title={"基本使用。"}
                     description={"默认未选中，radio的选中状态可以通过onChange进行回调"}
-                ></Textlayout>
+                ></TextLayout>
 
-                <Textlayout
+                <TextLayout
                     components={<React.Fragment>
                         <div style={{ display: "flex", justifyContent: "space-around" }}>
                             <Checkbox
@@ -73,9 +73,9 @@ class checkboxPage extends React.Component {
                     </React.Fragment>}
                     title={"基本使用。"}
                     description={"默认未选中，radio的选中状态可以通过onChange进行回调"}
-                ></Textlayout> 
+                ></TextLayout> 
 
-                <Textlayout
+                <TextLayout
                     components={<React.Fragment>
                         <div style={{ display: "flex", justifyContent: "space-around" }}>
                             <Checkbox.Group options={['Apple', 'Pear', 'Orange']} defaultValue={['Apple']} onChange={(e)=>console.log(e)} />
@@ -95,7 +95,7 @@ class checkboxPage extends React.Component {
                     </React.Fragment>}
                     title={"基本使用。"}
                     description={"默认未选中，radio的选中状态可以通过onChange进行回调"}
-                ></Textlayout> 
+                ></TextLayout> 
 
 
                 <SubTitle>API</SubTitle>

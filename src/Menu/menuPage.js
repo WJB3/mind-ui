@@ -17,9 +17,15 @@ class AppBarPage extends React.Component {
 
         return (
             <Fragment>
-                <Menu style={{ width: 256 }} defaultSelectedKeys={["1", "15"]} mode="inline"  >
+                <Menu style={{ width: 256 }} defaultSelectedKeys={["1", "15"]} mode="inline" theme="dark" >
+                    <Menu.SubMenu key="wu1" title="Mr.Wu">
+                        <Menu.Item key="Profile-1" selectable={false}>My Profile</Menu.Item>
+                        <Menu.Item key="Profile-2" selectable={false}>Edit Profile</Menu.Item>
+                        <Menu.Item key="Profile-3" selectable={false}>Settings</Menu.Item>
+                    </Menu.SubMenu>
+                    <Menu.Divider></Menu.Divider>
                     <Menu.Item key="1">
-                            Option 1
+                        Option 1
                     </Menu.Item>
                     <Menu.Item key="2">Option 2</Menu.Item>
                     <Menu.Item key="3">Option 3</Menu.Item>

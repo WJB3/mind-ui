@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Layout from './../layout/index';
+import Layout from './../Layout/index';
 import Table from './../components/table';
 
 class TablePage extends React.Component{

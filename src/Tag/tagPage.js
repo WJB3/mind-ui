@@ -1,9 +1,9 @@
 import React from 'react';
-import Layout from '../layout/index';
+import Layout from '../Layout/index';
 import Title from '../components/text/Title';
 import Description from '../components/text/Description';
 import SubTitle from '../components/text/SubTitle';
-import Textlayout from '../components/text/Textlayout';
+import TextLayout from '../components/text/TextLayout';
 import DescriptionTable from '../components/text/DescriptionTable';
 import Space from '../Space';
 import Tag from './index';
@@ -26,7 +26,7 @@ class Page extends React.Component {
 
                 <SubTitle>代码演示</SubTitle>
 
-                <Textlayout
+                <TextLayout
                     componentClassName={"button-page-demo"}
                     components={<React.Fragment>
                         <Space  >
@@ -44,9 +44,9 @@ class Page extends React.Component {
                     </React.Fragment>}
                     title={"基本用法"}
                     description={"一个简单的 loading 状态。"}
-                ></Textlayout>
+                ></TextLayout>
 
-                <Textlayout
+                <TextLayout
                     componentClassName={"button-page-demo"}
                     components={<React.Fragment>
                         <Space  >
@@ -63,7 +63,7 @@ class Page extends React.Component {
                     </React.Fragment>}
                     title={"基本用法"}
                     description={"一个简单的 loading 状态。"}
-                ></Textlayout>
+                ></TextLayout>
 
 
 

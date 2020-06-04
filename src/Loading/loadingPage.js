@@ -1,10 +1,10 @@
 import React from 'react';
-import Layout from '../layout/index';
+import Layout from '../Layout/index';
 import Title from '../components/text/Title';
 import Description from '../components/text/Description';
 import SubTitle from '../components/text/SubTitle';
 import Loading from './index';
-import Textlayout from '../components/text/Textlayout';
+import TextLayout from '../components/text/TextLayout';
 import DescriptionTable from '../components/text/DescriptionTable';
 import Space from '../Space';
 import Button from '../ButtonBase';
@@ -37,7 +37,7 @@ class ButtonPage extends React.Component {
 
                 <SubTitle>代码演示</SubTitle>
 
-                <Textlayout
+                <TextLayout
                     componentClassName={"button-page-demo"}
                     components={<React.Fragment>
                         <Space size={"large"}>
@@ -56,9 +56,9 @@ class ButtonPage extends React.Component {
                     </React.Fragment>}
                     title={"基本用法"}
                     description={"一个简单的 loading 状态。"}
-                ></Textlayout>
+                ></TextLayout>
 
-                <Textlayout
+                <TextLayout
                     componentClassName={"button-page-demo"}
                     components={<React.Fragment>
                         <Space size={"large"}>
@@ -69,9 +69,9 @@ class ButtonPage extends React.Component {
                     </React.Fragment>}
                     title={"各种大小"}
                     description={"小的用于文本加载，默认用于卡片容器级加载，大的用于页面级加载。"}
-                ></Textlayout>
+                ></TextLayout>
 
-                <Textlayout
+                <TextLayout
                     componentClassName={"button-page-demo"}
                     components={<React.Fragment>
                         <Space size={"large"}>
@@ -89,9 +89,9 @@ class ButtonPage extends React.Component {
                     </React.Fragment>}
                     title={"各种大小"}
                     description={"小的用于文本加载，默认用于卡片容器级加载，大的用于页面级加载。"}
-                ></Textlayout>
+                ></TextLayout>
 
-                <Textlayout
+                <TextLayout
                     componentClassName={"button-page-demo"}
                     components={<React.Fragment>
                         <Space size={"large"}>
@@ -115,7 +115,7 @@ class ButtonPage extends React.Component {
                     </React.Fragment>}
                     title={"各种大小"}
                     description={"小的用于文本加载，默认用于卡片容器级加载，大的用于页面级加载。"}
-                ></Textlayout>
+                ></TextLayout>
 
                 <SubTitle>API</SubTitle>
                 <Description>通过设置 Button 的属性来产生不同的按钮样式，推荐顺序为：type -> shape -> size -> loading -> disabled。</Description>

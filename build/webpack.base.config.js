@@ -3,7 +3,7 @@ const SRC_PATH=path.resolve(__dirname,"../src");
 
 module.exports={
     entry:{
-        main:"./src/index.tsx"
+        main:"./src/index"
     },
     resolve:{
         extensions:['.js','.jsx','.ts','.tsx'],
@@ -40,6 +40,15 @@ module.exports={
 				loader:'file-loader',
 				options:{
 					name:'[name].[ext]'
+				}
+            },
+            {
+				test:/\.(jpg|png|gif)$/,
+				loader:'url-loader',
+				options:{
+                    name:'[name].[ext]',
+                    outputPath:'images/',
+                    limit:2048
 				}
 			}
         ]

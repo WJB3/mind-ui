@@ -1,11 +1,11 @@
 import React from 'react';
-import Layout from '../layout/index';
+import Layout from '../Layout/index';
 import Title from '../components/text/Title';
 import Description from '../components/text/Description';
 import SubTitle from '../components/text/SubTitle';
 import Select from './index';
 import DescriptionTable from '../components/text/DescriptionTable';
-import Textlayout from '../components/text/Textlayout';
+import TextLayout from '../components/text/TextLayout';
 import Space from '../Space';
 
 const { Option } = Select;
@@ -28,12 +28,12 @@ class Page extends React.Component {
                 <SubTitle>何时使用</SubTitle>
 
                 <SubTitle>代码演示</SubTitle>
-                <Textlayout
+                <TextLayout
                     componentClassName={"button-page-demo"}
                     components={<React.Fragment>
                         <Space>
 
-                            <Select defaultValue="lucy"   border onChange={(value) => console.log(`selected:${value}`)}>
+                            <Select defaultValue="lucy"  onChange={(value) => console.log(`selected:${value}`)}>
                                 <Option value="jack">Jack</Option>
                                 <Option value="lucy">Lucy</Option>
                                 <Option value="disabled" disabled>
@@ -59,9 +59,9 @@ class Page extends React.Component {
                     </React.Fragment>}
                     title={"基本用法"}
                     description={"一个简单的 loading 状态。"}
-                ></Textlayout>
+                ></TextLayout>
 
-                {/* <Textlayout
+                {/* <TextLayout
                     componentClassName={"button-page-demo"}
                     components={<React.Fragment>
                         <Space>
@@ -89,7 +89,7 @@ class Page extends React.Component {
                     </React.Fragment>}
                     title={"带搜索框"}
                     description={"展开后可对选项进行搜索。"}
-                ></Textlayout> */}
+                ></TextLayout> */}
 
 
 

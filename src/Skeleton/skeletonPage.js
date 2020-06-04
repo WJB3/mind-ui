@@ -1,9 +1,9 @@
 import React from 'react';
-import Layout from '../layout/index';
+import Layout from '../Layout/index';
 import Title from '../components/text/Title';
 import Description from '../components/text/Description';
 import SubTitle from '../components/text/SubTitle';
-import Textlayout from '../components/text/Textlayout';
+import TextLayout from '../components/text/TextLayout';
 import DescriptionTable from '../components/text/DescriptionTable';
 import Skeleton from './index';
 
@@ -35,7 +35,7 @@ class Page extends React.Component {
                 <Description>可以被 Spin 完全代替，但是在可用的场景下可以比 Spin 提供更好的视觉效果和用户体验。</Description>
                 <SubTitle>代码演示</SubTitle>
 
-                <Textlayout
+                <TextLayout
                     componentClassName={"button-page-demo"}
                     components={<React.Fragment>
 
@@ -45,18 +45,18 @@ class Page extends React.Component {
                     </React.Fragment>}
                     title={"基本用法"}
                     description={"最简单的占位效果。"}
-                ></Textlayout>
+                ></TextLayout>
 
-                <Textlayout
+                <TextLayout
                     componentClassName={"button-page-demo"}
                     components={<React.Fragment>
                         <Skeleton avatar={{ size: 40 }} paragraph={{ rows: 5 }} />
                     </React.Fragment>}
                     title={"更复杂的组合"}
                     description={"更复杂的组合。"}
-                ></Textlayout>
+                ></TextLayout>
 
-                <Textlayout
+                <TextLayout
                     componentClassName={"button-page-demo"}
                     components={<React.Fragment>
                         <Skeleton avatar={{ size: 40 }} paragraph={{ rows: 5 }} animation={"pulse"}/>
@@ -65,7 +65,7 @@ class Page extends React.Component {
                     </React.Fragment>}
                     title={"更复杂的组合"}
                     description={"更复杂的组合。"}
-                ></Textlayout>
+                ></TextLayout>
 
 
                 <SubTitle>API</SubTitle>

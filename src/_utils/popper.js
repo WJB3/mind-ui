@@ -95,7 +95,7 @@
       return getBoundingClientRect(getDocumentElement(element)).left + getWindowScroll(element).scrollLeft;
     }
   
-    // Composite means it takes into account transforms as well as layout.
+    // Composite means it takes into account transforms as well as Layout.
   
     function getCompositeRect(elementOrVirtualElement, offsetParent, isFixed) {
       if (isFixed === void 0) {
@@ -135,7 +135,7 @@
       };
     }
   
-    // Returns the layout rect of an element relative to its offsetParent. Layout
+    // Returns the Layout rect of an element relative to its offsetParent. Layout
     // means it doesn't take into account transforms.
     function getLayoutRect(element) {
       return {

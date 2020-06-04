@@ -1,8 +1,8 @@
 import * as React from 'react';
-import Layout from './../layout/index';
+import Layout from './../Layout/index';
 import Title from './../components/text/Title';
 import SubTitle from './../components/text/SubTitle';
-import Textlayout from './../components/text/Textlayout';
+import TextLayout from './../components/text/TextLayout';
 import {Upload} from 'antd';
 import Button from '../../ButtonBase';
 import Icon from './../icon';
@@ -40,13 +40,13 @@ const Page:React.FunctionComponent<Props>=(Props)=>{
                         <Icon name="upload"/>
                     </Button>
                 </Upload>
-                <Textlayout
+                <TextLayout
                     components={<React.Fragment>
                           
                     </React.Fragment>}
                     title={"基本用法"}
                     description={"使用 <Icon /> 标签声明组件，指定图标对应的 name 属性。"}
-                ></Textlayout>
+                ></TextLayout>
 
             </Layout>
         )

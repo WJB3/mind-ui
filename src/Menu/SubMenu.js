@@ -1,4 +1,4 @@
-import React,{useContext} from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { classNames } from '../components/helper/className';
 import { ConfigContext } from '../ConfigContext';
@@ -6,97 +6,105 @@ import Icon from '../components/icon';
 import BasicRipple from '../BasicRipple';
 import { Fold } from '../Animate';
 import { MenuContext } from './MenuContext';
+import Toolbar from '../Toolbar';
 import "./index.scss";
 
-const SubMenu=React.forwardRef((props,ref)=>{
+const SubMenu = React.forwardRef((props, ref) => {
     const {
-        prefixCls:customizePrefixCls,
+        prefixCls: customizePrefixCls,
         children,
         className,
         style,
         title,
         icon,
-        keyProp
-    }=props;
+        keyProp,
+        isHasSubMenu
+    } = props;
 
     const { getPrefixCls } = useContext(ConfigContext);
 
     const prefixCls = getPrefixCls("submenu", customizePrefixCls);
 
-    const { openKeys,onSubMenuClick } =useContext(MenuContext);
+    const { openKeys, onSubMenuClick } = useContext(MenuContext);
 
-    const handleSubMenuClick=(e)=>{
+    const handleSubMenuClick = (e) => {
         e.stopPropagation();
-        if(onSubMenuClick){
-            onSubMenuClick(e,keyProp);
+        if (onSubMenuClick) {
+            onSubMenuClick(e, keyProp);
         }
     }
 
-    let expanded=openKeys.indexOf(keyProp)>-1;
+    let expanded = openKeys.indexOf(keyProp) > -1;
 
 
     return (
-        <BasicRipple
-            disabledTouchRipple
-            component="li"
-            ref={ref}
-            style={{
-                ...style
-            }}
-            className={
-                classNames(
-                    prefixCls,
-                    className,
-                    {
-                        [`${prefixCls}-icon`]:icon
-                    }
-                )
-            }
-            role="submenu"
-        >
-            <BasicRipple className={classNames(
-                `${prefixCls}-title`,
-                 {
-                    [`${prefixCls}-expanded`]:expanded
-                 }
-            )} onClick={handleSubMenuClick}>
-                {!!icon && <Icon name={icon} />}
-                <span>{title}</span>
-                {<Icon name="arrow-thin-down" />}
-            </BasicRipple>
-
-            <Fold in={expanded} component={"ul"} className={`${prefixCls}-fold`}>
-              {
-                    React.Children.map(children, child => {
-                        return React.cloneElement(child, {
-                            keyProp:child.key,
-                            onItemClick: (e, props) => handleClickItem(e, props, child.key),
-                        })
-                    })
+        <Toolbar mode="compact" noPadding={isHasSubMenu}>
+            <BasicRipple
+                disabledTouchRipple
+                component="li"
+                ref={ref}
+                style={{
+                    ...style
+                }}
+                className={
+                    classNames(
+                        prefixCls,
+                        className,
+                        {
+                            [`${prefixCls}-icon`]: icon,
+                            [`${prefixCls}-isHasSubMenu`]:isHasSubMenu
+                        }
+                    )
                 }
-            </Fold>
-            
-        </BasicRipple>
+                role="submenu"
+            >
+                <Toolbar mode="compact" noPadding>
+                    <BasicRipple className={classNames(
+                        `${prefixCls}-title`,
+                        {
+                            [`${prefixCls}-expanded`]: expanded
+                        }
+                    )} onClick={handleSubMenuClick}>
+                        {!!icon && <Icon name={icon} />}
+                        <span>{title}</span>
+                        {<Icon name="arrow-down" className={"arrow-down"} />}
+                    </BasicRipple>
+                </Toolbar>
+
+                <Fold in={expanded} component={"ul"} className={`${prefixCls}-fold`}>
+                    {
+                        React.Children.map(children, child => {
+                            return React.cloneElement(child, {
+                                keyProp: child.key,
+                                isHasSubMenu: true,
+                                onItemClick: (e, props) => handleClickItem(e, props, child.key),
+                            })
+                        })
+                    }
+                </Fold>
+
+            </BasicRipple>
+        </Toolbar>
     )
 });
 
-SubMenu.propTypes={
+SubMenu.propTypes = {
     //内容
     children: PropTypes.node,
     //传入的className
     className: PropTypes.string,
     //自定义类名前缀
-    prefixCls:PropTypes.string,
+    prefixCls: PropTypes.string,
     //自定义样式
-    style:PropTypes.object,
+    style: PropTypes.object,
     //sunmenu的标题
-    title:PropTypes.string,
+    title: PropTypes.string,
     //icon图标
-    icon:PropTypes.string,
+    icon: PropTypes.string,
     //控制子item是否是选中状态
-    isSelected:PropTypes.bool,
+    isSelected: PropTypes.bool,
     //key
-    keyProp:PropTypes.string
+    keyProp: PropTypes.string
 };
 
 export default SubMenu;

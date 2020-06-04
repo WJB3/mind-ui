@@ -13,7 +13,8 @@ const Toolbar=React.forwardRef((props,ref)=>{
         style,
         mode="normal",
         component:Component="div",
-        disableGutters=false
+        disableGutters=false,
+        noPadding
     }=props;
 
     const { getPrefixCls } = React.useContext(ConfigContext);
@@ -31,7 +32,8 @@ const Toolbar=React.forwardRef((props,ref)=>{
                     className,
                     {
                         [`${prefixCls}-${mode}`]:mode,
-                        [`${prefixCls}-gutters`]:!disableGutters
+                        [`${prefixCls}-gutters`]:!disableGutters,
+                        [`${prefixCls}-noPadding`]:noPadding
                     }
                 )
             }
@@ -49,11 +51,13 @@ Toolbar.propTypes={
     //自定义样式
     style:PropTypes.object,
     //模式
-    mode:PropTypes.oneOf(['normal']),
+    mode:PropTypes.oneOf(['normal','compact']),
     //是否禁用gutter
     disableGutters:PropTypes.bool,
     //根dom元素
-    component:PropTypes.elementType
+    component:PropTypes.elementType,
+    //是否不需要左右padding
+    noPadding:PropTypes.bool
 };
 
 export default Toolbar;

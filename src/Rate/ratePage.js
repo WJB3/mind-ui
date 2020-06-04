@@ -1,9 +1,9 @@
 import React from 'react';
-import Layout from '../layout/index';
+import Layout from '../Layout/index';
 import Title from '../components/text/Title';
 import Description from '../components/text/Description';
 import SubTitle from '../components/text/SubTitle';
-import Textlayout from '../components/text/Textlayout';
+import TextLayout from '../components/text/TextLayout';
 import DescriptionTable from '../components/text/DescriptionTable';
 import Rate from './index';
 import Space from '../Space';
@@ -30,7 +30,7 @@ class Page extends React.Component {
                 <Description>需要用户输入表单域内容时。提供组合型输入框，带搜索的输入框，还可以进行大小选择。</Description>
                 <SubTitle>代码演示</SubTitle>
 
-                <Textlayout
+                <TextLayout
                     components={<React.Fragment>
                         <div style={{ display: "flex", justifyContent: "space-around", alignItems: "center" }}>
                            
@@ -40,9 +40,9 @@ class Page extends React.Component {
                     </React.Fragment>}
                     title={"基本使用。"}
                     description={"有border与不border2种形式"}
-                ></Textlayout>
+                ></TextLayout>
 
-                <Textlayout
+                <TextLayout
                     components={<React.Fragment>
                         <Space size="large" direction="vertical" isBlock>
 
@@ -53,9 +53,9 @@ class Page extends React.Component {
                     </React.Fragment>}
                     title={"三种大小。"}
                     description={"我们为 <Input /> 输入框定义了三种尺寸（大、默认、小），高度分别为 40px、32px 和 24px。"}
-                ></Textlayout>
+                ></TextLayout>
 
-                <Textlayout
+                <TextLayout
                     components={<React.Fragment>
                         <Space size="large" direction="vertical" isBlock >
 
@@ -64,9 +64,9 @@ class Page extends React.Component {
                     </React.Fragment>}
                     title={"搜索框。"}
                     description={"带有搜索按钮的输入框。"}
-                ></Textlayout>
+                ></TextLayout>
 
-                <Textlayout
+                <TextLayout
                     components={<React.Fragment>
                         <Space size="large" direction="vertical" isBlock>
 
@@ -77,9 +77,9 @@ class Page extends React.Component {
                     </React.Fragment>}
                     title={"搜索框。"}
                     description={"带有清除标记。"}
-                ></Textlayout>
+                ></TextLayout>
 
-                <Textlayout
+                <TextLayout
                     components={<React.Fragment>
                         <Space size="large" direction="vertical" isBlock>
 
@@ -90,11 +90,11 @@ class Page extends React.Component {
                     </React.Fragment>}
                     title={"前缀和后缀"}
                     description={"在输入框上添加前缀或后缀图标。"}
-                ></Textlayout>
+                ></TextLayout>
 
 
 
-                <Textlayout
+                <TextLayout
                     components={<React.Fragment>
                         <Space size="large" direction="vertical" isBlock>
 
@@ -104,9 +104,9 @@ class Page extends React.Component {
                     </React.Fragment>}
                     title={"密码框"}
                     description={"在输入框上添加前缀或后缀图标。"}
-                ></Textlayout>
+                ></TextLayout>
 
-                <Textlayout
+                <TextLayout
                     components={<React.Fragment>
                         <Space size="large" direction="vertical" isBlock>
 
@@ -115,7 +115,7 @@ class Page extends React.Component {
                     </React.Fragment>}
                     title={"前缀和后缀"}
                     description={"在输入框上添加前缀或后缀图标。"}
-                ></Textlayout>
+                ></TextLayout>
 
 
                 <SubTitle>API</SubTitle>

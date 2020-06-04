@@ -1,11 +1,11 @@
 import React from 'react';
-import Layout from './../layout/index';
+import Layout from './../Layout/index';
 import Title from './../components/text/Title';
 import Description from './../components/text/Description';
 import SubTitle from './../components/text/SubTitle';
 import Button from '../ButtonBase/index';
 import Icon from './../components/icon/index';
-import Textlayout from './../components/text/Textlayout';
+import TextLayout from './../components/text/TextLayout';
 import DescriptionTable from './../components/text/DescriptionTable';
 import notification from './../components/notification';
 //import  Notification from 'rc-notification';
@@ -135,24 +135,24 @@ class Page extends React.Component {
                 <Description>在系统四个角显示通知提醒信息。经常用于以下情况：</Description>
                 <SubTitle>代码演示</SubTitle>
 
-                <Textlayout
+                <TextLayout
                     components={<React.Fragment>
                         <Button type={"primary"} onClick={() => { this.handleClickDemoOne() }}>Open the notification box</Button>
                     </React.Fragment>}
                     title={"基本"}
                     description={"最简单的用法，4 秒后自动关闭。可设置弹框背景色。"}
-                ></Textlayout>
+                ></TextLayout>
 
-                <Textlayout
+                <TextLayout
                     components={<React.Fragment>
                         <Button type={"primary"} onClick={() => { this.handleClickDemoTwo_1() }}>默认4s后延时</Button>
                         <Button type={"primary"} onClick={() => { this.handleClickDemoTwo_2() }}>不关闭弹框</Button>
                     </React.Fragment>}
                     title={"自动关闭的延时"}
                     description={"自定义通知框自动关闭的延时，默认4s,取消自动关闭只要将该值设置为null即可。"}
-                ></Textlayout>
+                ></TextLayout>
 
-                <Textlayout
+                <TextLayout
                     components={<React.Fragment>
                         <Button onClick={() => { this.handleClickDemoThree("success") }}>
                             <Icon name={"success"} size={22} style={{ marginRight: "8px", color: "rgba(107,198,0,1)" }} />成功框
@@ -169,9 +169,9 @@ class Page extends React.Component {
                     </React.Fragment>}
                     title={"自动关闭的延时"}
                     description={"自定义通知框自动关闭的延时，默认4s,取消自动关闭只要将该值设置为null即可。"}
-                ></Textlayout>
+                ></TextLayout>
 
-                <Textlayout
+                <TextLayout
                     components={<React.Fragment>
                         <Button onClick={() => { this.handleClickDemoFive() }} type={"primary"}>
                             自定义关闭按钮
@@ -179,10 +179,10 @@ class Page extends React.Component {
                     </React.Fragment>}
                     title={"自定义按钮"}
                     description={"自定义关闭按钮的样式和文字。"}
-                ></Textlayout>
+                ></TextLayout>
 
 
-                <Textlayout
+                <TextLayout
                     components={<React.Fragment>
                         <Button onClick={() => { this.handleClickDemoSix() }} type={"primary"}>
                             自定义样式
@@ -191,9 +191,9 @@ class Page extends React.Component {
                     </React.Fragment>}
                     title={"自定义样式"}
                     description={"使用 style 和 className 来定义样式。"}
-                ></Textlayout>
+                ></TextLayout>
 
-                <Textlayout
+                <TextLayout
                     components={<React.Fragment>
                         <Button type={"primary"} onClick={() => { this.handleClickDemoSeven("left-top") }}>
                             <Icon name={"left-top"} size={18} color={"rgba(255,255,255,1)"} style={{ marginRight: "8px" }} />左上角
@@ -211,9 +211,9 @@ class Page extends React.Component {
                     </React.Fragment>}
                     title={"自定义图标"}
                     description={"图标可以被自定义。"}
-                ></Textlayout>
+                ></TextLayout>
 
-                <Textlayout
+                <TextLayout
                     components={<React.Fragment>
                         <Button onClick={() => { this.handleClickDemoEight() }} type={"primary"}>
                             1s后更新提示框
@@ -222,7 +222,7 @@ class Page extends React.Component {
                     </React.Fragment>}
                     title={"更新消息内容"}
                     description={"可以通过唯一的 key 来更新内容。"}
-                ></Textlayout>
+                ></TextLayout>
 
 
                 <SubTitle>API</SubTitle>
