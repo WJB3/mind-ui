@@ -1,10 +1,11 @@
 import React from 'react';
 import { classNames } from '../components/helper/className';
 import { ConfigContext } from '../ConfigContext';
+import useBreakPoint from '../useBreakPoint';
 import PropTypes from 'prop-types';
 import "./index.scss";
 
-const Row = (Props) => {
+const Row = (props) => {
  
 
     const {
@@ -12,19 +13,20 @@ const Row = (Props) => {
         className,
         children,
         style
-    } = Props;
+    } = props;
 
     const { getPrefixCls } =React.useContext(ConfigContext);
 
     const prefixCls = getPrefixCls("row", customizePrefixCls);
 
+    const matchScreen=useBreakPoint();
+
     return (
         <div className={classNames(
             prefixCls,
             className,
-            `${prefixCls}-row`,
-            style={style}
-        )} >
+         
+        )}    style={style}>
             {
                  children
             }

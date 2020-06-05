@@ -7,26 +7,27 @@ import Tooltip from './index';
 import Button from '../ButtonBase';
 import TextLayout from '../components/text/TextLayout';
 import DescriptionTable from '../components/text/DescriptionTable';
-import Grid from '../components/grid';
+import { Row,Col } from './index';
 
 //import  Notification from 'rc-notification';
-const TooltipPage = () => {
+const GridPage = () => {
 
     return (
         <Layout >
-            <Title>Tooltip文字提示</Title>
+            <Title>Grid栅格</Title>
             <SubTitle>何时使用</SubTitle>
-            <Description>Tooltip文字提示</Description>
+            <Description>Grid栅格</Description>
             <SubTitle>代码演示</SubTitle>
 
             <TextLayout
                 componentClassName={"button-page-demo"}
                 components={<React.Fragment>
 
-                    <Tooltip title="我是提示" defaultVisible={true} placement={"top"} onVisibleChange={(value) => { console.log("此时" + value) }}>
-                        <Button>展示文字提示(默认上)</Button>
-                    </Tooltip>
-
+                <Row>
+                    <Col span={8} push={16} >我在最后面</Col>
+                    <Col span={16} pull={8} >我占最前面</Col>
+                    
+                </Row>
 
                 </React.Fragment>}
                 title={"基本用法"}
@@ -38,10 +39,7 @@ const TooltipPage = () => {
                 components={<React.Fragment>
                     
 
-                    
-                    <Tooltip title="我是提示" defaultVisible={true} placement={"right-end"} onVisibleChange={(value) => { console.log("此时" + value) }}>
-                        <Button>展示文字提示(右下)</Button>
-                    </Tooltip>
+                
 
 
                 </React.Fragment>}
@@ -82,4 +80,4 @@ const TooltipPage = () => {
 
 }
 
-export default TooltipPage;
+export default GridPage;

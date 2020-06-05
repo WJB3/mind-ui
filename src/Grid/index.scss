@@ -1,0 +1,47 @@
+ 
+ 
+@import "../Theme/styles/variable";
+
+$prefixClsRow:"#{$global-prefix}-row";
+$prefixClsCol:"#{$global-prefix}-col";
+ 
+
+.#{$prefixClsRow}{
+    display: flex;
+}
+
+ 
+.#{$prefixClsCol}{
+    position: relative;
+    @for $i from 1 through 24 {
+        &-#{$i} {
+            display: block;
+            -webkit-box-flex: 0;//不可伸缩
+            flex:0 0 100%/(24/$i); 
+            max-width:100%/(24/$i);
+        }
+    }
+    @for $offset from 1 through 24{
+        &-offset-#{$offset}{
+            margin-left: (100%/24) * $offset;
+        }
+    }
+    
+    @for $order from 1 through 100{
+        &-order-#{$order}{
+            order:$order;
+        }
+    }
+ 
+    @for $push from 1 through 24{
+        &-push-#{$push}{
+            left: (100%/24) * $push;
+        }
+    }
+
+    @for $pull from 1 through 24{
+        &-pull-#{$pull}{
+            right: (100%/24) * $pull;
+        }
+    }
+}

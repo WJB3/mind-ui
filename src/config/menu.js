@@ -31,6 +31,11 @@ const menuInfo=[
                 key:"popper",
             },
             {
+                title:"Grid 栅格组件",
+                key:"grid",
+                
+            },
+            {
                 title:"Select 选择框",
                 key:"select",
             },
@@ -138,11 +143,7 @@ const menuInfo=[
                 title:"Notification",
                 key:"notification",
             },
-            {
-                title:"Grid",
-                key:"grid",
-                
-            },
+           
            
             {
                 title:"Icon",

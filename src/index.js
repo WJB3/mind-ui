@@ -8,6 +8,7 @@ import SelectPage from './Select/selectPage';
 import TooltipPage from './Tooltip/TooltipPage';
 import PortalPage from './Portal/portalPage';
 import PopperPage from './Popper/popperPage';
+import GridPage from './Grid/GridPage';
  
 import ParrotLayout from './ParrotLayout';
 
@@ -25,6 +26,7 @@ ReactDOM.render((<HashRouter>
                                         <Route path="/tooltip" exact component={(props)=><TooltipPage {...props}/>}></Route>
                                         <Route path="/portal" exact component={(props)=><PortalPage {...props}/>}></Route>
                                         <Route path="/popper" exact component={(props)=><PopperPage {...props}/>}></Route>
+                                        <Route path="/grid" exact component={(props)=><GridPage {...props}/>}></Route>
                                 </Switch>
                         </ParrotLayout>
                 } />
