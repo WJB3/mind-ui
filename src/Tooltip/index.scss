@@ -1,6 +1,7 @@
 @import "../Theme/styles/variable";
 
 $prefixCls:"#{$global-prefix}-tooltip";
+$prefixClsPopover:"#{$global-prefix}-popover";
 
 .#{$prefixCls}{
 
@@ -81,6 +82,32 @@ $prefixCls:"#{$global-prefix}-tooltip";
     max-width: 300px;
     max-height: 250px;
     font-size: 14px;
+
+    &.#{$prefixClsPopover}{
+        background: rgba(255,255,255,1)!important;
+        @include boxShadowLevel(5);
+        color: rgba(0,0,0,.78);
+        border-radius: 4px;
+        line-height: 1.5;
+        font-size: 14px;
+
+        &-inner{
+
+            &-title{
+                min-width:188px;
+                min-height: 32px;
+                color: rgba(0,0,0,.85);
+                font-weight: 500;
+                padding: 5px 16px 4px;
+                border-bottom: 1px solid #f0f0f0;
+            }
+    
+            &-content{
+                padding: 12px 16px;
+                color: rgba(0,0,0,.65);
+            }
+        }
+    }
 }
 
  

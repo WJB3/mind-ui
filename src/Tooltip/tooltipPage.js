@@ -23,7 +23,7 @@ const TooltipPage = () => {
                 componentClassName={"button-page-demo"}
                 components={<React.Fragment>
 
-                    <Tooltip title="我是提示" visible={true}  >
+                    <Tooltip title="我是提示"    >
                         <Button>展示文字提示(默认上)</Button>
                     </Tooltip>
 
@@ -36,10 +36,9 @@ const TooltipPage = () => {
             <TextLayout
                 componentClassName={"button-page-demo"}
                 components={<React.Fragment>
+                
                     
-
-                    
-                    <Tooltip title="我是提示" defaultVisible={true} placement={"right-end"} onVisibleChange={(value) => { console.log("此时" + value) }}>
+                    <Tooltip title="我是提示" defaultVisible={true} placement={"right-end"} >
                         <Button>展示文字提示(右下)</Button>
                     </Tooltip>
 

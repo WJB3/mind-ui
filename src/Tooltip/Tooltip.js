@@ -31,6 +31,7 @@ const Tooltip = React.forwardRef((Props, ref) => {
         controlled: visibleProp,
         default: defaultVisible
     });
+ 
 
     const { getPrefixCls } = React.useContext(ConfigContext);
 
@@ -51,6 +52,7 @@ const Tooltip = React.forwardRef((Props, ref) => {
     };
 
     const handleEnter = (forward = true) => (event) => {
+        console.log("handleEnter")
         const childrenProps = children.props;
 
         if (event.type === 'mouseover' && childrenProps.onMouseOver && forward) {
@@ -77,6 +79,7 @@ const Tooltip = React.forwardRef((Props, ref) => {
     };
 
     const handleLeave = (forward = true) => (event) => {
+        console.log("handleLeave")
         const childrenProps = children.props;
 
         if (event.type === 'mouseleave' && childrenProps.onMouseLeave && event.currentTarget === childNode) {
@@ -88,6 +91,7 @@ const Tooltip = React.forwardRef((Props, ref) => {
     if (trigger==="hover") {
         childrenProps.onMouseOver = handleEnter();
         childrenProps.onMouseLeave = handleLeave();
+ 
     }
  
     if(trigger==="click"){
