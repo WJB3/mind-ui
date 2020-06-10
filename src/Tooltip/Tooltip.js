@@ -52,13 +52,27 @@ const Tooltip = React.forwardRef((Props, ref) => {
 
     const handleEnter = (forward = true) => (event) => {
         const childrenProps = children.props;
-       
+
         if (event.type === 'mouseover' && childrenProps.onMouseOver && forward) {
             childrenProps.onMouseOver(event);
+           
         }
+
         if (event.type === 'click' && childrenProps.onClick && forward) {
-            childrenProps.onClick(event);
+            childrenProps.onClick(event);   
+        } 
+
+        if(event.type==="click"){
+            
+            if(visible){
+                handleClose(event)
+            }else{
+                handleOpen(event);
+            }
+
+            return ;
         }
+
         handleOpen(event);
     };
 
@@ -76,11 +90,11 @@ const Tooltip = React.forwardRef((Props, ref) => {
         childrenProps.onMouseLeave = handleLeave();
     }
  
-    if(trigger==="click" ){
+    if(trigger==="click"){
         childrenProps.onClick=handleEnter();
     }
 
-    const classes = classNames(prefixCls, className);
+    const classes = classNames(prefixCls, className,`${prefixCls}-${placement}`);
 
     useEffect(()=>{
         if (onVisibleChange) {
@@ -96,7 +110,6 @@ const Tooltip = React.forwardRef((Props, ref) => {
             <Popper
                 mountNode={childNode}
                 visible={childNode ? visible : false}
-                className={classNames("popper-tooltip")}
                 placement={placement}
                 animation={animation}
                 transition={!!animation}
@@ -180,7 +193,9 @@ Tooltip.propTypes={
     //是否有箭头
     arrow:PropTypes.bool,
     //位置
-    placement:PropTypes.string
+    placement:PropTypes.string,
+    //触发的时机
+    trigger:PropTypes.string
 };
 
 export default Tooltip;

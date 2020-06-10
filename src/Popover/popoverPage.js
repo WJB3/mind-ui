@@ -7,24 +7,15 @@ import TextLayout from '../components/text/TextLayout';
 import DescriptionTable from '../components/text/DescriptionTable';
 import Popover from './index';
 import Button from '../ButtonBase';
-import { Tooltip as TooltipA } from 'antd';
-const text = "asdasd";
-
-const buttonWidth = 70;
-class Page extends React.Component {
-
-    state = {
-
-    }
-
-    render() {
-
-        const { } = this.state;
+ 
+const Page=()=>{
+ 
+     
 
         return (
             <Layout >
                 <Title>Popover</Title>
-                <Description>页面局部处于等待异步数据或正在渲染过程时，合适的加载动效会有效缓解用户的焦虑。</Description>
+                
                 <SubTitle>何时使用</SubTitle>
 
                 <SubTitle>代码演示</SubTitle>
@@ -32,10 +23,9 @@ class Page extends React.Component {
                 <TextLayout
                     componentClassName={"button-page-demo"}
                     components={<React.Fragment>
+
                         <Popover
                             title="prompt title"
-                            arrow
-                            animation="fade"
                             content={<div>
                                 <p>Content</p>
                                 <p>Content</p>
@@ -78,18 +68,16 @@ class Page extends React.Component {
                         { title: "默认值", dataIndex: "default" }
                     ]}
                     dataSource={[
-                        { attr: "disabled", description: "按钮失效状态", type: "boolean", default: "false" },
-                        { attr: "type", description: "设置按钮类型，可选值为 primary dashed danger link或者不设", type: "string", default: "-" },
-                        { attr: "size", description: "设置按钮大小，可选值为 small large 或者不设", type: "string", default: "default" },
-                        { attr: "shape", description: "设置按钮形状，可选值为 circle 或者不设", type: "string", default: "-" },
-                        { attr: "float", description: "设置按钮是否悬浮", type: "boolean", default: "false" },
-                        { attr: "flat", description: "设置按钮的扁平状态", type: "boolean", default: "false" },
+                        { attr: "children", description: "需要挂载的元素", type: "node/string", default: "false" },
+                        
+                        { attr: "prefixCls", description: "自定义类名前缀", type: "string", default: "" },
+                        { attr: "className", description: "额外添加的类名", type: "string", default: "false" },
                     ]}
                 />
 
             </Layout>
         )
-    }
+   
 }
 
 export default Page;

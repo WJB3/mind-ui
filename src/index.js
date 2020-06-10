@@ -9,6 +9,8 @@ import TooltipPage from './Tooltip/TooltipPage';
 import PortalPage from './Portal/portalPage';
 import PopperPage from './Popper/popperPage';
 import GridPage from './Grid/GridPage';
+import PopoverPage from './Popover/popoverPage';
+import BackDropPage from './BackDrop/backdropPage';
  
 import ParrotLayout from './ParrotLayout';
 
@@ -27,6 +29,8 @@ ReactDOM.render((<HashRouter>
                                         <Route path="/portal" exact component={(props)=><PortalPage {...props}/>}></Route>
                                         <Route path="/popper" exact component={(props)=><PopperPage {...props}/>}></Route>
                                         <Route path="/grid" exact component={(props)=><GridPage {...props}/>}></Route>
+                                        <Route path="/popover" exact component={(props)=><PopoverPage {...props}/>}></Route>
+                                        <Route path="/backdrop" exact component={(props)=><BackDropPage {...props}/>}></Route>
                                 </Switch>
                         </ParrotLayout>
                 } />

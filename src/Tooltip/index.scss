@@ -1,8 +1,78 @@
-@import "./../components/styles/variable.scss";
+@import "../Theme/styles/variable";
 
 $prefixCls:"#{$global-prefix}-tooltip";
 
 .#{$prefixCls}{
+
+    position: relative;
+
+    &-top,&-top-start,&-top-end{
+       
+        bottom:8px!important;
+
+        .#{$prefixCls}-arrow{
+                left: 50%;
+                transform: translateX(-50%);
+                position: absolute;
+                border-left: 6px solid transparent;
+                border-right: 6px solid transparent;
+                border-top: 6px solid rgba(0,0,0,.75);
+                bottom:-6px;
+        }
+    }
+
+    &-left,&-left-start,&-left-end{
+    
+            right:8px!important;
+
+            .#{$prefixCls}-arrow{
+                top: 50%;
+                transform: translateY(-50%);
+                right:-6px;
+                position: absolute;
+                border-top: 6px solid transparent;
+                border-bottom: 6px solid transparent;
+                border-left: 6px solid rgba(0,0,0,.75);
+            }
+           
+        
+        
+    }
+
+    &-right,&-right-start,&-right-end{
+ 
+            left:8px!important;
+
+            .#{$prefixCls}-arrow{
+                top: 50%;
+                transform: translateY(-50%);
+                left:-6px;
+                position: absolute;
+                border-top: 6px solid transparent;
+                border-bottom: 6px solid transparent;
+                border-right: 6px solid rgba(0,0,0,.75);
+            }
+
+    }
+
+    &-bottom,&-bottom-start,&-bottom-end{
+  
+            top:8px!important;
+
+            .#{$prefixCls}-arrow{
+                left: 50%;
+                transform: translateX(-50%);
+                top:-6px;
+                position: absolute;
+                border-bottom: 6px solid rgba(0,0,0,.75);
+                border-left: 6px solid transparent;
+                border-right: 6px solid transparent;
+            }
+           
+    
+        
+    }
+
     background: rgba(0,0,0,.75);
     color: rgba(255,255,255);
     padding: 6px;

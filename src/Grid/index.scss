@@ -44,4 +44,76 @@ $prefixClsCol:"#{$global-prefix}-col";
             right: (100%/24) * $pull;
         }
     }
+
+    @for $span from 1 through 24{
+        &-xs-#{$span}{
+            display: block;
+            -webkit-box-flex: 0;//不可伸缩
+            flex:0 0 100%/(24/$span); 
+            max-width:100%/(24/$span);
+        }
+    }
+
+    @for $span from 1 through 24{
+        @media (min-width: 576px){
+            &-sm-#{$span}{
+                display: block;
+                -webkit-box-flex: 0;//不可伸缩
+                flex:0 0 100%/(24/$span); 
+                max-width:100%/(24/$span);
+            }
+        }
+        
+    }
+
+    @for $span from 1 through 24{
+        @media (min-width: 768px){
+            &-md-#{$span}{
+                display: block;
+                -webkit-box-flex: 0;//不可伸缩
+                flex:0 0 100%/(24/$span); 
+                max-width:100%/(24/$span);
+            }
+        }
+        
+    }
+
+    @for $span from 1 through 24{
+        @media (min-width: 992px){
+            &-lg-#{$span}{
+                display: block;
+                -webkit-box-flex: 0;//不可伸缩
+                flex:0 0 100%/(24/$span); 
+                max-width:100%/(24/$span);
+            }
+        }
+        
+    }
+
+    @for $span from 1 through 24{
+        @media (min-width: 1200px){
+            &-xl-#{$span}{
+                display: block;
+                -webkit-box-flex: 0;//不可伸缩
+                flex:0 0 100%/(24/$span); 
+                max-width:100%/(24/$span);
+            }
+        }
+        
+
+        
+    }
+
+    @for $span from 1 through 24{
+        @media (min-width: 1600px){
+            &-xl-#{$span}{
+                display: block;
+                -webkit-box-flex: 0;//不可伸缩
+                flex:0 0 100%/(24/$span); 
+                max-width:100%/(24/$span);
+            }
+        }
+        
+    }
+
 }

@@ -23,12 +23,20 @@ const menuInfo=[
                 key:"tooltip",
             },
             {
+                title:"Popover 气泡卡片",
+                key:"popover",
+            },
+            {
                 title:"Portal 传送门",
                 key:"portal",
             },
             {
                 title:"Popper 弹送提示工具",
                 key:"popper",
+            },
+            {
+                title:"BackDrop 背景板",
+                key:"backdrop",
             },
             {
                 title:"Grid 栅格组件",
@@ -67,19 +75,13 @@ const menuInfo=[
                 title:"modal",
                 key:"modal",
             },
-            {
-                title:"backdrop",
-                key:"backdrop",
-            },
+           
             
             {
                 title:"tag",
                 key:"tag",
             },
-            {
-                title:"popover",
-                key:"popover",
-            },
+            
             {
                 title:"checkbox",
                 key:"checkbox",

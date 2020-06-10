@@ -1,6 +1,8 @@
-@import "./../components/styles/variable.scss";
+ 
+@import "../Theme/styles/variable";
 
 $prefixCls:"#{$global-prefix}-backdrop";
+ 
 
 .#{$prefixCls}{
     position:fixed;
@@ -8,8 +10,6 @@ $prefixCls:"#{$global-prefix}-backdrop";
     left:0;
     bottom:0;
     right:0;
-    position: fixed;
-   
     background-color: rgba(0, 0, 0, 0.7);
     -webkit-tap-highlight-color: transparent;
     z-index:$global-backdrop-zindex;

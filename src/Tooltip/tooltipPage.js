@@ -23,7 +23,7 @@ const TooltipPage = () => {
                 componentClassName={"button-page-demo"}
                 components={<React.Fragment>
 
-                    <Tooltip title="我是提示" defaultVisible={true} placement={"top"} onVisibleChange={(value) => { console.log("此时" + value) }}>
+                    <Tooltip title="我是提示" visible={true}  >
                         <Button>展示文字提示(默认上)</Button>
                     </Tooltip>
 
@@ -72,8 +72,7 @@ const TooltipPage = () => {
                     { attr: "defaultVisible", description: "默认是否显示", type: "boolean", default: "" },
                     { attr: "placement", description: "位置", type: "string", default: "top" },
                     { attr: "onVisibleChange", description: "弹框消失/隐藏的回调", type: "string", default: "top" },
-
-
+                    { attr: "trigger", description: "弹框的时机", type: "string", default: "hover" },
                 ]}
             />
 

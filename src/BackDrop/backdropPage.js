@@ -9,94 +9,52 @@ import TextLayout from './../components/text/TextLayout';
 import DescriptionTable from './../components/text/DescriptionTable';
 import Loading from '../Loading';
 //import  Notification from 'rc-notification';
-const style = {
-    height: 40,
-    width: 40,
-    lineHeight: '40px',
-    borderRadius: 4,
-    backgroundColor: '#1088e9',
-    color: '#fff',
-    textAlign: 'center',
-    fontSize: 14,
-};
-class ButtonPage extends React.Component {
 
-    state={
-        open:false
-    }
+const  Page = () => {
+    
+    const [open,setOpen]=React.useState(false);
 
-    render() {
+    return (
+        <Layout >
+            <Title>BackDrop</Title>
+            <Description>返回页面顶部的操作按钮。</Description>
+            <SubTitle>何时使用</SubTitle>
+            <Description>当页面内容区域比较长时。</Description>
+            <SubTitle>代码演示</SubTitle>
 
-        const { open }=this.state;
+            <TextLayout
+                componentClassName={"button-page-demo"}
+                components={<React.Fragment>
+                    <Button type="primary" onClick={() => setOpen(true)}>打开背景层</Button>
+                    <BackDrop open={open} onClick={() => setOpen(!open)}>
+                        <Loading size={60} />
+                    </BackDrop>
+                </React.Fragment>}
+                title={"基本"}
+                description={"最简单的用法。"}
+            ></TextLayout>
 
-        return (
-            <Layout >
-                <Title>BackDrop</Title>
-                <Description>返回页面顶部的操作按钮。</Description>
-                <SubTitle>何时使用</SubTitle>
-                <Description>当页面内容区域比较长时。</Description>
-                <SubTitle>代码演示</SubTitle>
+            <SubTitle>API</SubTitle>
+            <Description>属性说明如下：</Description>
+            <DescriptionTable
+                columns={[
+                    { title: "属性", dataIndex: "attr" },
+                    { title: "说明", dataIndex: "description" },
+                    { title: "类型", dataIndex: "type", render: (text, record) => { return (<div style={{ color: "rgba(242,49,127,1)" }}>{text}</div>) } },
+                    { title: "默认值", dataIndex: "default" }
+                ]}
+                dataSource={[
+                    { attr: "children", description: "需要挂载的元素", type: "node/string", default: "false" },
+                    { attr: "prefixCls", description: "自定义类名前缀", type: "string", default: "" },
+                    { attr: "className", description: "额外添加的类名", type: "string", default: "false" },
+                    { attr: "open", description: "背景板是否打开", type: "bool", default: "false" },
+                    { attr: "disabledScroll", description: "是否禁用滚动", type: "bool", default: "false" },
+                    { attr: "centered", description: "背景板内元素是否垂直居中", type: "bool", default: "true" },
+                ]}
+            />
 
-                <TextLayout
-                    componentClassName={"button-page-demo"}
-                    components={<React.Fragment>
-                        <Button type="primary" onClick={()=>this.setState({
-                            open:!open
-                        })}>打开背景层</Button>
-                        <BackDrop open={open} onClick={()=>this.setState({
-                                open:!open
-                        })}>
-                            <Loading size={60}  />
-                        </BackDrop>
-                    </React.Fragment>}
-                    title={"基本"}
-                    description={"最简单的用法。"}
-                ></TextLayout>
-
-                {/* <TextLayout
-                    componentClassName={"button-page-demo"}
-                    components={<React.Fragment>
-                        <div style={{ height: '600vh', padding: 8 }} ref={ref=>this.ScrollRef=ref}>
-                            <div>Scroll to bottom</div>
-                            <div>Scroll to bottom</div>
-                            <div>Scroll to bottom</div>
-                            <div>Scroll to bottom</div>
-                            <div>Scroll to bottom</div>
-                            <div>Scroll to bottom</div>
-                            <div>Scroll to bottom</div>
-                            <BackTop target={this.ScrollRef}>
-                               
-                            </BackTop>
-                        </div>
-                    </React.Fragment>}
-                    title={"自定义样式"}
-                    description={"可以自定义回到顶部按钮的样式，限制宽高：40px * 40px。"}
-                ></TextLayout> */}
-
-
-                <SubTitle>API</SubTitle>
-                <Description>通过设置 Button 的属性来产生不同的按钮样式，推荐顺序为：type -> shape -> size -> loading -> disabled。</Description>
-                <Description>按钮的属性说明如下：</Description>
-                <DescriptionTable
-                    columns={[
-                        { title: "属性", dataIndex: "attr" },
-                        { title: "说明", dataIndex: "description" },
-                        { title: "类型", dataIndex: "type", render: (text, record) => { return (<div style={{ color: "rgba(242,49,127,1)" }}>{text}</div>) } },
-                        { title: "默认值", dataIndex: "default" }
-                    ]}
-                    dataSource={[
-                        { attr: "disabled", description: "按钮失效状态", type: "boolean", default: "false" },
-                        { attr: "type", description: "设置按钮类型，可选值为 primary dashed danger link或者不设", type: "string", default: "-" },
-                        { attr: "size", description: "设置按钮大小，可选值为 small large 或者不设", type: "string", default: "default" },
-                        { attr: "shape", description: "设置按钮形状，可选值为 circle 或者不设", type: "string", default: "-" },
-                        { attr: "float", description: "设置按钮是否悬浮", type: "boolean", default: "false" },
-                        { attr: "flat", description: "设置按钮的扁平状态", type: "boolean", default: "false" },
-                    ]}
-                />
-
-            </Layout>
-        )
-    }
+        </Layout>
+    )
 }
 
-export default ButtonPage;
+export default Page;

@@ -1,37 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import useMediaQuery from '../useMediaQuery'
+import { responsiveObserve,responsiveArray } from './responsiveObserve';
 
-export default function useBreakPoint(queryInput,options={}){
+export default function useBreakPoint(queryInput, options = {}) {
 
-    const [screen,setScreen]=useState("xxl");
+    const [screens, setScreens] = useState({xs:true,sm:true,md:true,lg:true,xl:true,xxl:true});
  
-    const mediaArr={
-        xs:"(max-width:576px)",
-        sm:"(min-width:576px)",
-        md:"(min-width:768px)",
-        lg:"(min-width:992px)",
-        xl:"(min-width:1200px)",
-        xxl:"(min-width:1600px)"
-    };
+    useEffect(() => {
 
-    const getMediaScreen=()=>{
-        const mediaMatchArr=[];
-   
-        for(let key in mediaArr){
-           
-                mediaMatchArr.push({
-                    key:useMediaQuery(mediaArr[key])
-                })
-        }
-       
-        return mediaMatchArr;
-    }
+        let token=responsiveObserve.subscribe(screens=>{
+            setScreens(screens); 
+        });
 
-    useEffect(()=>{
-        // const mediaMatchArr=getMediaScreen();
-        // console.log(mediaMatchArr)
-    },[]);
+        return ()=>{
+            responsiveObserve.unsubscribe(token)
+        };
+        
+    }, []);
  
-    return [screen]
+    return screens;
 
 }

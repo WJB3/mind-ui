@@ -1,91 +1,12 @@
-@import "./../components/styles/variable.scss";
+@import "../Theme/styles/variable";
 
 $prefixCls:"#{$global-prefix}-popper";
-$prefixClsTooltip:"#{$global-prefix}-tooltip";
-$prefixClsPopover:"#{$global-prefix}-popover";
+ 
 
 .#{$prefixCls}{
 
     will-change: transform;
-    // width:100%; 
-
-    &-top,&-top-start,&-top-end{
-        &.popper-tooltip{
-            bottom:8px!important;
-            .#{$prefixClsTooltip}-arrow,.#{$prefixClsPopover}-arrow{
-                left: 50%;
-                transform: translateX(-50%);
-                position: absolute;
-                border-left: 6px solid transparent;
-                border-right: 6px solid transparent;
-                border-top: 6px solid rgba(0,0,0,.75);
-                bottom:-6px;
-            }
-            .#{$prefixClsPopover}-arrow{
-                border-top: 6px solid rgba(255,255,255,1);
-              
-            }
-        }
-        
-    }
-    &-left,&-left-start,&-left-end{
-        &.popper-tooltip{
-            right:8px!important;
-
-            .#{$prefixClsTooltip}-arrow,.#{$prefixClsPopover}-arrow{
-                top: 50%;
-                transform: translateY(-50%);
-                right:-6px;
-                position: absolute;
-                border-top: 6px solid transparent;
-                border-bottom: 6px solid transparent;
-                border-left: 6px solid rgba(0,0,0,.75);
-            }
-            .#{$prefixClsPopover}-arrow{
-                border-left: 6px solid rgba(255,255,255,1);
-            }
-        }
-        
-    }
-    &-right,&-right-start,&-right-end{
-        &.popper-tooltip{
-            left:8px!important;
-            .#{$prefixClsTooltip}-arrow,.#{$prefixClsPopover}-arrow{
-                top: 50%;
-                transform: translateY(-50%);
-                left:-6px;
-                position: absolute;
-                border-top: 6px solid transparent;
-                border-bottom: 6px solid transparent;
-                border-right: 6px solid rgba(0,0,0,.75);
-            }
-            .#{$prefixClsPopover}-arrow{
-                border-right: 6px solid rgba(255,255,255,1);
-            }
-            
-        }
-        
-    }
-    &-bottom,&-bottom-start,&-bottom-end{
-        &.popper-tooltip{
-            top:8px!important;
-
-            .#{$prefixClsTooltip}-arrow,.#{$prefixClsPopover}-arrow{
-                left: 50%;
-                transform: translateX(-50%);
-                top:-6px;
-                position: absolute;
-                border-bottom: 6px solid rgba(0,0,0,.75);
-                border-left: 6px solid transparent;
-                border-right: 6px solid transparent;
-            }
-            .#{$prefixClsPopover}-arrow{
-                border-bottom: 6px solid rgba(255,255,255,1);
-            }
-
-        }
-        
-    }
+   
 }
 
  

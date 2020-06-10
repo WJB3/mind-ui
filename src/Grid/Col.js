@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { classNames } from '../components/helper/className';
-import useMediaQuery from '../useMediaQuery/index';
+import { responsiveArray } from '../useBreakPoint/responsiveObserve';
+import { GridContext } from './GridContext';
 import { ConfigContext } from '../ConfigContext';
 import PropTypes from 'prop-types';
 import "./index.scss";
@@ -30,14 +31,15 @@ const Row = (props) => {
 
     const prefixCls = getPrefixCls("col", customizePrefixCls);
 
-    const mediaArr={
-        xs:"(max-width:576px)",
-        sm:"(min-width:576px)",
-        md:"(min-width:768px)",
-        lg:"(min-width:992px)",
-        xl:"(min-width:1200px)",
-        xxl:"(min-width:1600px)",
-    };
+    let sizeClassObj={};
+
+    responsiveArray.forEach(size=>{
+        const span=props[size];
+        sizeClassObj={
+            ...sizeClassObj,
+            [`${prefixCls}-${size}-${span}`]:span
+        }
+    }) 
 
     return (
         <div className={classNames(
@@ -49,8 +51,8 @@ const Row = (props) => {
                 [`${prefixCls}-order-${order}`]:order,
                 [`${prefixCls}-push-${push}`]:push,
                 [`${prefixCls}-pull-${pull}`]:pull,
-               
             },
+            sizeClassObj
            
         )}  style={style}>
             {

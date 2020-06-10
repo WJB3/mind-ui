@@ -7,10 +7,13 @@ import Tooltip from './index';
 import Button from '../ButtonBase';
 import TextLayout from '../components/text/TextLayout';
 import DescriptionTable from '../components/text/DescriptionTable';
-import { Row,Col } from './index';
+import { Row, Col } from './index';
+import useMediaQuery from '../useMediaQuery';
 
 //import  Notification from 'rc-notification';
 const GridPage = () => {
+
+    const match = useMediaQuery("(min-width:768px)")
 
     return (
         <Layout >
@@ -23,11 +26,18 @@ const GridPage = () => {
                 componentClassName={"button-page-demo"}
                 components={<React.Fragment>
 
-                <Row>
-                    <Col span={8} push={16} >我在最后面</Col>
-                    <Col span={16} pull={8} >我占最前面</Col>
-                    
-                </Row>
+                    <Row>
+                        <Col xs={2} sm={4} md={6} lg={8} xl={10}>
+                            Col
+                        </Col>
+                            <Col xs={20} sm={16} md={12} lg={8} xl={4}>
+                                Col
+                        </Col>
+                            <Col xs={2} sm={4} md={6} lg={8} xl={10}>
+                                Col
+                        </Col>
+
+                    </Row>
 
                 </React.Fragment>}
                 title={"基本用法"}
@@ -37,9 +47,9 @@ const GridPage = () => {
             <TextLayout
                 componentClassName={"button-page-demo"}
                 components={<React.Fragment>
-                    
 
-                
+
+
 
 
                 </React.Fragment>}
@@ -63,15 +73,6 @@ const GridPage = () => {
                     { attr: "children", description: "需要挂载的元素", type: "node/string", default: "false" },
                     { attr: "title", description: "提示内容", type: "node/string", default: "" },
                     { attr: "prefixCls", description: "自定义类名前缀", type: "string", default: "" },
-                    { attr: "className", description: "额外添加的类名", type: "string", default: "false" },
-                    { attr: "arrow", description: "是否有箭头", type: "boolean", default: "true" },
-                    { attr: "animation", description: "动画名称", type: "string", default: "grow" },
-                    { attr: "visible", description: "是否显示", type: "boolean", default: "" },
-                    { attr: "defaultVisible", description: "默认是否显示", type: "boolean", default: "" },
-                    { attr: "placement", description: "位置", type: "string", default: "top" },
-                    { attr: "onVisibleChange", description: "弹框消失/隐藏的回调", type: "string", default: "top" },
-
-
                 ]}
             />
 

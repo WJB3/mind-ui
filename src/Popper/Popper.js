@@ -33,7 +33,7 @@ const Popper = React.forwardRef((Props,ref) => {
 
     const prefixCls = getPrefixCls("popper", customizePrefixCls);
 
-    const classes = classNames(prefixCls, className,`${prefixCls}-${placement}`);
+    const classes = classNames(prefixCls, className);
 
     const tooltipRef=useRef(null);//div为popper的节点
 

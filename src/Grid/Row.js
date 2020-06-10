@@ -2,6 +2,7 @@ import React from 'react';
 import { classNames } from '../components/helper/className';
 import { ConfigContext } from '../ConfigContext';
 import useBreakPoint from '../useBreakPoint';
+import { GridContext } from './GridContext';
 import PropTypes from 'prop-types';
 import "./index.scss";
 
@@ -19,17 +20,17 @@ const Row = (props) => {
 
     const prefixCls = getPrefixCls("row", customizePrefixCls);
 
-    const matchScreen=useBreakPoint();
-
     return (
         <div className={classNames(
             prefixCls,
             className,
          
-        )}    style={style}>
-            {
-                 children
-            }
+        )}  style={style} >
+      
+                {
+                    children
+                }
+         
         </div>
     )
 }
