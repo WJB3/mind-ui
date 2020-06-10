@@ -26,11 +26,12 @@ const Page = () => {
 
                     <Popover
                         title="prompt title"
+                        arrow 
                         content={<div>
                             <p>Content</p>
                             <p>Content</p>
                         </div>} >
-                        <span>Tooltip will show on mouse enter.</span>
+                        <Button type="primary" >Primary</Button>
                     </Popover>
 
                 </React.Fragment>}
@@ -43,6 +44,7 @@ const Page = () => {
                 components={<React.Fragment>
                     <Popover
                         trigger={"click"}
+                        arrow
                         content={<div>
                             <div>Content</div>
                         </div>} >
@@ -80,6 +82,7 @@ const Page = () => {
                     { attr: "onVisibleChange", description: "弹框消失/隐藏的回调", type: "string", default: "top" },
                     { attr: "trigger", description: "弹框的时机", type: "string", default: "hover" },
                     { attr: "content", description: "气泡卡片的内容", type: "string", default: "string/node" },
+                    { attr: "onCloseBackdrop", description: "关闭背景的回调", type: "string", default: "string/node" },
                 ]}
             />
 

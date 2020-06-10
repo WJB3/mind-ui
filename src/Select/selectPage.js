@@ -7,6 +7,7 @@ import Select from './index';
 import DescriptionTable from '../components/text/DescriptionTable';
 import TextLayout from '../components/text/TextLayout';
 import Space from '../Space';
+import Input from '../Input/index';
 
 const { Option } = Select;
 //import  Notification from 'rc-notification';
@@ -41,6 +42,11 @@ class Page extends React.Component {
                                 </Option>
                                 <Option value="Yiminghe">yiminghe</Option>
                             </Select>
+                            
+
+                            <Input size="small" />
+                            <Input />
+                            <Input size="large" />
 {/* 
                             <Select defaultValue="lucy" style={{ width: 120 }} disabled border>
                                 <Option value="lucy">Lucy</Option>

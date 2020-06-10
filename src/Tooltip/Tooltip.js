@@ -52,12 +52,11 @@ const Tooltip = React.forwardRef((Props, ref) => {
     };
 
     const handleEnter = (forward = true) => (event) => {
-        console.log("handleEnter")
+       
         const childrenProps = children.props;
 
         if (event.type === 'mouseover' && childrenProps.onMouseOver && forward) {
             childrenProps.onMouseOver(event);
-           
         }
 
         if (event.type === 'click' && childrenProps.onClick && forward) {
@@ -79,7 +78,7 @@ const Tooltip = React.forwardRef((Props, ref) => {
     };
 
     const handleLeave = (forward = true) => (event) => {
-        console.log("handleLeave")
+  
         const childrenProps = children.props;
 
         if (event.type === 'mouseleave' && childrenProps.onMouseLeave && event.currentTarget === childNode) {

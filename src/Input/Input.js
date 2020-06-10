@@ -36,7 +36,8 @@ const Input = forwardRef((props, ref) => {
         component:Component="input",
         textareaStyles,
         onBlur,
-        onFocus
+        onFocus,
+        tabIndex
     } = props;
 
     const { getPrefixCls } = useContext(ConfigContext);
@@ -153,6 +154,8 @@ const Input = forwardRef((props, ref) => {
                     type={type}
                     style={textareaStyles}
                     ref={ref}
+                    className={classNames(`${prefixCls}-input`)}
+                    tabIndex={disabled?-1:tabIndex}
                 />
 
                 {

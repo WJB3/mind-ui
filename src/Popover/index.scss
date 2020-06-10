@@ -1,8 +1,11 @@
 @import "../Theme/styles/variable";
 
 $prefixCls:"#{$global-prefix}-popover";
+$prefixClsTooltip:"#{$global-prefix}-tooltip";
 
 .#{$prefixCls}{
+
+   
 
     &-inner{
 
@@ -22,6 +25,8 @@ $prefixCls:"#{$global-prefix}-popover";
             color: rgba(0,0,0,.65);
         }
     }
+
+     
 }
 
  

@@ -6,6 +6,7 @@ $prefixCls:"#{$global-prefix}-popper";
 .#{$prefixCls}{
 
     will-change: transform;
+    z-index: $global-backdrop-zindex+1;
    
 }
 

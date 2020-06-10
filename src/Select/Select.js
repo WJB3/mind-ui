@@ -162,6 +162,7 @@ const Select = React.forwardRef((Props,ref) => {
                 </ul>}
             >
                 <Input 
+                    component="div"
                     suffix={loading ?<Loading size={14}/> :<Icon style={{fontSize:16}} name={(showSearch && visible)?"find":"arrow-down"} className={classNames(`arrow-down`,(visible && !showSearch)?`arrow-down-focus`:"")}/>}
                     onFocus={handleFocus} 
                     allowClear={allowClear}
@@ -172,6 +173,7 @@ const Select = React.forwardRef((Props,ref) => {
                     allowClear={allowClear}
                     onClear={handleClearValue}
                     placeholder={placeholder}
+                    tabIndex={0}
                 />
             </Popover>
         </div>

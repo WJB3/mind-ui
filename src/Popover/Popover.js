@@ -1,4 +1,4 @@
-import React, { useState, useEffect,useRef } from 'react';
+import React from 'react';
 import { classNames } from '../components/helper/className';
 import { ConfigContext } from '../ConfigContext';
 import useControlled from '../_utils/useControlled';
@@ -6,9 +6,9 @@ import PropTypes from 'prop-types';
 import BackDrop from '../BackDrop';
 import "./index.scss";
 import Tooltip from '../Tooltip';
- 
 
- 
+
+
 const Popover = React.forwardRef((Props, ref) => {
 
     const {
@@ -19,55 +19,57 @@ const Popover = React.forwardRef((Props, ref) => {
         content,
         arrow,
         animation,
-        trigger="hover",
+        trigger = "hover",
         placement,
-        visible:visibleProps,
+        visible: visibleProps,
         defaultVisible,
-        onCloseBackdrop
+        onCloseBackdrop,
+        onVisibleChange
     } = Props;
- 
+
     const { getPrefixCls } = React.useContext(ConfigContext);
 
-    const [visible,setVisible]=useControlled({
-        controlled:visibleProps,
-        default:defaultVisible
+    const [visible, setVisible] = useControlled({
+        controlled: visibleProps,
+        default: defaultVisible
     });
 
     const prefixCls = getPrefixCls("popover", customizePrefixCls);
-    
-    const handleCloseBackdrop=(e)=>{
-        if(onCloseBackdrop){
+
+    const handleCloseBackdrop = (e) => {
+        if (onCloseBackdrop) {
             onCloseBackdrop(e)
         }
         setVisible(false)
     }
 
-    const handleClick=(e)=>{
-        if(trigger==="click"){
+    const handleClick = (e) => {
+
+        if (trigger === "click") {
             setVisible(!visible)
         }
     }
 
-    const handleMouseOver=(e)=>{
-        console.log("handleMouseOver")
-        if(trigger==="hover"){
+    const handleMouseOver = (e) => {
+
+        if (trigger === "hover") {
             setVisible(true)
         }
     }
 
-    const handleMouseLeave=(e)=>{
-        console.log("handleMouseLeave")
-        // if(trigger==="hover"){
-        //     setVisible(false)
-        // }
+    const handleMouseLeave = (e) => {
+
+        if (trigger === "hover") {
+            setVisible(false)
+        }
     }
- 
+
     return (
         <React.Fragment>
 
-            <BackDrop open={visible}  onClick={handleCloseBackdrop} />
-            
-            <Tooltip 
+            <BackDrop open={trigger === "click" ? visible : false} style={{backgroundColor:"transparent"}} onClick={handleCloseBackdrop} />
+
+            <Tooltip
                 className={
                     classNames(
                         prefixCls,
@@ -77,6 +79,7 @@ const Popover = React.forwardRef((Props, ref) => {
                 arrow={arrow}
                 animation={animation}
                 visible={!!visible}
+                onVisibleChange={onVisibleChange}
                 title={
                     <div className={classNames(`${prefixCls}-inner`)}>
                         {!!title && <div className={classNames(`${prefixCls}-inner-title`)}>{title}</div>}
@@ -85,41 +88,46 @@ const Popover = React.forwardRef((Props, ref) => {
                 }
                 trigger={trigger}
                 placement={placement}
-            > 
-                {React.cloneElement(children,{ref:children.ref,onClick:handleClick,onMouseOver:handleMouseOver,onMouseLeave:handleMouseLeave})}       
+            >
+                {React.cloneElement(children, {
+                    ref: children.ref,
+                    onClick: handleClick,
+                    onMouseOver: handleMouseOver,
+                    onMouseLeave: handleMouseLeave
+                })}
             </Tooltip>
-            
+
         </React.Fragment>
     )
 });
 
-Popover.propTypes={
-   
+Popover.propTypes = {
+
     //children子节点
-    children:PropTypes.oneOfType([
+    children: PropTypes.oneOfType([
         PropTypes.func,
         PropTypes.node
     ]),
     //自定义类名前缀
-    prefixCls:PropTypes.string,
+    prefixCls: PropTypes.string,
     //提示是否有箭头
-    arrow:PropTypes.bool,
+    arrow: PropTypes.bool,
     //额外添加的类名
-    className:PropTypes.string,
+    className: PropTypes.string,
     //动画名称
-    animation:PropTypes.string,
+    animation: PropTypes.string,
     //是否显示
-    visible:PropTypes.bool,
+    visible: PropTypes.bool,
     //默认是否显示
-    defaultVisible:PropTypes.bool,
+    defaultVisible: PropTypes.bool,
     //位置
-    placement:PropTypes.string,
+    placement: PropTypes.string,
     //触发的时机
-    trigger:PropTypes.string,
+    trigger: PropTypes.string,
     //气泡卡片的内容
-    content:PropTypes.node,
+    content: PropTypes.node,
     //关闭背景的回调
-    onCloseBackdrop:PropTypes.func
+    onCloseBackdrop: PropTypes.func
 };
 
 

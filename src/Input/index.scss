@@ -34,6 +34,10 @@ $inputWrapperPrefixCls:"#{$prefixCls}-inputWrapper";//主
                 padding:6px 10px;
             }
 
+            .#{$prefixCls}-input{
+                padding:6px 10px;
+            }
+
             &:before{
                 top:0;
                 border-radius: 4px;
@@ -163,12 +167,31 @@ $inputWrapperPrefixCls:"#{$prefixCls}-inputWrapper";//主
             line-height:1.5;
         }
 
+        .#{$prefixCls}-input{
+            font:inherit;
+            color:currentColor;
+            outline: none;
+            border:0;
+            max-width:100%;
+            background: none;
+            flex:1;
+            line-height:1.5;
+            min-width: 169px;
+        }
+
         textarea{
             padding:5px 0px 5px 6px;
             box-sizing: content-box;
         }
         
-        input{
+        .#{$prefixCls}-input{
+            height: 20px;
+            line-height: 20px;
+            padding: 6px 2px;
+            box-sizing: content-box;
+        }
+
+        .#{$prefixCls}{
             height: 20px;
             line-height: 20px;
             padding: 6px 2px;
@@ -231,6 +254,11 @@ $inputWrapperPrefixCls:"#{$prefixCls}-inputWrapper";//主
             padding:2px 2px;
             height:20px;
         }
+
+        .#{$prefixCls}-input{
+            padding:2px 2px;
+            height:20px;
+        }
         
         &.#{$prefixCls}-border{
             input{
@@ -249,6 +277,11 @@ $inputWrapperPrefixCls:"#{$prefixCls}-inputWrapper";//主
 
     &-large{
         input{
+            padding:4px 4px;
+            height:32px;
+        }
+
+        .#{$prefixCls}-input{
             padding:4px 4px;
             height:32px;
         }

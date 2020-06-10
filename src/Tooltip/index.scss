@@ -20,6 +20,12 @@ $prefixClsPopover:"#{$global-prefix}-popover";
                 border-top: 6px solid rgba(0,0,0,.75);
                 bottom:-6px;
         }
+
+        &.#{$prefixClsPopover}{
+            .#{$prefixCls}-arrow{
+                border-top: 6px solid white;
+            }   
+        }
     }
 
     &-left,&-left-start,&-left-end{
@@ -36,7 +42,11 @@ $prefixClsPopover:"#{$global-prefix}-popover";
                 border-left: 6px solid rgba(0,0,0,.75);
             }
            
-        
+            &.#{$prefixClsPopover}{
+                .#{$prefixCls}-arrow{
+                    border-left: 6px solid white;
+                }   
+            }
         
     }
 
@@ -52,6 +62,12 @@ $prefixClsPopover:"#{$global-prefix}-popover";
                 border-top: 6px solid transparent;
                 border-bottom: 6px solid transparent;
                 border-right: 6px solid rgba(0,0,0,.75);
+            }
+
+            &.#{$prefixClsPopover}{
+                .#{$prefixCls}-arrow{
+                    border-right: 6px solid white;
+                }   
             }
 
     }
@@ -70,7 +86,11 @@ $prefixClsPopover:"#{$global-prefix}-popover";
                 border-right: 6px solid transparent;
             }
            
-    
+            &.#{$prefixClsPopover}{
+                .#{$prefixCls}-arrow{
+                    border-bottom: 6px solid white;
+                }   
+            }
         
     }
 
@@ -90,6 +110,9 @@ $prefixClsPopover:"#{$global-prefix}-popover";
         border-radius: 4px;
         line-height: 1.5;
         font-size: 14px;
+        z-index: $global-backdrop-zindex+1;
+
+        
 
         &-inner{
 
