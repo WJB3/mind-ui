@@ -24,7 +24,8 @@ const Popover = React.forwardRef((Props, ref) => {
         visible: visibleProps,
         defaultVisible,
         onCloseBackdrop,
-        onVisibleChange
+        onVisibleChange,
+        container
     } = Props;
 
     const { getPrefixCls } = React.useContext(ConfigContext);
@@ -64,10 +65,23 @@ const Popover = React.forwardRef((Props, ref) => {
         }
     }
 
+    // const handleFocus=(e)=>{
+    //     if (trigger === "focus") {
+    //         setVisible(true)
+    //     }
+    // }
+
+    // const handleBlur=(e)=>{
+    //     if (trigger === "focus") {
+    //         setVisible(false)
+    //     }
+    // }
+     
+
     return (
         <React.Fragment>
 
-            <BackDrop open={trigger === "click" ? visible : false} style={{backgroundColor:"transparent"}} onClick={handleCloseBackdrop} />
+            <BackDrop open={trigger === "click"||trigger==="focus" ? visible : false} style={{backgroundColor:"transparent"}} onClick={handleCloseBackdrop} />
 
             <Tooltip
                 className={
@@ -88,12 +102,15 @@ const Popover = React.forwardRef((Props, ref) => {
                 }
                 trigger={trigger}
                 placement={placement}
+                container={container}
             >
                 {React.cloneElement(children, {
                     ref: children.ref,
                     onClick: handleClick,
                     onMouseOver: handleMouseOver,
-                    onMouseLeave: handleMouseLeave
+                    onMouseLeave: handleMouseLeave,
+                    // onFocus:handleFocus,
+                    // onBlur:handleBlur
                 })}
             </Tooltip>
 

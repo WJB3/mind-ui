@@ -32,7 +32,14 @@ class Page extends React.Component {
                 <TextLayout
                     components={<React.Fragment>
                         <div style={{ display: "flex", justifyContent: "space-around", alignItems: "center" }}>
-                            <Input border />
+                            <Input  />
+                            <Input 
+                                allowClear
+                                size={"default"}
+                                enterButton="搜索"
+                                border
+                                onSearch={(value) => console.log(value)}
+                            />
                         </div>
                     </React.Fragment>}
                     title={"基本使用。"}

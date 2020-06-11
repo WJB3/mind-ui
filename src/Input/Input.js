@@ -1,7 +1,7 @@
 import React, { forwardRef, useContext, useState } from 'react';
 import { classNames } from '../components/helper/className';
 import { ConfigContext } from '../ConfigContext';
-import useControlled from '../_utils/useControlled';
+import useInputControlled from '../_utils/useInputControlled';
 import { Fade } from '../Animate';
 import Button from '../ButtonBase';
 import Icon from '../components/icon';
@@ -37,18 +37,20 @@ const Input = forwardRef((props, ref) => {
         textareaStyles,
         onBlur,
         onFocus,
-        tabIndex
+        tabIndex,
+        style
     } = props;
 
     const { getPrefixCls } = useContext(ConfigContext);
 
     const [active, setActive] = useState(false);
-
-    const [value, setValue] = useControlled({
+ 
+    const [value, setValue] = useInputControlled({
         controlled: valueProps,
         default: defaultValue
     });
 
+ 
     const prefixCls = getPrefixCls("input", customizePrefixCls);
 
     const handleFocus = (e) => {//input触发焦点事件
@@ -109,8 +111,14 @@ const Input = forwardRef((props, ref) => {
         undefined: "32px"
     }
     
+    const selectProps={}
+
+    if(Component==="div"){
+        selectProps.children=value?value:""
+    }
+    
     return (
-        <div  className={classNames(
+        <div style={style} className={classNames(
             prefixCls,
             className,
             {
@@ -156,11 +164,13 @@ const Input = forwardRef((props, ref) => {
                     ref={ref}
                     className={classNames(`${prefixCls}-input`)}
                     tabIndex={disabled?-1:tabIndex}
+                    {...selectProps}
+                    // children={value?value:""}
                 />
 
                 {
                     (suffix || allowClear) && <span className={classNames(`${prefixCls}-suffix`)}>
-                        {allowClear && <Fade in={value ? true : false}><Icon name="close-circle" style={{ fontSize: 16, color: "rgba(0,0,0,.4)" }} onClick={(e) => handleClearValue(e)} /></Fade>}
+                        {allowClear && <Fade in={value ? true : false} unmountOnExit ><Icon name="close-circle" style={{ fontSize: 16, color: "rgba(0,0,0,.4)" }} onClick={(e) => handleClearValue(e)} /></Fade>}
                         {suffix}
                     </span>
                 }

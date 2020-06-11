@@ -1,6 +1,6 @@
 import React from 'react';
 import { classNames } from '../components/helper/className';
-import { toArray } from '../_utils/reactUtils';
+import PropTypes from 'prop-types';
 import { ConfigContext } from '../ConfigContext';
 import { typeEnum } from '../components/color';
 import "./index.scss";
@@ -56,11 +56,33 @@ const Loading = (Props) => {
         {isLoading && <div className={classNames(`${prefixCls}-overlay`,{
             [`${prefixCls}-fullScreen`]:fullScreen
         })} style={{backgroundColor:overlayColor}}>
-            {tip?<div className={classNames(`${prefixCls}-overlay-tipContainer`)}><div>{loading}</div><div style={tipColor}>{tip}</div></div>:loading}
+            {tip?<div className={classNames(`${prefixCls}-overlay-tipContainer`)}><div>{loading}</div><div style={{lineHeight:"initial",...tipColor}}>{tip}</div></div>:loading}
         </div>} 
         {children}
      
     </div>:loading
 }
+
+Loading.propTypes={
+   
+    //孩子节点
+    children:PropTypes.oneOfType([
+        PropTypes.func,
+        PropTypes.node
+    ]),
+    //自定义类名前缀
+    prefixCls:PropTypes.string,
+    //添加类名
+    className:PropTypes.string,
+    //loading的尺寸
+    size:PropTypes.number,
+    //loading的颜色
+    color:PropTypes.string,
+    //是否全屏
+    fullScreen:PropTypes.bool,
+    //蒙层
+    overlayColor:PropTypes.string
+};
+
 
 export default Loading;

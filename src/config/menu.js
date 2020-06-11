@@ -48,6 +48,10 @@ const menuInfo=[
                 key:"select",
             },
             {
+                title:"Loading加载中",
+                key:"loading",
+            },
+            {
                 title:"steps",
                 key:"steps",
             },
@@ -100,10 +104,7 @@ const menuInfo=[
             },
            
              
-            {
-                title:"Loading",
-                key:"loading",
-            },
+            
             {
                 title:"回到顶部",
                 key:"backtop",

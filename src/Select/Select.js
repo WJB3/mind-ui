@@ -10,6 +10,7 @@ import useForkRef from '../_utils/useForkRef';
 import Loading from '../Loading';
 import Popover from '../Popover';
 import "./index.scss";
+import PropTypes from 'prop-types';
 
 const Select = React.forwardRef((Props,ref) => {
  
@@ -42,8 +43,7 @@ const Select = React.forwardRef((Props,ref) => {
         children,
         onCloseBackdrop,
         mode="single",
-        showSearch,
-        ...restProps
+        showSearch
     } = Props;
 
     const [value, setValue] = useControlled({
@@ -66,7 +66,9 @@ const Select = React.forwardRef((Props,ref) => {
     const classes = classNames(prefixCls, className);
 
     const handleFocus=useCallback(()=>{
-
+        if(disabled){
+            return ;
+        }
         setVisible(true);
     },[visible]);
 
@@ -145,15 +147,23 @@ const Select = React.forwardRef((Props,ref) => {
         getInputLabel()
     },[value]);
     
-    console.log(visible);
+    const renderSuffix=()=>{
+        if(allowClear){
+            if(inputValue){
+                return null;
+            }
+        }
+        return  loading ?<Loading size={14}/> :<Icon style={{fontSize:16}} name={(showSearch && visible)?"find":"arrow-down"} className={classNames(`arrow-down`,(visible && !showSearch)?`arrow-down-focus`:"")} />
+    }
+ 
     
     return (
         <div className={classes} ref={handleRef} style={style}>
             <Popover 
                 trigger={"focus"} 
-                // container={()=>selectRef.current} 
+                container={()=>selectRef.current} 
                 placement={"bottom"}
-                open={open}
+                
                 onCloseBackdrop={handleClickBackdrop}
                 visible={visible}
                 className={`${prefixCls}-popover`}
@@ -163,9 +173,9 @@ const Select = React.forwardRef((Props,ref) => {
             >
                 <Input 
                     component="div"
-                    suffix={loading ?<Loading size={14}/> :<Icon style={{fontSize:16}} name={(showSearch && visible)?"find":"arrow-down"} className={classNames(`arrow-down`,(visible && !showSearch)?`arrow-down-focus`:"")}/>}
+                    suffix={renderSuffix()}
                     onFocus={handleFocus} 
-                    allowClear={allowClear}
+                    allowClear={inputValue?allowClear:null}
                     value={inputValue}
                     border={border}
                     disabled={disabled}
@@ -174,10 +184,28 @@ const Select = React.forwardRef((Props,ref) => {
                     onClear={handleClearValue}
                     placeholder={placeholder}
                     tabIndex={0}
+                    style={style}
                 />
             </Popover>
         </div>
     )
 })
+
+Select.propTypes={
+     
+    //孩子节点
+    children:PropTypes.oneOfType([
+        PropTypes.func,
+        PropTypes.node
+    ]),
+    //自定义类名前缀
+    prefixCls:PropTypes.string,
+    //添加类名
+    className:PropTypes.string,
+    //disabled 是否禁用
+    disabled:PropTypes.bool,
+    //loading 是否加载
+    loading:PropTypes.bool
+};
 
 export default Select;

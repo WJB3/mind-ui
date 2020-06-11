@@ -21,7 +21,8 @@ const Tooltip = React.forwardRef((Props, ref) => {
         trigger="hover",
         animation="grow",
         defaultVisible,
-        onVisibleChange
+        onVisibleChange,
+        container
     } = Props;
  
      
@@ -116,6 +117,7 @@ const Tooltip = React.forwardRef((Props, ref) => {
                 placement={placement}
                 animation={animation}
                 transition={!!animation}
+                container={container}
             >
                 {
                     ({TransitionProps})=>{

@@ -1,6 +1,7 @@
 @import "./../components/styles/variable.scss";
 
 $prefixCls:"#{$global-prefix}-input";//主
+$prefixClsLoading:"#{$prefixCls}-loading";//主
 $inputWrapperPrefixCls:"#{$prefixCls}-inputWrapper";//主
 
 .#{$prefixCls}{
@@ -155,6 +156,8 @@ $inputWrapperPrefixCls:"#{$prefixCls}-inputWrapper";//主
         position: relative;
         flex:1;
         display: flex;
+        max-width: 100%;
+        
 
         input,textarea{
             font:inherit;
@@ -176,7 +179,7 @@ $inputWrapperPrefixCls:"#{$prefixCls}-inputWrapper";//主
             background: none;
             flex:1;
             line-height:1.5;
-            min-width: 169px;
+            min-width: 100px;
         }
 
         textarea{
@@ -236,8 +239,10 @@ $inputWrapperPrefixCls:"#{$prefixCls}-inputWrapper";//主
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        line-height: 1.5;
+        line-height: 1;
         min-width: 16px;
+
+        
     }
 
     &-prefix{

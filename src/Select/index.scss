@@ -1,8 +1,9 @@
-@import "./../components/styles/variable.scss";
+@import "../Theme/styles/variable";
 
 $prefixCls:"#{$global-prefix}-select";
 $prefixClsPopper:"#{$global-prefix}-popper";
 $prefixClsPopover:"#{$global-prefix}-popover";
+$prefixClsTooltip:"#{$global-prefix}-tooltip";
  
 
 .#{$prefixCls}{
@@ -22,8 +23,8 @@ $prefixClsPopover:"#{$global-prefix}-popover";
         border-radius: 0;
 
         &_selected{
-            color:$primary-color;
-            background-color: rgba(0,0,0,.1);
+            color:$global-text-color;
+            @include OpacityPrimaryColor(.5);
         }
 
         &_disabled{
@@ -34,36 +35,51 @@ $prefixClsPopover:"#{$global-prefix}-popover";
 
     &-popover{
         max-height: 300px;
-        min-width:242px;
-        overflow-y: scroll;
+        min-width:100%;
+        overflow-y: auto;
 
         .#{$prefixClsPopover}-inner-content{
             padding:0;
+
+            ul{
+                margin-top:0;
+                margin-bottom:0;
+            }
         }
     }
 
     .#{$prefixClsPopper}{
-        z-index: #{$global-backdrop-zindex}+1;
-        &-top,&-top-start,&-top-end{
-            &.popper-tooltip{
-                bottom:0px!important;
+        
+        transform: translateX(0px)!important;
+        width:100%;
+        // z-index: #{$global-backdrop-zindex}+1;
+
+        .#{$prefixClsTooltip}{
+
+            padding:0px; 
+
+            &-top,&-top-start,&-top-end{
+                &.popper-tooltip{
+                    bottom:0px!important;
+                }
             }
-        }
-        &-bottom,&-bottom-start,&-bottom-end{
-            &.popper-tooltip{
+            &-bottom,&-bottom-start,&-bottom-end{
+                
                 top:0px!important;
+                
+            }
+            &-right,&-right-start,&-right-end{
+                &.popper-tooltip{
+                    left:0px!important;
+                }
+            }
+            &-left,&-left-start,&-left-end{
+                &.popper-tooltip{
+                    right:0px!important;
+                }
             }
         }
-        &-right,&-right-start,&-right-end{
-            &.popper-tooltip{
-                left:0px!important;
-            }
-        }
-        &-left,&-left-start,&-left-end{
-            &.popper-tooltip{
-                right:0px!important;
-            }
-        }
+        
     }
 
     .arrow-down{
