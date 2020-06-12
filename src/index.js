@@ -12,6 +12,7 @@ import GridPage from './Grid/GridPage';
 import PopoverPage from './Popover/popoverPage';
 import BackDropPage from './BackDrop/backdropPage';
 import LoadingPage from './Loading/loadingPage';
+import EmptyPage from './Empty/EmptyPage';
  
 import ParrotLayout from './ParrotLayout';
 import Demo from './Demo';
@@ -35,6 +36,7 @@ ReactDOM.render((<HashRouter>
                                         <Route path="/backdrop" exact component={(props)=><BackDropPage {...props}/>}></Route>
                                         <Route path="/loading" exact component={(props)=><LoadingPage {...props}/>}></Route>
                                         <Route path="/demo" exact component={(props)=><Demo {...props}/>}></Route>
+                                        <Route path="/empty" exact component={(props)=><EmptyPage {...props}/>}></Route>
                                 </Switch>
                         </ParrotLayout>
                 } />

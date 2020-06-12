@@ -38,24 +38,49 @@ const Page = () => {
                             </Option>
 
                         </Select>
-                        <Select defaultValue="lucy"   disabled>
+                        <Select defaultValue="lucy" disabled>
                             <Option value="lucy">Lucy</Option>
                         </Select>
 
-                        <Select defaultValue="lucy"   loading>
+                        <Select defaultValue="lucy" loading>
                             <Option value="lucy">Lucy</Option>
                         </Select>
 
-                        <Select defaultValue="lucy"   allowClear>
+                        <Select defaultValue="lucy" allowClear>
                             <Option value="lucy">Lucy</Option>
                         </Select>
-                        
+
                     </Space>
                 </React.Fragment>}
                 title={"基本用法"}
                 description={"一个简单的 loading 状态。"}
             ></TextLayout>
 
+            <TextLayout
+                componentClassName={"button-page-demo"}
+                components={<React.Fragment>
+                    <Space>
+
+                        <Select
+                            showSearch
+                            style={{ width: 200 }}
+                            placeholder="Select a person"
+                            optionFilterProp="children"
+                            onChange={(value) => console.log(`selected:${value}`)}
+                            filterOption={(input, options) =>  {
+                                    return options.children.toLowerCase().indexOf(input.toLowerCase()) >= 0 
+                            }}
+                        >
+                            <Option value="jack">Jack</Option>
+                            <Option value="lucy">Lucy</Option>
+                            <Option value="tom">Tom</Option>
+                        </Select>
+
+                    </Space>
+                </React.Fragment>}
+                title={"基本用法"}
+                description={"一个简单的 loading 状态。"}
+            ></TextLayout>
 
 
             <SubTitle>API</SubTitle>

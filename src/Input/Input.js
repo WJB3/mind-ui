@@ -98,6 +98,18 @@ const Input = forwardRef((props, ref) => {
         }
     }
 
+    const handleKeyUp=(e)=>{
+
+        const children=event.target.innerHTML;
+
+        if(typeof(event.target.innerHTML)==="string"){//是字符串
+            if(onChange){
+                onChange(children,event);
+                keepLastIndex(event.target);
+            }
+        }
+    }
+
     const handleSearch=(e)=>{
         if(onSearch){
             onSearch(value,e);
@@ -113,8 +125,26 @@ const Input = forwardRef((props, ref) => {
     
     const selectProps={}
 
+    const keepLastIndex=(target)=>{//保持光标移至在后面
+        if (window.getSelection) { //ie11 10 9 ff safari
+            target.focus(); //解决ff不获取焦点无法定位问题
+            var range = window.getSelection(); //创建range
+            range.selectAllChildren(target); //range 选择obj下所有子内容
+            range.collapseToEnd(); //光标移至最后
+        } else if (document.selection) { //ie10 9 8 7 6 5
+            var range = document.selection.createRange(); //创建选择对象
+            //var range = document.body.createTextRange();
+            range.moveToElementText(target); //range定位到obj
+            range.collapse(false); //光标移至最后
+            range.select();
+        }
+    }
+
     if(Component==="div"){
         selectProps.children=value?value:""
+        selectProps.contentEditable='true'
+        selectProps.suppressContentEditableWarning="true"
+        selectProps.onKeyUp=handleKeyUp
     }
     
     return (

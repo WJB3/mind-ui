@@ -4,11 +4,14 @@ $prefixCls:"#{$global-prefix}-select";
 $prefixClsPopper:"#{$global-prefix}-popper";
 $prefixClsPopover:"#{$global-prefix}-popover";
 $prefixClsTooltip:"#{$global-prefix}-tooltip";
+$prefixClsInput:"#{$global-prefix}-input";
  
 
 .#{$prefixCls}{
     position: relative;
     display: inline-block;
+
+    
 
     ul{
         margin-bottom:0;
@@ -103,6 +106,18 @@ $prefixClsTooltip:"#{$global-prefix}-tooltip";
         overflow-y: visible;
     }
     
+    &-showSearch{
+        .#{$prefixClsPopper}{
+            transform: translate(0px,32px)!important;
+        }
+
+        .#{$prefixClsInput}{
+            .#{$prefixClsInput}-input:empty::after {
+                content: attr(placeholder);
+            } 
+        }
+        
+    }
 }
 
  

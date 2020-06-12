@@ -43,7 +43,8 @@ const Select = React.forwardRef((Props,ref) => {
         children,
         onCloseBackdrop,
         mode="single",
-        showSearch
+        showSearch,
+        filterOption 
     } = Props;
 
     const [value, setValue] = useControlled({
@@ -53,7 +54,7 @@ const Select = React.forwardRef((Props,ref) => {
 
     const [visible,setVisible]=useState(false);
 
-    const [inputValue,setInputValue]=useState(undefined);
+    const [inputValue,setInputValue]=useState("");
 
     const selectRef=React.useRef(null);
   
@@ -63,7 +64,13 @@ const Select = React.forwardRef((Props,ref) => {
 
     const prefixCls = getPrefixCls("select", customizePrefixCls);
 
-    const classes = classNames(prefixCls, className);
+    const classes = classNames(
+        prefixCls, 
+        className,
+        {
+            [`${prefixCls}-showSearch`]:showSearch
+        }    
+    );
 
     const handleFocus=useCallback(()=>{
         if(disabled){
@@ -101,8 +108,14 @@ const Select = React.forwardRef((Props,ref) => {
 
     }
 
-    const getSelectOption=React.useCallback(()=>{
-        return React.Children.map(children, (child, index) => {
+    const getSelectOption=React.useCallback((childrenProps)=>{
+        return React.Children.map(childrenProps, (child, index) => {
+             
+            if(filterOption){
+                if(!filterOption(inputValue,child.props)){
+                    return null;
+                }
+            }
 
             if (child.props.value === value) {
               
@@ -156,6 +169,21 @@ const Select = React.forwardRef((Props,ref) => {
         return  loading ?<Loading size={14}/> :<Icon style={{fontSize:16}} name={(showSearch && visible)?"find":"arrow-down"} className={classNames(`arrow-down`,(visible && !showSearch)?`arrow-down-focus`:"")} />
     }
  
+    const handleChange=(_value,event)=>{//input框的change事件
+         
+        setInputValue(_value);
+         
+        if(_value!==value){
+            onChange && onChange(_value,event)
+        }
+    }
+
+    const renderContent=()=>{
+      
+        return children && toArray(children).length>=1 && <ul className={classNames(`${prefixCls}-select-lists`)}>
+                        {getSelectOption(children)}
+                </ul>
+    }
     
     return (
         <div className={classes} ref={handleRef} style={style}>
@@ -163,13 +191,10 @@ const Select = React.forwardRef((Props,ref) => {
                 trigger={"focus"} 
                 container={()=>selectRef.current} 
                 placement={"bottom"}
-                
                 onCloseBackdrop={handleClickBackdrop}
                 visible={visible}
                 className={`${prefixCls}-popover`}
-                content={children && toArray(children).length>=1 && <ul className={classNames(`${prefixCls}-select-lists`)}>
-                        {getSelectOption()}
-                </ul>}
+                content={renderContent()}
             >
                 <Input 
                     component="div"
@@ -179,11 +204,11 @@ const Select = React.forwardRef((Props,ref) => {
                     value={inputValue}
                     border={border}
                     disabled={disabled}
-                    loading={loading}
-                    allowClear={allowClear}
+                    loading={loading} 
                     onClear={handleClearValue}
                     placeholder={placeholder}
                     tabIndex={0}
+                    onChange={handleChange}
                     style={style}
                 />
             </Popover>
@@ -205,7 +230,9 @@ Select.propTypes={
     //disabled 是否禁用
     disabled:PropTypes.bool,
     //loading 是否加载
-    loading:PropTypes.bool
+    loading:PropTypes.bool,
+    //过滤规则
+    filterOption:PropTypes.func
 };
 
 export default Select;
