@@ -15,7 +15,11 @@ const { Option } = Select;
 
 const Page = () => {
 
+    const children = [];
 
+    for (let i = 10; i < 36; i++) {
+        children.push(<Option key={i.toString(36) + i} value={i.toString(36) + i}>{i.toString(36) + i}</Option>);
+    }
 
 
     return (
@@ -67,13 +71,35 @@ const Page = () => {
                             placeholder="Select a person"
                             optionFilterProp="children"
                             onChange={(value) => console.log(`selected:${value}`)}
-                            filterOption={(input, options) =>  {
-                                    return options.children.toLowerCase().indexOf(input.toLowerCase()) >= 0 
+                            filterOption={(input, options) => {
+                                return options.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
                             }}
                         >
                             <Option value="jack">Jack</Option>
                             <Option value="lucy">Lucy</Option>
                             <Option value="tom">Tom</Option>
+                        </Select>
+
+                    </Space>
+                </React.Fragment>}
+                title={"基本用法"}
+                description={"一个简单的 loading 状态。"}
+            ></TextLayout>
+
+            <TextLayout
+                componentClassName={"button-page-demo"}
+                components={<React.Fragment>
+                    <Space>
+
+                        <Select
+                             
+                            mode="multiple"
+                            style={{ width: 300 }}
+                            placeholder="Please select"
+                            defaultValue={['a10', 'c12']}
+                            onChange={(value)=>console.log(value)}
+                        >
+                            {children}
                         </Select>
 
                     </Space>

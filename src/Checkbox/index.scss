@@ -1,8 +1,13 @@
-@import "./../components/styles/variable.scss";
+@import "../Theme/styles/variable";
+
 
 $prefixCls:"#{$global-prefix}-checkbox";
 
 .#{$prefixCls}{
+
+    &.#{$prefixCls}-block{
+        display: flex;
+    }
 
     cursor: pointer;
     display: inline-flex;
@@ -19,7 +24,7 @@ $prefixCls:"#{$global-prefix}-checkbox";
 
         .#{$prefixCls}-inputWrapper{ 
             width:100%;
-            @include flexbox(inherit,inherit);
+            @include flexbox();
     
             &-input{
                 position:absolute;

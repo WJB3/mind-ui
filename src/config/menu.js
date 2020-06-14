@@ -31,6 +31,10 @@ const menuInfo=[
                 key:"portal",
             },
             {
+                title:"DatePicker 日期选择器",
+                key:"datepicker",
+            },
+            {
                 title:"Popper 弹送提示工具",
                 key:"popper",
             },
@@ -55,6 +59,16 @@ const menuInfo=[
                 title:"Empty空状态",
                 key:"empty",
             },
+            {
+                title:"Checkbox 多选框",
+                key:"checkbox",
+            },
+              
+            {
+                title:"Tag 标签",
+                key:"tag",
+            },
+            
             {
                 title:"steps",
                 key:"steps",
@@ -84,16 +98,8 @@ const menuInfo=[
                 key:"modal",
             },
            
+          
             
-            {
-                title:"tag",
-                key:"tag",
-            },
-            
-            {
-                title:"checkbox",
-                key:"checkbox",
-            },
             {
                 title:"inputnumber",
                 key:"inputnumber",

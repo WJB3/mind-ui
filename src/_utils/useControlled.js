@@ -11,13 +11,11 @@ function isEmptyArr(arr){//判断是否是空数组
 
 export default function useControlled({controlled,default:defaultProps}){
     
-    const { current:isControlled}=React.useRef(controlled!==undefined && !isEmptyArr(controlled));
+    let isControlled=controlled!==undefined && !isEmptyArr(controlled);
     
     const [valueState,setValueState]=React.useState(defaultProps);
 
     const value=isControlled?controlled:valueState;
-
-
  
     const setValueIfControlled=React.useCallback((newValue)=>{
         if(!isControlled){

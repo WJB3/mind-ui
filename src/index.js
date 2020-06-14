@@ -5,7 +5,7 @@ import { HashRouter, Route, Switch } from 'react-router-dom';
 import ButtonPage from './ButtonBase/buttonPage';
 import InputPage from './Input/inputPage';
 import SelectPage from './Select/selectPage';
-import TooltipPage from './Tooltip/TooltipPage';
+import TooltipPage from './Tooltip/tooltipPage';
 import PortalPage from './Portal/portalPage';
 import PopperPage from './Popper/popperPage';
 import GridPage from './Grid/GridPage';
@@ -13,7 +13,10 @@ import PopoverPage from './Popover/popoverPage';
 import BackDropPage from './BackDrop/backdropPage';
 import LoadingPage from './Loading/loadingPage';
 import EmptyPage from './Empty/EmptyPage';
- 
+import CheckboxPage from './Checkbox/checkboxPage';
+import TagPage from './Tag/tagPage'; 
+import DatePickerPage from './DatePicker/DatePickerPage';
+
 import ParrotLayout from './ParrotLayout';
 import Demo from './Demo';
 
@@ -37,6 +40,9 @@ ReactDOM.render((<HashRouter>
                                         <Route path="/loading" exact component={(props)=><LoadingPage {...props}/>}></Route>
                                         <Route path="/demo" exact component={(props)=><Demo {...props}/>}></Route>
                                         <Route path="/empty" exact component={(props)=><EmptyPage {...props}/>}></Route>
+                                        <Route path="/checkbox" exact component={(props)=><CheckboxPage {...props}/>}></Route>
+                                        <Route path="/tag" exact component={(props)=><TagPage {...props}/>}></Route>
+                                        <Route path="/datepicker" exact component={(props)=><DatePickerPage {...props}/>}></Route>
                                 </Switch>
                         </ParrotLayout>
                 } />

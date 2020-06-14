@@ -54,6 +54,7 @@ $prefixClsInput:"#{$global-prefix}-input";
     .#{$prefixClsPopper}{
         
         transform: translateX(0px)!important;
+        top: 0px!important;
         width:100%;
         // z-index: #{$global-backdrop-zindex}+1;
 
@@ -112,11 +113,29 @@ $prefixClsInput:"#{$global-prefix}-input";
         }
 
         .#{$prefixClsInput}{
-            .#{$prefixClsInput}-input:empty::after {
+            .#{$prefixClsInput}-input-single:empty::after {
                 content: attr(placeholder);
             } 
         }
         
+    }
+
+    &-mode-multiple{
+        .#{$prefixClsPopper}{
+            transform: translate(0px,32px)!important;
+        }
+
+        .#{$prefixClsInput}{
+            .#{$prefixClsInput}-input-single:empty::after {
+                content: attr(placeholder);
+            } 
+        }
+
+        .#{$prefixClsInput}-input{
+            height:auto;
+            line-height: 1.3;
+            min-height: 20px;
+        }
     }
 }
 

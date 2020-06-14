@@ -8,7 +8,7 @@ import useControlled from '../_utils/useControlled';
 import useCheckboxGroup from './useCheckboxGroup';
 import createChainedFunction from './../_utils/createChainedFunction';
 
-const Checkbox = (Props) => {
+const Checkbox = (props) => {
 
     const {
         prefixCls: customizePrefixCls,
@@ -20,8 +20,9 @@ const Checkbox = (Props) => {
         defaultChecked,
         onChange:onChangeProp,
         indeterminate=false,
-        ...restProps
-    } = Props;
+        block,
+        onClickLabel
+    } = props;
 
     const checkboxGroup = useCheckboxGroup();
 
@@ -29,7 +30,7 @@ const Checkbox = (Props) => {
  
     if(checkboxGroup){
         if (typeof checked === 'undefined') {
-            checked = checkboxGroup.value?checkboxGroup.value.indexOf(Props.value)>-1?true:false:false
+            checked = checkboxGroup.value?checkboxGroup.value.indexOf(props.value)>-1?true:false:false
         }
     }
 
@@ -52,6 +53,14 @@ const Checkbox = (Props) => {
 
     },[isChecked]);
 
+    const handleClickLabel=(e)=>{
+        
+        if(onClickLabel){
+            onClickLabel(e)
+        }
+    }
+ 
+
     return (
         <label
             className={
@@ -59,10 +68,12 @@ const Checkbox = (Props) => {
                     prefixCls,
                     className,
                     {
-                        [`${prefixCls}-disabled`]:disabled
+                        [`${prefixCls}-disabled`]:disabled,
+                        [`${prefixCls}-block`]:block
                     }
                 )
             }
+           
         >
             <BaseRipple
                 className={
@@ -76,6 +87,7 @@ const Checkbox = (Props) => {
                 }
                 centerRipple
                 disabledTouchRipple={disabled}
+                onClick={handleClickLabel}
             >
                 <Component
                     className={
@@ -96,7 +108,7 @@ const Checkbox = (Props) => {
                         }
                         onChange={(e)=>handleChange(e)}
                         disabled={disabled}
-                        value={Props.value}
+                        value={props.value}
                         checked={isChecked}
                     />
 

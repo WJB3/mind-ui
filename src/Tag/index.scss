@@ -37,6 +37,7 @@ $prefixCls:"#{$global-prefix}-tag";
         position: relative;
         top:3px;
         left:3px;
+        z-index: 10000;
     }
 
     &-displaynone{

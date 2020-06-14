@@ -84,13 +84,18 @@ class checkboxPage extends React.Component {
                         <div style={{ display: "flex", justifyContent: "space-around" }}>
                         <Checkbox.Group options={options} defaultValue={['Pear']} onChange={(e)=>console.log(e)} />
                         </div>
-                        <div style={{ display: "flex", justifyContent: "space-around" }}>
+                        <div style={{ display: "flex", justifyContent: "space-around" }}>*/}
                         <Checkbox.Group
                             options={optionsWithDisabled}
                             disabled
                             defaultValue={['Apple']}
                             onChange={(e)=>console.log(e)}
-                        />
+                        /> 
+                        <Checkbox.Group>
+                            <Checkbox value={"1"}>1</Checkbox>
+                            <Checkbox value={"2"}>2</Checkbox>
+                            <Checkbox value={"3"}>3</Checkbox>
+                        </Checkbox.Group>
                         </div>
                     </React.Fragment>}
                     title={"基本使用。"}

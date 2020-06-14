@@ -38,7 +38,9 @@ const Input = forwardRef((props, ref) => {
         onBlur,
         onFocus,
         tabIndex,
-        style
+        style,
+        mode,
+        isEdit
     } = props;
 
     const { getPrefixCls } = useContext(ConfigContext);
@@ -142,10 +144,12 @@ const Input = forwardRef((props, ref) => {
 
     if(Component==="div"){
         selectProps.children=value?value:""
-        selectProps.contentEditable='true'
+        selectProps.contentEditable=isEdit?'true':false
         selectProps.suppressContentEditableWarning="true"
         selectProps.onKeyUp=handleKeyUp
     }
+
+ 
     
     return (
         <div style={style} className={classNames(
@@ -192,7 +196,9 @@ const Input = forwardRef((props, ref) => {
                     type={type}
                     style={textareaStyles}
                     ref={ref}
-                    className={classNames(`${prefixCls}-input`)}
+                    className={classNames(`${prefixCls}-input`,{
+                        [`${prefixCls}-input-single`]:mode==="single"
+                    })}
                     tabIndex={disabled?-1:tabIndex}
                     {...selectProps}
                     // children={value?value:""}

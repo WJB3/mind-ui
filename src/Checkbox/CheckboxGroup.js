@@ -15,10 +15,11 @@ const CheckboxGroup = React.forwardRef((props, ref) => {
         disabled,
         children,
         value:valueProp,
-        defaultValue,
+        defaultValue=[],
         name="radio-group",
         onChange,
-        options
+        options,
+        className
     } = props;
     
     const { getPrefixCls } = useContext(ConfigContext);
@@ -27,7 +28,8 @@ const CheckboxGroup = React.forwardRef((props, ref) => {
 
     const classes=classNames(
         prefixCls,
-        disabled?"disabled":""
+        disabled?"disabled":"",
+        className
     );
 
     const optionsChildren=React.useRef([]);
@@ -38,6 +40,7 @@ const CheckboxGroup = React.forwardRef((props, ref) => {
     });
 
     const handleChangeCheckbox=React.useCallback((checked,e)=>{
+       
         let index=value.indexOf(e.target.value);
         
         if(index>-1){//当存在时
@@ -49,6 +52,7 @@ const CheckboxGroup = React.forwardRef((props, ref) => {
                 value.push(e.target.value);
             }
         }
+ 
         setValue([...value]);
         onChange && onChange(value,e)
         
