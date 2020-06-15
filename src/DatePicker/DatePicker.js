@@ -6,9 +6,10 @@ import setRef from '../_utils/setRef';
 import useForkRef from '../_utils/useForkRef';
 import Paper from '../Paper';
 import Button from '../ButtonBase';
-import { currentDate as currentDataA, WeekEnum, generateDate, chunk } from '../_utils/dateUtils';
+import { currentDate as currentDataA, WeekEnum, generateDate, chunk,formateDate } from '../_utils/dateUtils';
 import { Slide } from '../Animate';
 import "./index.scss";
+
 
 const DatePicker = React.forwardRef((props, ref) => {
     const {
@@ -23,7 +24,7 @@ const DatePicker = React.forwardRef((props, ref) => {
 
     const [currentSelectDate, setCurrentSelectDate] = useState(currentDataA());//当前月份
 
-    const [currentDays, setCurrentDays] = useState(generateDate(new Date));//
+    const [currentDays, setCurrentDays] = useState(generateDate(new Date));//当前的天数
 
     const selectRef = useRef(null);
 
@@ -40,6 +41,11 @@ const DatePicker = React.forwardRef((props, ref) => {
         [ownRef]
     );
 
+    const handleClickDay=(day)=>{//点击日期
+        console.log()
+        setCurrentDate(currentDataA(new Date(`${currentDate.currentYearMonth}-${formateDate(day)}`)))
+    }
+
     return (
         <Paper ref={handleRef} deep={4} className={
             classNames(
@@ -53,7 +59,7 @@ const DatePicker = React.forwardRef((props, ref) => {
                 <div className={classNames(
                     `${prefixCls}-display-year`
                 )}>
-                    <Slide in={true}>
+                    <Slide in={true} direction="down">
                         <div className={classNames(`${prefixCls}-display-year-title`)}>{`${currentDate.currentYear}`}</div>
                     </Slide>
                 </div>
@@ -102,8 +108,11 @@ const DatePicker = React.forwardRef((props, ref) => {
                                             )}></div>
                                         }
                                         return <div className={classNames(
-                                            `${prefixCls}-container-monthday-content-day`
-                                        )} key={indexRow}>
+                                            `${prefixCls}-container-monthday-content-day`,
+                                            {
+                                                ['selected']:currentDate.currentDay===formateDate(Number(itemDay))
+                                            }
+                                        )} key={indexRow} >
                                             <div className={classNames(
                                                 `${prefixCls}-container-monthday-content-day-big`
                                             )}></div>
@@ -112,9 +121,10 @@ const DatePicker = React.forwardRef((props, ref) => {
                                                 {
                                                     ['now']:currentSelectDate.currentYear===currentDataA().currentYear && 
                                                     currentSelectDate.currentMonth===currentDataA().currentMonth &&
-                                                    Number(itemDay)===currentDataA().currentDay
+                                                    formateDate(Number(itemDay))===currentDataA().currentDay,
+                                                    
                                                 }
-                                            )}>{itemDay}</div>
+                                            )} onClick={()=>handleClickDay(itemDay)}>{itemDay}</div>
                                            
                                         </div>
                                     })}

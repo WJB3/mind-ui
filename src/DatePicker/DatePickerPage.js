@@ -6,10 +6,10 @@ import SubTitle from '../components/text/SubTitle';
 import DatePicker from './index';
 import TextLayout from '../components/text/TextLayout';
 import DescriptionTable from '../components/text/DescriptionTable';
+ 
+const Page = () => {
 
-const  Page = () => {
-    
-    const [open,setOpen]=React.useState(false);
+    const [open, setOpen] = React.useState(false);
 
     return (
         <Layout >
@@ -23,6 +23,8 @@ const  Page = () => {
                 componentClassName={"button-page-demo"}
                 components={<React.Fragment>
                     <DatePicker />
+
+                   
                 </React.Fragment>}
                 title={"基本"}
                 description={"最简单的用法。"}
@@ -41,7 +43,7 @@ const  Page = () => {
                     { attr: "prefixCls", description: "自定义类名前缀", type: "string", default: "" },
                     { attr: "className", description: "额外添加的类名", type: "string", default: "false" },
                     { attr: "style", description: "样式", type: "object", default: "{}" },
-                    
+
                 ]}
             />
 

@@ -1,5 +1,5 @@
 
-function formateDate(string){
+function formateDate(string){//补全日期
     if(String(string).length===1){
         return `0${string}`;
     }
@@ -111,6 +111,7 @@ let currentDate=(date)=>{
         currentDay:Day,
         currentWeek:Week,
         currentYearMonthDay:`${Year}-${Month}-${Day}`,
+        currentYearMonth:`${Year}-${Month}`,
         currentMonthDay:`${Month}-${Day}`,
         currentMonthFormat:MonthFormat,
         startOfMonth:startOfMonth,
@@ -167,5 +168,6 @@ export {
     currentWeekNum,
     daysOfMonth,
     generateDate,
-    chunk
+    chunk,
+    formateDate
 }

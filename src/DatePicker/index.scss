@@ -162,6 +162,16 @@ $prefixClsDay:"#{$global-prefix}-datepicker-container-monthday-content-day";
                     width: 42px;
                     color: inherit;
 
+                    &.selected{
+                        .#{$prefixClsDay}-big{
+                            transform: scale(1);
+                            opacity:1;
+                        }
+                        .#{$prefixClsDay}-text{
+                            color:#fff;
+                        }
+                    }
+
 
                     &-big{
                         position: absolute;
@@ -176,6 +186,8 @@ $prefixClsDay:"#{$global-prefix}-datepicker-container-monthday-content-day";
                         -webkit-transition: all .45s cubic-bezier(.23,1,.32,1);
                         transition: all .45s cubic-bezier(.23,1,.32,1);
                         width: 34px;
+
+                        
                     }
                     
                     &-text{
