@@ -1,13 +1,13 @@
-import React,{useState,useRef,useCallback} from 'react';
+import React, { useState, useRef, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { classNames } from '../components/helper/className';
 import { ConfigContext } from '../ConfigContext'
 import setRef from '../_utils/setRef';
 import useForkRef from '../_utils/useForkRef';
 import Paper from '../Paper';
-import Popover from '../Popover';
-import Icon from '../components/icon';
-import Input from '../Input';
+import Button from '../ButtonBase';
+import { currentDate as currentDataA, WeekEnum, generateDate, chunk } from '../_utils/dateUtils';
+import { Slide } from '../Animate';
 import "./index.scss";
 
 const DatePicker = React.forwardRef((props, ref) => {
@@ -15,12 +15,15 @@ const DatePicker = React.forwardRef((props, ref) => {
         prefixCls: customizePrefixCls,
         className,
         style,
-        placeholder,
-        border,
         disabled
     } = props;
+    
 
-    const [visible, setVisible] = useState(false);
+    const [currentDate, setCurrentDate] = useState(currentDataA());//当前月份
+
+    const [currentSelectDate, setCurrentSelectDate] = useState(currentDataA());//当前月份
+
+    const [currentDays, setCurrentDays] = useState(generateDate(new Date));//
 
     const selectRef = useRef(null);
 
@@ -28,16 +31,8 @@ const DatePicker = React.forwardRef((props, ref) => {
 
     const prefixCls = getPrefixCls("datepicker", customizePrefixCls);
 
-    const handleClickBackdrop = React.useCallback(() => {
-        setVisible(false);
-    }, [visible]);
-
-    const renderContent=()=>{
-        return <div>content</div>
-    }
-
     const ownRef = useForkRef(selectRef, ref);
-    
+
     const handleRef = React.useCallback(
         (node) => {
             setRef(ownRef, node);
@@ -45,45 +40,91 @@ const DatePicker = React.forwardRef((props, ref) => {
         [ownRef]
     );
 
-    const renderSuffix=()=>{
-        return <Icon name="arrow-down"  style={{ fontSize: 16 }} className={classNames(`${prefixCls}-arrow-down`,{
-            [`${prefixCls}-arrow-down-focus`]:visible
-        })}  />
-    }
-
-    const handleFocus = useCallback(() => {
-        if (disabled) {
-            return;
-        }
-        setVisible(true);
-    }, [visible]);
-
     return (
-        <Paper ref={handleRef}  className={
+        <Paper ref={handleRef} deep={4} className={
             classNames(
                 prefixCls,
                 className
             )
         }>
-            <Popover
-                trigger={"focus"}
-                container={() => selectRef.current}
-                placement={"bottom"}
-                onCloseBackdrop={handleClickBackdrop}
-                visible={visible}
-                className={`${prefixCls}-popover`}
-                content={renderContent()}
-            >
-                <Input
-                    component="div"
-                    suffix={renderSuffix()}
-                    placeholder={placeholder}
-                    tabIndex={0}
-                    style={style}
-                    border={border}
-                    onFocus={handleFocus}
-                />
-            </Popover>
+            <div className={classNames(
+                `${prefixCls}-display`
+            )}>
+                <div className={classNames(
+                    `${prefixCls}-display-year`
+                )}>
+                    <Slide in={true}>
+                        <div className={classNames(`${prefixCls}-display-year-title`)}>{`${currentDate.currentYear}`}</div>
+                    </Slide>
+                </div>
+                <div className={classNames(
+                    `${prefixCls}-display-monthday`
+                )}>
+                    <Slide in={true}>
+                        <div className={classNames(`${prefixCls}-display-monthday-title`)}>{`${currentDate.currentMonthDay} ${currentDate.currentWeek}`}</div>
+                    </Slide>
+                </div>
+            </div>
+            <div className={classNames(
+                `${prefixCls}-container`
+            )}>
+                <div className={classNames(
+                    `${prefixCls}-container-titleWrapper`
+                )}>
+                    <Button shape={"circle"} icon="arrow-thin-left" flat />
+                    <div className={classNames(
+                        `${prefixCls}-container-title`
+                    )}>{`${currentSelectDate.currentYear} ${currentSelectDate.currentMonthFormat}`}</div>
+                    <Button shape={"circle"} icon="arrow-thin-right" flat />
+                </div>
+
+                <div className={classNames(
+                    `${prefixCls}-container-week`
+                )}>
+                    {WeekEnum.map(item => <span key={item} className={classNames(`${prefixCls}-container-week-day`)}>{item}</span>)}
+                </div>
+
+                <div className={classNames(
+                    `${prefixCls}-container-monthday`
+                )}>
+                    <div className={classNames(
+                        `${prefixCls}-container-monthday-content`
+                    )}>
+                        {
+                            chunk(currentDays, 7).map((item, index) => {
+                                return <div key={index} className={classNames(
+                                    `${prefixCls}-container-monthday-content-row`
+                                )}>
+                                    {item.map((itemDay,indexRow)=>{
+                                        if(!itemDay){
+                                            return <div  key={indexRow} className={classNames(
+                                                `${prefixCls}-container-monthday-content-empty`
+                                            )}></div>
+                                        }
+                                        return <div className={classNames(
+                                            `${prefixCls}-container-monthday-content-day`
+                                        )} key={indexRow}>
+                                            <div className={classNames(
+                                                `${prefixCls}-container-monthday-content-day-big`
+                                            )}></div>
+                                            <div className={classNames(
+                                                `${prefixCls}-container-monthday-content-day-text`,
+                                                {
+                                                    ['now']:currentSelectDate.currentYear===currentDataA().currentYear && 
+                                                    currentSelectDate.currentMonth===currentDataA().currentMonth &&
+                                                    Number(itemDay)===currentDataA().currentDay
+                                                }
+                                            )}>{itemDay}</div>
+                                           
+                                        </div>
+                                    })}
+                                </div>
+                            })
+                        }
+                    </div>
+
+                </div>
+            </div>
         </Paper>
     )
 });

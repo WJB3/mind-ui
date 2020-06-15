@@ -38,10 +38,12 @@ const  Page = () => {
                     { title: "默认值", dataIndex: "default" }
                 ]}
                 dataSource={[
+                    { attr: "children", description: "需要挂载的元素", type: "node/string", default: "false" },
                     { attr: "prefixCls", description: "自定义类名前缀", type: "string", default: "" },
                     { attr: "className", description: "额外添加的类名", type: "string", default: "false" },
-                    { attr: "style", description: "样式", type: "object", default: "{}" },
-                    
+                    { attr: "open", description: "背景板是否打开", type: "bool", default: "false" },
+                    { attr: "disabledScroll", description: "是否禁用滚动", type: "bool", default: "false" },
+                    { attr: "centered", description: "背景板内元素是否垂直居中", type: "bool", default: "true" },
                 ]}
             />
 

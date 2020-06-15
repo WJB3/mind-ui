@@ -16,6 +16,7 @@ import EmptyPage from './Empty/EmptyPage';
 import CheckboxPage from './Checkbox/checkboxPage';
 import TagPage from './Tag/tagPage'; 
 import DatePickerPage from './DatePicker/DatePickerPage';
+import AnimatePage from './Animate/animationPage';
 
 import ParrotLayout from './ParrotLayout';
 import Demo from './Demo';
@@ -43,6 +44,7 @@ ReactDOM.render((<HashRouter>
                                         <Route path="/checkbox" exact component={(props)=><CheckboxPage {...props}/>}></Route>
                                         <Route path="/tag" exact component={(props)=><TagPage {...props}/>}></Route>
                                         <Route path="/datepicker" exact component={(props)=><DatePickerPage {...props}/>}></Route>
+                                        <Route path="/animate" exact component={(props)=><AnimatePage {...props}/>}></Route>
                                 </Switch>
                         </ParrotLayout>
                 } />

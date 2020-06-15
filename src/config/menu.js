@@ -15,6 +15,10 @@ const menuInfo=[
                 key:"button",  
             },
             {
+                title:"Animate 动画",
+                key:"animate",  
+            },
+            {
                 title:"Input 输入框",
                 key:"input",
             },
