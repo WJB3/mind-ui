@@ -7,7 +7,7 @@ import useForkRef from '../_utils/useForkRef';
 import Paper from '../Paper';
 import Button from '../ButtonBase';
 import { currentDate as currentDataA, WeekEnum, generateDate, chunk,formateDate } from '../_utils/dateUtils';
-import { Slide } from '../Animate';
+import  Slider from  './Slider';
 import "./index.scss";
 
 
@@ -42,7 +42,6 @@ const DatePicker = React.forwardRef((props, ref) => {
     );
 
     const handleClickDay=(day)=>{//点击日期
-        console.log()
         setCurrentDate(currentDataA(new Date(`${currentDate.currentYearMonth}-${formateDate(day)}`)))
     }
 
@@ -59,16 +58,16 @@ const DatePicker = React.forwardRef((props, ref) => {
                 <div className={classNames(
                     `${prefixCls}-display-year`
                 )}>
-                    <Slide in={true} direction="down">
+                    <Slider direction={"up"}>
                         <div className={classNames(`${prefixCls}-display-year-title`)}>{`${currentDate.currentYear}`}</div>
-                    </Slide>
+                    </Slider>
                 </div>
                 <div className={classNames(
                     `${prefixCls}-display-monthday`
                 )}>
-                    <Slide in={true}>
+                    <Slider date={currentDate.currentYearMonthDay} direction={"top"}>
                         <div className={classNames(`${prefixCls}-display-monthday-title`)}>{`${currentDate.currentMonthDay} ${currentDate.currentWeek}`}</div>
-                    </Slide>
+                    </Slider>
                 </div>
             </div>
             <div className={classNames(
