@@ -3,6 +3,8 @@
 
 $prefixCls:"#{$global-prefix}-datepicker";
 $prefixClsDay:"#{$global-prefix}-datepicker-container-monthday-content-day";
+
+$time:450ms;
  
 
 .#{$prefixCls}{
@@ -229,22 +231,34 @@ $prefixClsDay:"#{$global-prefix}-datepicker-container-monthday-content-day";
 
         &-next{
  
-            &-enter{
-                transform: translate3d(0, -100%, 0);
-                opacity: 0;
+            // &-enter{
+            //     transform: translate3d(0,-100%,0);
+            //     opacity: 1;
+            // }
+            // &-enter-active{
+            //     transition: transform 450ms cubic-bezier(0.4, 0, 0.2, 1), opacity 450ms cubic-bezier(0.4, 0, 0.2, 1);
+            //     backface-visibility: hidden;
+            //     transform: translate3d(0,0,0);
+            //     opacity: 1;
+            // }
+            &-appear{
+                transform: translate3d(0,100%,0);
+                opacity: 1;
             }
-            &-enter-active{
-                transition: transform 450ms cubic-bezier(0.4, 0, 0.2, 1), opacity 450ms cubic-bezier(0.4, 0, 0.2, 1);
+            &-appear-active{
+                transition: transform $time cubic-bezier(0.4, 0, 0.2, 1), opacity $time cubic-bezier(0.4, 0, 0.2, 1);
                 backface-visibility: hidden;
+                transform: translate3d(0,0,0);
+                opacity: 1;
             }
             &-exit{
                 opacity:1;
             }
             &-exit-active {
-                transition: transform 450ms cubic-bezier(0.4, 0, 0.2, 1), opacity 450ms cubic-bezier(0.4, 0, 0.2, 1);
+                transition: transform $time cubic-bezier(0.4, 0, 0.2, 1), opacity $time cubic-bezier(0.4, 0, 0.2, 1);
                 backface-visibility: hidden;
                 transform: translate3d(0, 100%, 0);
-                opacity: 0;
+                opacity: 1;
             }
         }
 
@@ -254,7 +268,7 @@ $prefixClsDay:"#{$global-prefix}-datepicker-container-monthday-content-day";
                 opacity: 0;
             }
             &-enter-active{
-                transition: transform 450ms cubic-bezier(0.4, 0, 0.2, 1), opacity 450ms cubic-bezier(0.4, 0, 0.2, 1);
+                transition: transform $time cubic-bezier(0.4, 0, 0.2, 1), opacity $time cubic-bezier(0.4, 0, 0.2, 1);
                 backface-visibility: hidden;
                 transform: translate3d(0, 0, 0);
                 opacity:1;
@@ -263,10 +277,10 @@ $prefixClsDay:"#{$global-prefix}-datepicker-container-monthday-content-day";
                 opacity:1;
             }
             &-exit-active {
-                transition: transform 450ms cubic-bezier(0.4, 0, 0.2, 1), opacity 450ms cubic-bezier(0.4, 0, 0.2, 1);
+                transition: transform $time cubic-bezier(0.4, 0, 0.2, 1), opacity $time cubic-bezier(0.4, 0, 0.2, 1);
                 backface-visibility: hidden;
                 transform: translate3d(0, -100%, 0);
-                opacity: 0;
+                opacity: 1;
             }
         }
     }

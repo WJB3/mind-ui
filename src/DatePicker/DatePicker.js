@@ -52,14 +52,14 @@ const DatePicker = React.forwardRef((props, ref) => {
             <div className={classNames(
                 `${prefixCls}-display-year`
             )}>
-                <Slider direction={"up"}>
+                
                     <div className={classNames(`${prefixCls}-display-year-title`)}>{`${currentDate.currentYear}`}</div>
-                </Slider>
+      
             </div>
             <div className={classNames(
                 `${prefixCls}-display-monthday`
             )}>
-                <Slider date={currentDate.currentYearMonthDay} direction={"top"}>
+                <Slider date={currentDate.currentYearMonthDay} >
                     <div className={classNames(`${prefixCls}-display-monthday-title`)}>{`${currentDate.currentMonthDay} ${currentDate.currentWeek}`}</div>
                 </Slider>
             </div>

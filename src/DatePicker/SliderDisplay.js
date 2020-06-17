@@ -47,7 +47,7 @@ const SliderDisplay = React.forwardRef((Props, ref) => {
        
         <CSSTransition
             in={inProps}
-            timeout={300}
+            timeout={450}
             appear
             classNames={classNames(
                 prefixCls,
@@ -67,6 +67,7 @@ const SliderDisplay = React.forwardRef((Props, ref) => {
                         visibility: state === 'exited' && !inProps ? "hidden" : undefined,
                         ...children.props.style,
                     },
+                    ref:ref,
                     ...childProps
                 })
             }
