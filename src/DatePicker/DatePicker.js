@@ -6,8 +6,9 @@ import setRef from '../_utils/setRef';
 import useForkRef from '../_utils/useForkRef';
 import Paper from '../Paper';
 import Button from '../ButtonBase';
-import { currentDate as currentDataA, WeekEnum, generateDate, chunk,formateDate } from '../_utils/dateUtils';
+import { currentDate as currentDataA, WeekEnum, generateDate, chunk,formateDate,getPrevMonth,getNextMonth } from '../_utils/dateUtils';
 import  Slider from  './Slider';
+import usePrevious from '../_utils/usePrevious';
 import "./index.scss";
 
 
@@ -20,7 +21,10 @@ const DatePicker = React.forwardRef((props, ref) => {
     } = props;
     
 
-    const [currentDate, setCurrentDate] = useState(currentDataA());//当前月份
+    //当选择日期时
+    const [currentDate, setCurrentDate] = useState(currentDataA());
+    //获取上个状态
+    const prevCurrentDate=usePrevious(currentDate);
 
     const [currentSelectDate, setCurrentSelectDate] = useState(currentDataA());//当前月份
 
@@ -45,6 +49,18 @@ const DatePicker = React.forwardRef((props, ref) => {
         setCurrentDate(currentDataA(new Date(`${currentDate.currentYearMonth}-${formateDate(day)}`)))
     }
 
+    const getDirection=()=>{
+
+        if(prevCurrentDate){
+            if(prevCurrentDate.time>currentDate.time){
+                return "prev";
+            }
+            return "next";
+        }
+
+        return "next";
+    }
+
     const renderDisplayYear=()=>{//render 头部
         return <div className={classNames(
             `${prefixCls}-display`
@@ -52,14 +68,14 @@ const DatePicker = React.forwardRef((props, ref) => {
             <div className={classNames(
                 `${prefixCls}-display-year`
             )}>
-                
+                <Slider date={currentDate.currentYear} direction={getDirection()}>
                     <div className={classNames(`${prefixCls}-display-year-title`)}>{`${currentDate.currentYear}`}</div>
-      
+                </Slider>
             </div>
             <div className={classNames(
                 `${prefixCls}-display-monthday`
             )}>
-                <Slider date={currentDate.currentYearMonthDay} >
+                <Slider date={currentDate.currentYearMonthDay} direction={getDirection()}>
                     <div className={classNames(`${prefixCls}-display-monthday-title`)}>{`${currentDate.currentMonthDay} ${currentDate.currentWeek}`}</div>
                 </Slider>
             </div>
@@ -70,11 +86,15 @@ const DatePicker = React.forwardRef((props, ref) => {
         return <div className={classNames(
             `${prefixCls}-container-titleWrapper`
         )}>
-            <Button shape={"circle"} icon="arrow-thin-left" flat />
-            <div className={classNames(
-                `${prefixCls}-container-title`
-            )}>{`${currentSelectDate.currentYear} ${currentSelectDate.currentMonthFormat}`}</div>
-            <Button shape={"circle"} icon="arrow-thin-right" flat />
+            <Button style={{flex: "none"}} shape={"circle"} icon="arrow-thin-left" flat onClick={()=>setCurrentSelectDate(getPrevMonth(currentSelectDate))}/>
+                <Slider date={currentSelectDate.currentYearMonth} sliderContainer="container-title">
+                    <div className={classNames(
+                    `${prefixCls}-container-title`
+                    )}><div className={classNames(
+                        `${prefixCls}-container-title-text`
+                        )}>{`${currentSelectDate.currentYear} ${currentSelectDate.currentMonthFormat}`}</div></div>
+                </Slider>
+            <Button style={{flex: "none"}} shape={"circle"} icon="arrow-thin-right" flat onClick={()=>setCurrentSelectDate(getNextMonth(currentSelectDate))}/>
         </div>
     };
 

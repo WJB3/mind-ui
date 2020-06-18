@@ -103,7 +103,9 @@ let currentDate=(date)=>{
     let MonthFormat=isDate?formateMonth(new Date(date).getMonth()+1):formateMonth(new Date().getMonth()+1);
     let startOfMonth=`${Year}-${Month}-01`;
     let endOfMonth=`${Year}-${Month}-${new Date(Year,Month,0).getDate()}`;
-    let daysOfMonth=`${new Date(Year,Month,0).getDate()}`
+    let daysOfMonth=`${new Date(Year,Month,0).getDate()}`;
+    let getTime=isDate?new Date(date).getTime:new Date().getTime;
+    let time=isDate?new Date(date).getTime():new Date().getTime();
 
     return ({
         currentYear:Year,
@@ -117,12 +119,33 @@ let currentDate=(date)=>{
         startOfMonth:startOfMonth,
         endOfMonth:endOfMonth,
         currentWeekNum:WeekNum,
-        daysOfMonth:daysOfMonth
+        daysOfMonth:daysOfMonth,
+        getTime:getTime,
+        time:time,
     })
 }
 
- 
+//获取下个月
+function getNextMonth(currentSelectDate){
+    const month=Number(currentSelectDate.currentMonth);
+    const year=Number(currentSelectDate.currentYear);
+    if(month>0&&month<12){
+        return currentDate(new Date(`${currentSelectDate.currentYear}-${formateDate(month+1)}-01`));
+    }
 
+    return currentDate(new Date(`${year+1}-01-01`));
+}
+
+//获取上个月
+function getPrevMonth(currentSelectDate){
+    const month=Number(currentSelectDate.currentMonth);
+    const year=Number(currentSelectDate.currentYear);
+    if(month>1&&month<=12){
+        return currentDate(new Date(`${year}-${formateDate(month-1)}-01`));
+    }
+
+    return currentDate(new Date(`${year-1}-12-01`));
+}
 
 /**
  * 传参为date对象
@@ -151,7 +174,11 @@ const currentWeekNum=currentDate().currentWeekNum;
 //获取当月天数
 const daysOfMonth=currentDate().daysOfMonth; 
 //星期
-const WeekEnum=['日','一','二','三','四','五','六']
+const WeekEnum=['日','一','二','三','四','五','六'];
+
+const getTime=currentDate().getTime
+
+const time=currentDate().time
 
 export {
     currentDate,
@@ -167,7 +194,11 @@ export {
     endOfMonth,
     currentWeekNum,
     daysOfMonth,
+    getTime,
+    time,
     generateDate,
     chunk,
-    formateDate
+    formateDate,
+    getNextMonth,
+    getPrevMonth,
 }
