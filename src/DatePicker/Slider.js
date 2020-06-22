@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import SliderDisplay from './SliderDisplay';
 import SliderContainerTitle from './SliderDisplayTitle';
 import { toArray } from '../_utils/reactUtils';
+import usePrevious from '../_utils/usePrevious';
 
  
 const Slider=React.forwardRef((props,ref)=>{
@@ -10,7 +11,8 @@ const Slider=React.forwardRef((props,ref)=>{
         children:childrenProps,
         date,
         direction="next",//默认是下一个向上
-        sliderContainer="display"
+        sliderContainer="display",
+        renderChildren=false,//是否重渲染子元素
     }=props;
  
     const init=React.useRef(false);
@@ -18,6 +20,8 @@ const Slider=React.forwardRef((props,ref)=>{
     const index=React.useRef(0);
 
     const prevRef=React.useRef(null);
+
+    const prevDate=usePrevious(date);
 
     const [children,setChildren]=React.useState([]);
 
@@ -37,9 +41,8 @@ const Slider=React.forwardRef((props,ref)=>{
     }
 
     const setTransition=()=>{
-         console.log("setTransition")
-        function transitionend(){
-            console.log("transitionend")
+       
+        function transitionend(){ 
             
             if(children.length>1){
                 setChildren((oldChildrens)=>{
@@ -70,6 +73,15 @@ const Slider=React.forwardRef((props,ref)=>{
         }
         
     },[date])
+
+  
+
+    useEffect(()=>{
+        if(init.current && renderChildren && prevDate===date){
+            setChildren([<Component in={true} key={index.current} >{childrenProps}</Component>])
+            index.current++;
+        }
+    },[childrenProps]);
 
     useEffect(()=>{
         //初始化

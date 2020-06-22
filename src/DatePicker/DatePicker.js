@@ -6,8 +6,8 @@ import setRef from '../_utils/setRef';
 import useForkRef from '../_utils/useForkRef';
 import Paper from '../Paper';
 import Button from '../ButtonBase';
-import { currentDate as currentDataA, WeekEnum, generateDate, chunk,formateDate,getPrevMonth,getNextMonth } from '../_utils/dateUtils';
-import  Slider from  './Slider';
+import { currentDate as currentDateA, MonthTextMap, getListYear, formateMonth, WeekEnum, generateDate, chunk, formateDate, getPrevMonth, getNextMonth, getNextYear, getPrevYear, MonthEnum } from '../_utils/dateUtils';
+import Slider from './Slider';
 import usePrevious from '../_utils/usePrevious';
 import "./index.scss";
 
@@ -17,18 +17,20 @@ const DatePicker = React.forwardRef((props, ref) => {
         prefixCls: customizePrefixCls,
         className,
         style,
-        disabled
+        picker = "day"
     } = props;
-    
+
 
     //当选择日期时
-    const [currentDate, setCurrentDate] = useState(currentDataA());
+    const [currentDate, setCurrentDate] = useState(currentDateA());
+
+    const [mode, setMode] = useState(picker);
     //获取上个状态
-    const prevCurrentDate=usePrevious(currentDate);
+    const prevCurrentDate = usePrevious(currentDate);
 
-    const [currentSelectDate, setCurrentSelectDate] = useState(currentDataA());//当前月份
-
-    const [currentDays, setCurrentDays] = useState(generateDate(new Date));//当前的天数
+    const [currentSelectDate, setCurrentSelectDate] = useState(currentDateA());//当前月份
+    //获取上个状态
+    const prevCurrentSelectDate = usePrevious(currentSelectDate);
 
     const selectRef = useRef(null);
 
@@ -45,133 +47,289 @@ const DatePicker = React.forwardRef((props, ref) => {
         [ownRef]
     );
 
-    const handleClickDay=(day)=>{//点击日期
-        setCurrentDate(currentDataA(new Date(`${currentDate.currentYearMonth}-${formateDate(day)}`)))
+    const handleClickDay = (date) => {//点击日期
+        setCurrentDate(currentDateA(new Date(date)));
     }
 
-    const getDirection=()=>{
+    const handleClickMonth = (date) => {
+        setCurrentSelectDate(currentDateA(new Date(date)));
 
-        if(prevCurrentDate){
-            if(prevCurrentDate.time>currentDate.time){
-                return "prev";
+        handleSwitchMode("month");
+
+    }
+
+
+    const getDirection = (mode) => {
+
+        if (mode === "currentDate") {
+            if (prevCurrentDate) {
+                if (prevCurrentDate.time > currentDate.time) {
+                    return "prev";
+                }
+                return "next";
             }
-            return "next";
+        } else if (mode === "currentSelectDate") {
+            if (prevCurrentSelectDate) {
+                if (prevCurrentSelectDate.time > currentSelectDate.time) {
+                    return "prev";
+                }
+                return "next";
+            }
         }
+
 
         return "next";
     }
 
-    const renderDisplayYear=()=>{//render 头部
+    const renderDisplayYear = () => {//render 头部
         return <div className={classNames(
             `${prefixCls}-display`
         )}>
             <div className={classNames(
                 `${prefixCls}-display-year`
             )}>
-                <Slider date={currentDate.currentYear} direction={getDirection()}>
+                <Slider date={currentDate.currentYear} direction={getDirection("currentDate")}>
                     <div className={classNames(`${prefixCls}-display-year-title`)}>{`${currentDate.currentYear}`}</div>
                 </Slider>
             </div>
             <div className={classNames(
                 `${prefixCls}-display-monthday`
             )}>
-                <Slider date={currentDate.currentYearMonthDay} direction={getDirection()}>
+                <Slider date={currentDate.currentYearMonthDay} direction={getDirection("currentDate")}>
                     <div className={classNames(`${prefixCls}-display-monthday-title`)}>{`${currentDate.currentMonthDay} ${currentDate.currentWeek}`}</div>
                 </Slider>
             </div>
         </div>
     }
 
-    const renderTitleWrapper=()=>{//render title
+    const renderDayTitle = () => {//render title
+
         return <div className={classNames(
-            `${prefixCls}-container-titleWrapper`
+            `${prefixCls}-container-day-titleWrapper`
         )}>
-            <Button style={{flex: "none"}} shape={"circle"} icon="arrow-thin-left" flat onClick={()=>setCurrentSelectDate(getPrevMonth(currentSelectDate))}/>
-                <Slider date={currentSelectDate.currentYearMonth} sliderContainer="container-title">
+            <Button style={{ flex: "none" }} shape={"circle"} icon="arrow-thin-left" flat onClick={() => setCurrentSelectDate(getPrevMonth(currentSelectDate))} />
+
+            <div className={classNames(
+                `${prefixCls}-container-day-title`
+            )} onClick={() => handleSwitchMode("day")}>
+                <Slider date={currentSelectDate.currentYearMonth} sliderContainer="container-title" direction={getDirection("currentSelectDate")}>
                     <div className={classNames(
-                    `${prefixCls}-container-title`
-                    )}><div className={classNames(
-                        `${prefixCls}-container-title-text`
-                        )}>{`${currentSelectDate.currentYear} ${currentSelectDate.currentMonthFormat}`}</div></div>
+                        `${prefixCls}-container-day-title-text`
+                    )}>{`${currentSelectDate.currentYear} ${currentSelectDate.currentMonthFormat}`}</div>
                 </Slider>
-            <Button style={{flex: "none"}} shape={"circle"} icon="arrow-thin-right" flat onClick={()=>setCurrentSelectDate(getNextMonth(currentSelectDate))}/>
+            </div>
+
+            <Button style={{ flex: "none" }} shape={"circle"} icon="arrow-thin-right" flat onClick={() => setCurrentSelectDate(getNextMonth(currentSelectDate))} />
         </div>
     };
 
-    const renderWeek=()=>{//render Month
-        return <div className={classNames(
-            `${prefixCls}-container-week`
-        )}>
-            {WeekEnum.map(item => <span key={item} className={classNames(`${prefixCls}-container-week-day`)}>{item}</span>)}
-        </div>
+
+    const handleSwitchMode = (clickMode) => {
+
+        if (picker === "day") {
+            switch (clickMode) {
+                //点击天
+                case "day":
+                    setMode("month");
+                    break;
+                case "month":
+                    setMode("day");
+                    break;
+                case "year":
+                    setMode("year");
+                    break;
+                default:
+                    setMode("day");
+            }
+
+        }
     }
 
-    const renderMonthDay=()=>{//render monthday
+    const renderMonthTitle = () => {
         return <div className={classNames(
-            `${prefixCls}-container-monthday`
+            `${prefixCls}-container-month-titleWrapper`
         )}>
+            <Button style={{ flex: "none" }} shape={"circle"} icon="arrow-thin-left" flat onClick={() => setCurrentSelectDate(getPrevYear(currentSelectDate))} />
+
             <div className={classNames(
-                `${prefixCls}-container-monthday-content`
-            )}>
-                {
-                    chunk(currentDays, 7).map((item, index) => {
-                        return <div key={index} className={classNames(
-                            `${prefixCls}-container-monthday-content-row`
-                        )}>
-                            {item.map((itemDay,indexRow)=>{
-                                if(!itemDay){
-                                    return <div  key={indexRow} className={classNames(
-                                        `${prefixCls}-container-monthday-content-empty`
-                                    )}></div>
-                                }
-                                return <div className={classNames(
-                                    `${prefixCls}-container-monthday-content-day`,
-                                    {
-                                        ['selected']:currentDate.currentDay===formateDate(Number(itemDay))
-                                    }
-                                )} key={indexRow} >
-                                    <div className={classNames(
-                                        `${prefixCls}-container-monthday-content-day-big`
-                                    )}></div>
-                                    <div className={classNames(
-                                        `${prefixCls}-container-monthday-content-day-text`,
-                                        {
-                                            ['now']:currentSelectDate.currentYear===currentDataA().currentYear && 
-                                            currentSelectDate.currentMonth===currentDataA().currentMonth &&
-                                            formateDate(Number(itemDay))===currentDataA().currentDay,
-                                            
-                                        }
-                                    )} onClick={()=>handleClickDay(itemDay)}>{itemDay}</div>
-                                   
-                                </div>
-                            })}
-                        </div>
-                    })
-                }
+                `${prefixCls}-container-month-title`
+            )} onClick={() => handleSwitchMode("year")}>
+                <Slider renderChildren={true} date={currentSelectDate.currentYearMonth} sliderContainer="container-title" direction={getDirection("currentSelectDate")}>
+                    <div className={classNames(
+                        `${prefixCls}-container-month-title-text`
+                    )}>{`${currentSelectDate.currentYear}`}</div>
+                </Slider>
             </div>
 
+            <Button style={{ flex: "none" }} shape={"circle"} icon="arrow-thin-right" flat onClick={() => setCurrentSelectDate(getNextYear(currentSelectDate))} />
         </div>
     }
 
+    const renderDayWeek = () => {//render Month
+        return <div className={classNames(
+            `${prefixCls}-container-day-week`
+        )}>
+            {WeekEnum.map(item => <span key={item} className={classNames(`${prefixCls}-container-day-week-day`)}>{item}</span>)}
+        </div>
+    }
+
+    let currentDays = generateDate(currentSelectDate.date);
+
+
+    const renderMonthDay = () => {//render monthday
+        return <div className={classNames(
+            `${prefixCls}-container-day-monthday`
+        )}>
+            <Slider renderChildren={true} date={currentSelectDate.currentMonth} sliderContainer="container-title" direction={getDirection("currentSelectDate")}>
+                <div className={classNames(
+                    `${prefixCls}-container-day-monthday-content`
+                )}>
+                    {
+                        chunk(currentDays, 7).map((item, index) => {
+                            return <div key={item + index} className={classNames(
+                                `${prefixCls}-container-day-monthday-content-row`
+                            )}>
+                                {item.map((itemDay, indexRow) => {
+
+
+                                    if (!itemDay) {
+                                        return <div key={itemDay + indexRow} className={classNames(
+                                            `${prefixCls}-container-day-monthday-content-empty`
+                                        )}></div>
+                                    }
+                                    return <div className={classNames(
+                                        `${prefixCls}-container-day-monthday-content-day`,
+                                        {
+                                            ['selected']: currentSelectDate.currentYear === currentDate.currentYear &&
+                                                currentSelectDate.currentMonth === currentDate.currentMonth &&
+                                                formateDate(Number(itemDay)) === currentDate.currentDay
+                                        }
+                                    )} key={itemDay + indexRow} >
+                                        <div className={classNames(
+                                            `${prefixCls}-container-day-monthday-content-day-big`
+                                        )}></div>
+                                        <div className={classNames(
+                                            `${prefixCls}-container-day-monthday-content-day-text`,
+                                            {
+                                                ['now']: currentSelectDate.currentYear === currentDateA().currentYear &&
+                                                    currentSelectDate.currentMonth === currentDateA().currentMonth &&
+                                                    formateDate(Number(itemDay)) === currentDateA().currentDay,
+
+                                            }
+                                        )} onClick={() => handleClickDay(`${currentSelectDate.currentYear}-${currentSelectDate.currentMonth}-${formateDate(Number(itemDay))}`)}>{itemDay}</div>
+
+                                    </div>
+                                })}
+                            </div>
+                        })
+                    }
+                </div>
+            </Slider>
+        </div>
+    }
+
+
+
+    const renderMonth = () => {
+        return <div className={classNames(
+            `${prefixCls}-container-month-month`
+        )}>
+            <Slider renderChildren={true} date={currentSelectDate.currentYearMonthDay} sliderContainer="container-title" direction={getDirection("currentSelectDate")}>
+                <div className={classNames(
+                    `${prefixCls}-container-month-month-content`
+                )}>
+                    {MonthEnum.map(item => {
+
+                        return <div key={item} className={classNames(
+                            `${prefixCls}-container-month-month-content-month`,
+                            {
+                                ['selected']: currentSelectDate.currentYear === currentDate.currentYear &&
+                                    formateMonth(currentDate.MonthNumber) === `${item}月`
+                            }
+                        )} onClick={() => handleClickMonth(`${currentSelectDate.currentYear}-${MonthTextMap[`${item}月`]}-01`)}>
+                            <div className={classNames(
+                                `${prefixCls}-container-month-month-content-bg`
+                            )}></div>
+                            <div className={classNames(
+                                `${prefixCls}-container-month-month-content-text`,
+                                {
+                                    ['now']: currentSelectDate.currentYear === currentDateA().currentYear &&
+                                        formateMonth(currentDateA().MonthNumber) === `${item}月`
+
+                                }
+                            )} >{`${item}月`}</div>
+                        </div>
+                    })}
+                </div>
+            </Slider>
+        </div>
+    }
+
+    const renderContainerDay = () => {
+        return <div className={classNames(
+            `${prefixCls}-container-day`
+        )}>
+            {renderDayTitle()}
+            {renderDayWeek()}
+            {renderMonthDay()}
+        </div>
+    }
+
+    const renderContainerMonth = () => {
+        return <div className={classNames(
+            `${prefixCls}-container-month`
+        )}>
+            {renderMonthTitle()}
+            {renderMonth()}
+        </div>
+    }
+
+    const renderContainerYear = () => {
+        return <div className={classNames(
+            `${prefixCls}-container-year`
+        )}><div className={classNames(
+            `${prefixCls}-container-year-year`
+        )}><div className={classNames(
+            `${prefixCls}-container-year-year-list`
+        )}>
+                    {
+                        getListYear(currentDate).map(item => {
+                            return <div key={item} className={classNames(`${prefixCls}-container-year-button`)}>
+                                <div className={classNames(`${prefixCls}-container-year-button-text`)}>{item}</div>
+                            </div>
+                        })
+                    }
+                </div>
+            </div>
+        </div>
+    }
+
+    const renderModeContainer = () => {
+        if (mode === "day") {
+            return renderContainerDay();
+        }
+
+        if (mode === "month") {
+            return renderContainerMonth();
+        }
+
+        if (mode === "year") {
+            return renderContainerYear();
+        }
+    }
+
+
     return (
-        <Paper ref={handleRef} deep={4} className={
+        <Paper ref={handleRef} deep={4} style={style} className={
             classNames(
                 prefixCls,
                 className
             )
         }>
+
             {renderDisplayYear()}
-            
-            <div className={classNames(
-                `${prefixCls}-container`
-            )}>
 
-                {renderTitleWrapper()}
-                
-                {renderWeek()}
-
-                {renderMonthDay()}
-            </div>
+            {renderModeContainer()}
         </Paper>
     )
 });
@@ -182,7 +340,11 @@ DatePicker.propTypes = {
     //自定义类名前缀
     prefixCls: PropTypes.string,
     //自定义样式
-    style: PropTypes.object
+    style: PropTypes.object,
+    //禁用
+    disabled: PropTypes.bool,
+    //是哪种
+    picker: PropTypes.string
 };
 
 export default DatePicker;

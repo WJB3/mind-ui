@@ -6,6 +6,21 @@ function formateDate(string){//补全日期
     return string;
 }
 
+const MonthTextMap={
+    "一月":"01",
+    "二月":"02",
+    "三月":"03",
+    "四月":"04",
+    "五月":"05",
+    "六月":"06",
+    "七月":"07",
+    "八月":"08",
+    "九月":"09",
+    "十月":"10",
+    "十一月":"11",
+    "十二月":"12",
+}
+
 function formateWeek(day){
     switch(day){
         case 0:
@@ -27,6 +42,7 @@ function formateWeek(day){
 }
 
 function formateMonth(day){
+     
     switch(day){
         case 1:
             return "一月";
@@ -73,9 +89,15 @@ function generateDate(date){
 
     const restNum=35-arr.length;
 
-    if(arr.length>28){
-        for(let i=0;i<restNum;i++){
-            arr.push("");
+    if(restNum>0){
+        if(arr.length>28){
+            for(let i=0;i<restNum;i++){
+                arr.push("");
+            }
+        }
+    }else if(restNum<0){
+        for(let i=0;i<7+restNum;i++){
+                arr.push("");
         }
     }
   
@@ -106,6 +128,8 @@ let currentDate=(date)=>{
     let daysOfMonth=`${new Date(Year,Month,0).getDate()}`;
     let getTime=isDate?new Date(date).getTime:new Date().getTime;
     let time=isDate?new Date(date).getTime():new Date().getTime();
+    let dateProp=isDate?new Date(date):new Date();
+    let MonthNumber=isDate?new Date(date).getMonth()+1:new Date().getMonth()+1;
 
     return ({
         currentYear:Year,
@@ -122,6 +146,8 @@ let currentDate=(date)=>{
         daysOfMonth:daysOfMonth,
         getTime:getTime,
         time:time,
+        date:dateProp,
+        MonthNumber:MonthNumber
     })
 }
 
@@ -135,7 +161,12 @@ function getNextMonth(currentSelectDate){
 
     return currentDate(new Date(`${year+1}-01-01`));
 }
-
+//获取上个月
+function getNextYear(currentSelectDate){
+    const year=Number(currentSelectDate.currentYear);
+   
+    return currentDate(new Date(`${year+1}-01-01`));
+}
 //获取上个月
 function getPrevMonth(currentSelectDate){
     const month=Number(currentSelectDate.currentMonth);
@@ -145,6 +176,25 @@ function getPrevMonth(currentSelectDate){
     }
 
     return currentDate(new Date(`${year-1}-12-01`));
+}
+//获取下个月
+function getPrevYear(currentSelectDate){
+    
+    const year=Number(currentSelectDate.currentYear);
+   
+
+    return currentDate(new Date(`${year-1}-01-01`));
+}
+//获取前后一百年
+function getListYear(currentDate){
+    const currentYear=currentDate.currentYear;
+    const startYear=currentYear-100;
+    const endYear=currentYear+100;
+    const yearList=[];
+    for(let i=startYear;i<endYear;i++){
+        yearList.push(i);
+    }
+    return yearList;
 }
 
 /**
@@ -176,6 +226,10 @@ const daysOfMonth=currentDate().daysOfMonth;
 //星期
 const WeekEnum=['日','一','二','三','四','五','六'];
 
+//月份
+const MonthEnum=['一','二','三','四','五','六',
+                '七','八','九','十','十一','十二'];
+
 const getTime=currentDate().getTime
 
 const time=currentDate().time
@@ -190,6 +244,7 @@ export {
     currentMonthDay,
     currentMonthFormat,
     WeekEnum,
+    MonthEnum,
     startOfMonth,
     endOfMonth,
     currentWeekNum,
@@ -201,4 +256,9 @@ export {
     formateDate,
     getNextMonth,
     getPrevMonth,
+    getNextYear,
+    getPrevYear,
+    formateMonth,
+    MonthTextMap,
+    getListYear
 }
