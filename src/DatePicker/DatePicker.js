@@ -1,6 +1,7 @@
-import React, { useState, useRef, useCallback } from 'react';
+import React, { useState, useRef, useCallback, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { classNames } from '../components/helper/className';
+import { scrollTo } from '../_utils/reactUtils';
 import { ConfigContext } from '../ConfigContext'
 import setRef from '../_utils/setRef';
 import useForkRef from '../_utils/useForkRef';
@@ -31,6 +32,9 @@ const DatePicker = React.forwardRef((props, ref) => {
     const [currentSelectDate, setCurrentSelectDate] = useState(currentDateA());//当前月份
     //获取上个状态
     const prevCurrentSelectDate = usePrevious(currentSelectDate);
+
+    const currentYearRef = useRef(null);
+    const yearListRef = useRef(null);
 
     const selectRef = useRef(null);
 
@@ -285,17 +289,23 @@ const DatePicker = React.forwardRef((props, ref) => {
     }
 
     const renderContainerYear = () => {
+
         return <div className={classNames(
-            `${prefixCls}-container-year`
-        )}><div className={classNames(
-            `${prefixCls}-container-year-year`
-        )}><div className={classNames(
-            `${prefixCls}-container-year-year-list`
-        )}>
+                `${prefixCls}-container-year`
+                )}><div className={classNames(
+                    `${prefixCls}-container-year-year`
+                )} ref={yearListRef}><div className={classNames(
+                    `${prefixCls}-container-year-year-list`
+                )} >
                     {
                         getListYear(currentDate).map(item => {
-                            return <div key={item} className={classNames(`${prefixCls}-container-year-button`)}>
-                                <div className={classNames(`${prefixCls}-container-year-button-text`)}>{item}</div>
+                            return <div key={item} className={classNames(
+                                `${prefixCls}-container-year-year-button`,
+                                {
+                                    ['selected']: currentSelectDate.currentYear === item
+                                }
+                            )} ref={currentSelectDate.currentYear === item?currentYearRef:null}>
+                                <div className={classNames(`${prefixCls}-container-year-year-button-text`)}>{item}</div>
                             </div>
                         })
                     }
@@ -317,6 +327,14 @@ const DatePicker = React.forwardRef((props, ref) => {
             return renderContainerYear();
         }
     }
+
+    useEffect(()=>{
+        if(mode==="year"){
+            let distance=currentYearRef.current.offsetTop;
+            console.log(distance)
+            yearListRef.current.scrollTop = distance;
+        }
+    },[mode]);
 
 
     return (

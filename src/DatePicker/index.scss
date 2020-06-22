@@ -4,6 +4,7 @@
 $prefixCls:"#{$global-prefix}-datepicker";
 $prefixClsDayMonthDay:"#{$global-prefix}-datepicker-container-day-monthday-content-day";
 $prefixClsMonth:"#{$global-prefix}-datepicker-container-month-month-content";
+$prefixClsYear:"#{$global-prefix}-datepicker-container-year-year-button";
 
 $time:450ms;
  
@@ -408,14 +409,8 @@ $time:450ms;
 
             &-button{
                 position: relative;
-                display: -webkit-box;
-                display: -ms-flexbox;
                 display: flex;
-                -webkit-box-align: center;
-                -ms-flex-align: center;
                 align-items: center;
-                -webkit-box-pack: center;
-                -ms-flex-pack: center;
                 justify-content: center;
                 width: 100%;
                 background: none;
@@ -431,6 +426,17 @@ $time:450ms;
                 color: currentColor;
                 border: none;
                 height: 36px;
+
+                &.selected{
+                    height: 40px;
+                    margin: 10px 0;
+
+                    .#{$prefixClsYear}-text{
+                        color: currentColor;
+                        font-size: 26px;
+                        font-weight: 500;
+                    }
+                }
 
                 &-text{
                     color: rgba(0,0,0,.87);
