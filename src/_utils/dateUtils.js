@@ -116,6 +116,7 @@ const chunk = (input, size) => {
 }
 
 let currentDate=(date)=>{
+  
     let isDate=date && date instanceof Date;
     let Year=isDate?new Date(date).getFullYear():new Date().getFullYear();
     let Month=isDate?formateDate(new Date(date).getMonth()+1):formateDate(new Date().getMonth()+1);

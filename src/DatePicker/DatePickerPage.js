@@ -6,7 +6,9 @@ import SubTitle from '../components/text/SubTitle';
 import DatePicker from './index';
 import TextLayout from '../components/text/TextLayout';
 import DescriptionTable from '../components/text/DescriptionTable';
- 
+import { currentDate } from "../_utils/dateUtils";
+import Space from '../Space'
+
 const Page = () => {
 
     const [open, setOpen] = React.useState(false);
@@ -22,9 +24,33 @@ const Page = () => {
             <TextLayout
                 componentClassName={"button-page-demo"}
                 components={<React.Fragment>
-                    <DatePicker />
 
-                   
+                    <Space size="large">
+
+                        <DatePicker disabled onChange={(date) => { console.log(currentDate(date).currentYearMonthDay); }} />
+
+                        <DatePicker  disabled landscape  onChange={(date) => { console.log(currentDate(date).currentYearMonthDay); }}/>
+
+
+                    </Space>
+
+                </React.Fragment>}
+                title={"基本"}
+                description={"最简单的用法。"}
+            ></TextLayout>
+
+            <TextLayout
+                componentClassName={"button-page-demo"}
+                components={<React.Fragment>
+
+                    <Space size="large">
+ 
+                        <DatePicker disabled picker="month" onChange={(date) => { console.log(currentDate(date).currentYearMonth); }}/>
+
+                        <DatePicker disabled picker="year" landscape onChange={(date) => { console.log(currentDate(date).currentYear ); }}/>
+
+                    </Space>
+
                 </React.Fragment>}
                 title={"基本"}
                 description={"最简单的用法。"}
