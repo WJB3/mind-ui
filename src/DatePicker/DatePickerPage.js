@@ -13,6 +13,10 @@ const Page = () => {
 
     const [open, setOpen] = React.useState(false);
 
+    const disabledDateFunc1=(current)=>{
+        return current>currentDate(new Date("2020-06-02")).time && current<currentDate(new Date("2020-06-28")).time
+    }
+
     return (
         <Layout >
             <Title>DatePicker</Title>
@@ -27,10 +31,9 @@ const Page = () => {
 
                     <Space size="large">
 
-                        <DatePicker disabled onChange={(date) => { console.log(currentDate(date).currentYearMonthDay); }} />
+                        <DatePicker disabledDate={disabledDateFunc1} onChange={(date) => { console.log(currentDate(date).currentYearMonthDay); }} />
 
-                        <DatePicker  disabled landscape  onChange={(date) => { console.log(currentDate(date).currentYearMonthDay); }}/>
-
+                        <DatePicker landscape onChange={(date) => { console.log(currentDate(date).currentYearMonthDay); }}/>
 
                     </Space>
 
@@ -45,9 +48,9 @@ const Page = () => {
 
                     <Space size="large">
  
-                        <DatePicker disabled picker="month" onChange={(date) => { console.log(currentDate(date).currentYearMonth); }}/>
+                        <DatePicker picker="month" disabled onChange={(date) => { console.log(currentDate(date).currentYearMonth); }}/>
 
-                        <DatePicker disabled picker="year" landscape onChange={(date) => { console.log(currentDate(date).currentYear ); }}/>
+                        <DatePicker  picker="year" disabled landscape onChange={(date) => { console.log(currentDate(date).currentYear ); }}/>
 
                     </Space>
 

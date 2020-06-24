@@ -10,6 +10,7 @@ import { currentDate as currentDateA, MonthTextMap, getListYear, formateMonth, W
 import Slider from './Slider';
 import usePrevious from '../_utils/usePrevious';
 import "./index.scss";
+import useControlled  from '../_utils/useControlled';
 
 
 const DatePicker = React.forwardRef((props, ref) => {
@@ -20,18 +21,25 @@ const DatePicker = React.forwardRef((props, ref) => {
         picker = "day",
         landscape,
         onChange,
-        disabled
+        disabled,
+        value:valueProps,
+        defaultValue,
+        disabledDate=()=>false
     } = props;
 
+    const [value,isControlled]=useControlled({
+        controlled:valueProps,
+        default:defaultValue
+    });
 
     //当选择日期时
-    const [currentDate, setCurrentDate] = useState(currentDateA());
+    const [currentDate, setCurrentDate] = useState(value?currentDateA(value):currentDateA());
 
     const [mode, setMode] = useState(picker);
     //获取上个状态
     const prevCurrentDate = usePrevious(currentDate);
 
-    const [currentSelectDate, setCurrentSelectDate] = useState(currentDateA());//当前月份
+    const [currentSelectDate, setCurrentSelectDate] = useState(value?currentDateA(value):currentDateA());//当前月份
     //获取上个状态
     const prevCurrentSelectDate = usePrevious(currentSelectDate);
 
@@ -56,7 +64,7 @@ const DatePicker = React.forwardRef((props, ref) => {
 
     const handleClickDay = (date) => {//点击日期
 
-        if(disabled){
+        if(disabled || isControlled){
             return ;
         }
 
@@ -84,7 +92,7 @@ const DatePicker = React.forwardRef((props, ref) => {
 
     const handleClickMonthRender = (date) => {
 
-        if(disabled){
+        if(disabled || isControlled){
             return ;
         }
  
@@ -150,11 +158,11 @@ const DatePicker = React.forwardRef((props, ref) => {
         return <div className={classNames(
             `${prefixCls}-container-day-titleWrapper`
         )}>
-            <Button style={{ flex: "none" }} shape={"circle"} icon="arrow-thin-left" flat onClick={() => {if(disabled){return ;}setCurrentSelectDate(getPrevMonth(currentSelectDate))}} />
+            <Button style={{ flex: "none" }} shape={"circle"} icon="arrow-thin-left" flat onClick={() => {if(disabled || isControlled ){return ;}setCurrentSelectDate(getPrevMonth(currentSelectDate))}} />
 
             <div className={classNames(
                 `${prefixCls}-container-day-title`
-            )} onClick={() => handleSwitchMode("daytitle")}>
+            )} onClick={() =>{if(disabled || isControlled ){return ;}handleSwitchMode("daytitle")}}>
                 <Slider date={currentSelectDate.currentYearMonth} sliderContainer="container-title" direction={getDirection("currentSelectDate")}>
                     <div className={classNames(
                         `${prefixCls}-container-day-title-text`
@@ -162,7 +170,7 @@ const DatePicker = React.forwardRef((props, ref) => {
                 </Slider>
             </div>
 
-            <Button style={{ flex: "none" }} shape={"circle"} icon="arrow-thin-right" flat onClick={() => {if(disabled){return ;}setCurrentSelectDate(getNextMonth(currentSelectDate))}} />
+            <Button style={{ flex: "none" }} shape={"circle"} icon="arrow-thin-right" flat onClick={() => {if(disabled || isControlled){return ;}setCurrentSelectDate(getNextMonth(currentSelectDate))}} />
         </div>
     };
 
@@ -224,11 +232,11 @@ const DatePicker = React.forwardRef((props, ref) => {
         return <div className={classNames(
             `${prefixCls}-container-month-titleWrapper`
         )}>
-            <Button style={{ flex: "none" }} shape={"circle"} icon="arrow-thin-left" flat onClick={() => {if(disabled){return ;}setCurrentSelectDate(getPrevYear(currentSelectDate))}} />
+            <Button style={{ flex: "none" }} shape={"circle"} icon="arrow-thin-left" flat onClick={() => {if(disabled || isControlled){return ;}setCurrentSelectDate(getPrevYear(currentSelectDate))}} />
 
             <div className={classNames(
                 `${prefixCls}-container-month-title`
-            )} onClick={() => handleSwitchMode("monthtitle")}>
+            )} onClick={() =>{if(disabled || isControlled){return ;}handleSwitchMode("monthtitle")}}>
                 <Slider renderChildren={true} date={changeDate} sliderContainer="container-title" direction={getDirection("currentSelectDate")}>
                     <div className={classNames(
                         `${prefixCls}-container-month-title-text`
@@ -236,7 +244,7 @@ const DatePicker = React.forwardRef((props, ref) => {
                 </Slider>
             </div>
 
-            <Button style={{ flex: "none" }} shape={"circle"} icon="arrow-thin-right" flat onClick={() => {if(disabled){return ;}setCurrentSelectDate(getNextYear(currentSelectDate))}} />
+            <Button style={{ flex: "none" }} shape={"circle"} icon="arrow-thin-right" flat onClick={() => {if(disabled || isControlled){return ;}setCurrentSelectDate(getNextYear(currentSelectDate))}} />
         </div>
     }
 
@@ -277,7 +285,8 @@ const DatePicker = React.forwardRef((props, ref) => {
                                         {
                                             ['selected']: currentSelectDate.currentYear === currentDate.currentYear &&
                                                 currentSelectDate.currentMonth === currentDate.currentMonth &&
-                                                formateDate(Number(itemDay)) === currentDate.currentDay
+                                                formateDate(Number(itemDay)) === currentDate.currentDay,
+                                            ['disabled']:disabled || disabledDate(currentDateA(new Date(`${currentSelectDate.currentYearMonth}-${formateDate(itemDay)}`)).time)
                                         }
                                     )} key={itemDay + indexRow} >
                                         <div className={classNames(
@@ -322,7 +331,8 @@ const DatePicker = React.forwardRef((props, ref) => {
                             `${prefixCls}-container-month-month-content-month`,
                             {
                                 ['selected']: currentSelectDate.currentYear === currentDate.currentYear &&
-                                    formateMonth(currentDate.MonthNumber) === `${item}月`
+                                    formateMonth(currentDate.MonthNumber) === `${item}月`,
+                                ['disabled']:disabled
                             }
                         )} onClick={() => handleClickMonthRender(`${currentSelectDate.currentYear}-${MonthTextMap[`${item}月`]}-${currentSelectDate.currentDay}`)}>
                             <div className={classNames(
@@ -363,7 +373,7 @@ const DatePicker = React.forwardRef((props, ref) => {
     }
 
     const handleClickYear=(year)=>{
-        if(disabled){
+        if(disabled || isControlled){
             return ;
         }
  
@@ -389,7 +399,8 @@ const DatePicker = React.forwardRef((props, ref) => {
                             return <div key={item} className={classNames(
                                 `${prefixCls}-container-year-year-button`,
                                 {
-                                    ['selected']: currentSelectDate.currentYear === item
+                                    ['selected']: currentSelectDate.currentYear === item,
+                                    ['disabled']:disabled
                                 }
                             )} ref={currentSelectDate.currentYear === item ? currentYearRef : null}>
                                 <div 
@@ -459,8 +470,12 @@ DatePicker.propTypes = {
     picker: PropTypes.string,
     //landscape 风景
     landscape:PropTypes.bool,
-    //是否禁用
-    disabled:PropTypes.bool
+    //值
+    value:PropTypes.any,
+    //默认值
+    defaultValue:PropTypes.any,
+    //不可选择的时间
+    disabledDate:PropTypes.func
 };
 
 export default DatePicker;

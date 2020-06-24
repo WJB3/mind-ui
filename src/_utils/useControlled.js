@@ -23,5 +23,5 @@ export default function useControlled({controlled,default:defaultProps}){
         }
     },[value]);
 
-    return [value,setValueIfControlled]
+    return [value,isControlled,setValueIfControlled]
 }   
