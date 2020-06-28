@@ -39,6 +39,10 @@ const menuInfo=[
                 key:"datepicker",
             },
             {
+                title:"TimePicker 时间选择器",
+                key:"timepicker",
+            },
+            {
                 title:"Popper 弹送提示工具",
                 key:"popper",
             },

@@ -1,11 +1,10 @@
-import React ,{useState } from 'react';
+import React from 'react';
 import Layout from '../Layout/index';
 import Title from '../components/text/Title';
 import Description from '../components/text/Description';
 import SubTitle from '../components/text/SubTitle';
-import DatePicker from './index';
+import TimePicker from './index';
 import TextLayout from '../components/text/TextLayout';
-import Button from '../ButtonBase';
 import DescriptionTable from '../components/text/DescriptionTable';
 import { currentDate } from "../_utils/dateUtils";
 import Space from '../Space'
@@ -18,13 +17,9 @@ const Page = () => {
         return current>currentDate(new Date("2020-06-02")).time && current<currentDate(new Date("2020-06-28")).time
     }
 
-    const [value,setValue]=useState(new Date("2020-08-28"));
-
- 
-
     return (
         <Layout >
-            <Title>DatePicker</Title>
+            <Title>TimePicker</Title>
             <Description>返回页面顶部的操作按钮。</Description>
             <SubTitle>何时使用</SubTitle>
             <Description>当页面内容区域比较长时。</Description>
@@ -33,31 +28,13 @@ const Page = () => {
             <TextLayout
                 componentClassName={"button-page-demo"}
                 components={<React.Fragment>
-                    <Button style={{marginBottom:20}} onClick={()=>{console.log("marginbottom");setValue(new Date("2022-05-06"))}}>2022-05-06</Button>
-
-                    <Space size="large">    
-
-                        <DatePicker value={value}  onChange={(date) => { console.log(currentDate(date).currentYearMonthDay); }} />
-
-                        <DatePicker value={value} landscape onChange={(date) => { console.log(currentDate(date).currentYearMonthDay); }}/>
-
-                    </Space>
-
-                </React.Fragment>}
-                title={"基本"}
-                description={"最简单的用法。"}
-            ></TextLayout>
-
-            <TextLayout
-                componentClassName={"button-page-demo"}
-                components={<React.Fragment>
 
                     <Space size="large">
- 
-                        <DatePicker value={value} picker="month" disabled onChange={(date) => { console.log(currentDate(date).currentYearMonth); }}/>
 
-                        <DatePicker value={value} picker="year" disabled landscape onChange={(date) => { console.log(currentDate(date).currentYear ); }}/>
+                        <TimePicker onChange={(date) => { console.log(currentDate(date).currentYearMonthDay); }} />
 
+                      
+                        <TimePicker landscape type={"24hr"} onChange={(date) => { console.log(currentDate(date).currentYearMonthDay); }} />
                     </Space>
 
                 </React.Fragment>}
@@ -65,6 +42,7 @@ const Page = () => {
                 description={"最简单的用法。"}
             ></TextLayout>
 
+             
             <SubTitle>API</SubTitle>
             <Description>属性说明如下：</Description>
             <DescriptionTable

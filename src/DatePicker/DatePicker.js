@@ -27,10 +27,15 @@ const DatePicker = React.forwardRef((props, ref) => {
         disabledDate=()=>false
     } = props;
 
-    const [value,isControlled]=useControlled({
+    const [value,,isControlled]=useControlled({
         controlled:valueProps,
         default:defaultValue
     });
+    
+    useEffect(()=>{
+        setCurrentDate(value?currentDateA(value):currentDateA());
+        setCurrentSelectDate(value?currentDateA(value):currentDateA());
+    },[valueProps])
 
     //当选择日期时
     const [currentDate, setCurrentDate] = useState(value?currentDateA(value):currentDateA());
@@ -133,6 +138,7 @@ const DatePicker = React.forwardRef((props, ref) => {
 
 
         let date=picker==="day"?`${currentDate.currentMonthDay} ${currentDate.currentWeek}`:picker==="month"?`${currentDate.currentMonth}月`:`${currentDate.currentYear}年`;
+
         return <div className={classNames(
             `${prefixCls}-display`
         )}>

@@ -122,6 +122,9 @@ let currentDate=(date)=>{
     let Month=isDate?formateDate(new Date(date).getMonth()+1):formateDate(new Date().getMonth()+1);
     let Day=isDate?formateDate(new Date(date).getDate()):formateDate(new Date().getDate());
     let Week=isDate?formateWeek(new Date(date).getDay()):formateWeek(new Date().getDay());
+    let Hours=isDate?new Date(date).getHours():new Date().getHours();
+    
+    let Minutes=isDate?new Date(date).getMinutes():new Date().getMinutes();
     let WeekNum=isDate?new Date(date).getDay():new Date().getDay();
     let MonthFormat=isDate?formateMonth(new Date(date).getMonth()+1):formateMonth(new Date().getMonth()+1);
     let startOfMonth=`${Year}-${Month}-01`;
@@ -136,6 +139,8 @@ let currentDate=(date)=>{
         currentYear:Year,
         currentMonth:Month,
         currentDay:Day,
+        currentHour:Hours,
+        currentMinute:Minutes,
         currentWeek:Week,
         currentYearMonthDay:`${Year}-${Month}-${Day}`,
         currentYearMonth:`${Year}-${Month}`,
