@@ -152,7 +152,7 @@ $time:450ms;
                 }
             }
 
-            &-pointer{
+            &-minute-pointer{
                 height: 40%;
                 background-color: currentColor;
                 width: 2px;
@@ -160,7 +160,60 @@ $time:450ms;
                 position: absolute;
                 bottom: 50%;
                 transform-origin: center bottom 0;
-                pointer-events: none;
+                pointer-events: auto;
+                cursor: pointer;
+
+                &:after{
+                    content: "";
+                    display: block;
+                    position: absolute;
+                    /* width: 10px; */
+                    border-bottom: 12px solid currentColor;
+                    border-left: 7px solid transparent;
+                    border-right: 7px solid transparent;
+                    left: -6px;
+                    top: 0;
+                    z-index: 5;
+                }
+            }
+
+            &-hour-pointer{
+                height: 20%;
+                background-color: currentColor;
+                width: 4px;
+                left: calc(50% - 2px);
+                position: absolute;
+                bottom: 50%;
+                transform-origin: center bottom 0;
+                pointer-events: auto;
+                cursor: pointer;
+
+                &:before{
+                    content: "";
+                    display: block;
+                    position: absolute;
+                    width: 10px;
+                    height: 10px;
+                    border-radius: 50%;
+                    background: currentColor;
+                    z-index: 5;
+                    left: -3px;
+                    bottom: -2px;
+                }
+
+                &:after{
+                    content: "";
+                    display: block;
+                    position: absolute;
+               
+                    border-bottom: 16px solid currentColor;
+                    border-left: 8px solid transparent;
+                    border-right: 8px solid transparent;
+                    top: -16px;
+                   
+                    z-index: 5;
+                    left: -6px;
+                }
             }
 
             &-mask{

@@ -71,6 +71,13 @@ function formateMonth(day){
     }
 }
 
+function formateHour(time){//将24时转化为12时
+    if(time>12){
+        return time-12;
+    }   
+    return time;
+}
+
 function generateDate(date){
     let { startOfMonth,daysOfMonth }=currentDate(date);
     let { currentWeekNum }=currentDate(new Date(startOfMonth));
@@ -266,5 +273,6 @@ export {
     getPrevYear,
     formateMonth,
     MonthTextMap,
-    getListYear
+    getListYear,
+    formateHour
 }

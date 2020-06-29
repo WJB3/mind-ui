@@ -6,7 +6,8 @@ import setRef from '../_utils/setRef';
 import useForkRef from '../_utils/useForkRef';
 import Paper from '../Paper';
 import Button from '../ButtonBase';
-import { currentDate as currentDateA, MonthTextMap, getListYear, formateMonth, WeekEnum, generateDate, chunk, formateDate, getPrevMonth, getNextMonth, getNextYear, getPrevYear, MonthEnum } from '../_utils/dateUtils';
+import { currentDate as currentDateA,  formateDate, formateHour } from '../_utils/dateUtils';
+import { rad2deg,getTouchEventOffsetValues }  from '../_utils/timeUtils';
 import Slider from './Slider';
 import usePrevious from '../_utils/usePrevious';
 import "./index.scss";
@@ -43,6 +44,8 @@ const innerPositions = [
 ];
 
 
+
+
 const TimePicker = React.forwardRef((props, ref) => {
     const {
         prefixCls: customizePrefixCls,
@@ -54,7 +57,6 @@ const TimePicker = React.forwardRef((props, ref) => {
         disabled,
         value: valueProps,
         defaultValue,
-        disabledDate = () => false,
         type = "ampm"
     } = props;
 
@@ -74,10 +76,13 @@ const TimePicker = React.forwardRef((props, ref) => {
 
     const [typeActive, setTypeActive] = useState(currentDate.currentHour>12?"pm":"am");
 
+    const [ instance,setInstance]=useState({x:0,y:0});
+
     const currentYearRef = useRef(null);
     const yearListRef = useRef(null);
     const init = useRef(false);
-    const markRef=useRef(null);
+    const circleRef=useRef(null);
+    const isMouseDown=useRef(false);
 
     const selectRef = useRef(null);
 
@@ -157,39 +162,38 @@ const TimePicker = React.forwardRef((props, ref) => {
 
     const renderContainerClock = () => {
         return <div className={classNames(`${prefixCls}-container-clock`)}>
-            <div className={classNames(`${prefixCls}-container-clock-circle`)}></div>
+            <div className={classNames(`${prefixCls}-container-clock-circle`)} ref={circleRef}></div>
             {renderHours()}
         </div>
     }
 
     const renderHours = () => {
         return <div className={classNames(`${prefixCls}-container-clock-hours`)}>
-            <div className={classNames(`${prefixCls}-container-clock-pointer`)}></div>
+            {/* <div className={classNames(`${prefixCls}-container-clock-mask`)} ></div> */}
+            <div 
+                className={classNames(`${prefixCls}-container-clock-minute-pointer`)} 
+                style={{transform:`rotate(${getRotate(currentDate,"minute")}deg)`}}
+                onMouseDown={handleMouseDown}    
+                onMouseMove={handleMouseMove}
+            ></div>
+            <div className={classNames(`${prefixCls}-container-clock-hour-pointer`)} style={{transform:`rotate(${getRotate(currentDate,"hour")}deg)`}}></div>
             {getHours()}
-            <div className={classNames(`${prefixCls}-container-clock-mask`)} ref={markRef}></div>
         </div>
     }
 
     const getHours = () => {
 
-        if (type === "ampm") {
-            return [12, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map((item, index) =>
+        
+        return [12, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map((item, index) =>
                 <div
                     key={item}
                     className={classNames(`${prefixCls}-container-clock-hours-number`)}
                     style={{ left: "calc(50% - 16px)", transform: `translate(${positions[index][0]}px,${positions[index][1]}px)` }}>
                     {item}
                 </div>
-            )
-        }
-        return [12, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11,"00",13,14,15,16,17,18,19,20,21,22,23].map((item, index) =>
-            <div
-                key={item}
-                className={classNames(`${prefixCls}-container-clock-hours-number`)}
-                style={{ left: "calc(50% - 16px)", transform: `translate(${positions.concat(innerPositions)[index][0]}px,${positions.concat(innerPositions)[index][1]}px)` }}>
-                {item}
-            </div>
         )
+         
+        
     }
 
 
@@ -214,6 +218,62 @@ useEffect(() => {
     }
 }, [mode]);
 
+const getRotate=(time,type)=>{//获取时钟的角度
+    const hourStep=30;
+    const minuteStep=6;
+    const currentHourRotate=formateHour(time.currentHour)*hourStep;
+    const currentMinuteRotate=time.currentMinute*minuteStep;
+    if(type==="hour"){
+        return currentHourRotate+currentMinuteRotate/12;
+    }
+    
+    return currentMinuteRotate;
+    
+}
+
+const isMousePressed=(event)=>{
+    if(typeof event.buttons==="undefined"){
+        return event.nativeEvent.which;
+    }
+    return event.buttons;
+}
+
+const handleMouseDown=(event)=>{
+    isMouseDown.current=true;
+    const { offsetX,offsetY }= event.nativeEvent;
+    console.log(event);
+    console.log(event.nativeEvent.offsetX);
+    console.log(event.nativeEvent.offsetY);
+    console.log(event.target);
+    setInstance({
+        x:offsetX,
+        y:offsetY
+    });
+
+}
+
+const handleMouseMove=(event)=>{
+    if(isMouseDown.current){
+        event.preventDefault();
+        if(isMousePressed(event)!==1) return ;
+        const { offsetX,offsetY,clientX,clientY }=event.target;
+
+    
+        console.log(instance)
+        console.log("offsetX"+offsetX)
+        console.log("offsetY"+offsetY)
+        console.log("clientX"+clientX)
+        console.log("clientY"+clientY)
+    }
+    
+}
+ 
+const getHourTime=(offsetX,offsetY)=>{
+    const step=30;
+   
+     
+
+}
 
 return (
     <Paper ref={handleRef} deep={4} style={style} className={
