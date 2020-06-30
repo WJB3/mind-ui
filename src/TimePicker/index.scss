@@ -8,329 +8,96 @@ $time:450ms;
  
 
 .#{$prefixCls}{
-    color: $primary-color;
-    background-color: #fff;
-    width: 280px;
-
-    &.#{$prefixCls}-landscape{
-        width:479px;
-        display:flex;
-        justify-content: space-between;
-
-        @media (min-width: 600px){
-            .#{$prefixCls}-display{
-                padding-top:24px;
-            }
-        }
-
-        .#{$prefixCls}-display{
-            width: 165px;
-            height: auto;
-            padding-top: 16px;
-            border-top-right-radius: 0;
-            border-bottom-left-radius: 2px;
-            position: relative;
-            justify-content:center;
-            box-sizing: border-box;
-
-            &-text{
-                font-size: 48px;
-            }
-
-            
-        }
-        .#{$prefixCls}-container{
-            &-clock{
-                
-                
-                &-circle{
-                    left: 50%;
-                    margin-left: -130px;                
-                }
-    
-                &-hours{
-                    
-                    &-number{
-                       
-                    }
-                }
-    
-                &-pointer{
-                    
-                }
-            }
-        }
-        
+    .inactive{
+        opacity: 0.7;
     }
 
-   
-
-    @media (min-width: 600px){
-        &-display {
-            padding-left: 24px;
-            padding-right: 24px;
-            display:flex;
-            flex-direction: column;
-            align-items: center;
+    &-display{
+        &-text{
+            color:#fff;
+            margin:6px 0;
+            line-height: 58px;
+            height:58px;
+            font-size:58px;
+            display: flex;
             justify-content: center;
-            background-color: currentColor;
-            height:100px;
-            border-top-left-radius: 4px;
-            border-top-right-radius: 4px;
-
-            .inactive{
-                opacity: 0.7;
-            }
-
-            &-text{
-                color:#fff;
-                margin:6px 0;
-                line-height: 58px;
-                height:58px;
-                font-size:58px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-
-                &-time{
-                    margin: 0 10px;
-                }
-            }
-
-            &-affix{
-                flex: 1 1;
-                position: relative;
-                line-height: 17px;
-                height: 17px;
-                font-size: 17px;
-            }
-              
-        }
-    }
-
-    &-container{
-        padding-bottom: 8px;
-        flex:1;
-
-        &-clock{
-            height: 282px;
-            padding-left: 10px;
-            padding-right: 10px;
-            position: relative;
-            
-            &-circle{
-                position: absolute;
-                top:12px;
-                width:260px;
-                height:260px;
-                border-radius: 100%;
-                background-color: rgba(0,0,0,.07);
-            }
-
-            &-hours{
-                height: 100%;
-                width: 100%;
-                border-radius: 100%;
-                position: relative;
-
-                &-number{
-                    display: inline-block;
-                    width: 32px;
-                    height: 32px;
-                    line-height: 32px;
-                    position: absolute;
-                    top: 10px;
-                    text-align: center;
-                    font-size: 1.1em;
-                    pointer-events: none;
-                    border-radius: 100%;
-                    box-sizing: border-box;
-                    box-sizing: border-box; 
-                    transform: translateY(5px);
-                    user-select: none;
-                    color: rgba(0,0,0,.87);
-                }
-            }
-
-            &-minute-pointer{
-                height: 40%;
-                background-color: currentColor;
-                width: 2px;
-                left: calc(50% - 1px);
-                position: absolute;
-                bottom: 50%;
-                transform-origin: center bottom 0;
-                pointer-events: auto;
-                cursor: pointer;
-
-                &:after{
-                    content: "";
-                    display: block;
-                    position: absolute;
-                    /* width: 10px; */
-                    border-bottom: 12px solid currentColor;
-                    border-left: 7px solid transparent;
-                    border-right: 7px solid transparent;
-                    left: -6px;
-                    top: 0;
-                    z-index: 5;
-                }
-            }
-
-            &-hour-pointer{
-                height: 20%;
-                background-color: currentColor;
-                width: 4px;
-                left: calc(50% - 2px);
-                position: absolute;
-                bottom: 50%;
-                transform-origin: center bottom 0;
-                pointer-events: auto;
-                cursor: pointer;
-
-                &:before{
-                    content: "";
-                    display: block;
-                    position: absolute;
-                    width: 10px;
-                    height: 10px;
-                    border-radius: 50%;
-                    background: currentColor;
-                    z-index: 5;
-                    left: -3px;
-                    bottom: -2px;
-                }
-
-                &:after{
-                    content: "";
-                    display: block;
-                    position: absolute;
-               
-                    border-bottom: 16px solid currentColor;
-                    border-left: 8px solid transparent;
-                    border-right: 8px solid transparent;
-                    top: -16px;
-                   
-                    z-index: 5;
-                    left: -6px;
-                }
-            }
-
-            &-mask{
-                width:100%;
-                height: 100%;
-            }
-        }
-    }
- 
-
-    &-display-slide-monthday{
-        
-        position: absolute;
-        height: 100%;
-        width: 100%;
-        top: 0;
-        left: 0;
-
-        &-next{
- 
-            
-            &-appear{
-                transform: translate3d(0,100%,0);
-                opacity: 1;
-            }
-            &-appear-active{
-                transition: transform $time cubic-bezier(0.4, 0, 0.2, 1), opacity $time cubic-bezier(0.4, 0, 0.2, 1);
-                backface-visibility: hidden;
-                transform: translate3d(0,0,0);
-                opacity: 1;
-            }
-            &-exit{
-                opacity:1;
-                transform: translate3d(0,0,0);
-            }
-            &-exit-active {
-                transition: transform $time cubic-bezier(0.4, 0, 0.2, 1), opacity $time cubic-bezier(0.4, 0, 0.2, 1);
-                transform: translate3d(0, 100%, 0);
-                opacity: 1;
-            }
-        }
-
-        &-prev{
-            &-appear{
-                transform: translate3d(0,-100%,0);
-                opacity: 1;
-            }
-            &-appear-active{
-                transition: transform $time cubic-bezier(0.4, 0, 0.2, 1), opacity $time cubic-bezier(0.4, 0, 0.2, 1);
-                backface-visibility: hidden;
-                transform: translate3d(0,0,0);
-                opacity: 1;
-            }
-            &-exit{
-                opacity:1;
-            }
-            &-exit-active {
-                transition: transform $time cubic-bezier(0.4, 0, 0.2, 1), opacity $time cubic-bezier(0.4, 0, 0.2, 1);
-                backface-visibility: hidden;
-                transform: translate3d(0, -100%, 0);
-                opacity: 1;
-            }
-        }
-    }
-
-    &-container-slide-title{
-        &-next{
- 
-            
-            &-appear{
-                transform: translate3d(100%,0,0);
-                opacity: 1;
-            }
-            &-appear-active{
-                transition: transform $time cubic-bezier(0.4, 0, 0.2, 1), opacity $time cubic-bezier(0.4, 0, 0.2, 1);
-                backface-visibility: hidden;
-                transform: translate3d(0,0,0);
-                opacity: 1;
-            }
-            &-exit{
-                opacity:1;
-                transform: translate3d(0,0,0);
-            }
-            &-exit-active {
-                transition: transform $time cubic-bezier(0.4, 0, 0.2, 1), opacity $time cubic-bezier(0.4, 0, 0.2, 1);
-                transform: translate3d(100%, 0, 0);
-                opacity: 1;
-            }
-        }
-
-        &-prev{
-            &-appear{
-                transform: translate3d(-100%,0,0);
-                opacity: 1;
-            }
-            &-appear-active{
-                transition: transform $time cubic-bezier(0.4, 0, 0.2, 1), opacity $time cubic-bezier(0.4, 0, 0.2, 1);
-                backface-visibility: hidden;
-                transform: translate3d(0,0,0);
-                opacity: 1;
-            }
-            &-exit{
-                opacity:1;
-            }
-            &-exit-active {
-                transition: transform $time cubic-bezier(0.4, 0, 0.2, 1), opacity $time cubic-bezier(0.4, 0, 0.2, 1);
-                backface-visibility: hidden;
-                transform: translate3d(-100%, 0, 0);
-                opacity: 1;
-            }
-        }
-    }
+            align-items: center;
     
-    &.#{$prefixCls}-disabled{
-        *{
-            cursor: not-allowed;
+            &-time{
+                margin: 0 10px;
+            }
+        }
+    
+        &-affix{
+            flex: 1 1;
+            position: relative;
+            line-height: 17px;
+            height: 17px;
+            font-size: 17px;
         }
          
     }
+
+    &-container{
+         
+        margin: 16px 0 8px;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        
+    }
+
+    &-clock{
+        width: 260px;
+        height: 260px;
+        position: relative;
+        border-radius: 50%;
+        pointer-events: none;
+        background-color: rgba(0,0,0,.07);
+
+        &-squareMask{
+            width: 100%;
+            height: 100%;
+            outline: none;
+            position: absolute;
+            user-select: none;
+            pointer-events: auto;
+        }
+
+        &-pin{
+            top: 50%;
+            left: 50%;
+            width: 6px;
+            height: 6px;
+            position: absolute;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            background-color: currentColor;
+        }
+
+        &-hours-number{
+            left: calc((100% - 32px) / 2);
+            color: rgba(0, 0, 0, 0.87);
+            width: 32px;
+            height: 32px;
+            display: inline-flex;
+            position: absolute;
+            align-items: center;
+            user-select: none;
+            border-radius: 50%;
+            justify-content: center;
+        }
+
+        &-hours-pointer{
+            
+            left: calc(50% - 1px);
+            width: 2px;
+            bottom: 50%;
+            position: absolute;
+            background-color: currentColor;
+            transform-origin: center bottom 0px;
+        }
+    }
+
+   
 }
