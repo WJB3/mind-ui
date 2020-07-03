@@ -11,7 +11,7 @@ import Picker from '../Picker';
 import useDate from '../_utils/useDate';
 import ClockNumbers from './ClockNumbers';
 import ClockDisplay from './ClockDisplay';
-import { getMeridiem,setDateMeridiem  } from '../_utils/useTime';
+import { getMeridiem } from '../_utils/useTime';
 
 const TimePicker = React.forwardRef((props, ref) => {
     const {
@@ -70,11 +70,10 @@ const TimePicker = React.forwardRef((props, ref) => {
             offsetY = e.changedTouches[0].clientY - rect.top;
         }
 
-        const valueClock = type === 'seconds' || type === 'minutes' ? getMinutes(offsetX, offsetY, minutesStep) : getHours(offsetX, offsetY, true);
-
-        let dateTime=setDateMeridiem(valueClock,getMeridiem(value),value);
-
-        setValue(dateTime);
+        const value = type === 'seconds' || type === 'minutes' ? getMinutes(offsetX, offsetY, minutesStep) : getHours(offsetX, offsetY, true);
+        
+        
+        setValue(value);
     }
 
     const renderContainerClock = () => {

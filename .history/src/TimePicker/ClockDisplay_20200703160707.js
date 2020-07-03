@@ -15,8 +15,6 @@ const ClockDisplay=React.forwardRef((props, ref)=>{
         meridiemMode
     } = props;
 
-    console.log(meridiemMode);
-
     const { getPrefixCls } = React.useContext(ConfigContext);
 
     const prefixCls = getPrefixCls("timepicker-display", customizePrefixCls);
@@ -30,12 +28,12 @@ const ClockDisplay=React.forwardRef((props, ref)=>{
             )}>
                 <span className={classNames(
                     `${prefixCls}-text-time-hour`,
-                    [{ 'inactive': type === "minutes" }]
+                    [{ 'inactive': type === "minute" }]
                 )}>{formateComplete(useTimeLoop(useDate(date).getHours()))}</span>
                 <span>:</span>
                 <span className={classNames(
                     `${prefixCls}-text-time-minute`,
-                    [{ 'inactive': type === "hours" }]
+                    [{ 'inactive': type === "hour" }]
                 )}>{useDate(date).getFormatMinutes()}</span>
             </div>
 

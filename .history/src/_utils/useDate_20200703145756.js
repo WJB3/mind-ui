@@ -1,7 +1,7 @@
 
 import React from 'react';
 
-export function formateComplete(string){//补全日期
+function formateComplete(string){//补全日期
     if(String(string).length===1){
         return `0${string}`;
     }
@@ -109,17 +109,8 @@ export default function useDate(date){//参数为一个date对象
         getHours:()=>{
             return Hours;
         },
-        getMinutes:()=>{
-            return Minutes;
-        },
-        getFormatHours:()=>{
-            return formateComplete(Hours);
-        },
-        getFormatMinutes:()=>{
-            return formateComplete(Minutes);
-        },
         date:()=>{
-            return dateProps;
+            return date;
         }
     })
 }

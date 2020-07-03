@@ -33,8 +33,14 @@ export function setDateMeridiem(value,meridiem,date){
 
     let _date=useDate(date);
     let _value=meridiem==="am"?formateComplete(value):value+12;
- 
-    return new Date(`${_date.format("YY-MM-DD")} ${_value}:${formateComplete(_date.getMinutes())}`)
+
+    if(meridiem==="am"){
+        return new Date(`${useDate(date).format("YY-MM-DD")} ${_value}:${formateComplete(useDate(date).getMinutes())}`)
+    }
+
+    if(meridiem==="pm"){
+        
+    }
 
 }
 

@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { ConfigContext } from '../ConfigContext';
 import { classNames } from '../components/helper/className';
 import "./index.scss";
+
 import useDate from '../_utils/useDate';
-import { useTimeLoop } from '../_utils/useTime';
-import { formateComplete } from '../_utils/useDate';
+import { useTimeLoop } from '../_utils/useTime'
 
 const ClockDisplay=React.forwardRef((props, ref)=>{
     const {
@@ -14,8 +14,6 @@ const ClockDisplay=React.forwardRef((props, ref)=>{
         date,
         meridiemMode
     } = props;
-
-    console.log(meridiemMode);
 
     const { getPrefixCls } = React.useContext(ConfigContext);
 
@@ -30,13 +28,13 @@ const ClockDisplay=React.forwardRef((props, ref)=>{
             )}>
                 <span className={classNames(
                     `${prefixCls}-text-time-hour`,
-                    [{ 'inactive': type === "minutes" }]
-                )}>{formateComplete(useTimeLoop(useDate(date).getHours()))}</span>
+                    [{ 'inactive': type === "minute" }]
+                )}>{useTimeLoop(useDate(date).getHours())}</span>
                 <span>:</span>
                 <span className={classNames(
                     `${prefixCls}-text-time-minute`,
-                    [{ 'inactive': type === "hours" }]
-                )}>{useDate(date).getFormatMinutes()}</span>
+                    [{ 'inactive': type === "hour" }]
+                )}>{useDate(date).getMinutes()}</span>
             </div>
 
             <div className={classNames(

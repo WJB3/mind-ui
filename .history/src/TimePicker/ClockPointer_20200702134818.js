@@ -3,14 +3,13 @@ import PropTypes from 'prop-types';
 import { ConfigContext } from '../ConfigContext';
 import { classNames } from '../components/helper/className';
 import "./index.scss";
-import useDate from '../_utils/useDate';
 
 const ClockPointer=React.forwardRef((props, ref)=>{
     const {
         prefixCls: customizePrefixCls,
         className,
         style,
-        date,
+        value,
         isInner,
         type
     } = props;
@@ -22,9 +21,6 @@ const ClockPointer=React.forwardRef((props, ref)=>{
     const getAngleStyle=()=>{
         
         const max=type==="hours"?12:60;
-
-        let value=useDate(date).getHours();
-
         let angle=(360/max)*value;
 
         if(type==="hours" && value>12){

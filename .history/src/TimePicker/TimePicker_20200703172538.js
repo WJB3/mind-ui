@@ -11,7 +11,7 @@ import Picker from '../Picker';
 import useDate from '../_utils/useDate';
 import ClockNumbers from './ClockNumbers';
 import ClockDisplay from './ClockDisplay';
-import { getMeridiem,setDateMeridiem  } from '../_utils/useTime';
+import { getMeridiem } from '../_utils/useTime';
 
 const TimePicker = React.forwardRef((props, ref) => {
     const {

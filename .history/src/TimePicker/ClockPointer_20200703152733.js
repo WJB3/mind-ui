@@ -10,7 +10,7 @@ const ClockPointer=React.forwardRef((props, ref)=>{
         prefixCls: customizePrefixCls,
         className,
         style,
-        date,
+        value,
         isInner,
         type
     } = props;
@@ -22,9 +22,6 @@ const ClockPointer=React.forwardRef((props, ref)=>{
     const getAngleStyle=()=>{
         
         const max=type==="hours"?12:60;
-
-        let value=useDate(date).getHours();
-
         let angle=(360/max)*value;
 
         if(type==="hours" && value>12){

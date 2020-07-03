@@ -11,7 +11,7 @@ import Picker from '../Picker';
 import useDate from '../_utils/useDate';
 import ClockNumbers from './ClockNumbers';
 import ClockDisplay from './ClockDisplay';
-import { getMeridiem,setDateMeridiem  } from '../_utils/useTime';
+import { useMeridiemMode } from '../_utils/useTime';
 
 const TimePicker = React.forwardRef((props, ref) => {
     const {
@@ -28,11 +28,17 @@ const TimePicker = React.forwardRef((props, ref) => {
         default: defaultValue
     });
 
+    //当选择日期时
+    const [currentDate, setCurrentDate] = useState(value ? currentDateA(value) : currentDateA());
+
     const [mode, setMode] = useState(picker);
+    //获取上个状态
+    const prevCurrentDate = usePrevious(currentDate);
 
     const [type, setType] = useState("hours");
 
-  
+    const { meridiemMode } = useMeridiemMode(date);
+   
 
     const init = useRef(false);
     const circleRef = useRef(null);
@@ -42,6 +48,8 @@ const TimePicker = React.forwardRef((props, ref) => {
     const { getPrefixCls } = React.useContext(ConfigContext);
 
     const prefixCls = getPrefixCls("timepicker", customizePrefixCls);
+ 
+
 
     const handleMouseUp = (e) => {
         if (isMoving.current) {
@@ -70,11 +78,11 @@ const TimePicker = React.forwardRef((props, ref) => {
             offsetY = e.changedTouches[0].clientY - rect.top;
         }
 
-        const valueClock = type === 'seconds' || type === 'minutes' ? getMinutes(offsetX, offsetY, minutesStep) : getHours(offsetX, offsetY, true);
+        const value = type === 'seconds' || type === 'minutes' ? getMinutes(offsetX, offsetY, minutesStep) : getHours(offsetX, offsetY, true);
 
-        let dateTime=setDateMeridiem(valueClock,getMeridiem(value),value);
+        console.log(value);
 
-        setValue(dateTime);
+        setValue(value);
     }
 
     const renderContainerClock = () => {
@@ -108,12 +116,13 @@ const TimePicker = React.forwardRef((props, ref) => {
 
     }
 
+    console.log(value)
 
     return (
         <Picker
             landscape={landscape}
             disabled={disabled}
-            displayContent={<ClockDisplay date={value} type={type} meridiemMode={getMeridiem(value)} />}
+            displayContent={<ClockDisplay date={value} type={type} meridiemMode={meridiemMode} />}
             MainContent={renderModeContainer()}
             displayClassName={classNames(`${prefixCls}-display`)}
             mainClassName={classNames(`${prefixCls}-pickerView`)}

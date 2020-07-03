@@ -1,9 +1,8 @@
 
-import useDate,{formateComplete} from './useDate';
+import useDate from './useDate';
 import React from 'react';
 
-export const getMeridiem=(date)=>{
- 
+const getMeridiem=(date)=>{
     if(!date){return null;}
     return useDate(date).getHours()>=12?"pm":"am"
 }
@@ -18,24 +17,15 @@ const convertValueToMeridiem=(value,meridiem,ampm)=>{
     return value;
 }
 
-export function useMeridiemMode(date,onChange){
+export function useMeridiemMode(date,ampm,onChange){
     const meridiemMode=getMeridiem(date);
 
     const handleMeridiemChange=React.useCallback(()=>{
-        const timeWithMeridiem=convertValueToMeridiem(date,true);
+        const timeWithMeridiem=convertValueToMeridiem(date,mode,true);
         onChange(timeWithMeridiem,false);
-    },[date,onChange])
+    },[ampm,date,onChange])
 
     return {meridiemMode,handleMeridiemChange}
-}
-
-export function setDateMeridiem(value,meridiem,date){
-
-    let _date=useDate(date);
-    let _value=meridiem==="am"?formateComplete(value):value+12;
- 
-    return new Date(`${_date.format("YY-MM-DD")} ${_value}:${formateComplete(_date.getMinutes())}`)
-
 }
 
 export function useTimeLoop(value,type){//限制小时不超过12

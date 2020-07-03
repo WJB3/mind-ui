@@ -1,5 +1,5 @@
 
-import useDate,{formateComplete} from './useDate';
+import useDate from './useDate';
 import React from 'react';
 
 export const getMeridiem=(date)=>{
@@ -32,9 +32,15 @@ export function useMeridiemMode(date,onChange){
 export function setDateMeridiem(value,meridiem,date){
 
     let _date=useDate(date);
-    let _value=meridiem==="am"?formateComplete(value):value+12;
- 
-    return new Date(`${_date.format("YY-MM-DD")} ${_value}:${formateComplete(_date.getMinutes())}`)
+    let _value=meridiem==="am"?value:value+12;
+
+    if(meridiem==="am"){
+        
+    }
+
+    if(meridiem==="pm"){
+        
+    }
 
 }
 

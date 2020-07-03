@@ -11,7 +11,7 @@ import Picker from '../Picker';
 import useDate from '../_utils/useDate';
 import ClockNumbers from './ClockNumbers';
 import ClockDisplay from './ClockDisplay';
-import { getMeridiem,setDateMeridiem  } from '../_utils/useTime';
+import { getMeridiem } from '../_utils/useTime';
 
 const TimePicker = React.forwardRef((props, ref) => {
     const {
@@ -71,6 +71,8 @@ const TimePicker = React.forwardRef((props, ref) => {
         }
 
         const valueClock = type === 'seconds' || type === 'minutes' ? getMinutes(offsetX, offsetY, minutesStep) : getHours(offsetX, offsetY, true);
+        
+        let meridiem=getMeridiem(value);
 
         let dateTime=setDateMeridiem(valueClock,getMeridiem(value),value);
 

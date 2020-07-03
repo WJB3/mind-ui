@@ -1,7 +1,7 @@
 
 import React from 'react';
 
-export function formateComplete(string){//补全日期
+function formateComplete(string){//补全日期
     if(String(string).length===1){
         return `0${string}`;
     }

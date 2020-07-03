@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { ConfigContext } from '../ConfigContext';
 import { classNames } from '../components/helper/className';
 import { useTimeLoop } from '../_utils/useTime';
-import useDate from '../_utils/useDate';
 import "./index.scss";
 
 
@@ -29,7 +28,7 @@ const ClockNumber=React.forwardRef((props, ref)=>{
         className,
         style,
         type,
-        date
+        value
     } = props;
 
     const { getPrefixCls } = React.useContext(ConfigContext);
@@ -46,7 +45,7 @@ const ClockNumber=React.forwardRef((props, ref)=>{
                     className={classNames(
                         `${prefixCls}`,
                         {
-                            [`${prefixCls}-selected`]:hour===useTimeLoop(useDate(date).getHours(),'hours')
+                            [`${prefixCls}-selected`]:hour===useTimeLoop(value,'hours')
                         }
                     )}
                     style={{ left: "calc(50% - 16px)", transform: `translate(${positions[hour-1][0]}px,${positions[hour-1][1]}px)` }}>
