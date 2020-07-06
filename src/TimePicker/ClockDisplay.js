@@ -12,14 +12,35 @@ const ClockDisplay=React.forwardRef((props, ref)=>{
         prefixCls: customizePrefixCls,
         type,
         date,
-        meridiemMode
-    } = props;
-
-    console.log(meridiemMode);
-
+        meridiemMode,
+        onChangeType,
+        onChangeMeridiem
+    } = props; 
     const { getPrefixCls } = React.useContext(ConfigContext);
 
     const prefixCls = getPrefixCls("timepicker-display", customizePrefixCls);
+
+    const handleClickType=(types)=>{
+        if(types!==type){
+            onChangeType(types);
+        }
+    }
+
+    const handleChangeMeridiem=(meridiem)=>{
+        if(meridiemMode!==meridiem){
+            let _date=useDate(date);
+            let value;
+            if(meridiem==="am"){
+                value=new Date(`${_date.format("YY-MM-DD")} ${formateComplete(_date.getHours()-12)}:${formateComplete(_date.getMinutes())}`)
+            }
+
+            if(meridiem==="pm"){
+                value=new Date(`${_date.format("YY-MM-DD")} ${_date.getHours()+12}:${formateComplete(_date.getMinutes())}`)
+            }
+
+            onChangeMeridiem(value,meridiem);
+        }
+    }
    
     return (
         <div className={classNames(
@@ -31,12 +52,12 @@ const ClockDisplay=React.forwardRef((props, ref)=>{
                 <span className={classNames(
                     `${prefixCls}-text-time-hour`,
                     [{ 'inactive': type === "minutes" }]
-                )}>{formateComplete(useTimeLoop(useDate(date).getHours()))}</span>
+                )} onClick={()=>handleClickType("hours")}>{formateComplete(useTimeLoop(useDate(date).getHours()))}</span>
                 <span>:</span>
                 <span className={classNames(
                     `${prefixCls}-text-time-minute`,
                     [{ 'inactive': type === "hours" }]
-                )}>{useDate(date).getFormatMinutes()}</span>
+                )} onClick={()=>handleClickType("minutes")}>{useDate(date).getFormatMinutes()}</span>
             </div>
 
             <div className={classNames(
@@ -45,11 +66,11 @@ const ClockDisplay=React.forwardRef((props, ref)=>{
                 <div className={classNames(
                     `${prefixCls}-PM`,
                     [{ 'inactive': meridiemMode === "am" }]
-                )}>PM</div>
+                )} onClick={()=>handleChangeMeridiem("pm")}>PM</div>
                 <div className={classNames(
                     `${prefixCls}-AM`,
                     [{ 'inactive': meridiemMode === "pm" }]
-                )}>AM</div>
+                )} onClick={()=>handleChangeMeridiem("am")}>AM</div>
             </div>
         </div>
     )
@@ -63,6 +84,10 @@ ClockDisplay.propTypes = {
     prefixCls: PropTypes.string,
     //自定义样式
     style: PropTypes.object,
+    //改变type
+    onChangeType:PropTypes.func,
+    //改变mode
+    onChangeMeridiem:PropTypes.func
 };
 
 

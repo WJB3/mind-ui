@@ -7,16 +7,11 @@ import TimePicker from './index';
 import TextLayout from '../components/text/TextLayout';
 import DescriptionTable from '../components/text/DescriptionTable';
 import { currentDate } from "../_utils/dateUtils";
+import useDate from '../_utils/useDate';
 
 import Space from '../Space'
 
 const Page = () => {
-
-    const [open, setOpen] = React.useState(false);
-
-    const disabledDateFunc1=(current)=>{
-        return current>currentDate(new Date("2020-06-02")).time && current<currentDate(new Date("2020-06-28")).time
-    }
 
     return (
         <Layout >
@@ -32,8 +27,9 @@ const Page = () => {
 
                     <Space size="large">
 
-                        <TimePicker onChange={(date) => { console.log(currentDate(date).currentYearMonthDay); }} />
+                        <TimePicker onChange={(date) => { console.log(`${useDate(date).getHours()} ${useDate(date).getMinutes()}`) }} />
 
+                        <TimePicker landscape onChange={(date) => { console.log(`${useDate(date).getHours()} ${useDate(date).getMinutes()}`) }} picker={"list"}/>
                       
                         <TimePicker landscape type={"24hr"} onChange={(date) => { console.log(currentDate(date).currentYearMonthDay); }} />
                     </Space>

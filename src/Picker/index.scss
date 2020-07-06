@@ -30,9 +30,17 @@ $time:450ms;
             position: relative;
             justify-content:center;
             box-sizing: border-box;
+       
 
             &-text{
                 font-size: 48px;
+                flex-direction: column;
+            }
+
+            .#{$timepickerPrefixCls}-display{
+                &-text{
+                    flex-direction: column;
+                }
             }
 
             
@@ -40,9 +48,11 @@ $time:450ms;
        
         .#{$timepickerPrefixCls}{
             &-clock{
-                margin-right:20px;
+                //margin-right:20px;
             }
         }
+
+        
         
     }
 
@@ -77,6 +87,7 @@ $time:450ms;
         overflow-x: hidden;
         flex-direction: column;
         justify-content: center;
+        flex:1;
     }
  
  

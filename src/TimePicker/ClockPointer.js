@@ -23,7 +23,7 @@ const ClockPointer=React.forwardRef((props, ref)=>{
         
         const max=type==="hours"?12:60;
 
-        let value=useDate(date).getHours();
+        let value=type==="hours"?useDate(date).getHours():useDate(date).getMinutes();
 
         let angle=(360/max)*value;
 
@@ -39,6 +39,9 @@ const ClockPointer=React.forwardRef((props, ref)=>{
     }
 
     const hasSelected=()=>{
+
+        let value=type==="hours"?useDate(date).getHours():useDate(date).getMinutes();
+
         if(type==="hours"){
             return true;
         }

@@ -78,12 +78,12 @@ const menuInfo=[
             },
             
             {
-                title:"steps",
-                key:"steps",
+                title:"Stepper步骤条",
+                key:"stepper",
             },
             {
-                title:"carousel",
-                key:"carousel",
+                title:"Carousel轮播图",
+                key:"Carousel",
             },
             {
                 title:"tree",

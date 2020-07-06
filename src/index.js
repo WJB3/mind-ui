@@ -18,6 +18,8 @@ import TagPage from './Tag/tagPage';
 import DatePickerPage from './DatePicker/DatePickerPage';
 import TimePickerPage from './TimePicker/TimePickerPage';
 import AnimatePage from './Animate/animationPage';
+import StepperPage from './Steps/stepsPage';
+import CarouselPage from './Carousel/carouselPage';
 
 import ParrotLayout from './ParrotLayout';
 import Demo from './Demo';
@@ -47,6 +49,8 @@ ReactDOM.render((<HashRouter>
                                         <Route path="/datepicker" exact component={(props)=><DatePickerPage {...props}/>}></Route>
                                         <Route path="/timepicker" exact component={(props)=><TimePickerPage {...props}/>}></Route>
                                         <Route path="/animate" exact component={(props)=><AnimatePage {...props}/>}></Route>
+                                        <Route path="/stepper" exact component={(props)=><StepperPage {...props}/>}></Route>
+                                        <Route path="/carousel" exact component={(props)=><CarouselPage {...props}/>}></Route>
                                 </Switch>
                         </ParrotLayout>
                 } />

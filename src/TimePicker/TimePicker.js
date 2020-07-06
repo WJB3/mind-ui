@@ -11,7 +11,9 @@ import Picker from '../Picker';
 import useDate from '../_utils/useDate';
 import ClockNumbers from './ClockNumbers';
 import ClockDisplay from './ClockDisplay';
-import { getMeridiem,setDateMeridiem  } from '../_utils/useTime';
+import { getMeridiem,setDateMeridiem,HoursNumbers,MinutesNumbers  } from '../_utils/useTime';
+import useInit from '../_utils/useInit';
+import TimeList from './TimeList';
 
 const TimePicker = React.forwardRef((props, ref) => {
     const {
@@ -21,6 +23,7 @@ const TimePicker = React.forwardRef((props, ref) => {
         disabled,
         value: valueProps,
         defaultValue=useDate().date(),
+        onChange
     } = props;
 
     const [value,setValue,isControlled] = useControlled({
@@ -28,15 +31,15 @@ const TimePicker = React.forwardRef((props, ref) => {
         default: defaultValue
     });
 
+    const isInit=useInit();
+
     const [mode, setMode] = useState(picker);
 
     const [type, setType] = useState("hours");
 
-  
-
-    const init = useRef(false);
     const circleRef = useRef(null);
     const isMoving = useRef(false);
+
 
 
     const { getPrefixCls } = React.useContext(ConfigContext);
@@ -49,53 +52,66 @@ const TimePicker = React.forwardRef((props, ref) => {
         }
 
         setTime(e.nativeEvent, true);
+
+    }
+
+    const handleMouseDown=(e)=>{
+        isMoving.current = true;
     }
 
     const handleMouseMove = (e) => {
+       
         e.preventDefault();
         e.stopPropagation();
         const isButtonsPressed =
             typeof e.buttons === "undefined" ? e.nativeEvent.which === 1 : e.buttons === 1;
 
-        if (isButtonsPressed) {
+        if (isButtonsPressed && isMoving.current) {
             setTime(e.nativeEvent, false);
         }
     }
 
     const setTime = (e, isFinish = false) => {
+
         let { offsetX, offsetY } = e;
+
         if (typeof offsetX == "undefined") {
             const rect = e.target.getBoundingClientRect();
             offsetX = e.changedTouches[0].clientX - rect.left;
             offsetY = e.changedTouches[0].clientY - rect.top;
         }
 
-        const valueClock = type === 'seconds' || type === 'minutes' ? getMinutes(offsetX, offsetY, minutesStep) : getHours(offsetX, offsetY, true);
+        const valueClock = type === 'seconds' || type === 'minutes' ? getMinutes(offsetX, offsetY, 1) : getHours(offsetX, offsetY, true);
 
-        let dateTime=setDateMeridiem(valueClock,getMeridiem(value),value);
+        let dateTime=setDateMeridiem(valueClock,getMeridiem(value),value,type);
 
         setValue(dateTime);
+
+        if(type==="hours" && isFinish){
+            setType("minutes");
+        }
+
+        if(onChange){
+            onChange(dateTime,e)
+        }
     }
 
     const renderContainerClock = () => {
-        return <div className={classNames(`${prefixCls}-container`)}>
-            <div className={classNames(`${prefixCls}-clock`)} ref={circleRef}>
+        return  <div className={classNames(`${prefixCls}-clock`)} ref={circleRef}>
                 <div
                     className={classNames(`${prefixCls}-clock-squareMask`)}
                     onMouseUp={handleMouseUp}
                     onMouseMove={handleMouseMove}
+                    onMouseDown={handleMouseDown}
                 ></div>
                 <div className={classNames(`${prefixCls}-clock-pin`)}></div>
                 <ClockPointer date={value} type={type} />
                 <ClockNumbers date={value} type={type} />
             </div>
-
-
-        </div>
+ 
     }
  
- 
-
+    
     const renderModeContainer = () => {
 
         let modeRender = null;
@@ -104,8 +120,20 @@ const TimePicker = React.forwardRef((props, ref) => {
             modeRender = renderContainerClock();
         }
 
-        return modeRender;
+        if(mode==="list"){
+            modeRender=<TimeList date={value} handleChangeDate={(value)=>setValue(value)}  meridiemMode={getMeridiem(value)} landscape={landscape} />;
+        }
 
+        return <div className={classNames(`${prefixCls}-container`)}>{modeRender}</div>;
+
+    }
+
+    const handleChangeType=(type)=>{
+        setType(type);
+    }
+
+    const handleChangeMeridiem=(value,meridiem)=>{
+        setValue(value);
     }
 
 
@@ -113,7 +141,7 @@ const TimePicker = React.forwardRef((props, ref) => {
         <Picker
             landscape={landscape}
             disabled={disabled}
-            displayContent={<ClockDisplay date={value} type={type} meridiemMode={getMeridiem(value)} />}
+            displayContent={<ClockDisplay date={value} type={type} meridiemMode={getMeridiem(value)} onChangeType={handleChangeType} onChangeMeridiem={handleChangeMeridiem} />}
             MainContent={renderModeContainer()}
             displayClassName={classNames(`${prefixCls}-display`)}
             mainClassName={classNames(`${prefixCls}-pickerView`)}
@@ -142,7 +170,9 @@ TimePicker.propTypes = {
     //不可选择的时间
     disabledDate: PropTypes.func,
     //时间类型
-    type: PropTypes.string
+    type: PropTypes.string,
+    //时间改变
+    onChange:PropTypes.func
 };
 
 export default TimePicker;

@@ -56,7 +56,7 @@ const Page = () => {
  
                         <DatePicker value={value} picker="month" disabled onChange={(date) => { console.log(currentDate(date).currentYearMonth); }}/>
 
-                        <DatePicker value={value} picker="year" disabled landscape onChange={(date) => { console.log(currentDate(date).currentYear ); }}/>
+                        <DatePicker  picker="year" landscape onChange={(date) => { console.log(currentDate(date).currentYear ); }}/>
 
                     </Space>
 

@@ -1,9 +1,9 @@
-import React,{Fragment} from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { ConfigContext } from '../ConfigContext';
 import { classNames } from '../components/helper/className';
 import { useTimeLoop } from '../_utils/useTime';
-import useDate from '../_utils/useDate';
+import useDate,{formateComplete} from '../_utils/useDate';
 import "./index.scss";
 
 
@@ -23,7 +23,7 @@ const positions = [
 ];
 
 
-const ClockNumber=React.forwardRef((props, ref)=>{
+const ClockNumber = React.forwardRef((props, ref) => {
     const {
         prefixCls: customizePrefixCls,
         className,
@@ -36,20 +36,40 @@ const ClockNumber=React.forwardRef((props, ref)=>{
 
     const prefixCls = getPrefixCls("timepicker-clock-number", customizePrefixCls);
 
-    const getHoursNumber=()=>{
-         
-        let hourNumbers=[];
-        for(let hour=1;hour<=12;hour++){
+    const getMinutesNumber = () => { 
+        let numbers = [
+            '05', '10', '15', '20', '25','30',
+            '35', '40', '45', '50', '55','00'
+        ];
+        return numbers.map((item,hour) => (
+            <div
+                key={hour}
+                className={classNames(
+                    `${prefixCls}`,
+                    {
+                        [`${prefixCls}-selected`]:item == formateComplete(useDate(date).getMinutes())
+                    }
+                )}
+                style={{ left: "calc(50% - 16px)", transform: `translate(${positions[hour][0]}px,${positions[hour][1]}px)` }}>
+                {item}
+            </div>
+        ));
+    }
+
+    const getHoursNumber = () => {
+
+        let hourNumbers = [];
+        for (let hour = 1; hour <= 12; hour++) {
             hourNumbers.push(
                 <div
                     key={hour}
                     className={classNames(
                         `${prefixCls}`,
                         {
-                            [`${prefixCls}-selected`]:hour===useTimeLoop(useDate(date).getHours(),'hours')
+                            [`${prefixCls}-selected`]: hour === useTimeLoop(useDate(date).getHours(), 'hours')
                         }
                     )}
-                    style={{ left: "calc(50% - 16px)", transform: `translate(${positions[hour-1][0]}px,${positions[hour-1][1]}px)` }}>
+                    style={{ left: "calc(50% - 16px)", transform: `translate(${positions[hour - 1][0]}px,${positions[hour - 1][1]}px)` }}>
                     {hour}
                 </div>
             )
@@ -57,9 +77,12 @@ const ClockNumber=React.forwardRef((props, ref)=>{
         return hourNumbers;
     }
 
-    const getClockNumbers=()=>{
-        if(type==="hours"){
+    const getClockNumbers = () => {
+        if (type === "hours") {
             return getHoursNumber();
+        }
+        if (type === "minutes") {
+            return getMinutesNumber();
         }
     }
 
@@ -76,7 +99,7 @@ ClockNumber.propTypes = {
     prefixCls: PropTypes.string,
     //自定义样式
     style: PropTypes.object,
-    type:PropTypes.string
+    type: PropTypes.string
 };
 
 
