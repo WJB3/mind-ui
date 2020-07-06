@@ -62,11 +62,6 @@ const Carousel = forwardRef((props,ref) => {
         //     firstSlide.style.left=`${((current+1)*itemWidth)}px`;
         // }
 
-        // if(current===1){
-        //     firstSlide.style.left=`0px`;
-        //     lastSlide.style.left=`-${itemWidth}px`;
-        //     containerRef.current.style.transform =`translate3d(0,0,0)`;  
-        // }
     },[ ]);
 
     // const setAuto=React.useCallback(()=>{
@@ -77,27 +72,28 @@ const Carousel = forwardRef((props,ref) => {
     // },[])
 
     const setDimensions=React.useCallback(()=>{
-        console.log("setDimensions")
         var firstSlide = containerRef.current.childNodes[0];
-        console.log(frameRef.current.offsetWidth)
         setTimeout(()=>{
             setItemWidth(frameRef.current.offsetWidth);
             setItemHeight(firstSlide.offsetHeight);
         },0)
     },[]);
 
-    // const setTransition=()=>{
+    const setTransition=()=>{
          
-    //     function transitionend(){
-    //         //动画结束就关闭动画
-    //         containerRef.current.style.transitionProperty="none";
-    //         setCurrent(1);
+        function transitionend(){
+            console.log("transitionend");
+
+            //动画结束就关闭动画
+            containerRef.current.style.transitionProperty="none";
+
+            setCurrent(1);
             
-    //         containerRef.current.removeEventListener('transitionend', transitionend, false);
-    //     }
-    //     containerRef.current.addEventListener('transitionend', transitionend, false);
+            containerRef.current.removeEventListener('transitionend', transitionend, false);
+        }
+        containerRef.current.addEventListener('transitionend', transitionend, false);
         
-    // }
+    }
 
     // const setPrevTransition=(lastSlide)=>{
         
@@ -119,18 +115,11 @@ const Carousel = forwardRef((props,ref) => {
     // }
 
 
-    // const handleNext=()=>{
+    const handleNext=()=>{
 
-    //     containerRef.current.style.transitionProperty="transform";
-
-    //     if(current===childrenNum.current+1){
-    //         return ;
-    //     }
-    
-    //     containerRef.current.style.transform =`translate3d(-${current*itemWidth}px,0,0)`;
-
-    //     setCurrent(current+1);
-    // }
+        containerRef.current.style.transitionProperty="transform";
+        setCurrent(current+1);
+    }
 
     // const handlePrev=()=>{
     //     containerRef.current.style.transitionProperty="transform";
@@ -148,11 +137,33 @@ const Carousel = forwardRef((props,ref) => {
     //     });
     // }
 
-    // const handleClickDotItem=React.useCallback((item)=>{
-    //     containerRef.current.style.transitionProperty="transform";
-    //     containerRef.current.style.transform =`translate3d(-${(item-1)*itemWidth}px,0,0)`;
-    //     setCurrent(item);
-    // },[childrenProps,itemWidth])
+    const handleClickDotItem=React.useCallback((item)=>{
+        setCurrent(item);
+    },[childrenProps,itemWidth]);
+
+    useEffect(()=>{
+
+        var firstSlide = containerRef.current.childNodes[0];
+        var lastSlide = containerRef.current.childNodes[childrenNum.current-1];
+
+        if(current+1===childrenNum.current){
+            firstSlide.style.left=`${((current+1)*itemWidth)}px`;
+        }
+
+        if(current===childrenNum.current+1){
+            setTransition();
+        }
+
+        
+        if(current===1){
+            firstSlide.style.left=`0px`;
+            lastSlide.style.left=`-${itemWidth}px`;
+            containerRef.current.style.transform =`translate3d(0,0,0)`;  
+        }
+
+        containerRef.current.style.transitionProperty="transform";
+        containerRef.current.style.transform =`translate3d(-${(current-1)*itemWidth}px,0,0)`;
+    },[current]);
 
     return (
         <div className={classes} style={style} ref={ref}>
@@ -179,7 +190,7 @@ const Carousel = forwardRef((props,ref) => {
                     }
                 </ul>
 
-                {/* <ul className={classNames(`${prefixCls}-dots`)}>
+                <ul className={classNames(`${prefixCls}-dots`)}>
                     {
                         Array.from({length:childrenNum.current},(item,i)=>i+1).map((item)=>{
                             return <li key={item} className={classNames({
@@ -189,11 +200,11 @@ const Carousel = forwardRef((props,ref) => {
                         </li>
                         })
                     }
-                </ul> */}
+                </ul>
             </div>
-{/* 
+
                 <Button onClick={handleNext}>下一张</Button>
-                <Button onClick={handlePrev}>上一张</Button> */}
+                {/* <Button onClick={handlePrev}>上一张</Button> */}
         </div>
     )
 });
