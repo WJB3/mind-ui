@@ -10,7 +10,8 @@ const Layout = forwardRef((props, ref) => {
     const {
         prefixCls: customizePrefixCls,
         className,
-        children
+        children,
+        style
     } = props;
 
     const { getPrefixCls } = useContext(ConfigContext);
@@ -43,6 +44,7 @@ const Layout = forwardRef((props, ref) => {
                     }
                 )
             }
+            style={style}
             ref={ref}
         >
             {

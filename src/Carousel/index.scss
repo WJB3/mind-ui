@@ -17,6 +17,7 @@ $prefixCls:"#{$global-prefix}-carousel";
     margin:0;
     padding:0;
     transition: transform .3s ease-in-out;
+    position: relative;
 
     li{
       list-style: none;
@@ -32,13 +33,14 @@ $prefixCls:"#{$global-prefix}-carousel";
   &-frame{
     position: relative;
     display: block;
-    overflow:hidden;
-    margin:0;
-    padding:0;
-    transform: translate3d(0px,0px,0px);
-    box-sizing: border-box;
+    overflow: hidden;
     height: auto;
-    width:auto;
+    width:100%;
+    margin: 0px;
+    padding: 0px;
+    transform: translate3d(0px, 0px, 0px);
+    box-sizing: border-box;
+    max-width: 100%;
 
     .#{$prefixCls}-dots{
       position: absolute;
@@ -105,13 +107,12 @@ $prefixCls:"#{$global-prefix}-carousel";
  
 
 .item_width{
-  text-align: center;
+ 
   height: 160px;
   line-height: 160px;
   background: #364d79;
   overflow: hidden;
+  color:white;
 
-  h3{
-    color:white;
-  }
+   
 }

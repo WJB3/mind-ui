@@ -6,6 +6,7 @@ import SubTitle from './../components/text/SubTitle';
 import TextLayout from './../components/text/TextLayout';
 import DescriptionTable from './../components/text/DescriptionTable';
 import Carousel from './index';
+import { Row, Col } from '../Grid';
 
 
 
@@ -15,26 +16,29 @@ const Page = () => {
 
     return (
         <Layout >
-            <Title>Empty空状态</Title>
+            <Title>Carousel轮播图</Title>
             <SubTitle>何时使用</SubTitle>
-            <Description>Grid栅格</Description>
+            <Description>Carousel轮播图</Description>
             <SubTitle>代码演示</SubTitle>
 
             <TextLayout
                 componentClassName={"button-page-demo"}
                 components={<React.Fragment>
-                    <Carousel>
-                        <div>1</div>
-                        <div>2</div>
-                        <div>3</div>
-                        <div>4</div>
-                    </Carousel>
+                 
+                        <Carousel>
+                            <div className={"item_width"}>1</div>
+                            <div className={"item_width"}>2</div>
+                            <div className={"item_width"}>3</div>
+                            <div className={"item_width"}>4</div>
+                        </Carousel>
+             
+
                 </React.Fragment>}
                 title={"基本用法"}
                 description={""}
             ></TextLayout>
 
-        
+
 
 
             <SubTitle>API</SubTitle>

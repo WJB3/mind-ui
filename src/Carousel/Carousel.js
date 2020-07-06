@@ -30,132 +30,133 @@ const Carousel = forwardRef((props,ref) => {
     const [itemWidth,setItemWidth]=useState(0);
     const [itemHeight,setItemHeight]=useState(0);
     const [current,setCurrent]=useState(1);
+
+    useEffect(()=>{
+        setDimensions();
+    },[])
     
     useEffect(()=>{
-        var firstSlide = containerRef.current.childNodes[0];
-        var lastSlide = containerRef.current.childNodes[childrenNum.current-1];
+        // console.log("useEffect")
+        // var firstSlide = containerRef.current.childNodes[0];
+        // var lastSlide = containerRef.current.childNodes[childrenNum.current-1];
+ 
 
-        // if(autoPlay){
-        //     setAuto();
+        // if(current===childrenNum.current+1){
+        //     setTransition();
         // }
-
-        setDimensions();
-
-        if(current===childrenNum.current+1){
-            setTransition();
-        }
        
          
-        if(current+1===childrenNum.current){
-            firstSlide.style.left=`${((current+1)*itemWidth)}px`;
-        }
+        // if(current+1===childrenNum.current){
+        //     firstSlide.style.left=`${((current+1)*itemWidth)}px`;
+        // }
 
-        if(current===0){
-            setPrevTransition(lastSlide);
-        }
+        // if(current===0){
+        //     setPrevTransition(lastSlide);
+        // }
 
-        if(current===childrenNum.current-2){
-            lastSlide.style.left=`${(current+1)*itemWidth}px`;
-        }
+        // if(current===childrenNum.current-2){
+        //     lastSlide.style.left=`${(current+1)*itemWidth}px`;
+        // }
 
-        if(current+1===childrenNum.current){
-            firstSlide.style.left=`${((current+1)*itemWidth)}px`;
-        }
+        // if(current+1===childrenNum.current){
+        //     firstSlide.style.left=`${((current+1)*itemWidth)}px`;
+        // }
 
-        if(current===1){
-            firstSlide.style.left=`0px`;
-            lastSlide.style.left=`-${itemWidth}px`;
-            containerRef.current.style.transform =`translate3d(0,0,0)`;  
-        }
-    },[current,itemWidth,autoPlay]);
+        // if(current===1){
+        //     firstSlide.style.left=`0px`;
+        //     lastSlide.style.left=`-${itemWidth}px`;
+        //     containerRef.current.style.transform =`translate3d(0,0,0)`;  
+        // }
+    },[ ]);
 
-    const setAuto=React.useCallback(()=>{
-        let timer=setInterval(()=>{
-            handleNext();
-        },3000);
+    // const setAuto=React.useCallback(()=>{
+    //     let timer=setInterval(()=>{
+    //         handleNext();
+    //     },3000);
       
-    },[])
+    // },[])
 
     const setDimensions=React.useCallback(()=>{
+        console.log("setDimensions")
         var firstSlide = containerRef.current.childNodes[0];
+        console.log(frameRef.current.offsetWidth)
         setTimeout(()=>{
             setItemWidth(frameRef.current.offsetWidth);
             setItemHeight(firstSlide.offsetHeight);
         },0)
-    },[frameRef]);
+    },[]);
 
-    const setTransition=()=>{
+    // const setTransition=()=>{
          
-        function transitionend(){
-            //动画结束就关闭动画
-            containerRef.current.style.transitionProperty="none";
-            setCurrent(1);
+    //     function transitionend(){
+    //         //动画结束就关闭动画
+    //         containerRef.current.style.transitionProperty="none";
+    //         setCurrent(1);
             
-            containerRef.current.removeEventListener('transitionend', transitionend, false);
-        }
-        containerRef.current.addEventListener('transitionend', transitionend, false);
+    //         containerRef.current.removeEventListener('transitionend', transitionend, false);
+    //     }
+    //     containerRef.current.addEventListener('transitionend', transitionend, false);
         
-    }
+    // }
 
-    const setPrevTransition=(lastSlide)=>{
+    // const setPrevTransition=(lastSlide)=>{
         
-        function transitionend(){
-            //动画结束就关闭动画
-            containerRef.current.style.transitionProperty="none";
+    //     function transitionend(){
+    //         //动画结束就关闭动画
+    //         containerRef.current.style.transitionProperty="none";
 
-            containerRef.current.style.transform=`translate3d(-${(childrenNum.current-1)*itemWidth}px,0,0)`;
+    //         containerRef.current.style.transform=`translate3d(-${(childrenNum.current-1)*itemWidth}px,0,0)`;
 
-            lastSlide.style.left=`${((childrenNum.current-1)*itemWidth)}px`;
+    //         lastSlide.style.left=`${((childrenNum.current-1)*itemWidth)}px`;
 
-            setCurrent(childrenNum.current);
+    //         setCurrent(childrenNum.current);
             
-            containerRef.current.removeEventListener('transitionend', transitionend, false);
-        }
+    //         containerRef.current.removeEventListener('transitionend', transitionend, false);
+    //     }
 
-        containerRef.current.addEventListener('transitionend', transitionend, false);
+    //     containerRef.current.addEventListener('transitionend', transitionend, false);
         
-    }
+    // }
 
 
-    const handleNext=()=>{
+    // const handleNext=()=>{
 
-        containerRef.current.style.transitionProperty="transform";
+    //     containerRef.current.style.transitionProperty="transform";
 
-        if(current===childrenNum.current+1){
-            return ;
-        }
+    //     if(current===childrenNum.current+1){
+    //         return ;
+    //     }
     
-        containerRef.current.style.transform =`translate3d(-${current*itemWidth}px,0,0)`;
+    //     containerRef.current.style.transform =`translate3d(-${current*itemWidth}px,0,0)`;
 
-        setCurrent(current+1);
-    }
+    //     setCurrent(current+1);
+    // }
 
-    const handlePrev=()=>{
-        containerRef.current.style.transitionProperty="transform";
+    // const handlePrev=()=>{
+    //     containerRef.current.style.transitionProperty="transform";
 
-        let firstSlide=containerRef.current.childNodes[0];
+    //     let firstSlide=containerRef.current.childNodes[0];
 
-        if(current===1){//当是第一个时，应该要跳转到第三个
-            containerRef.current.style.transform =`translate3d(${itemWidth}px,0,0)`;
-        }else{
-            containerRef.current.style.transform =`translate3d(-${(current-2)*itemWidth}px,0,0)`;
-        }
+    //     if(current===1){//当是第一个时，应该要跳转到第三个
+    //         containerRef.current.style.transform =`translate3d(${itemWidth}px,0,0)`;
+    //     }else{
+    //         containerRef.current.style.transform =`translate3d(-${(current-2)*itemWidth}px,0,0)`;
+    //     }
 
-        setCurrent(current=>{
-            
-            return current-1;
-        });
-    }
+    //     setCurrent(current=>{ 
+    //         return current-1;
+    //     });
+    // }
 
-    const handleClickDotItem=React.useCallback((item)=>{
-        containerRef.current.style.transitionProperty="transform";
-        containerRef.current.style.transform =`translate3d(-${(item-1)*itemWidth}px,0,0)`;
-        setCurrent(item);
-    },[childrenProps,itemWidth])
+    // const handleClickDotItem=React.useCallback((item)=>{
+    //     containerRef.current.style.transitionProperty="transform";
+    //     containerRef.current.style.transform =`translate3d(-${(item-1)*itemWidth}px,0,0)`;
+    //     setCurrent(item);
+    // },[childrenProps,itemWidth])
 
     return (
         <div className={classes} style={style} ref={ref}>
-             <div className={classNames(`${prefixCls}-frame`)} ref={frameRef}>
+             <div className={classNames(`${prefixCls}-frame`)} ref={frameRef} >
                 <ul className={classNames(`${prefixCls}-list`)} style={{
                         width:itemWidth*childrenNum.current,    
                         height:itemHeight
@@ -169,7 +170,6 @@ const Carousel = forwardRef((props,ref) => {
                                         {
                                             style:{
                                                 ...child.props.style,
-                                                
                                             }
                                         }
                                     )
@@ -179,7 +179,7 @@ const Carousel = forwardRef((props,ref) => {
                     }
                 </ul>
 
-                <ul className={classNames(`${prefixCls}-dots`)}>
+                {/* <ul className={classNames(`${prefixCls}-dots`)}>
                     {
                         Array.from({length:childrenNum.current},(item,i)=>i+1).map((item)=>{
                             return <li key={item} className={classNames({
@@ -189,11 +189,11 @@ const Carousel = forwardRef((props,ref) => {
                         </li>
                         })
                     }
-                </ul>
+                </ul> */}
             </div>
-
+{/* 
                 <Button onClick={handleNext}>下一张</Button>
-                <Button onClick={handlePrev}>上一张</Button>
+                <Button onClick={handlePrev}>上一张</Button> */}
         </div>
     )
 });

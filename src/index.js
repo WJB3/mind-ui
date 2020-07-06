@@ -30,7 +30,7 @@ import "./index.less";
 ReactDOM.render((<HashRouter>
        
                 <Route path="/"  component={
-                        (props)=><ParrotLayout {...props}>
+                        (props)=><ParrotLayout {...props} >
                                 <Switch>
                                         <Route path="/button" exact component={(props)=><ButtonPage {...props}/>}></Route>
                                         <Route path="/input" exact component={(props)=><InputPage {...props}/>}></Route>
