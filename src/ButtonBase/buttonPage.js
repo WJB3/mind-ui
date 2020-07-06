@@ -88,7 +88,7 @@ class ButtonPage extends React.Component {
                     componentClassName={"button-page-demo"}
                     components={<React.Fragment>
                         <Space itemStyle={{marginBottom:"8px"}}>
-                            <Button type={"primary"} shape={"circle"} size={"small"} flat>小</Button>
+                            <Button type={"primary"} shape={"circle"} size={"small"} >小</Button>
                             <Button type={"danger"} shape={"circle"} flat >中</Button>
                             <Button type={"warning"} shape={"circle"} size={"large"} flat>大</Button>
                             <Button type={"primary"} shape={"round"} size={"small"} onClick={this.handleClick}>小</Button>

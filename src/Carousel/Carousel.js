@@ -2,7 +2,6 @@ import React, { useCallback,useState,cloneElement,useRef,forwardRef, useEffect }
 import { classNames } from '../components/helper/className';
 import { ConfigContext } from '../ConfigContext';
 import ReactDOM from 'react-dom';
-import setRef from '../_utils/setRef';
 import Button from '../ButtonBase';
 
 import "./index.scss"; 
@@ -25,6 +24,7 @@ const Carousel = forwardRef((props,ref) => {
 
     const frameRef=useRef(null);
     const containerRef=useRef(null);
+    const currentRef=useRef(1);
     const childrenNum=useRef(React.Children.count(childrenProps));
 
     const [itemWidth,setItemWidth]=useState(0);
@@ -34,42 +34,17 @@ const Carousel = forwardRef((props,ref) => {
     useEffect(()=>{
         setDimensions();
     },[])
-    
+
     useEffect(()=>{
-        // console.log("useEffect")
-        // var firstSlide = containerRef.current.childNodes[0];
-        // var lastSlide = containerRef.current.childNodes[childrenNum.current-1];
+        let timer=null;
+        if(autoPlay){
+            timer=setInterval(handleNext,3000);
+        }
+        return () => clearInterval(timer)
+    },[current])
+    
+
  
-
-        // if(current===childrenNum.current+1){
-        //     setTransition();
-        // }
-       
-         
-        // if(current+1===childrenNum.current){
-        //     firstSlide.style.left=`${((current+1)*itemWidth)}px`;
-        // }
-
-        // if(current===0){
-        //     setPrevTransition(lastSlide);
-        // }
-
-        // if(current===childrenNum.current-2){
-        //     lastSlide.style.left=`${(current+1)*itemWidth}px`;
-        // }
-
-        // if(current+1===childrenNum.current){
-        //     firstSlide.style.left=`${((current+1)*itemWidth)}px`;
-        // }
-
-    },[ ]);
-
-    // const setAuto=React.useCallback(()=>{
-    //     let timer=setInterval(()=>{
-    //         handleNext();
-    //     },3000);
-      
-    // },[])
 
     const setDimensions=React.useCallback(()=>{
         var firstSlide = containerRef.current.childNodes[0];
@@ -87,83 +62,93 @@ const Carousel = forwardRef((props,ref) => {
             //动画结束就关闭动画
             containerRef.current.style.transitionProperty="none";
 
-            setCurrent(1);
-            
+            setCurrent(1); 
+
+            currentRef.current=1;
+
             containerRef.current.removeEventListener('transitionend', transitionend, false);
         }
         containerRef.current.addEventListener('transitionend', transitionend, false);
         
     }
 
-    // const setPrevTransition=(lastSlide)=>{
+    const setPrevTransition=(lastSlide)=>{
         
-    //     function transitionend(){
-    //         //动画结束就关闭动画
-    //         containerRef.current.style.transitionProperty="none";
+        function transitionend(){
+            //动画结束就关闭动画
+            containerRef.current.style.transitionProperty="none";
 
-    //         containerRef.current.style.transform=`translate3d(-${(childrenNum.current-1)*itemWidth}px,0,0)`;
+            containerRef.current.style.transform=`translate3d(-${(childrenNum.current-1)*itemWidth}px,0,0)`;
 
-    //         lastSlide.style.left=`${((childrenNum.current-1)*itemWidth)}px`;
+            lastSlide.style.left=`${((childrenNum.current-1)*itemWidth)}px`;
 
-    //         setCurrent(childrenNum.current);
+            setCurrent(childrenNum.current);
+
+            currentRef.current=childrenNum.current;
             
-    //         containerRef.current.removeEventListener('transitionend', transitionend, false);
-    //     }
+            containerRef.current.removeEventListener('transitionend', transitionend, false);
+        }
 
-    //     containerRef.current.addEventListener('transitionend', transitionend, false);
+        containerRef.current.addEventListener('transitionend', transitionend, false);
         
-    // }
-
-
-    const handleNext=()=>{
-
-        containerRef.current.style.transitionProperty="transform";
-        setCurrent(current+1);
     }
 
-    // const handlePrev=()=>{
-    //     containerRef.current.style.transitionProperty="transform";
 
-    //     let firstSlide=containerRef.current.childNodes[0];
+    const handleNext=(value)=>{ 
+    
+        containerRef.current.style.transitionProperty="transform";
+        setCurrent(value?value:current+1);
+        currentRef.current=current+1;
+    }
 
-    //     if(current===1){//当是第一个时，应该要跳转到第三个
-    //         containerRef.current.style.transform =`translate3d(${itemWidth}px,0,0)`;
-    //     }else{
-    //         containerRef.current.style.transform =`translate3d(-${(current-2)*itemWidth}px,0,0)`;
-    //     }
+    const handlePrev=()=>{
+        containerRef.current.style.transitionProperty="transform";
 
-    //     setCurrent(current=>{ 
-    //         return current-1;
-    //     });
-    // }
+        if(current===1){//当是第一个时，应该要跳转到第三个
+            containerRef.current.style.transform =`translate3d(${itemWidth}px,0,0)`;
+        }else{
+            containerRef.current.style.transform =`translate3d(-${(current-2)*itemWidth}px,0,0)`;
+        }
+
+        setCurrent(current-1);
+        currentRef.current=current-1;
+    }
 
     const handleClickDotItem=React.useCallback((item)=>{
         setCurrent(item);
+        currentRef.current=item;
     },[childrenProps,itemWidth]);
 
     useEffect(()=>{
-
+ 
         var firstSlide = containerRef.current.childNodes[0];
         var lastSlide = containerRef.current.childNodes[childrenNum.current-1];
 
-        if(current+1===childrenNum.current){
+        if(current===childrenNum.current-1){
             firstSlide.style.left=`${((current+1)*itemWidth)}px`;
+            lastSlide.style.left=`${itemWidth*current}px`;
+        }
+
+        if(current===childrenNum.current){
+            firstSlide.style.left=`${(current*itemWidth)}px`;
         }
 
         if(current===childrenNum.current+1){
             setTransition();
         }
 
+        if(current===0){
+            setPrevTransition(lastSlide);
+        }
         
         if(current===1){
             firstSlide.style.left=`0px`;
             lastSlide.style.left=`-${itemWidth}px`;
             containerRef.current.style.transform =`translate3d(0,0,0)`;  
         }
-
-        containerRef.current.style.transitionProperty="transform";
+ 
         containerRef.current.style.transform =`translate3d(-${(current-1)*itemWidth}px,0,0)`;
-    },[current]);
+    },[current,itemWidth]);
 
     return (
         <div className={classes} style={style} ref={ref}>
@@ -201,10 +186,27 @@ const Carousel = forwardRef((props,ref) => {
                         })
                     }
                 </ul>
-            </div>
 
-                <Button onClick={handleNext}>下一张</Button>
-                {/* <Button onClick={handlePrev}>上一张</Button> */}
+                <Button 
+                    shape="circle" 
+                    icon="arrow-back" 
+                    flat 
+                    className="arrow-left"
+                    style={{color:"white"}}
+                    onClick={handlePrev}    
+                ></Button>
+                <Button 
+                    shape="circle" 
+                    icon="arrow-forward" 
+                    flat 
+                    style={{color:"white"}}
+                    className="arrow-right"
+                    onClick={handleNext}    
+                ></Button>
+
+            </div>
+            
+           
         </div>
     )
 });

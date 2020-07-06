@@ -3,17 +3,16 @@ import "./TextLayout.less";
 import { classNames } from './../helper/className';
 
 class TextLayout extends React.Component{
+    
     render(){
 
         const {
-            children,
             components,
             title,
             description,
             LayoutStyle,
             componentClassName
         }=this.props;
- 
 
         return(
             <section className={"textLayout_component"}>

@@ -25,11 +25,17 @@ const Page = () => {
                 componentClassName={"button-page-demo"}
                 components={<React.Fragment>
                  
-                        <Carousel>
-                            <div className={"item_width"}>1</div>
-                            <div className={"item_width"}>2</div>
-                            <div className={"item_width"}>3</div>
-                            <div className={"item_width"}>4</div>
+                        <Carousel autoPlay>
+                            <div className={"item_width"}><img style={{width:"100%",height:"100%"}} src="https://test-zhian.mro365.com/public/upload/ad/2019/07-19/b26cbff42a00289a188e11a21d289807.jpg"/></div>
+                            <div className={"item_width"}>
+                                <img style={{width:"100%",height:"100%"}} src="http://ppechina.com/public/upload/ad/2020/03-17/57941d33cc2b45a7cc19e2562408a59d.jpg"/>
+                            </div>
+                            <div className={"item_width"}>
+                            <img style={{width:"100%",height:"100%"}} src="http://ppechina.com/public/upload/ad/2020/04-21/baff9f802877caf21cf11593fdf9af6d.jpg"/>
+                            </div>
+                            <div className={"item_width"}>
+                            <img style={{width:"100%",height:"100%"}} src="http://ppechina.com/public/upload/ad/2020/04-29/06461ed47095167ba0a1b5f62e1d6235.jpg" />
+                            </div>
                         </Carousel>
              
 

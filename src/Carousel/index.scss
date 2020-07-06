@@ -100,6 +100,19 @@ $prefixCls:"#{$global-prefix}-carousel";
         }
       }
     }
+
+    .arrow-left,.arrow-right{
+      position: absolute;
+      top:50%;
+      transform: translateY(-50%);
+
+    } 
+    .arrow-left{
+      left:10px;
+    }
+    .arrow-right{
+      right:10px;
+    }
   }
 }
 
@@ -108,8 +121,8 @@ $prefixCls:"#{$global-prefix}-carousel";
 
 .item_width{
  
-  height: 160px;
-  line-height: 160px;
+  height: 260px;
+  line-height: 260px;
   background: #364d79;
   overflow: hidden;
   color:white;
