@@ -94,20 +94,17 @@ const menuInfo=[
             },
           
             {
-                title:"Switch",
+                title:"Switch开关",
                 key:"switch",
             },
             {
-                title:"Radio",
+                title:"Radio单选框",
                 key:"radio",
             },
+          
             {
-                title:"animation",
-                key:"animation",
-            },
-            {
-                title:"Pager",
-                key:"pager",
+                title:"Paper纸张",
+                key:"paper",
             },
             
             {
@@ -206,6 +203,10 @@ const menuInfo=[
                 title:"Tag 标签",
                 key:"tag",
             },
+            {
+                title:"Timeline时间轴",
+                key:"timeline"
+            }
         ]
     }
 ];

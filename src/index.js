@@ -28,6 +28,13 @@ import PaginationPage from './Pagination/paginationPage';
 import BadgePage from './Badge/badgePage';
 import BackTopPage from './BackTop/BackTopPage';
 import DividerPage from './Divider/dividerPage';
+import SpacePage from './Space/spacePage';
+import IconPage from './iconPage/index';
+import TypographyPage from './typographyPage/index';
+import SwitchPage from './switchPage/index';
+import RadioPage from './Radio/radioPage';
+import PaperPage from './Paper/paperPage';
+import TimelinePage from './Timeline/timelinePage';
 
 import ParrotLayout from './ParrotLayout';
 import Demo from './Demo';
@@ -67,6 +74,13 @@ ReactDOM.render((<HashRouter>
                                         <Route path="/badge" exact component={(props)=><BadgePage {...props}/>}></Route>
                                         <Route path="/backtop" exact component={(props)=><BackTopPage {...props}/>}></Route>
                                         <Route path="/divider" exact component={(props)=><DividerPage {...props}/>}></Route>
+                                        <Route path="/space" exact component={(props)=><SpacePage {...props}/>}></Route>
+                                        <Route path="/icon" exact component={(props)=><IconPage {...props}/>}></Route>
+                                        <Route path="/typography" exact component={(props)=><TypographyPage {...props}/>}></Route>
+                                        <Route path="/switch" exact component={(props)=><SwitchPage {...props}/>}></Route>
+                                        <Route path="/radio" exact component={(props)=><RadioPage {...props}/>}></Route>
+                                        <Route path="/paper" exact component={(props)=><PaperPage {...props}/>}></Route>
+                                        <Route path="/timeline" exact component={(props)=><TimelinePage {...props}/>}></Route>
                                 </Switch>
                         </ParrotLayout>
                 } />
