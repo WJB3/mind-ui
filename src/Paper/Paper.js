@@ -16,7 +16,8 @@ const Paper=React.forwardRef((props,ref)=>{
         style,
         deepDirection,
         onClick,
-        role
+        role,
+        id
     }=props;
 
     const { getPrefixCls } = React.useContext(ConfigContext);
@@ -28,6 +29,7 @@ const Paper=React.forwardRef((props,ref)=>{
             children={children}
             style={style}
             ref={ref}
+      
             className={
                 classNames(
                     prefixCls,
@@ -41,6 +43,7 @@ const Paper=React.forwardRef((props,ref)=>{
             }
             onClick={onClick}
             role={role}
+            id={id}
         />
     )
 });

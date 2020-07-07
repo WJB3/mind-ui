@@ -18,10 +18,10 @@ const style = {
     textAlign: 'center',
     fontSize: 14,
 };
-class ButtonPage extends React.Component {
+const Page=()=> {
 
 
-    render() {
+ 
 
         return (
             <Layout >
@@ -35,7 +35,7 @@ class ButtonPage extends React.Component {
                     componentClassName={"button-page-demo"}
                     components={<React.Fragment>
                         Scroll down to see the bottom-right button.
-                        <BackTop visibilityHeight={100} />
+                        <BackTop visibilityHeight={100} target={document.getElementById("layout")}/>
                     </React.Fragment>}
                     title={"基本"}
                     description={"最简单的用法。"}
@@ -84,7 +84,7 @@ class ButtonPage extends React.Component {
 
             </Layout>
         )
-    }
+    
 }
 
-export default ButtonPage;
+export default Page;

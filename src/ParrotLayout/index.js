@@ -39,12 +39,12 @@ const ParrotLayout = (props) => {
 
             <Layout style={{width:"100%",height:"100%"}}>
                 <Layout.Sider>
-                    <Menu theme="dark" style={{ width: 260, height: "100%", overflow: "auto" }} onItemClick={handleItemClick}>
+                    <Menu theme="dark" defaultOpenKeys={["components"]} style={{ width: 260, height: "100%", overflow: "auto" }} onItemClick={handleItemClick}>
                         {generateMenu(menuInfo)}
                     </Menu>
                 </Layout.Sider>
                 
-                <Layout  style={{width:"100%",overflow:"auto",overflowX:"hidden"}}>
+                <Layout  style={{width:"100%",overflow:"auto",overflowX:"hidden"}} id="layout">
                     <Layout.Header>
                         <AppBar position="relative" className={"appbar"} style={{marginBottom:"10px"}}>
                             <Toolbar >

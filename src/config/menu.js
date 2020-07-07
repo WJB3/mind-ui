@@ -6,13 +6,26 @@ const menuInfo=[
         icon:"introduce"
     },
     {
-        title:"组件",
-        key:"component",
+        title:"组件总览",
+        key:"component-view",
+        icon:"component-view"
+    },
+    {
+        title:"通用",
+        key:"common",
         icon:"menu",
         children:[
             {
                 title:"Button 按钮",
                 key:"button",  
+            },
+            {
+                title:"Icon图标",
+                key:"icon",
+            },
+            {
+                title:"Typography排版",
+                key:"typography",
             },
             {
                 title:"Animate 动画",
@@ -22,18 +35,7 @@ const menuInfo=[
                 title:"Input 输入框",
                 key:"input",
             },
-            {
-                title:"Tooltip 文字提示",
-                key:"tooltip",
-            },
-            {
-                title:"Popover 气泡卡片",
-                key:"popover",
-            },
-            {
-                title:"Portal 传送门",
-                key:"portal",
-            },
+         
             {
                 title:"DatePicker 日期选择器",
                 key:"datepicker",
@@ -42,19 +44,12 @@ const menuInfo=[
                 title:"TimePicker 时间选择器",
                 key:"timepicker",
             },
-            {
-                title:"Popper 弹送提示工具",
-                key:"popper",
-            },
+          
             {
                 title:"BackDrop 背景板",
                 key:"backdrop",
             },
-            {
-                title:"Grid 栅格组件",
-                key:"grid",
-                
-            },
+           
             {
                 title:"Select 选择框",
                 key:"select",
@@ -63,86 +58,41 @@ const menuInfo=[
                 title:"Loading加载中",
                 key:"loading",
             },
-            {
-                title:"Empty空状态",
-                key:"empty",
-            },
+        
             {
                 title:"Checkbox 多选框",
                 key:"checkbox",
             },
               
-            {
-                title:"Tag 标签",
-                key:"tag",
-            },
+           
             
             {
                 title:"Stepper步骤条",
                 key:"stepper",
             },
+           
+          
             {
-                title:"Carousel轮播图",
-                key:"Carousel",
-            },
-            {
-                title:"tree",
-                key:"tree",
-            },
-            {
-                title:"skeleton",
+                title:"Skeleton骨架屏",
                 key:"skeleton",
             },
+           
             {
-                title:"avatar",
-                key:"avatar",
-            },
-            {
-                title:"drawer",
+                title:"Drawer抽屉",
                 key:"drawer",
             },
             {
-                title:"modal",
+                title:"Modal模态框",
                 key:"modal",
             },
            
           
-            
+         
             {
-                title:"inputnumber",
-                key:"inputnumber",
-            },
-            {
-                title:"pagination",
+                title:"Pagination分页",
                 key:"pagination",
             },
-            {
-                title:"badge",
-                key:"badge",
-            },
-           
-             
-            
-            {
-                title:"回到顶部",
-                key:"backtop",
-            },
-            {
-                title:"Divider",
-                key:"divider",
-            },
-            {
-                title:"Space",
-                key:"space",
-            },
-            {
-                title:"Typography",
-                key:"typography",
-            },
-            {
-                title:"Layout布局",
-                key:"Layout",
-            },
+          
             {
                 title:"Switch",
                 key:"switch",
@@ -164,12 +114,12 @@ const menuInfo=[
                 title:"Notification",
                 key:"notification",
             },
-           
-           
             {
-                title:"Icon",
-                key:"icon",
+                title:"tree",
+                key:"tree",
             },
+           
+           
             {
                 title:"电池动画",
                 key:"battery-animation-demo",
@@ -178,7 +128,84 @@ const menuInfo=[
                 title:"上传demo",
                 key:"upload",
             },
+               
+            {
+                title:"inputnumber",
+                key:"inputnumber",
+            },
+        ]
+    },
+    {
+        title:"布局",
+        key:"layout",
+        icon:"menu",
+        children:[
+            {
+                title:"Grid 栅格组件",
+                key:"grid",
+                
+            },
+            {
+                title:"Backtop回到顶部",
+                key:"backtop",
+            },
+            {
+                title:"Layout布局",
+                key:"Layout",
+            },
+            {
+                title:"Divider分割线",
+                key:"divider",
+            },
             
+            {
+                title:"Space间距",
+                key:"space",
+            },
+          
+        ]
+    },
+    {
+        title:"数据展示",
+        key:"data-show",
+        icon:"menu",
+        children:[
+            {
+                title:"Avatar头像",
+                key:"avatar",
+            },
+            {
+                title:"Badge徽标",
+                key:"badge",
+            },
+            {
+                title:"Carousel轮播图",
+                key:"Carousel",
+            },
+            {
+                title:"Empty空状态",
+                key:"empty",
+            },
+            {
+                title:"Popper 弹送提示工具",
+                key:"popper",
+            },
+            {
+                title:"Tooltip 文字提示",
+                key:"tooltip",
+            },
+            {
+                title:"Popover 气泡卡片",
+                key:"popover",
+            },
+            {
+                title:"Portal 传送门",
+                key:"portal",
+            },
+            {
+                title:"Tag 标签",
+                key:"tag",
+            },
         ]
     }
 ];

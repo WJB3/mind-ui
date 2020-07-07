@@ -20,6 +20,14 @@ import TimePickerPage from './TimePicker/TimePickerPage';
 import AnimatePage from './Animate/animationPage';
 import StepperPage from './Steps/stepsPage';
 import CarouselPage from './Carousel/carouselPage';
+import SkeletonPage from './Skeleton/skeletonPage';
+import AvatarPage from './Avatar/avatarPage';
+import DrawerPage from './Drawer/drawerPage';
+import ModelPage from './Modal/modalPage';
+import PaginationPage from './Pagination/paginationPage';
+import BadgePage from './Badge/badgePage';
+import BackTopPage from './BackTop/BackTopPage';
+import DividerPage from './Divider/dividerPage';
 
 import ParrotLayout from './ParrotLayout';
 import Demo from './Demo';
@@ -51,6 +59,14 @@ ReactDOM.render((<HashRouter>
                                         <Route path="/animate" exact component={(props)=><AnimatePage {...props}/>}></Route>
                                         <Route path="/stepper" exact component={(props)=><StepperPage {...props}/>}></Route>
                                         <Route path="/carousel" exact component={(props)=><CarouselPage {...props}/>}></Route>
+                                        <Route path="/skeleton" exact component={(props)=><SkeletonPage {...props}/>}></Route>
+                                        <Route path="/avatar" exact component={(props)=><AvatarPage {...props}/>}></Route>
+                                        <Route path="/drawer" exact component={(props)=><DrawerPage {...props}/>}></Route>
+                                        <Route path="/modal" exact component={(props)=><ModelPage {...props}/>}></Route>
+                                        <Route path="/pagination" exact component={(props)=><PaginationPage {...props}/>}></Route>
+                                        <Route path="/badge" exact component={(props)=><BadgePage {...props}/>}></Route>
+                                        <Route path="/backtop" exact component={(props)=><BackTopPage {...props}/>}></Route>
+                                        <Route path="/divider" exact component={(props)=><DividerPage {...props}/>}></Route>
                                 </Switch>
                         </ParrotLayout>
                 } />

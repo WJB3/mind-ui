@@ -13,23 +13,30 @@ import BackTop from '../BackTop';
 
 class ButtonPage extends React.Component {
 
-    componentDidMount(){
-
+    constructor(props){
+        super(props);
+        this.state={
+      
+        }
     }
 
     handleClick=()=>{
-        localStorage.setItem("TEST",'TEST');
-        console.log(localStorage.getItem("TEST"))
-        console.log("TEST2")
+ 
+    }
+
+    componentDidMount(){
+     
     }
 
     render() {
+
+         
 
 
         return (
             <Fragment >
 
-                <BackTop />
+                <BackTop target={document.getElementById("layout")} />
                 
                 <Title>Button按钮</Title>
                 <Description>按钮用于开始一个即时操作。</Description>

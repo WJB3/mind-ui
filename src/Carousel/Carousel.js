@@ -64,8 +64,6 @@ const Carousel = forwardRef((props,ref) => {
 
             setCurrent(1); 
 
-            currentRef.current=1;
-
             containerRef.current.removeEventListener('transitionend', transitionend, false);
         }
         containerRef.current.addEventListener('transitionend', transitionend, false);
@@ -83,8 +81,6 @@ const Carousel = forwardRef((props,ref) => {
             lastSlide.style.left=`${((childrenNum.current-1)*itemWidth)}px`;
 
             setCurrent(childrenNum.current);
-
-            currentRef.current=childrenNum.current;
             
             containerRef.current.removeEventListener('transitionend', transitionend, false);
         }
@@ -94,11 +90,9 @@ const Carousel = forwardRef((props,ref) => {
     }
 
 
-    const handleNext=(value)=>{ 
-    
+    const handleNext=()=>{  
         containerRef.current.style.transitionProperty="transform";
-        setCurrent(value?value:current+1);
-        currentRef.current=current+1;
+        setCurrent(current+1);
     }
 
     const handlePrev=()=>{
@@ -111,12 +105,10 @@ const Carousel = forwardRef((props,ref) => {
         }
 
         setCurrent(current-1);
-        currentRef.current=current-1;
     }
 
     const handleClickDotItem=React.useCallback((item)=>{
         setCurrent(item);
-        currentRef.current=item;
     },[childrenProps,itemWidth]);
 
     useEffect(()=>{

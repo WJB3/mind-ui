@@ -8,11 +8,7 @@ import DescriptionTable from './../components/text/DescriptionTable';
 import Divider from './index';
 //import  Notification from 'rc-notification';
 
-class ButtonPage extends React.Component {
-
-
-    render() {
-
+const Page =()=> { 
         return (
             <Layout >
                 <Title>Divider</Title>
@@ -112,7 +108,7 @@ class ButtonPage extends React.Component {
 
             </Layout>
         )
-    }
+ 
 }
 
-export default ButtonPage;
+export default Page;

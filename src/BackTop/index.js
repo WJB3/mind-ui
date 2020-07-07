@@ -45,8 +45,11 @@ const BackTop = (Props) => {
 
   
     const handleScroll=useCallback((e,wait)=>{
+ 
         return throttle(function(){
+       
             let scroll=getScroll(e.target,true);
+        
             if(scroll>visibilityHeight){
                 setVisible(true)
             }else{
@@ -57,18 +60,15 @@ const BackTop = (Props) => {
 
 
     const bindScrollEvent=()=>{
-        const container=target || getDefaultTarget();
-        // if(scrollEvent.current){
-        //     container.removeEventListener("scroll",(e)=>handleScroll(e,100))
-        // }
+        const container=target || getDefaultTarget(); 
         scrollEvent.current=container.addEventListener("scroll",(e)=>handleScroll(e,20)());
     };
     
    
     useEffect(()=>{
         bindScrollEvent()
-    },[]);
- 
+    },[target]);
+
     return (
         <div className={
             classNames(prefixCls,className)

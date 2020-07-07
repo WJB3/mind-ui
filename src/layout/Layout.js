@@ -11,7 +11,8 @@ const Layout = forwardRef((props, ref) => {
         prefixCls: customizePrefixCls,
         className,
         children,
-        style
+        style,
+        id
     } = props;
 
     const { getPrefixCls } = useContext(ConfigContext);
@@ -46,6 +47,7 @@ const Layout = forwardRef((props, ref) => {
             }
             style={style}
             ref={ref}
+            id={id}
         >
             {
                 React.Children.map(children, child => {
