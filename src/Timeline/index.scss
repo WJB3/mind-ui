@@ -29,9 +29,15 @@ $prefixClsItem:"#{$global-prefix}-timelineitem";
             }
         }
 
-        &-alignrightalternate{
-            &:nth-child(odd){
+        &-alignalternate{
+            &:nth-child(even){
                 flex-direction: row-reverse;
+
+                .#{$prefixClsItem}{
+                    &-content{
+                        text-align: right;
+                    }
+                }
             }
         }
 

@@ -1,0 +1,31 @@
+
+@import "../Theme/styles/variable";
+
+$prefixCls:"#{$global-prefix}-alert";
+
+.#{$prefixCls}{
+
+    display: flex;
+    padding:6px 16px;
+
+    &-icon{
+        display: flex;
+        opacity: 0.9;
+        padding: 7px 0;
+        font-size: 22px;
+        margin-right: 12px;
+    }
+
+    &-Typeerror{
+        color: rgb(97, 26, 21);
+        background-color: rgb(253, 236, 234);
+
+        .#{$prefixCls}-icon{
+            color: #f44336;
+        }
+    }
+
+    &-message{
+        padding: 8px 0;
+    }
+}

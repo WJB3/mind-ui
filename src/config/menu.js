@@ -1,4 +1,4 @@
-import {NavLink} from 'react-router-dom';
+ 
 const menuInfo=[
     {
         title:"introduce介绍",
@@ -206,6 +206,10 @@ const menuInfo=[
             {
                 title:"Timeline时间轴",
                 key:"timeline"
+            },
+            {
+                title:"Alert警告框",
+                key:"alert"
             }
         ]
     }

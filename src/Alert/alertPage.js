@@ -3,19 +3,15 @@ import Layout from '../Layout/index';
 import Title from '../components/text/Title';
 import Description from '../components/text/Description';
 import SubTitle from '../components/text/SubTitle';
-import Timeline from './index';
+import Alert from './index';
 import TextLayout from '../components/text/TextLayout';
 import DescriptionTable from '../components/text/DescriptionTable';
-import { currentDate } from "../_utils/dateUtils";
-import useDate from '../_utils/useDate';
-
-import Space from '../Space'
 
 const Page = () => {
 
     return (
         <Layout >
-            <Title>TimePicker</Title>
+            <Title>Alert</Title>
             <Description>返回页面顶部的操作按钮。</Description>
             <SubTitle>何时使用</SubTitle>
             <Description>当页面内容区域比较长时。</Description>
@@ -24,27 +20,9 @@ const Page = () => {
             <TextLayout
                 componentClassName={"button-page-demo"}
                 components={<React.Fragment>
-                    <Timeline>
-                        <Timeline.Item>Eat</Timeline.Item>
-                        <Timeline.Item>Code</Timeline.Item>
-                        <Timeline.Item>Sleep</Timeline.Item>
-                    </Timeline>
-                    <Timeline center>
-                        <Timeline.Item>Eat</Timeline.Item>
-                        <Timeline.Item>Code</Timeline.Item>
-                        <Timeline.Item>Sleep</Timeline.Item>
-                    </Timeline>
-                    <Timeline center align="right">
-                        <Timeline.Item>Eat</Timeline.Item>
-                        <Timeline.Item>Code</Timeline.Item>
-                        <Timeline.Item>Sleep</Timeline.Item>
-                    </Timeline>
-                    <Timeline center align="alternate">
-                        <Timeline.Item>Eat</Timeline.Item>
-                        <Timeline.Item color="primary">Code</Timeline.Item>
-                        <Timeline.Item color="danger">Sleep</Timeline.Item>
-                        <Timeline.Item>Play</Timeline.Item>
-                    </Timeline>
+
+                    <Alert type="error">This is an error alert — check it out!</Alert>
+                    
                 </React.Fragment>}
                 title={"基本"}
                 description={"最简单的用法。"}

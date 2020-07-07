@@ -35,15 +35,14 @@ import SwitchPage from './switchPage/index';
 import RadioPage from './Radio/radioPage';
 import PaperPage from './Paper/paperPage';
 import TimelinePage from './Timeline/timelinePage';
+import AlertPage from './Alert/alertPage';
+
 
 import ParrotLayout from './ParrotLayout';
 import Demo from './Demo';
-
- 
 import "./index.less";
 
 ReactDOM.render((<HashRouter>
-       
                 <Route path="/"  component={
                         (props)=><ParrotLayout {...props} >
                                 <Switch>
@@ -81,6 +80,7 @@ ReactDOM.render((<HashRouter>
                                         <Route path="/radio" exact component={(props)=><RadioPage {...props}/>}></Route>
                                         <Route path="/paper" exact component={(props)=><PaperPage {...props}/>}></Route>
                                         <Route path="/timeline" exact component={(props)=><TimelinePage {...props}/>}></Route>
+                                        <Route path="/alert" exact component={(props)=><AlertPage {...props}/>}></Route>
                                 </Switch>
                         </ParrotLayout>
                 } />
