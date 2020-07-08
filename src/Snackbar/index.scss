@@ -1,0 +1,66 @@
+
+@import "../Theme/styles/variable";
+
+$prefixCls:"#{$global-prefix}-snackbar";
+ 
+
+.#{$prefixCls}{
+
+    display: flex;
+    z-index:10000;
+    position: fixed;
+    align-items: center;
+
+
+    &-bottom-left{
+        left:24px;
+        right:auto;
+        bottom:24px;
+        justify-content: flex-start;
+    }
+
+    &-bottom-right{
+        right:24px;
+        left:auto;
+        bottom:24px;
+        justify-content: flex-end;
+    }
+
+    &-bottom-center{
+        bottom:24px; 
+    }
+     
+    &-top-left{
+        left:24px;
+        right:auto;
+        top:24px;
+        justify-content: flex-start;
+    }
+
+    &-top-right{
+        right:24px;
+        left:auto;
+        top:24px;
+        justify-content: flex-end;
+    }
+
+    &-top-center{
+        top:24px; 
+    }
+
+    &-content{
+        color: #fff;
+        display: flex;
+        padding: 6px 16px;
+        flex-grow: 1;
+        flex-wrap: wrap; 
+        align-items: center;
+        border-radius: 4px; 
+        background-color: rgb(50, 50, 50);
+        min-width: 288px;
+
+        &-message{
+            padding:8px 0;
+        }
+    }
+}

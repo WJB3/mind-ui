@@ -36,6 +36,7 @@ import RadioPage from './Radio/radioPage';
 import PaperPage from './Paper/paperPage';
 import TimelinePage from './Timeline/timelinePage';
 import AlertPage from './Alert/alertPage';
+import SnackPage from './Snackbar/snackBarPage';
 
 
 import ParrotLayout from './ParrotLayout';
@@ -81,6 +82,7 @@ ReactDOM.render((<HashRouter>
                                         <Route path="/paper" exact component={(props)=><PaperPage {...props}/>}></Route>
                                         <Route path="/timeline" exact component={(props)=><TimelinePage {...props}/>}></Route>
                                         <Route path="/alert" exact component={(props)=><AlertPage {...props}/>}></Route>
+                                        <Route path="/snackbar" exact component={(props)=><SnackPage {...props}/>}></Route>
                                 </Switch>
                         </ParrotLayout>
                 } />

@@ -3,6 +3,23 @@
 
 $prefixCls:"#{$global-prefix}-alert";
 
+$alert-error-backgroundColor:rgb(253, 236, 234);
+$alert-error-color:rgb(97, 26, 21);
+$alert-error-iconcolor:#f44336;
+
+$alert-warning-backgroundColor:rgb(255, 244, 229);
+$alert-warning-color:rgb(102, 60, 0);
+$alert-warning-iconcolor:#ff9800;
+
+$alert-info-backgroundColor:rgb(232, 244, 253);
+$alert-info-color:rgb(13, 60, 97);
+$alert-info-iconcolor:#2196f3;
+
+
+$alert-success-backgroundColor:rgb(237, 247, 237);
+$alert-success-color:rgb(30, 70, 32);
+$alert-success-iconcolor:#4caf50;
+
 .#{$prefixCls}{
 
     display: flex;
@@ -17,15 +34,91 @@ $prefixCls:"#{$global-prefix}-alert";
     }
 
     &-Typeerror{
-        color: rgb(97, 26, 21);
-        background-color: rgb(253, 236, 234);
+        color: $alert-error-color;
+        background-color: $alert-error-backgroundColor;
 
         .#{$prefixCls}-icon{
-            color: #f44336;
+            color: $alert-error-iconcolor;
         }
     }
 
+    &-Typewarning{
+        color: $alert-warning-color;
+        background-color: $alert-warning-backgroundColor;
+
+        .#{$prefixCls}-icon{
+            color: $alert-warning-iconcolor;
+        }
+    }
+
+    
+    &-Typeinfo{
+        color: $alert-info-color;
+        background-color: $alert-info-backgroundColor;
+
+        .#{$prefixCls}-icon{
+            color: $alert-info-iconcolor;
+        }
+    }
+
+    &-Typesuccess{
+        color: $alert-success-color;
+        background-color: $alert-success-backgroundColor;
+
+        .#{$prefixCls}-icon{
+            color: $alert-success-iconcolor;
+        }
+    }
+
+    &-Fillederror{
+        color: #fff;
+        background-color: $alert-error-iconcolor;
+
+        .#{$prefixCls}-icon{
+            color: #fff;
+        }
+    }
+
+    &-Filledwarning{
+        color: #fff;
+        background-color: $alert-warning-iconcolor;
+
+        .#{$prefixCls}-icon{
+            color: #fff;
+        }
+    }
+
+    &-Filledinfo{
+        color: #fff;
+        background-color: $alert-info-iconcolor;
+
+        .#{$prefixCls}-icon{
+            color: #fff;
+        }
+    }
+
+    &-Filledsuccess{
+        color: #fff;
+        background-color: $alert-success-iconcolor;
+
+        .#{$prefixCls}-icon{
+            color: #fff;
+        }
+    } 
+
     &-message{
         padding: 8px 0;
+
+        &-title{
+            font-size: 18px;
+            font-weight: 600;
+        }
+    }
+    &-close{
+        flex: 1;
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: center;
+
     }
 }

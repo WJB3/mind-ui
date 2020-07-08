@@ -19,6 +19,7 @@ const Space = (Props) => {
         children,
         direction="horizontal",
         itemStyle,
+        display,
         isBlock,
         ...restProps
     } = Props;

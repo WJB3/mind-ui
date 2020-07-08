@@ -33,7 +33,8 @@ const Button = React.forwardRef((ButtonProps,ref) => {
                         style,
                         onMouseOver,
                         onMouseLeave,
-                        loading
+                        loading,
+                        color
                     } = ButtonProps;
 
                     const prefixCls=getPrefixCls("btn",customizePrefixCls);
@@ -82,7 +83,7 @@ const Button = React.forwardRef((ButtonProps,ref) => {
                             onClick={handleClick}
                             onMouseOver={onMouseOver}
                             onMouseLeave={onMouseLeave}
-                            style={style}
+                            style={{...style,color:color}}
                             ref={ref}
                         >
                             {loading &&  <Loading color={type?"#fff":"primary"} className={`${prefixCls}-loading-icon`}/>}

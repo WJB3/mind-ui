@@ -47,12 +47,12 @@ $prefixCls:"#{$global-prefix}-animate";
 
         &-grow{
             &-enter{
-                transform: scale(0);
-                opacity: 0;
+                transform: scale(0.8);
+                opacity: 0.8;
             }
             &-appear{
-                transform: scale(0);
-                opacity: 0;
+                transform: scale(0.8);
+                opacity: 0.8;
             }
             &-enter-active{
                 transform: scale(1);
@@ -69,8 +69,8 @@ $prefixCls:"#{$global-prefix}-animate";
                 opacity: 1;
             }
             &-exit-active {
-                transform: scale(0);
-                opacity: 0;
+                transform: scale(0.8);
+                opacity: 0.8;
                 transition: transform 300ms,opacity 300ms;
             }
         }

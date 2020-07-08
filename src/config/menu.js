@@ -208,8 +208,12 @@ const menuInfo=[
                 key:"timeline"
             },
             {
-                title:"Alert警告框",
+                title:"Alert警告提示",
                 key:"alert"
+            },
+            {
+                title:"Snackbar消息条",
+                key:"snackbar"
             }
         ]
     }
