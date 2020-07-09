@@ -8,6 +8,7 @@ import TextLayout from '../components/text/TextLayout';
 import DescriptionTable from '../components/text/DescriptionTable';
 import Space from '../Space';
 import Button from '../ButtonBase';
+import Icon  from '../components/icon';
 
 const Page = () => {
 
@@ -25,7 +26,15 @@ const Page = () => {
                 componentClassName={"button-page-demo"}
                 components={<React.Fragment>
 
-                    <Button onClick={()=>setVisible(true)}>基本的消息条</Button>
+                    <Button onClick={()=>setVisible(true)} action={
+                         <React.Fragment>
+                            <Button color="second" size="small">
+                                UNDO
+                            </Button>
+                            <Icon name={"close"}></Icon>
+                       </React.Fragment>
+                    }>基本的消息条</Button>
+
                     <Snackbar visible={visible} message="记录已送达" effect="grow" />
                 </React.Fragment>}
                 title={"基本"}

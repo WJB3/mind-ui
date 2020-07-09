@@ -11,26 +11,21 @@ const Snackbar = React.forwardRef((props, ref) => {
     const {
         prefixCls: customizePrefixCls,
         className,
-        placement = "top-right",
+        placement = "bottom-left",
         message,
-        visible: visibleProps,
-        defaultVisible,
-        effect="grow"
+        visible, 
+        effect="grow",
+        action
     } = props;
 
     const { getPrefixCls } = React.useContext(ConfigContext);
 
     const prefixCls = getPrefixCls("snackbar", customizePrefixCls);
 
-    const [visible, setVisible] = useControlled({
-        controlled: visibleProps,
-        default: defaultVisible
-    });
-
     const Component=useComponentEffect(effect);
 
     return (
-        <Component in={visible} direction="right">
+        <Component in={visible}  >
             <Paper
                 className={classNames(
                     `${prefixCls}`,
@@ -48,7 +43,9 @@ const Snackbar = React.forwardRef((props, ref) => {
                     <div className={classNames(
                         `${prefixCls}-content-message`,
                     )}>{message}</div>
-
+                    <div className={classNames(
+                        `${prefixCls}-content-action`,
+                    )}>{action}</div>
                 </Paper>
 
             </Paper>
