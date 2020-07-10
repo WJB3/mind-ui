@@ -17,6 +17,7 @@ const Paper=React.forwardRef((props,ref)=>{
         deepDirection,
         onClick,
         role,
+        center,
         id
     }=props;
 
@@ -37,7 +38,8 @@ const Paper=React.forwardRef((props,ref)=>{
                     {
                         [`${prefixCls}-round`]:!square,
                         [`${prefixCls}-deep-${deep}`]:deep,
-                        [`${prefixCls}-deepDirection-${deepDirection}`]:deepDirection
+                        [`${prefixCls}-deepDirection-${deepDirection}`]:deepDirection,
+                        [`${prefixCls}-center`]:center,
                     }
                 )
             }
@@ -68,7 +70,8 @@ Paper.propTypes={
     //点击事件
     onClick:PropTypes.func,
     //role角色
-    role:PropTypes.string
+    role:PropTypes.string,
+    center:PropTypes.bool
 };
 
 export default Paper;

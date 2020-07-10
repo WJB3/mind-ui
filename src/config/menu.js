@@ -216,6 +216,18 @@ const menuInfo=[
                 key:"snackbar"
             }
         ]
+    },
+    {
+        title:"工具",
+        key:"ui-utils",
+        icon:"menu",
+        children:[
+           
+            {
+                title:"ClickAwayListener点击其他监视器",
+                key:"clickawaylistener",
+            }
+        ]
     }
 ];
 

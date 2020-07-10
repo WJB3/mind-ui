@@ -11,7 +11,7 @@ const Alert = React.forwardRef((props, ref) => {
     const {
         prefixCls: customizePrefixCls,
         className,
-        type,
+        type="warning",
         children,
         title,
         closable,
