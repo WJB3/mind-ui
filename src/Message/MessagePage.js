@@ -14,7 +14,7 @@ import Space from '../Space'
 const Page = () => {
 
     const showMessage=(e)=>{
-        Message.open({
+        Message.warning({
             message:"我是男神"
         })
     }

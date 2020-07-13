@@ -70,7 +70,8 @@ const Grow = React.forwardRef((props, ref) => {
             theme.transitions.create('transform',{
                 duration:duration*0.666,
                 delay,
-            })
+            }),
+          
         ].join(",");
 
         if(onEnter){
@@ -114,6 +115,7 @@ const Grow = React.forwardRef((props, ref) => {
               duration: duration * 0.666,
               delay: delay || duration * 0.333,
             }),
+            
         ].join(',');
         node.style.opacity = '0';
         node.style.transform = getScale(0.75);
