@@ -19,7 +19,8 @@ const Alert = React.forwardRef((props, ref) => {
         action,
         icon,
         filled,
-        deep
+        deep,
+        style
     } = props;
 
     const { getPrefixCls } = React.useContext(ConfigContext);
@@ -38,6 +39,7 @@ const Alert = React.forwardRef((props, ref) => {
             )}
             ref={ref}
             deep={deep}
+            style={style}
         >
             {icon===false||type==="normal"?null:<div className={
                 classNames(

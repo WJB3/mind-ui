@@ -79,18 +79,21 @@ const Grow = React.forwardRef((props, ref) => {
     }
 
     const handleEntering=(node,isAppearing)=>{
+        
         if(onEntering){
             onEntering(node,isAppearing)
         }
     }
 
     const handleEntered=(node,isAppearing)=>{
+        
         if(onEntered){
             onEntered(node,isAppearing)
         }
     }
 
     const handleExit=(node,isAppearing)=>{
+  
         const { duration:transitionDuration,delay}=getTransitionProps(
             {style,timeout},
             {mode:"exit"}
@@ -120,12 +123,14 @@ const Grow = React.forwardRef((props, ref) => {
     }
 
     const handleExited=(node,isAppearing)=>{
+        
         if(onExited){
             onExited(node,isAppearing);
         }
     }
 
     const handleExiting=(node,isAppearing)=>{
+       
         if(onExiting){
             onExiting(node,isAppearing);
         }
@@ -160,6 +165,7 @@ const Grow = React.forwardRef((props, ref) => {
         >
            {
                (state,childProps)=>{
+                 
                     return React.cloneElement(children,{
                         style:{
                             opacity:0,

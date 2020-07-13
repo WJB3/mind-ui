@@ -114,7 +114,7 @@ class Page extends React.Component {
 
                         <Button type="primary" onClick={() => this.setState({ slideIn: !this.state.slideIn })}>点击展示</Button>
 
-                        <Slide in={this.state.slideIn} direction="left">
+                        <Slide in={this.state.slideIn} direction="top">
                             <Pager deep={6} />
                         </Slide>
 

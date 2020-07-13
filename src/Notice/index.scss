@@ -1,8 +1,22 @@
  
 @import "../Theme/styles/variable";
 
-$prefixCls:"#{$global-prefix}-notice"; 
+$prefixCls:"#{$global-prefix}-notices"; 
+$prefixClsItem:"#{$global-prefix}-notice"; 
 
 .#{$prefixCls}{
-     
+    position: fixed;
+    top:16px;
+    left:0;
+    z-index: 1010;
+    width:100%;
+    pointer-events: none;
+    
+
+
+    .#{$prefixClsItem}{
+        width:288px;
+        margin-bottom:10px; 
+        z-index: 5;
+    }
 }

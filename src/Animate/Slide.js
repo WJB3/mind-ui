@@ -61,7 +61,7 @@ const Slide = forwardRef((props, ref) => {
         onExit,
         onExited,
         onExtered,
-        direction="down",
+        direction="bottom",
         ...restProps
     } = props;
 

@@ -149,11 +149,7 @@ const Input = forwardRef((props, ref) => {
         selectProps.onKeyUp=handleKeyUp
     }
 
-<<<<<<< Updated upstream
- 
-=======
     console.log(allowClear)
->>>>>>> Stashed changes
     
     return (
         <div style={style} className={classNames(

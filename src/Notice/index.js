@@ -1,10 +1,18 @@
 import React from 'react';
 import { classNames } from '../components/helper/className';
-import { ConfigContext } from '../ConfigContext';
+import { isNull } from '../_utils/helpUtils'
 import  createChainedFunction  from '../_utils/createChainedFunction';
 import Notice from './Notice';
 import ReactDom from 'react-dom';
 import "./index.scss";
+
+let seed = 0;
+const now = Date.now();
+
+function getNotificationUuid() {
+    return `parrotNotification_${now}_${seed++}`;
+}
+
 
 class Notices extends React.Component{
     state={
@@ -18,6 +26,53 @@ class Notices extends React.Component{
         })
     }
 
+    //add方法保证了notice不会重复加入到notices队列中。
+    addNotice(notice) {
+  
+        const { notices } = this.state;
+        const { maxCount } = this.props;
+        //key表示一个notice的id
+        const key = notice.key || getNotificationUuid();
+        notice.key=key;
+        notice.in=true;
+    
+        //要添加的notice是否存在
+        const noticeIndex = notices.map((v) => v.key).indexOf(key);
+        //使用concat()来复制notice数组
+        const updatedNotices = notices.concat();
+        //如果要加的notice已经存在
+        if (noticeIndex !== -1) {
+            //删除已存在的notice，加入要添加的notice
+            updatedNotices.splice(noticeIndex, 1, notice);
+        } else {
+            //如果设置了maxCount，且notices中的数量已达到maxCount的限制，那么移除第一个notice
+            if (maxCount && notices.length >= maxCount) {
+                //updateKey设置为最初移除的key，最要是为了利用已存在的组件
+                notice.updateKey = updatedNotices[0].updateKey || updatedNotices[0].key;
+                updatedNotices.shift();
+            }
+            //加入的要添加的notice
+            updatedNotices.push(notice);
+        }
+        this.setState({
+            notices: updatedNotices
+        })
+      
+    }
+
+    onCloseEffect=(key)=>{
+        console.log("onCloseEffect")
+        this.setState({
+            notices: this.state.notices.map((item)=> {
+                if(item.key===key){
+                    return ({...item,in:false})
+                }
+                return ({...item})
+            })
+        })
+        console.log(this.state.notices)
+    }
+
     getNoticeNodes=()=>{
         const { notices }=this.state;
       
@@ -29,12 +84,16 @@ class Notices extends React.Component{
 
             //React中有两个比较特殊的参数：ref 和 key，不会被传递到组件
             return <Notice
+                        key={notice.key}
+                        keyIndex={notice.key}
                         onClose={onClose}
+                        onCloseEffect={this.onCloseEffect}
                         message={notice.message?notice.message:"消息提醒"}
                         duration={notice.duration?notice.duration:4}
                         isCloseAuto={isNull(notice.duration)}
-                        type={notice.status} 
-                        in={true}
+                        type={notice.status==="open"?"normal":notice.status} 
+                        in={notice.in}
+                        effect={"grow"}
             /> 
         })
     }
@@ -42,12 +101,8 @@ class Notices extends React.Component{
     render() {
         const { className,style,prefixCls:customizePrefixCls }=this.props; 
 
-        const { getPrefixCls } = React.useContext(ConfigContext);
-
-        const prefixCls = getPrefixCls("notices", customizePrefixCls);
-
         return (
-            <div className={classNames(prefixCls,className)} style={style}>
+            <div className={classNames(`parrot-notices`,className)} style={style}>
                 {this.getNoticeNodes()} 
             </div>
         )
