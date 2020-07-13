@@ -1,30 +1,16 @@
 import React, { useState, useEffect, Fragment,useRef } from 'react';
-import { classNames } from './../helper/className';
+import { classNames } from '../helper/className';
 import "./../styles/notification.scss";
-import Animate from './../animate/Animate';
-import { useAnimate } from './../../components/_utils/hooks';
+import Animate from '../animate/Animate';
+import { useAnimate } from '../_utils/hooks';
 import Ripple from '../../BaseRipple';
-import Icon from './../icon';
+import Icon from '../icon';
 
-let closeTimer: any={};//计算关闭的定时器
-let classTimer: any;//去除class的定时器
+let closeTimer;//计算关闭的定时器
+let classTimer;//去除class的定时器
 
-interface NoticeProps {
-    duration?: number,//组件挂载多久后关闭
-    children?: any,//子元素
-    onClose?: () => {},//关闭的回调函数,
-    keyIndex?: string,
-    message?: any,
-    description?: any,
-    isCloseAuto?:boolean,//是否自动关闭
-    status?:string,
-    backgroundColor?:string,
-    icon?:any,
-    btn?:any,
-    style?:any
-}
-
-const Notice: React.FunctionComponent<NoticeProps> = (NoticeProps) => {
+ 
+const Notice  = (NoticeProps) => {
 
 
     const {

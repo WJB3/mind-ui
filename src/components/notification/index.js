@@ -1,22 +1,10 @@
 import Notification from './notification';
-import { any } from 'prop-types';
-
+ 
 let defaultPlacement = 'right-top';
+ 
+const notificationInstance={}
 
-export enum notificationType {
-    SUCCESS = "success",
-    ERROR = "error",
-    INFO = "info",
-    WARNING = "warning"
-}
-
-const notificationInstance: any = {}
-
-function getPlacementStyle(
-    placement: any,
-    top: any,
-    bottom: any
-) {
+function getPlacementStyle(placement,top,bottom) {
     let style;
     switch (placement) {
         case "right-top":
@@ -58,7 +46,7 @@ function getPlacementStyle(
     return style;
 }
 
-function getNotificationInstance(args: any, callback: any) {
+function getNotificationInstance(args, callback) {
 
     const {
         placement = defaultPlacement,
@@ -85,7 +73,7 @@ function getNotificationInstance(args: any, callback: any) {
                 style:getPlacementStyle(placement,top,bottom),
                 maxCount
             },
-            (notification: any) => {
+            (notification) => {
                 resolve(notification);
                 callback({
                     instance: notification
@@ -95,13 +83,13 @@ function getNotificationInstance(args: any, callback: any) {
     })
 }
 
-const notification: any = {
-    open: (args: any) => {
+const notification  = {
+    open: (args) => {
         getNotificationInstance(args, ({ instance }) => {
             instance.notice(args)
         })
     },
-    close(key:string){
+    close(key){
         Object.keys(notificationInstance).forEach(cacheKey=>{
             Promise.resolve(notificationInstance[cacheKey]).then(instance=>{
                 instance.removeNotice(key);
@@ -119,8 +107,8 @@ const notification: any = {
 
 };
 
-['success', 'info', 'warning', 'error'].forEach((item: any) => {
-    notification[item] = (args: any) => {
+['success', 'info', 'warning', 'error'].forEach((item) => {
+    notification[item] = (args) => {
         getNotificationInstance(args, ({ instance }) => {
             instance.notice({...args,status:item})
         })

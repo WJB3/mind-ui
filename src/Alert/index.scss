@@ -20,6 +20,9 @@ $alert-success-backgroundColor:rgb(237, 247, 237);
 $alert-success-color:rgb(30, 70, 32);
 $alert-success-iconcolor:#4caf50;
 
+$alert-normal-backgroundColor:rgb(50, 50, 50);
+$alert-normal-color:#fff;
+
 .#{$prefixCls}{
 
     display: flex;
@@ -31,6 +34,11 @@ $alert-success-iconcolor:#4caf50;
         padding: 7px 0;
         font-size: 22px;
         margin-right: 12px;
+    }
+
+    &-Typenormal{
+        color: $alert-normal-color;
+        background-color: $alert-normal-backgroundColor;
     }
 
     &-Typeerror{

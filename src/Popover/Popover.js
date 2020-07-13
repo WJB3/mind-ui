@@ -5,9 +5,7 @@ import useControlled from '../_utils/useControlled';
 import PropTypes from 'prop-types';
 import BackDrop from '../BackDrop';
 import "./index.scss";
-import Tooltip from '../Tooltip';
-
-
+import Tooltip from '../Tooltip'; 
 
 const Popover = React.forwardRef((Props, ref) => {
 
@@ -45,9 +43,12 @@ const Popover = React.forwardRef((Props, ref) => {
     }
 
     const handleClick = (e) => {
-
         if (trigger === "click") {
             setVisible(!visible)
+        }
+
+        if(children&&children.props&&children.props.onClick){
+            children.props.onClick(e)
         }
     }
 
@@ -64,19 +65,6 @@ const Popover = React.forwardRef((Props, ref) => {
             setVisible(false)
         }
     }
-
-    // const handleFocus=(e)=>{
-    //     if (trigger === "focus") {
-    //         setVisible(true)
-    //     }
-    // }
-
-    // const handleBlur=(e)=>{
-    //     if (trigger === "focus") {
-    //         setVisible(false)
-    //     }
-    // }
-     
 
     return (
         <React.Fragment>

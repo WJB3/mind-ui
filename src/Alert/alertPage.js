@@ -24,6 +24,7 @@ const Page = () => {
                 components={<React.Fragment>
 
                     <Space direction="vertical" isBlock >
+                        
                         <Alert type="error">这是一个错误提示！</Alert>
 
                         <Alert type="warning" closable onClose={() => { console.log("我点击了close") }}>这是一个警告提示！</Alert>

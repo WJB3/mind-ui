@@ -1,20 +1,10 @@
-import React, { useState, useEffect, useRef, Component } from 'react';
+import React, {  Component } from 'react';
 import ReactDom, { render } from 'react-dom';
-import { classNames } from './../helper/className';
-import { createChainedFunction } from './../_utils/utils';
-import Notice from './notice';
-import { useAnimate } from './../../components/_utils/hooks';
+import { classNames } from '../helper/className';
+import { createChainedFunction } from '../_utils/utils';
+import Notice from './notice'; 
 import "./../styles/grid.scss";
-import { isNull } from './../_utils/utils';
-
-
-export interface NotificationInstance {
-    notice?: any,
-    removeNotice?: any,
-    destroy?: any,
-    component?: any,
-
-}
+import { isNull } from '../_utils/utils';
 
 let seed = 0;
 const now = Date.now();
@@ -23,33 +13,24 @@ function getNotificationUuid() {
     return `wonderfulNotification_${now}_${seed++}`;
 }
 
-interface NotificationProps {
-    maxCount?: number,
-    ref?: any,
-    className?:string,
-    style?:object
-}
 
-interface NotificationState {
-    notices?: any;
-}
 
-class Notification extends Component<NotificationProps, NotificationState>{
+class Notification extends Component{
 
-    state: NotificationState = {
+    state = {
         notices: []
     }
 
 
-    removeNotice(key: any) {
-        let notices = this.state.notices.filter((notice: any) => notice.key !== key)
+    removeNotice(key) {
+        let notices = this.state.notices.filter((notice) => notice.key !== key)
         this.setState({
             notices: notices
         })
     }
 
     //add方法保证了notice不会重复加入到notices队列中。
-    addNotice(notice: any) {
+    addNotice(notice) {
   
         const { notices } = this.state;
         const { maxCount } = this.props;
@@ -58,7 +39,7 @@ class Notification extends Component<NotificationProps, NotificationState>{
         notice.key=key;
     
         //要添加的notice是否存在
-        const noticeIndex = notices.map((v: any) => v.key).indexOf(key);
+        const noticeIndex = notices.map((v) => v.key).indexOf(key);
         //使用concat()来复制notice数组
         const updatedNotices = notices.concat();
         //如果要加的notice已经存在
@@ -84,7 +65,7 @@ class Notification extends Component<NotificationProps, NotificationState>{
     getNoticeNodes=()=>{
         const { notices }=this.state;
       
-        return notices.map((notice: any, index: any) => {
+        return notices.map((notice, index) => {
             //如果notice是数组最后一个，且存在updateKey。说明，该notice添加进来之前，数组已经达到maxCount,并挤掉了数组的第一个noitce。
             // update 为true，是由于重用了之前被挤掉的notice的组件，需要更新重启Notice组件的定时器
             const update = Boolean(index === notices.length - 1 && notice.updateKey);
@@ -126,7 +107,7 @@ class Notification extends Component<NotificationProps, NotificationState>{
 
 export default Notification;
 
-Notification.newInstance = function newNotificationInstance(properties: any, callback: any) {
+Notification.newInstance = function newNotificationInstance(properties, callback) {
 
     const { getContainer, ...props } = properties || {};
     const div = document.createElement("div");
@@ -140,17 +121,17 @@ Notification.newInstance = function newNotificationInstance(properties: any, cal
     //由上可知，其实notification最后都挂载在div中
     let called = false;
 
-    function ref(notification:Notification){
+    function ref(notification){
         if(called){
             return ;
         }
         called=true;
         callback({
-            notice(noticeProps:any){
+            notice(noticeProps){
                 notification.addNotice(noticeProps);
             },
             component:notification,
-            removeNotice(key:any){
+            removeNotice(key){
                 notification.removeNotice(key);
             }
         })

@@ -11,7 +11,7 @@ const Alert = React.forwardRef((props, ref) => {
     const {
         prefixCls: customizePrefixCls,
         className,
-        type,
+        type="normal",
         children,
         title,
         closable,
@@ -39,7 +39,7 @@ const Alert = React.forwardRef((props, ref) => {
             ref={ref}
             deep={deep}
         >
-            {icon===false?null:<div className={
+            {icon===false||type==="normal"?null:<div className={
                 classNames(
                     `${prefixCls}-icon`
                 )

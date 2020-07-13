@@ -172,6 +172,10 @@ const menuInfo=[
                 key:"avatar",
             },
             {
+                title:"Message消息",
+                key:"message"
+            },
+            {
                 title:"Badge徽标",
                 key:"badge",
             },
@@ -214,6 +218,18 @@ const menuInfo=[
             {
                 title:"Snackbar消息条",
                 key:"snackbar"
+            }
+        ]
+    },
+    {
+        title:"工具",
+        key:"ui-utils",
+        icon:"menu",
+        children:[
+           
+            {
+                title:"ClickAwayListener点击其他监视器",
+                key:"clickawaylistener",
             }
         ]
     }

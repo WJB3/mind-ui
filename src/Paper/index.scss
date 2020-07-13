@@ -36,5 +36,11 @@ $prefixCls:"#{$global-prefix}-paper";
         
     }   
 
+    &-center{
+        display:flex;
+        justify-content: center;
+        align-items: center;
+    }
+
     
 }

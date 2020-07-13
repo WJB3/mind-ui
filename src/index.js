@@ -37,6 +37,9 @@ import PaperPage from './Paper/paperPage';
 import TimelinePage from './Timeline/timelinePage';
 import AlertPage from './Alert/alertPage';
 import SnackPage from './Snackbar/snackBarPage';
+import ClickAwayListenerPage from './ClickAwayListener/ClickAwayListenerPage';
+import NoticificationPage from './notificationPage';
+import MessagePage from './Message/MessagePage';
 
 
 import ParrotLayout from './ParrotLayout';
@@ -83,6 +86,10 @@ ReactDOM.render((<HashRouter>
                                         <Route path="/timeline" exact component={(props)=><TimelinePage {...props}/>}></Route>
                                         <Route path="/alert" exact component={(props)=><AlertPage {...props}/>}></Route>
                                         <Route path="/snackbar" exact component={(props)=><SnackPage {...props}/>}></Route>
+                                        <Route path="/clickawaylistener" exact component={(props)=><ClickAwayListenerPage {...props}/>}></Route>
+                                        <Route path="/notification" exact component={(props)=><NoticificationPage {...props}/>}></Route>
+                                        <Route path="/message" exact component={(props)=><MessagePage {...props}/>}></Route>
+                                        
                                 </Switch>
                         </ParrotLayout>
                 } />

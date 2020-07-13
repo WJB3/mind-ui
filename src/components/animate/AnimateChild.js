@@ -1,14 +1,11 @@
 import React, { useEffect } from 'react';
-import { classNames } from './../helper/className';
+import { classNames } from '../helper/className';
 import "./../styles/c_animation.scss";
 
-interface AnimateChildProps{
-    transitionName?:any
-}
-
+ 
 let isAnimate=true;
 
-const AnimateChild:React.FunctionComponent<AnimateChildProps>=(AnimateChildProps)=>{
+const AnimateChild =(AnimateChildProps)=>{
 
     const {
         transitionName
