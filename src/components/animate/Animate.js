@@ -1,12 +1,11 @@
 import React, { useEffect, useState,Fragment, useCallback,Children,useRef } from 'react';
-import { classNames } from './../helper/className';
-import "./../styles/c_animation.scss";
+import { classNames } from '../helper/className';
 import { toArrayChildren,isSameChildren } from './ChildrenUtils';
 
 const defaultKey=`wonderful_animation_${Date.now()}`;
 
 //得到默认的react孩子节点
-function getChildrenFromProps(props:any){
+function getChildrenFromProps(props){
     const children=props.children;
     if(React.isValidElement(children)){
         if(!children.key){
@@ -18,17 +17,10 @@ function getChildrenFromProps(props:any){
     return children;
 }
 
-interface AnimateProps{
-    children?:any,
-    transitionName?:string,
-    transitionEnter?:boolean,
-    transitionAppear?:boolean,
-    transitionLeave?:boolean
-}
 
 let isAnimate=true;
 
-const Animate:React.FunctionComponent<AnimateProps>=(AnimateProps)=>{
+const Animate =(AnimateProps)=>{
 
     const {
        children,
@@ -38,7 +30,7 @@ const Animate:React.FunctionComponent<AnimateProps>=(AnimateProps)=>{
        transitionLeave
     }=AnimateProps;
 
-    let createRef:any={}
+    let createRef={}
 
     const overlayAnimation = [{ opacity: 0 }, { opacity: 0.3 }];
     const animationSettings = { duration: 150, fill: "both" };
@@ -50,7 +42,7 @@ const Animate:React.FunctionComponent<AnimateProps>=(AnimateProps)=>{
     const [childrenState,setChildrenState]=useState(toArrayChildren(getChildrenFromProps(AnimateProps)));
 
     function createRefFunc(){
-        children.forEach((item:any,index:any)=>{
+        children.forEach((item,index)=>{
             createRef[index]=useRef(null);
         })
     }
@@ -67,7 +59,7 @@ const Animate:React.FunctionComponent<AnimateProps>=(AnimateProps)=>{
     })
 
     function getChildren(){
-        return childrenState.map((child:any)=>{
+        return childrenState.map((child)=>{
             if(child===null||child===undefined){
                 return child;
             }

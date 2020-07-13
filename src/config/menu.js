@@ -172,6 +172,10 @@ const menuInfo=[
                 key:"avatar",
             },
             {
+                title:"Message消息",
+                key:"message"
+            },
+            {
                 title:"Badge徽标",
                 key:"badge",
             },
