@@ -12,8 +12,6 @@ const now = Date.now();
 function getNotificationUuid() {
     return `parrotNotification_${now}_${seed++}`;
 }
-
-
 class Notices extends React.Component{
     state={
         notices: []
@@ -35,6 +33,7 @@ class Notices extends React.Component{
         const key = notice.key || getNotificationUuid();
         notice.key=key;
         notice.in=true;
+        notice.filled=this.props.filled;
     
         //要添加的notice是否存在
         const noticeIndex = notices.map((v) => v.key).indexOf(key);
@@ -60,8 +59,7 @@ class Notices extends React.Component{
       
     }
 
-    onCloseEffect=(key)=>{
-        console.log("onCloseEffect")
+    onCloseEffect=(key)=>{ 
         this.setState({
             notices: this.state.notices.map((item)=> {
                 if(item.key===key){
@@ -69,8 +67,7 @@ class Notices extends React.Component{
                 }
                 return ({...item})
             })
-        })
-        console.log(this.state.notices)
+        }) 
     }
 
     getNoticeNodes=()=>{
@@ -89,17 +86,18 @@ class Notices extends React.Component{
                         onClose={onClose}
                         onCloseEffect={this.onCloseEffect}
                         message={notice.message?notice.message:"消息提醒"}
-                        duration={notice.duration?notice.duration:4}
+                        duration={notice.duration?notice.duration:2}
                         isCloseAuto={isNull(notice.duration)}
                         type={notice.status==="open"?"normal":notice.status} 
                         in={notice.in}
                         effect={"grow"}
+                        filled={notice.filled}
             /> 
         })
     }
 
     render() {
-        const { className,style,prefixCls:customizePrefixCls }=this.props; 
+        const { className,style  }=this.props;
 
         return (
             <div className={classNames(`parrot-notices`,className)} style={style}>
@@ -112,6 +110,7 @@ class Notices extends React.Component{
 export default Notices;
 
 Notices.newInstance = function newNotificationInstance(properties, callback) {
+ 
 
     const { getContainer, ...props } = properties || {};
     const div = document.createElement("div");
@@ -131,7 +130,7 @@ Notices.newInstance = function newNotificationInstance(properties, callback) {
         }
         called=true;
         callback({
-            notice(noticeProps){
+            notice(noticeProps){  
                 notification.addNotice(noticeProps);
             },
             component:notification,

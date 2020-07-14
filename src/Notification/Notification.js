@@ -1,67 +1,58 @@
-import React, { Children } from 'react';
-import PropTypes from 'prop-types';
-import { ConfigContext } from '../ConfigContext';
-import { classNames } from '../components/helper/className';
-import "./index.scss"; 
-import useComponentEffect from '../_utils/useComponentEffect';
-import Paper from '../Paper';
+import React from 'react'; 
+import useStatus from '../_utils/useStatus';
+import "./index.scss";
+import Notification from '../Notice';
+let defaultPlacement = 'top-center';
 
-const Notification = React.forwardRef((props, ref) => {
+const notificationInstance={}
+
+function getNotificationInstance(args, callback) {
+
     const {
-        prefixCls: customizePrefixCls,
-        className,
-        placement = "bottom-left",
-        message,
-        visible, 
-        effect="grow",
-        action
-    } = props;
+        placement = defaultPlacement,
+        maxCount=100,
+        filled
+    } = args;
 
-    const { getPrefixCls } = React.useContext(ConfigContext);
+    const prefixCls = 'parrot-notification';
+    const cacheKey = `${prefixCls}-${placement}`;
+    const cacheInstance = notificationInstance[cacheKey];
 
-    const prefixCls = getPrefixCls("notification", customizePrefixCls);
+    if (cacheInstance) {
+        Promise.resolve(cacheInstance).then(instance => {
+            callback({ instance })
+        });
+        return;
+    }
 
-    const Component=useComponentEffect(effect);
+    notificationInstance[cacheKey] = new Promise(resolve => {
 
-    return (
-        <Component in={visible}  >
-            <Paper
-                className={classNames(
-                    `${prefixCls}`,
-                    className,
-                    {
-                        [`${prefixCls}-${placement}`]: placement
-                    }
-                )}
-                ref={ref}
-            >
+   
+        Notification.newInstance(
+            { 
+                maxCount,
+                className:'parrot-notification',
+                filled:filled,
+                
+            },
+            (notification) => {
+                resolve(notification);
+                callback({
+                    instance: notification
+                })
+            }
+        )
+    })
+}
 
-                <Paper className={classNames(
-                    `${prefixCls}-content`,
-                )} deep={6}>
-                    <div className={classNames(
-                        `${prefixCls}-content-message`,
-                    )}>{message}</div>
-                    <div className={classNames(
-                        `${prefixCls}-content-action`,
-                    )}>{action}</div>
-                </Paper>
 
-            </Paper>
-        </Component>
-    )
-
-});
-
-Notification.propTypes = {
-    //传入的className
-    className: PropTypes.string,
-    //自定义类名前缀
-    prefixCls: PropTypes.string,
-    //alert类型
-    type: PropTypes.string,
-    //children
-    children: PropTypes.any
-};
+useStatus().forEach((item) => {
+    Notification[item] = (args) => {
+        getNotificationInstance(args, ({ instance }) => {
+            instance.notice({...args,status:item})
+        })
+    }
+})
+ 
 
 export default Notification;

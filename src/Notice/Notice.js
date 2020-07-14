@@ -17,7 +17,9 @@ const Notice  = React.forwardRef((NoticeProps,ref) => {
         duration=1.5,
         keyIndex,
         onCloseEffect,
-        direction="top"
+        direction="top",
+        onClose,
+        filled
     } = NoticeProps;
 
     const TransitionComponent=useComponentEffects(effect);
@@ -50,13 +52,19 @@ const Notice  = React.forwardRef((NoticeProps,ref) => {
         }
     }
 
+    const handleExited=()=>{ 
+        if(onClose){
+            onClose(keyIndex)
+        }
+    }
+
     useEffect(()=>{
         startCloseTimer()
     },[])
     
     return (
-        <TransitionComponent in={inProp} unmountOnExit direction={direction}> 
-            <Alert className={classNames(prefixCls,className)} type={type}>{message}</Alert>
+        <TransitionComponent in={inProp} unmountOnExit direction={direction} onExited={handleExited}> 
+            <Alert className={classNames(prefixCls,className)} type={type} deep={2} filled={filled}>{message}</Alert>
         </TransitionComponent>
     )
 })

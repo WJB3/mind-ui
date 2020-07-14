@@ -1,36 +1,21 @@
-import React from 'react';
+import React,{ useState } from 'react';
 import Layout from '../Layout/index';
 import Title from '../components/text/Title';
 import Description from '../components/text/Description';
 import SubTitle from '../components/text/SubTitle';
-import Message from './index';
+import Progress from './index';
 import TextLayout from '../components/text/TextLayout';
 import DescriptionTable from '../components/text/DescriptionTable';
-import Button from '../ButtonBase';
 import Space from '../Space';
-
-let index = 0;
+import Button from '../ButtonBase'
 
 const Page = () => {
 
-    const showMessage = (e) => {
-        console.log("showMessage")
-        Message.open({
-            message: `我是男神${index++}`,
-        })
-    }
-
-    const showMessage2 = (status) => {
-        console.log("showMessage2")
-        Message[status]({
-            message: `我是男神${index++}`,
-            filled:true
-        })
-    }
+    const [value,setValue]=useState(0);
 
     return (
         <Layout >
-            <Title>Message</Title>
+            <Title>Progress</Title>
             <Description>返回页面顶部的操作按钮。</Description>
             <SubTitle>何时使用</SubTitle>
             <Description>当页面内容区域比较长时。</Description>
@@ -39,20 +24,11 @@ const Page = () => {
             <TextLayout
                 componentClassName={"button-page-demo"}
                 components={<React.Fragment>
-                    <Button onClick={showMessage}>展示message</Button>
-                </React.Fragment>}
-                title={"基本"}
-                description={"最简单的用法。"}
-            ></TextLayout>
-
-            <TextLayout
-                componentClassName={"button-page-demo"}
-                components={<React.Fragment>
-                    <Space>
-                        <Button onClick={()=>showMessage2("success")} type={"primary"}>Success</Button>
-                        <Button onClick={()=>showMessage2("info")} type={"info"}>info</Button>
-                        <Button onClick={()=>showMessage2("error")} type={"danger"}>error</Button>
-                        <Button onClick={()=>showMessage2("warning")} type={"warning"}>warning</Button>
+                    <Space size={"large"}>
+                        <Progress color={"primary"} />
+                        <Progress color={"danger"} thickness={6} />
+                        <Progress color={"danger"} thickness={6} variant={"static"} value={value}/>
+                        <Button onClick={()=>setValue(value+10)}>点击+10</Button>
                     </Space>
                 </React.Fragment>}
                 title={"基本"}

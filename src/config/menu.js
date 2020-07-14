@@ -107,10 +107,7 @@ const menuInfo=[
                 key:"paper",
             },
             
-            {
-                title:"Notification",
-                key:"notification",
-            },
+           
             {
                 title:"tree",
                 key:"tree",
@@ -171,10 +168,7 @@ const menuInfo=[
                 title:"Avatar头像",
                 key:"avatar",
             },
-            {
-                title:"Message消息",
-                key:"message"
-            },
+            
             {
                 title:"Badge徽标",
                 key:"badge",
@@ -230,7 +224,19 @@ const menuInfo=[
             {
                 title:"ClickAwayListener点击其他监视器",
                 key:"clickawaylistener",
-            }
+            },
+            {
+                title:"Notification 通知框",
+                key:"notification",
+            },
+            {
+                title:"Message消息",
+                key:"message"
+            },
+            {
+                title:"Progress 进度条",
+                key:"progress"
+            },
         ]
     }
 ];

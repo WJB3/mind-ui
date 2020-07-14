@@ -38,8 +38,9 @@ import TimelinePage from './Timeline/timelinePage';
 import AlertPage from './Alert/alertPage';
 import SnackPage from './Snackbar/snackBarPage';
 import ClickAwayListenerPage from './ClickAwayListener/ClickAwayListenerPage';
-import NoticificationPage from './notificationPage';
+import NoticificationPage from './Notification/NotificationPage';
 import MessagePage from './Message/MessagePage';
+import ProgressPage from './Progress/ProgressPage';
 
 
 import ParrotLayout from './ParrotLayout';
@@ -87,8 +88,10 @@ ReactDOM.render((<HashRouter>
                                         <Route path="/alert" exact component={(props)=><AlertPage {...props}/>}></Route>
                                         <Route path="/snackbar" exact component={(props)=><SnackPage {...props}/>}></Route>
                                         <Route path="/clickawaylistener" exact component={(props)=><ClickAwayListenerPage {...props}/>}></Route>
-                                        <Route path="/notification" exact component={(props)=><NoticificationPage {...props}/>}></Route>
                                         <Route path="/message" exact component={(props)=><MessagePage {...props}/>}></Route>
+                                        <Route path="/notification" exact component={(props)=><NoticificationPage {...props}/>}></Route>
+                                        <Route path="/progress" exact component={(props)=><ProgressPage {...props}/>}></Route>
+                           
                                         
                                 </Switch>
                         </ParrotLayout>
