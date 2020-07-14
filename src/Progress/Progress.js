@@ -6,7 +6,7 @@ import capitalize from '../_utils/capitalize';
 import useThemeColor from '../_utils/useThemeColor';
 import "./index.scss";
 
-const SIZE=44;
+const SIZE = 44;
 
 function getRelativeValue(value, min, max) {
     return (Math.min(Math.max(min, value), max) - min) / (max - min);
@@ -22,79 +22,148 @@ function easeOut(t) {
 function easeIn(t) {
     return t * t;
 }
- 
 
-const Progress=React.forwardRef((props, ref)=>{
+
+const Progress = React.forwardRef((props, ref) => {
     const {
         prefixCls: customizePrefixCls,
         className,
-        color:colorProp="primary",
-        size=40,
-        thickness=3.6,
-        value=0,
-        variant="indeterminate",
-        style
+        color: colorProp = "primary",
+        size = 40,
+        thickness = 3.6,
+        value = 0,
+        variant = "indeterminate",
+        style,
+        type = "circle"
     } = props;
 
     const { getPrefixCls } = React.useContext(ConfigContext);
 
     const prefixCls = getPrefixCls("progress", customizePrefixCls);
- 
-    const circleStyle={};
-    const rootProps = {};
-    const rootStyle = {};
 
-    if(variant==='determinate'||variant==="static"){
-        const circumference = 2 * Math.PI * ((SIZE - thickness) / 2);
-        circleStyle.strokeDasharray = circumference.toFixed(3); 
-        rootProps['aria-valuenow'] = Math.round(value);
+    const renderCircle = () => {
 
-        if(variant==='static'){
-            circleStyle.strokeDashoffset = `${(((100 - value) / 100) * circumference).toFixed(3)}px`;
-            rootStyle.transform = 'rotate(-90deg)';
-        }else {
-            circleStyle.strokeDashoffset = `${(easeIn((100 - value) / 100) * circumference).toFixed(
-              3,
-            )}px`;
-            rootStyle.transform = `rotate(${(easeOut(value / 70) * 270).toFixed(3)}deg)`;
+        const circleStyle = {};
+        const rootProps = {};
+        const rootStyle = {};
+
+        if (variant === 'determinate' || variant === "static") {
+            const circumference = 2 * Math.PI * ((SIZE - thickness) / 2);
+            circleStyle.strokeDasharray = circumference.toFixed(3);
+            rootProps['aria-valuenow'] = Math.round(value);
+
+            if (variant === 'static') {
+                circleStyle.strokeDashoffset = `${(((100 - value) / 100) * circumference).toFixed(3)}px`;
+                rootStyle.transform = 'rotate(-90deg)';
+            } else {
+                circleStyle.strokeDashoffset = `${(easeIn((100 - value) / 100) * circumference).toFixed(
+                    3,
+                )}px`;
+                rootStyle.transform = `rotate(${(easeOut(value / 70) * 270).toFixed(3)}deg)`;
+            }
         }
-    }
 
-    return (
-        <div 
+        return <div
             className={classNames(
-                prefixCls,
+                `${prefixCls}-circle`,
                 className,
                 {
-                    [`${prefixCls}-${variant}`]:variant 
+                    [`${prefixCls}-circle-${variant}`]: variant
                 }
-            )} 
-            role="progressbar" 
+            )}
+            role="progressbar"
             ref={ref}
-            style={{width:size,height:size,color:useThemeColor(colorProp), ...rootStyle,...style}} 
+            style={{ width: size, height: size, color: useThemeColor(colorProp), ...rootStyle, ...style }}
             {...rootProps}
         >
             <svg className={classNames(
-                `${prefixCls}-svg`
+                `${prefixCls}-circle-svg`
             )} viewBox={`${SIZE / 2} ${SIZE / 2} ${SIZE} ${SIZE}`}>
-                <circle 
+                <circle
                     className={classNames(
-                        `${prefixCls}-circle`,
+                        `${prefixCls}-circle-circle`,
                         {
-                            [`${prefixCls}-circle-${variant}`]:variant
+                            [`${prefixCls}-circle-circle-${variant}`]: variant
                         }
                     )}
                     style={circleStyle}
                     cx={SIZE}
                     cy={SIZE}
-                    r={(SIZE-thickness)/2}
+                    r={(SIZE - thickness) / 2}
                     fill="none"
                     strokeWidth={thickness}
                 />
             </svg>
-        </div>
-    )
 
+
+        </div>
+    }
+
+    const renderLiner = () => {
+
+        const rootProps = {};
+        const inlineStyles = { bar1: {}, bar2: {} };
+
+        if (variant === 'determinate' || variant === 'buffer') {
+            if (value !== undefined) {
+                rootProps['aria-valuenow'] = Math.round(value);
+                rootProps['aria-valuemin'] = 0;
+                rootProps['aria-valuemax'] = 100;
+                let transform = value - 100;
+                inlineStyles.bar1.transform = `translateX(${transform}%)`;
+            }
+        }
+        if (variant === 'buffer') {
+            if (valueBuffer !== undefined) {
+                let transform = (valueBuffer || 0) - 100;
+                inlineStyles.bar2.transform = `translateX(${transform}%)`;
+            }
+        }
+
+        return <div
+            className={
+                classNames(
+                    `${prefixCls}-liner`,
+                    className,
+                    {
+                        [`${prefixCls}-liner-${variant}`]: variant
+                    }
+                )
+            }
+            role="progressbar"
+            ref={ref}
+            {...rootProps}
+            style={{ backgroundColor: useThemeColor(colorProp, 0.5) }}
+        >
+            <div className={
+                classNames(
+                    `${prefixCls}-liner-bar`,
+                    {
+                        [`${prefixCls}-liner-bar_1Indeterminate`]: variant === "indeterminate" || variant === "query",
+                        [`${prefixCls}-liner-bar_1Determinate`]: variant === "determinate"
+                    }
+                )
+            } style={{ backgroundColor: useThemeColor(colorProp), ...inlineStyles.bar1 }}
+            />
+
+            {
+                variant !== "determinate" && <div
+                    className={
+                        classNames(
+                            `${prefixCls}-liner-bar`,
+                            {
+                                [`${prefixCls}-liner-bar_2Indeterminate`]: variant === "indeterminate" || variant === "query"
+
+                            }
+                        )
+                    }
+                    style={{ backgroundColor: useThemeColor(colorProp), ...inlineStyles.bar2 }}
+                />
+            }
+        </div>
+    }
+
+    return type === "circle" ? renderCircle() : renderLiner()
 });
 
 Progress.propTypes = {

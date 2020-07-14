@@ -25,30 +25,102 @@ $prefixCls:"#{$global-prefix}-progress";
     }
 }
 
+@keyframes indeterminate1 {
+    //  |-----|---x-||-----||-----|
+    0%{
+      left:-35%;
+      right: 100%;
+    }
+    //  |-----|-----||-----||xxxx-|
+    60% {
+      left: 100%;
+      right: -90%;
+    }
+    100% {
+      left: 100%;
+      right: -90%;
+    }
+}
+
+@keyframes indeterminate2 {
+    //  |xxxxx|xxxxx||-----||-----|
+    0% {
+      left: -200%;
+      right: 100%;
+    }
+    //  |-----|-----||-----||-x----|
+    60%{
+      left: 107%;
+      right: -8%;
+    }
+    100%{
+      left: 107%;
+      right: -8%;
+    }
+  }
+
 .#{$prefixCls}{
 
-    &-indeterminate{
-        display: inline-block;
-        animation: circular-rotate 1.4s linear infinite;
+    &-circle{
+        &-indeterminate{
+            display: inline-block;
+            animation: circular-rotate 1.4s linear infinite;
+        }
+    
+        &-static{
+            transition:transform 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+        }
+        
+        &-circle{
+            stroke:currentColor;
+    
+            &-indeterminate{
+                animation:circular-dash 1.4s ease-in-out infinite;
+                stroke-dasharray:80px 200px;
+                stroke-dashoffset: 0px;
+            }
+    
+            &-static{
+                transition: stroke-dashoffset 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+            }
+        }
     }
 
-    &-static{
-        transition:transform 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-    }
-    
-    &-circle{
-        stroke:currentColor;
+    &-liner{
+        position:relative;
+        overflow:hidden;
+        height:4px;
 
         &-indeterminate{
-            animation:circular-dash 1.4s ease-in-out infinite;
-            stroke-dasharray:80px 200px;
-            stroke-dashoffset: 0px;
+
         }
 
-        &-static{
-            transition: stroke-dashoffset 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+        &-bar{
+            width:100%;
+            position: absolute;
+            left:0;
+            bottom:0;
+            top:0;
+            transition: transform 0.2s linear;
+            transform-origin: left;
+
+            &_1Indeterminate{
+                width:auto;
+                animation: indeterminate1 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite;
+            }
+
+            &_1Determinate{
+                transition: transform .4s linear,
+            }
+
+            &_2Indeterminate{
+                width:auto;
+                animation: indeterminate2 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) 1.15s infinite;
+            }
         }
     }
+
+    
 
 }
 
