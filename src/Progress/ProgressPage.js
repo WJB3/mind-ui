@@ -3,10 +3,11 @@ import Layout from '../Layout/index';
 import Title from '../components/text/Title';
 import Description from '../components/text/Description';
 import SubTitle from '../components/text/SubTitle';
-import Progress from './index';
+import Progress,{Nprogress} from './index';
 import TextLayout from '../components/text/TextLayout';
 import DescriptionTable from '../components/text/DescriptionTable';
 import Space from '../Space';
+import nprogress from './nprogress';
 import Button from '../ButtonBase'
 
 const Page = () => {
@@ -42,6 +43,8 @@ const Page = () => {
           clearInterval(timer);
         };
       }, []);
+
+  
     
 
     return (
@@ -75,6 +78,9 @@ const Page = () => {
                         <Progress type="liner" color={"primary"} />
                         <Progress type="liner" color={"danger"} />
                         <Progress type="liner" color={"danger"} variant="determinate" value={progress2}  />
+                        {/* <Progress type="liner" color={"danger"} variant="determinate" value={progress2}  topScroll/> */}
+                        <Button onClick={() => nprogress.start()}>开始</Button>
+                        <Button onClick={() => nprogress.done()}>结束</Button>
                     </Space>
                     
                  

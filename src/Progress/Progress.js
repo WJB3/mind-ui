@@ -2,28 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { ConfigContext } from '../ConfigContext';
 import { classNames } from '../components/helper/className';
-import capitalize from '../_utils/capitalize';
 import useThemeColor from '../_utils/useThemeColor';
 import "./index.scss";
 
 const SIZE = 44;
 
-function getRelativeValue(value, min, max) {
-    return (Math.min(Math.max(min, value), max) - min) / (max - min);
-}
-
-function easeOut(t) {
-    t = getRelativeValue(t, 0, 1);
-    // https://gist.github.com/gre/1650294
-    t = (t -= 1) * t * t + 1;
-    return t;
-}
-
-function easeIn(t) {
-    return t * t;
-}
-
-
+ 
 const Progress = React.forwardRef((props, ref) => {
     const {
         prefixCls: customizePrefixCls,
@@ -34,13 +18,15 @@ const Progress = React.forwardRef((props, ref) => {
         value = 0,
         variant = "indeterminate",
         style,
-        type = "circle"
+        type = "circle",
+        topScroll,
+        auto
     } = props;
 
     const { getPrefixCls } = React.useContext(ConfigContext);
 
     const prefixCls = getPrefixCls("progress", customizePrefixCls);
-
+ 
     const renderCircle = () => {
 
         const circleStyle = {};
@@ -113,7 +99,7 @@ const Progress = React.forwardRef((props, ref) => {
                 inlineStyles.bar1.transform = `translateX(${transform}%)`;
             }
         }
-       
+
 
         return <div
             className={
@@ -121,14 +107,15 @@ const Progress = React.forwardRef((props, ref) => {
                     `${prefixCls}-liner`,
                     className,
                     {
-                        [`${prefixCls}-liner-${variant}`]: variant
+                        [`${prefixCls}-liner-${variant}`]: variant,
+                        [`${prefixCls}-liner-topScroll`]: topScroll,
                     }
                 )
             }
             role="progressbar"
             ref={ref}
             {...rootProps}
-            style={{ backgroundColor: useThemeColor(colorProp, 0.5) }}
+            style={{ backgroundColor: topScroll ? 'transparent' : useThemeColor(colorProp, 0.5) }}
         >
             <div className={
                 classNames(
@@ -170,5 +157,7 @@ Progress.propTypes = {
     style: PropTypes.object,
 };
 
-
 export default Progress;
+
+
+

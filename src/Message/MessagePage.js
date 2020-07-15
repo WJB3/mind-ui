@@ -8,6 +8,7 @@ import TextLayout from '../components/text/TextLayout';
 import DescriptionTable from '../components/text/DescriptionTable';
 import Button from '../ButtonBase';
 import Space from '../Space';
+import nprogress from '../Progress/nprogress';
 
 let index = 0;
 
@@ -53,6 +54,7 @@ const Page = () => {
                         <Button onClick={()=>showMessage2("info")} type={"info"}>info</Button>
                         <Button onClick={()=>showMessage2("error")} type={"danger"}>error</Button>
                         <Button onClick={()=>showMessage2("warning")} type={"warning"}>warning</Button>
+                        <Button onClick={()=>nprogress.done()} type={"warning"}>关闭</Button>
                     </Space>
                 </React.Fragment>}
                 title={"基本"}

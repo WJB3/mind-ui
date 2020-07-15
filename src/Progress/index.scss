@@ -91,8 +91,12 @@ $prefixCls:"#{$global-prefix}-progress";
         overflow:hidden;
         height:4px;
 
-        &-indeterminate{
-
+         
+        &-topScroll{
+            position: fixed;
+            top:0;
+            left:0;
+            right: 0; 
         }
 
         &-bar{
