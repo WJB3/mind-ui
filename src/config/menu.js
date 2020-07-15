@@ -238,6 +238,19 @@ const menuInfo=[
                 key:"progress"
             },
         ]
+    },
+    {
+        title:"娱乐",
+        key:"new",
+        icon:"menu",
+        children:[
+           
+            {
+                title:"WordPad写字板",
+                key:"wordpad",
+            },
+            
+        ]
     }
 ];
 

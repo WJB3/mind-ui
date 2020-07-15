@@ -41,6 +41,7 @@ import ClickAwayListenerPage from './ClickAwayListener/ClickAwayListenerPage';
 import NoticificationPage from './Notification/NotificationPage';
 import MessagePage from './Message/MessagePage';
 import ProgressPage from './Progress/ProgressPage';
+import WordPadPage from './WordPad/WordPadPage';
 
 
 import ParrotLayout from './ParrotLayout';
@@ -91,6 +92,7 @@ ReactDOM.render((<HashRouter>
                                         <Route path="/message" exact component={(props)=><MessagePage {...props}/>}></Route>
                                         <Route path="/notification" exact component={(props)=><NoticificationPage {...props}/>}></Route>
                                         <Route path="/progress" exact component={(props)=><ProgressPage {...props}/>}></Route>
+                                        <Route path="/wordpad" exact component={(props)=><WordPadPage {...props}/>}></Route>
                            
                                         
                                 </Switch>

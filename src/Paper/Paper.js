@@ -30,7 +30,6 @@ const Paper=React.forwardRef((props,ref)=>{
             children={children}
             style={style}
             ref={ref}
-      
             className={
                 classNames(
                     prefixCls,
