@@ -2,16 +2,31 @@ import React from 'react';
 import useStatus from '../_utils/useStatus';
 import "./index.scss";
 import Notification from '../Notice';
-let defaultPlacement = 'top-center';
+let defaultPlacement = 'top-right';
 
 const notificationInstance={}
 
-function getNotificationInstance(args, callback) {
+function getDirection(placement){
+    if(placement==="top-left"){
+        return "left"
+    }
+    if(placement==="top-right"){
+        return "right"
+    }
+    if(placement==="bottom-left"){
+        return "left"
+    }
+    if(placement==="bottom-right"){
+        return "right"
+    }
+}
 
+function getNotificationInstance(args, callback) { 
     const {
         placement = defaultPlacement,
-        maxCount=100,
-        filled
+        maxCount=10,
+        filled,
+        effect="slide", 
     } = args;
 
     const prefixCls = 'parrot-notification';
@@ -31,9 +46,12 @@ function getNotificationInstance(args, callback) {
         Notification.newInstance(
             { 
                 maxCount,
-                className:'parrot-notification',
+                className:`parrot-notification parrot-notification-${placement}`,
                 filled:filled,
-                
+                effect:effect,
+                direction:getDirection(placement),
+                placement,
+                duration:4
             },
             (notification) => {
                 resolve(notification);
@@ -45,14 +63,21 @@ function getNotificationInstance(args, callback) {
     })
 }
 
+const api={}
 
 useStatus().forEach((item) => {
-    Notification[item] = (args) => {
+    api[item] = (args) => {
         getNotificationInstance(args, ({ instance }) => {
             instance.notice({...args,status:item})
         })
     }
 })
+
+api.close=(args)=>{
+    getNotificationInstance(args, ({ instance }) => {
+        instance.destroy()
+    })
+}
  
 
-export default Notification;
+export default api;

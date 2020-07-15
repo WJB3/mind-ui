@@ -5,9 +5,9 @@ $prefixCls:"#{$global-prefix}-message";
 $prefixClsNotice:"#{$global-prefix}-notice"; 
 
 .#{$prefixCls}{
- 
-        .#{$prefixClsNotice}{
-            margin:0 auto;
-        }
-   
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    top:16px;
 }

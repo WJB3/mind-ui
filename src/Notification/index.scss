@@ -7,16 +7,20 @@ $prefixCls:"#{$global-prefix}-notification";
 .#{$prefixCls}{
 
     display: flex;
-    z-index:10000;
-    position: fixed;
+    z-index:10000; 
     align-items: center;
-
+    position: fixed;
+    flex-direction: column;
+    box-sizing: border-box;
 
     &-bottom-left{
         left:24px;
         right:auto;
         bottom:24px;
         justify-content: flex-start;
+        align-items: flex-start;
+        padding-left:24px;
+        bottom:16px;
     }
 
     &-bottom-right{
@@ -24,6 +28,9 @@ $prefixCls:"#{$global-prefix}-notification";
         left:auto;
         bottom:24px;
         justify-content: flex-end;
+        align-items: flex-end;
+        padding-right:24px;
+        bottom:16px;
     }
 
     &-bottom-center{
@@ -35,6 +42,9 @@ $prefixCls:"#{$global-prefix}-notification";
         right:auto;
         top:24px;
         justify-content: flex-start;
+        align-items: flex-start;
+        padding-left:24px;
+        top:16px;
     }
 
     &-top-right{
@@ -42,6 +52,9 @@ $prefixCls:"#{$global-prefix}-notification";
         left:auto;
         top:24px;
         justify-content: flex-end;
+        align-items: flex-end;
+        padding-right:24px;
+        top:16px;
     }
 
     &-top-center{

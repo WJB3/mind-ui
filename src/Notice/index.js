@@ -3,7 +3,7 @@ import { classNames } from '../components/helper/className';
 import { isNull } from '../_utils/helpUtils'
 import  createChainedFunction  from '../_utils/createChainedFunction';
 import Notice from './Notice';
-import ReactDom from 'react-dom';
+import ReactDOM from 'react-dom';
 import "./index.scss";
 
 let seed = 0;
@@ -34,6 +34,9 @@ class Notices extends React.Component{
         notice.key=key;
         notice.in=true;
         notice.filled=this.props.filled;
+        notice.effect=this.props.effect;
+        notice.direction=this.props.direction;
+        notice.className=`${this.props.className}-${this.props.direction}`
     
         //要添加的notice是否存在
         const noticeIndex = notices.map((v) => v.key).indexOf(key);
@@ -59,7 +62,7 @@ class Notices extends React.Component{
       
     }
 
-    onCloseEffect=(key)=>{ 
+    onCloseEffect=(key)=>{  
         this.setState({
             notices: this.state.notices.map((item)=> {
                 if(item.key===key){
@@ -90,8 +93,10 @@ class Notices extends React.Component{
                         isCloseAuto={isNull(notice.duration)}
                         type={notice.status==="open"?"normal":notice.status} 
                         in={notice.in}
-                        effect={"grow"}
+                        effect={notice.effect?notice.effect:"grow"}
                         filled={notice.filled}
+                        direction={notice.direction}
+                        // className={notice.className?notice.className:""}
             /> 
         })
     }
@@ -136,10 +141,19 @@ Notices.newInstance = function newNotificationInstance(properties, callback) {
             component:notification,
             removeNotice(key){
                 notification.removeNotice(key);
-            }
+            },
+            onCloseEffect(key){
+                notification.onCloseEffect(key);
+            },
+            destroy() {
+                ReactDOM.unmountComponentAtNode(div);
+                if (!getContainer) {
+                  document.body.removeChild(div);
+                }
+            },
         })
     }
 
-    ReactDom.render(<Notices {...props} ref={ref} />, div);
+    ReactDOM.render(<Notices {...props} ref={ref} />, div);
 
 }

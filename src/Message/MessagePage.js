@@ -13,15 +13,14 @@ let index = 0;
 
 const Page = () => {
 
-    const showMessage = (e) => {
-        console.log("showMessage")
+    const showMessage = (e) => { 
         Message.open({
             message: `我是男神${index++}`,
+            duration:500
         })
     }
 
-    const showMessage2 = (status) => {
-        console.log("showMessage2")
+    const showMessage2 = (status) => { 
         Message[status]({
             message: `我是男神${index++}`,
             filled:true
@@ -40,6 +39,7 @@ const Page = () => {
                 componentClassName={"button-page-demo"}
                 components={<React.Fragment>
                     <Button onClick={showMessage}>展示message</Button>
+                    <Button onClick={()=>Message.close()}>关闭message</Button>
                 </React.Fragment>}
                 title={"基本"}
                 description={"最简单的用法。"}

@@ -11,16 +11,22 @@ import Notification from './index';
 const Page = () => {
 
 
-    const openNotification=()=>{
-        console.log("openNotification")
+    const openNotification = () => {
+
         Notification.success({
-            message:"测试",
-            duration:5,
-            filled:true
+            message: "测试",
+            duration:5
         })
     }
 
+    const openNotification2 = (placement) => {
 
+        Notification.success({
+            message: "测试",
+            duration:500,
+            placement:placement
+        })
+    }
     return (
         <Layout >
             <Title>Notification通知提醒框</Title>
@@ -37,7 +43,16 @@ const Page = () => {
                 description={"最简单的用法，4 秒后自动关闭。可设置弹框背景色。"}
             ></TextLayout>
 
-          
+            <TextLayout
+                components={<React.Fragment>
+                    <Button type={"primary"} onClick={()=>openNotification2("top-left")}>左上</Button>
+                    <Button type={"primary"} onClick={()=>openNotification2("top-right")}>右上</Button>
+                    <Button type={"primary"} onClick={()=>openNotification2("bottom-left")}>左下</Button>
+                    <Button type={"primary"} onClick={()=>openNotification2("bottom-right")}>右下</Button>
+                </React.Fragment>}
+                title={"基本"}
+                description={"最简单的用法，4 秒后自动关闭。可设置弹框背景色。"}
+            ></TextLayout>
 
 
             <SubTitle>API</SubTitle>

@@ -113,12 +113,7 @@ const Progress = React.forwardRef((props, ref) => {
                 inlineStyles.bar1.transform = `translateX(${transform}%)`;
             }
         }
-        if (variant === 'buffer') {
-            if (valueBuffer !== undefined) {
-                let transform = (valueBuffer || 0) - 100;
-                inlineStyles.bar2.transform = `translateX(${transform}%)`;
-            }
-        }
+       
 
         return <div
             className={

@@ -3,25 +3,21 @@ import useStatus from '../_utils/useStatus';
 import "./index.scss";
 import Message from '../Notice'; 
 
-const notificationInstance={}
+let notificationInstance={} 
 
 function getNotificationInstance(args, callback) {
 
     const {
         maxCount=10,
         filled
-    } = args;
+    } = args;  
 
     const prefixCls = 'parrot-message';
     const cacheKey = `${prefixCls}`;
     const cacheInstance = notificationInstance[cacheKey];
 
-    console.log(notificationInstance);
-
     if (cacheInstance) {
         Promise.resolve(cacheInstance).then(instance => {
-            console.log("promise")
-            console.log(instance)
             callback({ instance })
         });
         return;
@@ -44,15 +40,22 @@ function getNotificationInstance(args, callback) {
     })
 }
 
+const api={}
 
 useStatus().forEach((item) => {
-    Message[item] = (args) => {
-        getNotificationInstance(args, ({ instance }) => {
-            console.log("addd")
+    api[item] = (args) => {
+        getNotificationInstance(args, ({ instance }) => { 
             instance.notice({...args,status:item})
         })
     }
 })
+
+api.close=(args)=>{ 
+    getNotificationInstance(args={}, ({ instance }) => {
+        instance.destroy(); 
+        notificationInstance={};
+    })
+}
  
 
-export default Message;
+export default api;

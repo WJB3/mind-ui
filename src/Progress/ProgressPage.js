@@ -75,7 +75,6 @@ const Page = () => {
                         <Progress type="liner" color={"primary"} />
                         <Progress type="liner" color={"danger"} />
                         <Progress type="liner" color={"danger"} variant="determinate" value={progress2}  />
-                        <Progress type="liner" color={"danger"} variant="buffer" value={progress2}  />
                     </Space>
                     
                  
