@@ -1,0 +1,12 @@
+ 
+ 
+@import "../Theme/styles/variable";
+
+$prefixCls:"#{$global-prefix}-turntable";
+ 
+.#{$prefixCls}{
+    background-color: transparent;
+}
+ 
+ 
+ 
