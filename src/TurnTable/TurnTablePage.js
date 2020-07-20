@@ -4,7 +4,8 @@ import Title from '../components/text/Title';
 import Description from '../components/text/Description';
 import SubTitle from '../components/text/SubTitle';
 import TurnTable from './index';
-
+import ReactTurnTable from 'react-turntable';
+import message from '../Message';
 import TextLayout from '../components/text/TextLayout';
 import DescriptionTable from '../components/text/DescriptionTable';
 
@@ -21,7 +22,9 @@ const Page = () => {
             <TextLayout
                 componentClassName={"button-page-demo"}
                 components={<React.Fragment>
-                    <TurnTable />
+                    <TurnTable onComplete={(prize)=>message.success({message:"恭喜你抽到了"+prize})} />
+
+                  
                 </React.Fragment>}
                 title={"基本用法"}
                 description={""}

@@ -1,6 +1,7 @@
 import React,{useState,useRef, useEffect} from 'react';
 import { classNames } from '../components/helper/className';
 import { ConfigContext } from '../ConfigContext';
+import useStateCallback from '../_utils/useStateCallback';
 import PropTypes from 'prop-types';
 import Paper from '../Paper';
 import "./index.scss";
@@ -36,12 +37,21 @@ const TurnTable = React.forwardRef((props,ref) => {
         onComplete 
     } = props;
 
+
     const [isRotate,setRotate]=useState(false);
 
-    const [startRotate,setStartRotate]=useState(0);
-    const [rotateTime ,setRotateTime]=useState(0);
-    const [rotateAllTime ,setRotateAllTime]=useState(0);
-    const [rotateChange ,setRotateChange]=useState(0);
+
+    const rotateCallback=()=>{ 
+        console.log("rotateCallback")
+        if(isRotate){
+            rotateTurntable();
+        }
+        
+    }
+
+
+    const [rotateState,setRotateState]=useStateCallback({rotateAllTime:0,rotateChange:0},rotateCallback);
+
     const [awardRotate  ,setAwardRotate ]=useState(0); 
  
     const canvasRef=useRef(null);
@@ -54,10 +64,15 @@ const TurnTable = React.forwardRef((props,ref) => {
 
     const animateId=useRef(null);
 
+    const rotateTime=useRef(0);
+
+    const startRotate=useRef(0);
+
     const { getPrefixCls } =React.useContext(ConfigContext);
 
     const prefixCls = getPrefixCls("turntable", customizePrefixCls);
 
+  
     const compatibilityFrame=()=>{
         window.requestAnimationFrame=(()=>{
             return (
@@ -70,11 +85,7 @@ const TurnTable = React.forwardRef((props,ref) => {
         window.cancelAnimationFrame=window.cancelAnimationFrame || window.mozCancelAnimationFrame
     }
 
-    const initTurntable=()=>{
-        setStartRotate(0);
-        setRotateTime(0);
-        setRotateAllTime(0);
-        setRotateChange(0);
+    const initTurntable=()=>{ 
         ctxRef.current=canvasRef.current.getContext("2d");
         canvasRef.current.width=width;
         canvasRef.current.height=height;
@@ -87,7 +98,8 @@ const TurnTable = React.forwardRef((props,ref) => {
         drawTurntable();
     }
 
-    const drawTurntable=()=>{
+    const drawTurntable=()=>{ 
+ 
         ctxRef.current.clearRect(0,0,canvasRef.current.width,canvasRef.current.height);
 
         const {
@@ -98,11 +110,15 @@ const TurnTable = React.forwardRef((props,ref) => {
             fontWeight 
         }=fontStyle;
 
+        console.log(startRotate.current)
+
         for(let [i,prize] of prizes.entries()){
-            const _currentStartRotate = startRotate + awardRotate  * i;
+   
+            const _currentStartRotate = startRotate.current + awardRotate  * i;
             const _currentEndRotate=_currentStartRotate+awardRotate;
             ctxRef.current.save();
             i % 2 === 0?(ctxRef.current.fillStyle = primaryColor):(ctxRef.current.fillStyle = secondaryColor)
+ 
             ctxRef.current.beginPath();
             ctxRef.current.arc(
                 centerPosition.current.x,
@@ -151,8 +167,7 @@ const TurnTable = React.forwardRef((props,ref) => {
         }
     }
 
-    const destroyContext=()=>{
-        console.log("destroyContext")
+    const destroyContext=()=>{ 
         window.cancelAnimationFrame(animateId.current);
         canvasRef.current=null;
         ctxRef.current=null;
@@ -160,28 +175,37 @@ const TurnTable = React.forwardRef((props,ref) => {
 
     const handleStartRotate=()=>{
         if(isRotate) return ;
+
         setRotate(true);
-        setRotateTime(0);
-        setRotateAllTime(Math.random() * 5 + duration);
-        setRotateChange(Math.random()*10 +speed / 100);
-        rotateTurntable();
+
+        setRotateState({ 
+            rotateAllTime:Math.random() * 5 + duration,
+            rotateChange:Math.random()*10 +speed / 100
+        },(prevState,nextState)=>prevState!==nextState);
+    
     }
 
+  
+
     const rotateTurntable =()=>{
-        setRotateTime(rotateTime+20);
-        if(rotateTime>=rotateAllTime){
+      
+        console.log("rotateTurnratate")
+        rotateTime.current+=20;
+ 
+        if(rotateTime.current>=rotateState.rotateAllTime){
             setRotate(false);
             noticePrize();
             return ;
         }
-        let _rotateChange=(rotateChange-easeOut(rotateTime,0,rotateChange,rotateAllTime))*(Math.PI/180);
-        setStartRotate(startRotate+_rotateChange);
+        let _rotateChange=(rotateState.rotateChange-easeOut(rotateTime.current,0,rotateState.rotateChange,rotateState.rotateAllTime))*(Math.PI/180);
+
+        startRotate.current=startRotate.current+_rotateChange;
         drawTurntable();
         animateId.current=requestAnimationFrame(rotateTurntable);
     }
 
     const getSelectedPrize=()=>{
-        let startAngle=(startRotate*180)/Math.PI,
+        let startAngle=(startRotate.current*180)/Math.PI,
             awardAngle=(awardRotate*180)/Math.PI,
             pointerAngle=90,
             overAngle=(startAngle+pointerAngle)%360,
@@ -191,6 +215,7 @@ const TurnTable = React.forwardRef((props,ref) => {
     }
 
     const noticePrize=()=>{
+      
         const prize=getSelectedPrize();
         onComplete && onComplete(prize);
     }
@@ -207,7 +232,7 @@ const TurnTable = React.forwardRef((props,ref) => {
         ()=>{
             destroyContext()
         }
-    },[])
+    },[awardRotate])
 
     return (
         <Paper className={classNames(
@@ -231,7 +256,7 @@ const TurnTable = React.forwardRef((props,ref) => {
                             onClick={handleStartRotate}
                         >{clickText}</div>
                     ):(
-                        <div onClick={this.handleStartRotate}>{clickText}</div>
+                        <div onClick={handleStartRotate}>{clickText}</div>
                     )
                 )
             }
