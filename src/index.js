@@ -42,6 +42,7 @@ import NoticificationPage from './Notification/NotificationPage';
 import MessagePage from './Message/MessagePage';
 import ProgressPage from './Progress/ProgressPage';
 import WordPadPage from './WordPad/WordPadPage';
+import TurnTablePage from './TurnTable/TurnTablePage';
 
 
 import ParrotLayout from './ParrotLayout';
@@ -93,6 +94,7 @@ ReactDOM.render((<HashRouter>
                                         <Route path="/notification" exact component={(props)=><NoticificationPage {...props}/>}></Route>
                                         <Route path="/progress" exact component={(props)=><ProgressPage {...props}/>}></Route>
                                         <Route path="/wordpad" exact component={(props)=><WordPadPage {...props}/>}></Route>
+                                        <Route path="/turntable" exact component={(props)=><TurnTablePage {...props}/>}></Route>
                            
                                         
                                 </Switch>

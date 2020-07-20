@@ -249,7 +249,10 @@ const menuInfo=[
                 title:"WordPad写字板",
                 key:"wordpad",
             },
-            
+            {
+                title:"TurnTable转盘",
+                key:"turntable",
+            },
         ]
     }
 ];

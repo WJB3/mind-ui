@@ -3,49 +3,30 @@ import Layout from '../Layout/index';
 import Title from '../components/text/Title';
 import Description from '../components/text/Description';
 import SubTitle from '../components/text/SubTitle';
-import Empty from './index';
+import TurnTable from './index';
 
 import TextLayout from '../components/text/TextLayout';
 import DescriptionTable from '../components/text/DescriptionTable';
 
-
-//import  Notification from 'rc-notification';
-const EmptyPage = () => {
-
-
+ 
+const Page = () => {
 
     return (
         <Layout >
-            <Title>Empty空状态</Title>
+            <Title>Turn转盘</Title>
             <SubTitle>何时使用</SubTitle>
-            <Description>Grid栅格</Description>
+            <Description>Turn转盘</Description>
             <SubTitle>代码演示</SubTitle>
 
             <TextLayout
                 componentClassName={"button-page-demo"}
                 components={<React.Fragment>
-                    <Empty   />
+                    <TurnTable />
                 </React.Fragment>}
                 title={"基本用法"}
                 description={""}
             ></TextLayout>
-
-            <TextLayout
-                componentClassName={"button-page-demo"}
-                components={<React.Fragment>
-
-                    <Empty height={80} description={
-                        <span>
-                            Customize <a href="#API">Description</a>
-                        </span>
-                    } />
-
-
-                </React.Fragment>}
-                title={"基本用法"}
-                description={""}
-            ></TextLayout>
-
+ 
 
 
             <SubTitle>API</SubTitle>
@@ -73,4 +54,4 @@ const EmptyPage = () => {
 
 }
 
-export default EmptyPage;
+export default Page;

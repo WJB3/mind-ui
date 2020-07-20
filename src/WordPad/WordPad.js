@@ -60,8 +60,6 @@ const WordPad = React.forwardRef((props, ref) => {
         }
         wordRef.current.onmousemove=e=>{
             e.preventDefault();
-         
-            
             if(isMouseDown){
                
                 //如果鼠标移动的时候鼠标是按下时  执行绘制
@@ -100,9 +98,7 @@ const WordPad = React.forwardRef((props, ref) => {
         bindEvents();
     },[isMouseDown,lastCoordinate]);
 
-    useEffect(()=>{
-        // console.log(lastCoordinate)
-    },[lastCoordinate])
+    
  
     return <Paper 
         className={
