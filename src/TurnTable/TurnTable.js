@@ -37,18 +37,13 @@ const TurnTable = React.forwardRef((props,ref) => {
         onComplete 
     } = props;
 
-
     const [isRotate,setRotate]=useState(false);
 
-
-    const rotateCallback=()=>{ 
-        console.log("rotateCallback")
+    const rotateCallback=()=>{   
         if(isRotate){
             rotateTurntable();
         }
-        
     }
-
 
     const [rotateState,setRotateState]=useStateCallback({rotateAllTime:0,rotateChange:0},rotateCallback);
 
@@ -108,17 +103,13 @@ const TurnTable = React.forwardRef((props,ref) => {
             color,
             size,
             fontWeight 
-        }=fontStyle;
-
-        console.log(startRotate.current)
+        }=fontStyle; 
 
         for(let [i,prize] of prizes.entries()){
-   
             const _currentStartRotate = startRotate.current + awardRotate  * i;
             const _currentEndRotate=_currentStartRotate+awardRotate;
             ctxRef.current.save();
             i % 2 === 0?(ctxRef.current.fillStyle = primaryColor):(ctxRef.current.fillStyle = secondaryColor)
- 
             ctxRef.current.beginPath();
             ctxRef.current.arc(
                 centerPosition.current.x,
@@ -185,11 +176,8 @@ const TurnTable = React.forwardRef((props,ref) => {
     
     }
 
-  
-
     const rotateTurntable =()=>{
-      
-        console.log("rotateTurnratate")
+       
         rotateTime.current+=20;
  
         if(rotateTime.current>=rotateState.rotateAllTime){
@@ -215,9 +203,19 @@ const TurnTable = React.forwardRef((props,ref) => {
     }
 
     const noticePrize=()=>{
-      
+
         const prize=getSelectedPrize();
+
         onComplete && onComplete(prize);
+
+        setRotateState({ 
+            rotateAllTime:0,
+            rotateChange:0
+        },(prevState,nextState)=>prevState!==nextState);
+
+        rotateTime.current=0;
+
+        startRotate.current=0;
     }
 
     const handleStopRotate=()=>{

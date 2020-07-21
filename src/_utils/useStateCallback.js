@@ -4,10 +4,7 @@ export default function useStateCallback(initial,callback){
     const [state,setState]=useState(initial);
 
     const setStateWrapper=(nextState,callback)=>{
-        console.log(nextState)
-        console.log(state)
         if(typeof callback==="function"){
-            console.log(callback)
             //prevState
             if(callback(state,nextState)===false){
                 return ;
@@ -16,8 +13,7 @@ export default function useStateCallback(initial,callback){
         setState(nextState);
     }
 
-    useEffect(()=>{
-        console.log("Aaa")
+    useEffect(()=>{ 
         if(typeof callback==="function"){
             callback(state);
         }

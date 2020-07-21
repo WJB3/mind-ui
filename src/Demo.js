@@ -1,41 +1,23 @@
-import React,{memo,useState,useEffect } from 'react';
+import React from 'react';
+import Form, { Field } from 'rc-field-form';
 
-const Child = memo(({data}) =>{
-    console.log('child render...', data)
-    const [name, setName] = useState(data)
-    return (
-        <div>
-            <div>child</div>
-            <div>{name} --- {data}</div>
-        </div>
-    );
-})
-
-const Hook =()=>{
-    console.log('Hook render...')
-    const [count, setCount] = useState(0)
-    const [name, setName] = useState('rose')
- 
-    useEffect(() => {
-        console.log('use effect...',count)
-        const timer = setInterval(() => {
-            console.log('timer...count:', count)
-            setCount(count + 1)
-        }, 1000)
-        return ()=> clearInterval(timer)
-    },[])
- 
-
-    return(
-        <div>
-            <div>
-                {count}
-            </div>
-            <button onClick={()=>setCount(count+1)}>update count </button>
-            <button onClick={()=>setName('jack')}>update name </button>
-            <Child data={name}/>
-        </div>
-    )
+const Demo=()=>{
+    return <Form
+    onFinish={values => {
+      console.log('Finish:', values);
+    }}
+    initialValues={{username:"吴家宝",password:"123456"}}
+  >
+    <Field name="username">
+      <input placeholder="Username" />
+    </Field>
+    <Field name="password">
+      <input placeholder="Password" />
+    </Field>
+  
+    <button>Submit</button>
+  </Form>
 }
 
-export default Hook;
+
+export default Demo;
