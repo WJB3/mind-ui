@@ -30,7 +30,7 @@ const FormProvider=({
                         onFormChange(name,{
                             changedFields,
                             forms:formsRef.current
-                        })
+                        });
                     }
 
                     formContext.triggerFormChange(name,changedFields);

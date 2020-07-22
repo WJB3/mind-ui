@@ -1,8 +1,11 @@
 
 import React from 'react';
 import {
-    getNamePath, getValue,
+    getNamePath, getValue, containsNamePath, setValue,
 } from '../../ParrotUtils/formUtils/valueUtil';
+import NameMap from '../../ParrotUtils/formUtils/NameMap';
+import { HOOK_MARK } from './FieldContext';
+import set from '../../ParrotUtils/utils/set';
 
 export class FormStore {
     
@@ -45,9 +48,216 @@ export class FormStore {
     }
 
     getFieldsValue=(nameList,filterFunc)=>{
-        
+        if(nameList===true && !filterFunc){
+            return this.store;
+        }
+
+        const fieldEntities=this.getFieldEntitiesForNamePathList(
+            Array.isArray(nameList)?nameList:null
+        );
+
+        const filteredNameList= [];
+        fieldEntities.forEach((entity) => {
+            const namePath =
+              'INVALIDATE_NAME_PATH' in entity ? entity.INVALIDATE_NAME_PATH : entity.getNamePath();
+      
+            if (!filterFunc) {
+              filteredNameList.push(namePath);
+            } else {
+              const meta = 'getMeta' in entity ? entity.getMeta() : null;
+              if (filterFunc(meta)) {
+                filteredNameList.push(namePath);
+              }
+            }
+        });
+        return cloneByNamePathList(this.store,filteredNameList.map(getNamePath));
     }
 
+    getFieldError=(name)=>{
+        const namePath=getNamePath(name);
+        const fieldError=this.getFieldsError([namePath])[0];
+        return fieldError.errors;
+    }
+
+    getFieldsError=(nameList)=>{
+        const fieldEntities=this.getFieldEntitiesForNamePathList(nameList);
+
+        return fieldEntities.map((entity,index)=>{
+            if(entity && !("INVALIDATE_NAME_PATH" in entity)){
+                return {
+                    name:entity.getNamePath(),
+                    errors:entity.getErrors()
+                }
+            }
+            return {
+                name:getNamePath(nameList[index]),
+                errors:[]
+            }
+        })
+    }
+
+    getFieldEntitiesForNamePathList=(nameList)=>{
+        if(!nameList){
+            return this.getFieldEntities(true);
+        }
+        const cache=this.getFieldsMap(true);
+        return nameList.map(name=>{
+            const namePath=getNamePath(name);
+            return cache.get(namePath) || { INVALIDATE_NAME_PATH: getNamePath(name) };
+        })
+    }
+
+    isFieldTouched=()=>{
+        return this.isFieldsTouched([name]);
+    }
+
+    isFieldsTouched=(...args)=>{
+        const [arg0,arg1]=args;
+        let namePathList;
+        let isAllFieldsTouched=false;
+
+        if(args.length===0){
+            namePathList=null;
+        }else if(args.length===1){
+            if(Array.isArray(arg0)){
+                namePathList=arg0.map(getNamePath);
+                isAllFieldsTouched=false;
+            }else{
+                namePathList=arg0.map(getNamePath);
+                isAllFieldsTouched=arg0;
+            }
+        }else{
+            namePathList=arg0.map(getNamePath);
+            isAllFieldsTouched=arg1;
+        }
+
+        const testTouched=(field)=>{
+            if(!namePathList){
+                return field.isFieldTouched();
+            }
+
+            const fieldNamePath=field.getNamePath();
+            if(containsNamePath(namePathList,fieldNamePath)){
+                return field.isFieldTouched();
+            }
+
+            return isAllFieldsTouched;
+        }
+
+        return isAllFieldsTouched?this.getFieldEntities(true).every(testTouched):this.getFieldEntities(true).some(testTouched)
+
+    }
+
+    isFieldsValidating=(nameList)=>{
+        const fieldEntities=this.getFieldEntities();
+
+        if(!nameList){
+            return fieldEntities.some(testField=>testField.isFieldValidating());
+        }
+        const namePathList=nameList.map(getNamePath);
+        return fieldEntities.some(testField=>{
+            const fieldNamePath=testField.getNamePath();
+            return containsNamePath(namePathList,fieldNamePath) && testField.isFieldValidating();
+        })
+    }
+
+    isFieldValidating=(name)=>{
+        return this.isFieldsValidating([name]);
+    }
+
+    //===================================Fields===========================================//
+    getFieldEntities=(pure=false)=>{
+        if(!pure){
+            return this.fieldEntities;
+        }
+        return this.fieldEntities.filter(field=>field.getNamePath().length);
+    }
+
+    getFieldsMap=(pure=false)=>{
+        const cache=new NameMap();
+        this.getFieldEntities(pure).forEach(field=>{
+            const namePath=field.getNamePath();
+            cache.set(namePath,field);
+        });
+        return cache;
+    }
+
+    //=====================Observer ===========================//
+    dispatch=(action)=>{
+        switch(action.type){
+            case 'updateValue':{
+                const {namePath,value }=action;
+                this.updateValue(namePath,value);
+                break;
+            }
+        }
+    }
+
+    notifyObservers=(prevStore,namePathList,info)=>{
+        if(this.subscribable){
+           const mergedInfo={
+               ...info,
+               store:this.getFieldsValue(true)
+           }; 
+           this.getFieldEntities().forEach(({onStoreChange})=>{
+               onStoreChange(prevStore,namePathList,mergedInfo);
+           })
+        }else{
+            this.forceRootUpdate();
+        }
+    }
+
+    updateValue=(name,value)=>{
+        const namePath=getNamePath(name);
+        const prevStore=this.store;
+        this.store=setValue(this.store,namePath,value);
+
+        this.notifyObservers(prevStore,[namePath],{
+            type:"valueUpdate",
+            source:'internal'
+        });
+    }
+
+    getDependencyChildrenFields=(rootNamePath)=>{
+        const children=new Set();
+        const childrenFields=[];
+        const dependencies2fields=new NameMap();
+
+        this.getFieldEntities().forEach(field=>{
+            const {dependencies}=field.props;
+            (dependencies||[]).forEach(dependency=>{
+                const dependencyNamePath=getNamePath(dependency);
+                dependencies2fields.update(dependencyNamePath,(field=new Set())=>{
+                    fields.add(field);
+                    return fields;
+                })
+            })
+        });
+
+        const fillChildren=(namePath)=>{
+            const fields=dependencies2fields.get(namePath) || new Set();
+            fields.forEach(field=>{
+                if(!children.has(field)){
+                    children.add(field);
+
+                    const fieldNamePath=field.getNamePath();
+
+                    if(field.isFieldDirty)
+                }
+            })
+        }
+    }
+    
+    //=====================Internal Hooks======================//
+    getInternalHooks=(key)=>{
+        if(key===HOOK_MARK){
+            this.formHooked=true;
+
+            return {
+                dispatch:this.dispatch
+            }
+        }
+    }
 
 }
 
@@ -63,7 +273,12 @@ export default function useForm(form){
             const forceReRender=()=>{
                 forceUpdate({});
             };
+            const formStore=new FormStore(forceReRender);
+
+            formRef.current=formStore.getForm();
         }
     }
+
+    return [formRef.current];
 
 }
