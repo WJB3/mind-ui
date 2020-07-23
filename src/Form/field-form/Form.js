@@ -1,7 +1,7 @@
 
 import React from 'react';
 import FormContext from './FormContext';
-import FieldContext,{HOOK_MARK} from './FieldContext';
+import FieldContext,{ HOOK_MARK } from './FieldContext';
 import useForm from './useForm';
 
 const Form=(props,ref)=>{
@@ -14,15 +14,20 @@ const Form=(props,ref)=>{
         onValuesChange,
         onFieldsChange,
         onFinish,
-        onFinishFailed
+        onFinishFailed,
+        validateTrigger='onChange'
     }=props;
 
     const formContext=React.useContext(FormContext);
 
-    const [formInstance]=useForm(form);
+    const [ formInstance ]=useForm(form);
 
     const {
-
+        useSubscribe,
+        setInitialValues,
+        setCallbacks,
+        setValidateMessages,
+        setPreserve
     }=formInstance.getInternalHooks(HOOK_MARK);
 
     let childrenNode=children;
@@ -34,10 +39,23 @@ const Form=(props,ref)=>{
         childrenNode=children(values,formInstance);
     }
 
+    useSubscribe(!childrenRenderProps);
+
+    const formContextValue=React.useMemo(
+        ()=>({
+            ...formInstance,
+            validateTrigger
+        }),
+        [formInstance,validateTrigger]
+    );
 
     const wrapperNode=(
         <FieldContext.Provider value={formContextValue}>{childrenNode}</FieldContext.Provider>
-    )
+    );
+
+    if(Component===false){
+        return wrapperNode;
+    }
 
     return (
         <Component

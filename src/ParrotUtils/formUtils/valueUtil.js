@@ -45,3 +45,32 @@ export function cloneByNamePathList(store,namePathList){
 export function containsNamePath(namePathList,namePath){
     return namePathList && namePathList.some(path=>matchNamePath(path,namePath));
 }
+
+export function setValues(store,...restValues){
+    return restValues.reduce(
+        (current,newStore)=>internalSetValues(current,newStore),
+        store
+    )
+}
+
+/**
+ * Copy values into store and return a new values object
+ * ({ a: 1, b: { c: 2 } }, { a: 4, b: { d: 5 } }) => { a: 4, b: { c: 2, d: 5 } }
+ */
+function internalSetValues(store,values){
+    const newStore=Array.isArray(store)?[...store]:{...store};
+
+    if(!values){
+        return newStore;
+    }
+
+    Object.keys(values).forEach(key=>{
+        const prevValue=newStore[key];
+        const value=values[key];
+
+        const recursive=isObject(prevValue) && isObject(value);
+        newStore[key]=recursive?internalSetValues(prevValue,value||{}):value;
+    })
+
+    return newStore;
+}

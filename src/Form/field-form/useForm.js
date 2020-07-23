@@ -1,11 +1,12 @@
 
 import React from 'react';
 import {
-    getNamePath, getValue, containsNamePath, setValue,
+    getNamePath, getValue, containsNamePath, setValue,setValues
 } from '../../ParrotUtils/formUtils/valueUtil';
 import NameMap from '../../ParrotUtils/formUtils/NameMap';
 import { HOOK_MARK } from './FieldContext';
-import set from '../../ParrotUtils/utils/set';
+import { warning } from '../../ParrotUtils/utils/warning';
+ 
 
 export class FormStore {
     
@@ -166,6 +167,30 @@ export class FormStore {
     }
 
     //===================================Fields===========================================//
+
+    getFields=()=>{
+        const entities=this.getFieldEntities(true);
+
+        const fields=entities.map(
+            (field)=>{
+                const namePath=field.getNamePath();
+                const meta=field.getMeta();
+                const fieldData={
+                    ...meta,
+                    name:namePath,
+                    value:this.getFieldValue(namePath)
+                };
+                Object.defineProperty(fieldData,'originRCField',{
+                    value:true
+                });
+
+                return fieldData;
+            }
+        );
+
+        return fields;
+    }
+
     getFieldEntities=(pure=false)=>{
         if(!pure){
             return this.fieldEntities;
@@ -223,40 +248,71 @@ export class FormStore {
         const childrenFields=[];
         const dependencies2fields=new NameMap();
 
-        this.getFieldEntities().forEach(field=>{
-            const {dependencies}=field.props;
-            (dependencies||[]).forEach(dependency=>{
-                const dependencyNamePath=getNamePath(dependency);
-                dependencies2fields.update(dependencyNamePath,(field=new Set())=>{
-                    fields.add(field);
-                    return fields;
-                })
-            })
-        });
+        // this.getFieldEntities().forEach(field=>{
+        //     const {dependencies}=field.props;
+        //     (dependencies||[]).forEach(dependency=>{
+        //         const dependencyNamePath=getNamePath(dependency);
+        //         dependencies2fields.update(dependencyNamePath,(field=new Set())=>{
+        //             fields.add(field);
+        //             return fields;
+        //         })
+        //     })
+        // });
 
-        const fillChildren=(namePath)=>{
-            const fields=dependencies2fields.get(namePath) || new Set();
-            fields.forEach(field=>{
-                if(!children.has(field)){
-                    children.add(field);
+        // const fillChildren=(namePath)=>{
+        //     const fields=dependencies2fields.get(namePath) || new Set();
+        //     fields.forEach(field=>{
+        //         if(!children.has(field)){
+        //             children.add(field);
 
-                    const fieldNamePath=field.getNamePath();
+        //             const fieldNamePath=field.getNamePath();
 
-                    if(field.isFieldDirty)
-                }
-            })
-        }
+        //             if(field.isFieldDirty)
+        //         }
+        //     })
+        // }
     }
     
     //=====================Internal Hooks======================//
     getInternalHooks=(key)=>{
         if(key===HOOK_MARK){
             this.formHooked=true;
-
             return {
-                dispatch:this.dispatch
+                useSubscribe:this.useSubscribe,
+                setInitialValues:this.setInitialValues,
+                setCallbacks:this.setCallbacks,
+                setValidateMessages:this.setValidateMessages,
+                getFields:this.getFields,
+                setPreserve:this.setPreserve
             }
         }
+
+        warning(false,'`getInternalHooks` is internal usage. Should not call directly.');
+        return null;
+    }
+
+    useSubscribe=(subscribable)=>{
+        this.subscribable=subscribable;
+    }
+
+    setInitialValues=(initialValues,init)=>{
+        this.initialValues=initialValues||{};
+
+        if(init){
+            this.store=setValues({},initialValues,this.store);
+        }
+    }
+
+    setCallbacks=(callbacks)=>{
+        this.callbacks=callbacks;
+    }
+
+    setValidateMessages=(validateMessages)=>{
+        this.validateMessages=validateMessages;
+    }
+
+    setPreserve=(preserve)=>{
+        this.preserve=preserve;
     }
 
 }
