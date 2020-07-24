@@ -15,7 +15,9 @@ const Form=(props,ref)=>{
         onFieldsChange,
         onFinish,
         onFinishFailed,
-        validateTrigger='onChange'
+        validateTrigger='onChange',
+        children,
+        ...restProps
     }=props;
 
     const formContext=React.useContext(FormContext);
@@ -32,7 +34,7 @@ const Form=(props,ref)=>{
 
     let childrenNode=children;
 
-    const childrenRenderProps=typeof children==="function";
+    const childrenRenderProps=typeof children === "function";
 
     if(childrenRenderProps){
         const values=formInstance.getFieldsValue(true);
@@ -52,6 +54,7 @@ const Form=(props,ref)=>{
     const wrapperNode=(
         <FieldContext.Provider value={formContextValue}>{childrenNode}</FieldContext.Provider>
     );
+
 
     if(Component===false){
         return wrapperNode;

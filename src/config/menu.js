@@ -254,6 +254,12 @@ const menuInfo=[
                 key:"turntable",
             },
         ]
+    },
+    {
+        title:"例子",
+        key:"demo",
+        icon:"menu",
+         
     }
 ];
 
