@@ -1,8 +1,8 @@
 import toChildrenArray from '../../ParrotUtils/formUtils/Children/toArray';
-import warning from '../../ParrotUtils/utils/warning';
+import  {warning} from '../../ParrotUtils/utils/warning';
 import React,{useRef,useContext} from 'react';
 import FieldContext, { HOOK_MARK } from './FieldContext';
-import {getValue as getValueUtil,defaultGetValueFromEvent, getNamePath} from '../../ParrotUtils/formUtils/valueUtil';
+import { getValue as getValueUtil,defaultGetValueFromEvent, getNamePath} from '../../ParrotUtils/formUtils/valueUtil';
 import { toArray } from '../../ParrotUtils/formUtils/typeUtil';
 
 const Field =(props)=>{ 
@@ -64,6 +64,8 @@ const Field =(props)=>{
             if(normalize){
                 newValue=normalize(newValue,value,getFieldsValue(true));
             }
+
+            console.log(newValue);
 
             dispatch({
                 type: 'updateValue',

@@ -396,7 +396,7 @@ export class FormStore {
         });
 
         const summaryPromise=allPromiseFinish(promiseList);
-        lastValidatePromise=summaryPromise;
+        this.lastValidatePromise=summaryPromise;
 
         summaryPromise
             .catch(results=>results)
