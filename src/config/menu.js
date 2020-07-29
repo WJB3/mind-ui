@@ -256,8 +256,14 @@ const menuInfo=[
         ]
     },
     {
+        title:"虚拟滚动",
+        key:"virtualrolling",
+        icon:"menu",
+         
+    },
+    {
         title:"例子",
-        key:"demo",
+        key:"demo3",
         icon:"menu",
          
     }
