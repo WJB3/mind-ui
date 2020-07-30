@@ -1,6 +1,7 @@
 
 
 import React,{ memo,createElement,useState } from 'react';
+import useStateCallback from '../_utils/useStateCallback'
 import {getRTLOffsetType} from './domHelpers';
  
 
@@ -26,7 +27,12 @@ export default function createListComponent({
             initialScrollOffset 
         }=props;
 
-        const [ scrollOffset,setScrollOffset ]=useState(typeof initialScrollOffset==='number'?initialScrollOffset:0);
+        const [stateObj,setStateObj]=useStateCallback({
+            isScrolling:false,
+            scrollDirection:"forward",
+            scrollOffset:typeof initialScrollOffset==='number'?initialScrollOffset:0,
+            scrollUpdateWasRequested:false
+        });
 
         const _onScrollHorizontal=(scrollEvent)=>{
             const { clientWidth,scrollLeft,scrollWidth }=scrollEvent.currentTarget;
