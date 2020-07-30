@@ -2,7 +2,7 @@ import toChildrenArray from '../../ParrotUtils/formUtils/Children/toArray';
 import  {warning} from '../../ParrotUtils/utils/warning';
 import React,{useRef,useContext} from 'react';
 import FieldContext, { HOOK_MARK } from './FieldContext';
-import { getValue as getValueUtil,defaultGetValueFromEvent, getNamePath} from '../../ParrotUtils/formUtils/valueUtil';
+import { getValue ,defaultGetValueFromEvent, getNamePath} from '../../ParrotUtils/formUtils/valueUtil';
 import { toArray } from '../../ParrotUtils/formUtils/typeUtil';
 
 const Field =(props)=>{ 
@@ -35,37 +35,40 @@ const Field =(props)=>{
 
     const isFieldTouched=()=>touched.current;
 
-    const getControlled=(childProps={})=>{
+    const getControlled=(childProps={})=>{//{placeholder:"user"}
        
-        const mergedValidateTrigger =validateTrigger!==undefined?validateTrigger:context.validateTrigger;
-        const namePath=getNamePath();
+        const mergedValidateTrigger =validateTrigger!==undefined?validateTrigger:context.validateTrigger;//onChange
+
+        const namePath=getNamePath(name);//['name']
+  
         const { getInternalHooks,getFieldsValue }=context;
+
         const { dispatch }=getInternalHooks(HOOK_MARK);
-        const value = getValue();
+
+        const value = getValue(getFieldsValue(true),namePath);
+
         const mergedGetValueProps = getValueProps || ((val) => ({ [valuePropName]: val }));
-        const originTriggerFunc=childProps[trigger];
+
+        const originTriggerFunc=childProps[trigger]; 
 
         const control={
             ...childProps,
             ...mergedGetValueProps(value)
-        }
+        } 
 
-        control[trigger]=(...args)=>{
+        control[trigger]=(...args)=>{ 
+
             touched.current=true;
+
             dirty.current=true;
 
             let newValue;
+
             if(getValueFromEvent){
                 newValue=getValueFromEvent(...args);
             }else{
                 newValue=defaultGetValueFromEvent(valuePropName,...args);
-            }
-
-            if(normalize){
-                newValue=normalize(newValue,value,getFieldsValue(true));
-            }
-
-            console.log(newValue);
+            } 
 
             dispatch({
                 type: 'updateValue',
@@ -76,82 +79,20 @@ const Field =(props)=>{
             if(originTriggerFunc){
                 originTriggerFunc(...args);
             }
-        }
-
-        const validateTriggerList=toArray(mergedValidateTrigger||[]);
-
-        validateTriggerList.forEach((triggerName)=>{
-            const originTrigger=control[triggerName];
-            control[triggerName]=(...args)=>{
-                console.log("onChange");
-                if(originTrigger){
-                    originTrigger(...args);
-                }
-            }
-        })
-        // if(rules && rules.length){
-        //     dispatch({
-        //         type:"validateField",
-        //         namePath,
-        //         triggerName
-        //     });
-        // }
-
-        console.log(control);
-
+        }  
         return control;
     }
 
     const getOnlyChild=(children)=>{ 
-   
-        if(typeof children==='function'){
-            
-            const meta=getMeta();
-            return {
-                ...getOnlyChild(children(getControlled(), meta, context)),
-                isFunction: true,
-            };
-        }  
         const childList=toChildrenArray(children);
-
-        if (childList.length !== 1 || !React.isValidElement(childList[0])) {
-            return { child: childList, isFunction: false };
-        }
-        
-        return { child: childList[0], isFunction: false };
+        return { child: childList[0]  };
     }
+ 
+    const { child }=getOnlyChild(children);
 
-    const getNamePath=()=>{
-        const {prefixName=[]}=context;
-        return name!==undefined ? [...prefixName,...name]:[];
-    }
+    let returnChildNode;    
 
-    const getValue=(store)=>{
-        const { getFieldsValue }=context;
-        const namePath=getNamePath();
-        return getValueUtil(store||getFieldsValue(true),namePath);
-    }
-
-    const getMeta=()=>{
-        prevValidating.current=isFieldValidating();
-
-        const meta={
-            touched:isFieldTouched(),
-            validating:prevValidating.current,
-            errors:errors.current,
-            name:getNamePath()
-        };
-
-        return meta;
-    }
-
-    const { isFunction,child }=getOnlyChild(children);
-
-    let returnChildNode; 
-
-    if(isFunction){
-        returnChildNode=child;
-    }else if(React.isValidElement(child)){
+    if(React.isValidElement(child)){
         returnChildNode=React.cloneElement(
             child,
             getControlled(child.props)
@@ -161,23 +102,10 @@ const Field =(props)=>{
         returnChildNode = child;
     }
 
-
     return <React.Fragment>
         {returnChildNode}
     </React.Fragment>
 }
+ 
 
-const WrapperField=({name,isListField,...restProps})=>{
-
-    const namePath=name!==undefined?getNamePath(name):undefined;
-
-    let key='keep';
-    
-    if(!isListField){
-        key=`_${(namePath||[]).join("_")}`;
-    }
-
-    return <Field key={key} name={namePath} {...restProps} />;
-}
-
-export default WrapperField;
+export default Field;

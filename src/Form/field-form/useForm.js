@@ -1,7 +1,7 @@
 
 import React from 'react';
 import {
-    getNamePath, getValue, containsNamePath, setValue, setValues
+    getNamePath, getValue, containsNamePath, setValue, setValues,cloneByNamePathList
 } from '../../ParrotUtils/formUtils/valueUtil';
 import NameMap from '../../ParrotUtils/formUtils/NameMap';
 import { HOOK_MARK } from './FieldContext';
@@ -45,7 +45,7 @@ export class FormStore {
 
     });
 
-    getFieldValue = (name) => {
+    getFieldValue = (name) => {//获取单个字段的值
         const namePath = getNamePath(name);
         return getValue(this.store, namePath);
     }
@@ -104,6 +104,7 @@ export class FormStore {
             return this.getFieldEntities(true);
         }
         const cache = this.getFieldsMap(true);
+        console.log(cache);
         return nameList.map(name => {
             const namePath = getNamePath(name);
             return cache.get(namePath) || { INVALIDATE_NAME_PATH: getNamePath(name) };
@@ -193,7 +194,7 @@ export class FormStore {
         return fields;
     }
 
-    getFieldEntities = (pure = false) => {
+    getFieldEntities = (pure = false) => { 
         if (!pure) {
             return this.fieldEntities;
         }
@@ -235,6 +236,7 @@ export class FormStore {
     }
 
     updateValue = (name, value) => {
+
         const namePath = getNamePath(name);
         const prevStore = this.store;
         this.store = setValue(this.store, namePath, value);
@@ -244,46 +246,13 @@ export class FormStore {
             source: 'internal'
         });
 
-        const childrenFields = this.getDependencyChildrenFields(namePath);
-        this.validateFields(childrenFields);
-
-    }
-
-    getDependencyChildrenFields = (rootNamePath) => {
-        const children = new Set();
-        const childrenFields = [];
-        const dependencies2fields = new NameMap();
-
-        this.getFieldEntities().forEach(field => {
-            const { dependencies } = field.props;
-            (dependencies || []).forEach(dependency => {
-                const dependencyNamePath = getNamePath(dependency);
-                dependencies2fields.update(dependencyNamePath, (field = new Set()) => {
-                    fields.add(field);
-                    return fields;
-                })
-            })
-        });
-
-        const fillChildren = (namePath) => {
-            const fields = dependencies2fields.get(namePath) || new Set();
-            fields.forEach(field => {
-                if (!children.has(field)) {
-                    children.add(field);
-
-                    const fieldNamePath = field.getNamePath();
-
-                    if (field.isFieldDirty() && fieldNamePath.length) {
-                        childrenFields.push(fieldNamePath);
-                        fillChildren(fieldNamePath);
-                    }
-                }
-            })
+        const { onValuesChange }=this.callbacks;
+        if(onValuesChange){
+            const changedValues = cloneByNamePathList(this.store, [namePath]);
+            onValuesChange(changedValues, this.store);
         }
-
-        fillChildren(rootNamePath);
-
-        return childrenFields;
+ 
+        this.triggerOnFieldsChange([namePath]);
     }
 
     triggerOnFieldsChange=(namePathList,fieldErrors)=>{

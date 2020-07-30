@@ -262,8 +262,14 @@ const menuInfo=[
          
     },
     {
-        title:"例子",
+        title:"例子3",
         key:"demo3",
+        icon:"menu",
+         
+    },
+    {
+        title:"例子",
+        key:"demo",
         icon:"menu",
          
     }

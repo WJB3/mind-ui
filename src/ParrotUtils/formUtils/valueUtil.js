@@ -7,6 +7,7 @@ import { toArray } from './typeUtil';
  * 'a' => ['a']
  * 123 => [123]
  * ['a', 123] => ['a', 123]
+ * 将字符串等转化为字符串数组
  */
 export function getNamePath(path){
     return toArray(path);

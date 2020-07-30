@@ -19,5 +19,6 @@ export default function toArray(children){
             ret.push(child);
         }
     }); 
+    
     return ret;
 }
