@@ -1,0 +1,72 @@
+
+import createListComponent from './createListComponent';
+
+const FixedSizeList=createListComponent({
+    getItemOffset:({itemSize},index)=>index*itemSize,
+    getItemSize:({itemSize},index)=>itemSize,
+    getEstimatedTotalSize:({itemCount,itemSize})=>itemSize*itemCount,
+    getOffsetForIndexAndAlignment:({
+        direction,height,itemCount,layout,width
+    },index,align,scrollOffset)=>{
+        const isHorizontal=direction==="horizontal"||layout==="horizontal";
+        const size=isHorizontal?width:height;
+        const lastItemOffset=Math.max(0,itemCount*itemSize-size);
+        const maxOffset=Math.min(lastItemOffset,index*itemSize);
+        const minOffset=Math.max(0,index*itemSize-size+itemSize);
+        if(align==="smart"){
+            if(scrollOffset>=minOffset-size && scrollOffset<=maxOffset+size){
+                align='auto';
+            }else{
+                align='center';
+            }
+        }
+        switch(align){
+            case "start":
+                return maxOffset;
+            case "end":
+                return minOffset;
+            case "center":
+                const middleOffset=Math.round(
+                    minOffset+(maxOffset-minOffset)/2
+                );
+                if(middleOffset<Math.ceil(size/2)){
+                    return 0;
+                }else if(middleOffset>lastItemOffset+Math.floor(size/2)){
+                    return lastItemOffset;
+                }else{
+                    return middleOffset;
+                }
+            case "auto":
+            default:
+                if(scrollOffset>=minOffset && scrollOffset<=maxOffset){
+                    return scrollOffset;
+                }else if(scrollOffset<minOffset){
+                    return minOffset;
+                }else{
+                    return maxOffset;
+                }
+        }
+    },
+    getStartIndexForOffset:({itemCount,itemSize},offset)=>Math.max(
+        0,Math.min(itemCount-1,Math.floor(offset/itemSize))
+    ),
+    getStopIndexForStartIndex:({direction,height,itemCount,layout,width},startIndex,scrollOffset)=>{
+        const isHorizontal=direction==="horizontal"||layout==="horizontal";
+        const offset=startIndex*itemSize;
+        const size=isHorizontal?width:height;
+        const numVisibleItems=Math.ceil(
+            (size+scrollOffset-offset)/itemSize
+        );
+        return Math.max(
+            0,
+            Math.min(
+                itemCount-1,
+                startIndex+numVisibleItems-1
+            )
+        )
+    },
+    shouldResetStyleCacheOnItemSizeChange:true,
+    
+});
+
+export default FixedSizeList;

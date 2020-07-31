@@ -1,5 +1,4 @@
-import React, { Fragment, useEffect } from 'react';
-import { getScrollbarSize } from '../src/VirtualRolling/domHelpers';
+import React, { Fragment, useEffect } from 'react'; 
 import { FixedSizeList } from 'react-window';
 
 const Demo = () => {
@@ -19,17 +18,17 @@ const Demo = () => {
     </FixedSizeList>
   }
 
-  const render2=()=>{
-        return new Array(100000).fill(1).map((item,index)=><div>
-          {index}
-        </div>)
-  }
+  // const render2=()=>{
+  //       return new Array(100000).fill(1).map((item,index)=><div>
+  //         {index}
+  //       </div>)
+  // }
 
   useEffect(()=>{
-    console.log(getScrollbarSize())
+    
   },[]);
 
-  return render2();
+  return render();
 }
 
 
