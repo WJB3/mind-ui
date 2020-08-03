@@ -50,7 +50,10 @@ const FixedSizeList=createListComponent({
     getStartIndexForOffset:({itemCount,itemSize},offset)=>Math.max(
         0,Math.min(itemCount-1,Math.floor(offset/itemSize))
     ),
-    getStopIndexForStartIndex:({direction,height,itemCount,layout,width},startIndex,scrollOffset)=>{
+    getStopIndexForStartIndex:({
+        direction,height,itemCount,itemSize,layout,width},
+        startIndex,
+        scrollOffset)=>{
         const isHorizontal=direction==="horizontal"||layout==="horizontal";
         const offset=startIndex*itemSize;
         const size=isHorizontal?width:height;

@@ -1,6 +1,6 @@
 
 
-import React,{ memo,createElement,useState, useEffect } from 'react';
+import React,{ memo,createElement,useRef, useEffect } from 'react';
 import useStateCallback from '../_utils/useStateCallback'
 import {getRTLOffsetType} from './domHelpers';
 import { cancelTimeout, requestTimeout } from './timer';
@@ -44,12 +44,13 @@ export default function createListComponent({
             shouldResetStyleCacheOnItemSizeChange,
             innerRef,
             onItemsRendered,
-            onScroll:onScrollProp
+            onScroll:onScrollProp,
+            children
         }=props;
 
         const _resetIsScrollingTimeoutId=useRef(null);
 
-        const _outerRef =useRef(null);
+        const _outerRef=useRef(null);
 
         const [stateObj,setStateObj]=useStateCallback({
             isScrolling:false,
@@ -81,7 +82,7 @@ export default function createListComponent({
 
         }
 
-        const _getItemStyleCache=memoized((_,_,_)=>({}))
+        const _getItemStyleCache=memoized((_,__,___)=>({}))
 
         const _getItemStyle=(index)=>{
             const itemStyleCache=_getItemStyleCache(
@@ -173,6 +174,7 @@ export default function createListComponent({
         }
         
         const _outerRefSetter=(ref)=>{
+
             _outerRef.current=ref;
 
             if(typeof outerRef==='function'){
