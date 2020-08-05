@@ -1,5 +1,4 @@
-import React,{ Fragment } from 'react';
-import Form, { Field } from 'rc-field-form';
+import React,{ Fragment } from 'react'; 
 import AForm, { Field as AField } from './Form/field-form';
 
 const Demo = () => {
@@ -12,17 +11,7 @@ const Demo = () => {
     e.preventDefault();
     console.log(form.getFieldValue("username"));
     console.log(form.getFieldsValue(["username"]));
-    // console.log(form.getFieldError(["username"]));
-    // console.log(form.getFieldsError(["username","password"]));
-    // console.log(form.isFieldTouched("password"));
-    // console.log(form.isFieldsTouched(["username","password"]));
-    // console.log(form.isFieldValidating("username"));
-    // form.validateFields(["username"]).then(res=>console.log(res)).catch(err=>console.log(err));
-    // form.submit();
-    
-    // form.setFields([{name:"username",value:"1111"}]);
-    // form.setFieldsValue({username:"sevalue"});
-    // form.resetFields();
+ 
     
   }
  

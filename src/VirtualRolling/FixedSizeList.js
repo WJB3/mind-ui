@@ -59,7 +59,7 @@ const FixedSizeList=createListComponent({
         const size=isHorizontal?width:height;
         const numVisibleItems=Math.ceil(
             (size+scrollOffset-offset)/itemSize
-        );
+        ); 
         return Math.max(
             0,
             Math.min(

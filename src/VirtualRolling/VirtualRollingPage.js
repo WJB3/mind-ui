@@ -15,14 +15,24 @@ const Page = () => {
     const [count, setCount] = useState(0);
 
     return (
-        <FixedSizeList
-            height={500}
-            itemCount={100000}
-            itemSize={35}
-            width={"100%"}
-        >
-            {Row}
-        </FixedSizeList>
+        <Fragment>
+            <FixedSizeList
+                height={500}
+                itemCount={100000}
+                itemSize={35}
+                width={"100%"}
+            >
+                {Row}
+            </FixedSizeList>
+            <List
+                height={500}
+                itemCount={100000}
+                itemSize={35}
+                width={"100%"}
+            >
+                {Row}
+            </List>
+        </Fragment>
     )
 }
 

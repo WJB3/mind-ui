@@ -149,20 +149,23 @@ export default function createListComponent({
             },_resetIsScrollingDebounced);
         }
 
-        const _onScrollVertical=()=>{
+        const _onScrollVertical=(event)=>{
 
             const {clientHeight,scrollHeight,scrollTop}=event.currentTarget;
 
+            console.log(clientHeight)
+            console.log(scrollHeight)
+            console.log(scrollTop)
+
             setStateObj(
-                prevStateObj=>{
+                prevStateObj=>{ 
                     if(prevStateObj.scrollOffset===scrollTop){
                         return null;
                     }
                     const scrollOffset = Math.max(
                         0,
                         Math.min(scrollTop, scrollHeight - clientHeight)
-                    );
-
+                    ); 
                     return {
                         isScrolling:true,
                         scrollDirection:prevStateObj.scrollOffset<scrollOffset?"forward":"backward",
@@ -187,7 +190,7 @@ export default function createListComponent({
 
         const _getRangeToRender=()=>{
             const { isScrolling,scrollDirection,scrollOffset }=stateObj;
-
+ 
             if(itemCount===0){
                 return [0,0,0,0];
             }
@@ -328,7 +331,7 @@ export default function createListComponent({
                     style:{
                         height:isHorizontal?"100%":estimatedTotalSize,
                         pointerEvents:stateObj.isScrolling?"none":undefined,
-                        width:stateObj.isScrolling?estimatedTotalSize:"100%"
+                        width:isHorizontal?estimatedTotalSize:"100%"
                     }
                 }
             )

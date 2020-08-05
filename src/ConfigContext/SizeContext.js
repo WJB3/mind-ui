@@ -2,16 +2,10 @@ import React from 'react';
 
 const SizeContext=React.createContext(undefined);
 
-export const SizeContextProvider=({children,size})=>(
-    <SizeContext.Consumer>
-        {
-            originSize=>(
-                <SizeContext.Provider value={size||originSize}>
+export const SizeContextProvider=({children,size})=>( 
+                <SizeContext.Provider value={size}>
                     {children}
                 </SizeContext.Provider>
-            )
-        }
-    </SizeContext.Consumer>
-)
+);
 
 export default SizeContext;
