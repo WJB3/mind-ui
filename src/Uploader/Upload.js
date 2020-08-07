@@ -1,9 +1,11 @@
-import React ,{forwardRef,useState, useEffect} from 'react';
-import AjaxUploader from './uploader/AjaxUploader';
+import React ,{ forwardRef,useState, useEffect,useRef } from 'react';
+import AjaxUploader from './AjaxUploader';
 import { classNames } from '../components/helper/className';
-import { ConfigContext } from '../ConfigContext';
-import { fileToObject } from 'antd/lib/upload/utils';
-import { getFileItem } from './utils';
+import { ConfigContext } from '../ConfigContext'; 
+import useInit from '../_utils/useInit';
+import { getFileItem,fileToObject } from './utils'; 
+import "./index.scss";
+
 
 const Uploader =forwardRef((props,ref)=>{
 
@@ -23,10 +25,12 @@ const Uploader =forwardRef((props,ref)=>{
         fileList:fileListProp,
         defaultFileList:defaultFileListProp,
         onChange:onChangeProp,
-        beforeUpload:beforeUploadProp
+        beforeUpload:beforeUploadProp,
     }=props;
 
-    const [fileList,setFileList]=useState(fileListProp||defaultFileListProp||[]);
+    const fileList=useRef(fileListProp||defaultFileListProp||[]);
+
+    const isInit=useInit();
 
     const ajaxUploaderRef=useRef(null);
 
@@ -34,16 +38,18 @@ const Uploader =forwardRef((props,ref)=>{
 
     const { getPrefixCls } = React.useContext(ConfigContext);
 
-    const prefixCls = getPrefixCls("uploader", customizePrefixCls);
+    const prefixCls = getPrefixCls("upload", customizePrefixCls);
 
-    const onStart=(file)=>{
+    const onStart=(file)=>{ 
+      
         const targetItem=fileToObject(file);
-        targetItem.status='uploading';
 
-        const nextFileList=fileList.concat();
+        targetItem.status='uploading';
+ 
+        const nextFileList=fileList.current.concat();
         const fileIndex=nextFileList.findIndex(({uid})=>uid===targetItem.uid);
 
-        if(findIndex===-1){
+        if(fileIndex===-1){
             nextFileList.push(targetItem);
         }else{
             nextFileList[fileIndex]=targetItem;
@@ -57,7 +63,7 @@ const Uploader =forwardRef((props,ref)=>{
     }
     
     const onError=(error,response,file)=>{
-        const targetItem=getFileItem(file,fileList);
+        const targetItem=getFileItem(file,fileList.current);
 
         if(!targetItem){
             return ;
@@ -69,12 +75,14 @@ const Uploader =forwardRef((props,ref)=>{
 
         onChange({
             file:{...targetItem},
-            fileList
+            fileList:fileList.current
         })
     }
 
     const onProgress=(e,file)=>{
-        const targetItem=getFileItem(file,fileList);
+       
+        const targetItem=getFileItem(file,fileList.current); 
+
         if(!targetItem){
             return ;
         }
@@ -82,7 +90,7 @@ const Uploader =forwardRef((props,ref)=>{
         onChange({
             event:e,
             file:{...targetItem},
-            fileList
+            fileList:fileList.current
         })
     }
 
@@ -92,7 +100,7 @@ const Uploader =forwardRef((props,ref)=>{
                 response=JSON.parse(response);
             }
         }catch(e){}
-        const targetItem=getFileItem(file,fileList);
+        const targetItem=getFileItem(file,fileList.current);
         if(!targetItem){
             return ;
         }
@@ -101,14 +109,13 @@ const Uploader =forwardRef((props,ref)=>{
         targetItem.xhr=xhr;
         onChange({
             file:{...targetItem},
-            fileList
+            fileList:fileList.current
         })
     }
 
-    const onChange=(info)=>{
-        if(!fileListProp){
-            setFileList(info.fileList);
-        }
+    const onChange=(info)=>{  
+
+        fileList.current=info.fileList||[];
 
         if(onChangeProp){
             onChangeProp({
@@ -119,7 +126,7 @@ const Uploader =forwardRef((props,ref)=>{
     }
 
     const beforeUpload=(file,fileListProp)=>{
-        if(!beforeUpload){
+        if(!beforeUploadProp){
             return true;
         }
 
@@ -128,7 +135,7 @@ const Uploader =forwardRef((props,ref)=>{
         if(result===false){
             const uniqueList=[];
 
-            fileList.concat(fileList.map(fileToObject)).forEach(f=>{
+            fileList.current.concat(fileList.current.map(fileToObject)).forEach(f=>{
                 if(uniqueList.every(uf=>uf.uid!==f.uid)){
                     uniqueList.push(f);
                 }
@@ -149,6 +156,10 @@ const Uploader =forwardRef((props,ref)=>{
         return true;
     }
 
+    const renderUploadList=()=>{
+        
+    }
+
     const renderUpload=()=>{
  
         const uploadProps={
@@ -162,7 +173,7 @@ const Uploader =forwardRef((props,ref)=>{
         }
 
         delete uploadProps.className;
-        delete uploadProps.style;
+        delete uploadProps.style; 
 
         const uploadButton=(
             <div className={classNames(
@@ -170,16 +181,21 @@ const Uploader =forwardRef((props,ref)=>{
             )} style={children?undefined:{display:"none"}}>
                 <AjaxUploader {...uploadProps} ref={ajaxUploaderRef}  />
             </div>
-        )
+        );
+
+        const uploadList=showUploadList ? renderUploadList() :null;
 
         return <span className={className}>
             {uploadButton}
+            {uploadList}
         </span>
     }
  
     useEffect(()=>{
-        setFileList(fileListProp||[]);
-    },[fileListProp])
+        if(isInit.current){
+            fileList.current=fileListProp||[];
+        }
+    },[fileListProp]) 
 
     return renderUpload();
 

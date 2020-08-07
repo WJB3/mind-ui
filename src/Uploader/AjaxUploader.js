@@ -1,6 +1,6 @@
-import React,{useState, useEffect} from 'react';
-import className from '../../_utils/className';
-import useForkRef from '../../_utils/useForkRef';
+import React,{useState, useEffect,useRef } from 'react';
+import classNames from '../_utils/className';
+import useForkRef from '../_utils/useForkRef';
 import defaultRequest, { getUid,attrAccept } from './request';
 
 const dataOrAriaAttributeProps=(props)=>{
@@ -9,7 +9,7 @@ const dataOrAriaAttributeProps=(props)=>{
             if(key.substr(0,5)==="data-"||key.substr(0,5)==='aria-'||key==='role'){
                 acc[key]=props[key];
             }
-            return arr;
+            return acc;
         },
         {}
     )
@@ -81,10 +81,17 @@ const AjaxUploader=React.forwardRef((props,ref)=>{
         }
     }
 
-    const upload=(file,fileList)=>{
-        if(!beforeUpload){
+    const upload=(file,fileList)=>{ 
+        if(!beforeUpload){ 
             return setTimeout(()=>post(file),0);
         }
+        const before=beforeUpload(file,fileList);
+        if(before && before.then){
+
+        }else if(before!==false){
+            setTimeout(()=>post(file,0));
+        }
+        return undefined;
     }
 
     const post=(file)=>{
@@ -146,18 +153,20 @@ const AjaxUploader=React.forwardRef((props,ref)=>{
             })
     }
 
-    const onFileDrop=(e)=>{
+     
+    const onFileDrop=(e)=>{ 
+
         e.preventDefault();
 
         if(e.type==='dragover'){
             return ;
-        }
+        } 
 
         let files=Array.prototype.slice
             .call(e.dataTransfer.files)
             .filter(file=>attrAccept(file,accept));
 
-        let (multiple===false){
+        if(multiple===false){
             files=files.slice(0,1);
         }
 
@@ -174,7 +183,7 @@ const AjaxUploader=React.forwardRef((props,ref)=>{
         tabIndex:"0" 
     }
 
-    abort=(file)=>{
+    const abort=(file)=>{
         if(file){
             let uid=file;
             if(file && file.uid){
@@ -230,9 +239,12 @@ const AjaxUploader=React.forwardRef((props,ref)=>{
                 accept={accept}
                 multiple={multiple}
                 onChange={onChange}
+                style={{ display: 'none' }}
             />
             {children}
         </Component>
     )
 
 });
+
+export default AjaxUploader;

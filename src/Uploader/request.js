@@ -129,8 +129,7 @@ export default function upload(option){
     return {
         abort(){
             xhr.abort();
-        },
-
+        }
     }
 
 

@@ -13,7 +13,7 @@ export default function useControlled({controlled,default:defaultProps}){
     
     let isControlled=controlled!==undefined && !isEmptyArr(controlled);
     
-    const [valueState,setValueState]=React.useState(defaultProps);
+    const [valueState,setValueState]=React.useState(defaultProps); 
 
     const value=isControlled?controlled:valueState;
  

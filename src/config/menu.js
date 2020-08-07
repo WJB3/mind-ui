@@ -262,6 +262,12 @@ const menuInfo=[
          
     },
     {
+        title:"上传",
+        key:"upload",
+        icon:"menu",
+         
+    },
+    {
         title:"例子3",
         key:"demo3",
         icon:"menu",

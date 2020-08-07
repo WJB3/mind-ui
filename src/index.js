@@ -46,6 +46,7 @@ import TurnTablePage from './TurnTable/TurnTablePage';
 import Demo2 from './Demo2';
 import Demo3 from './Demo3';
 import VirtualRollingPage from './VirtualRolling/VirtualRollingPage';
+import UploadPage from './Uploader/UploadPage';
 
 
 import ParrotLayout from './ParrotLayout';
@@ -57,6 +58,7 @@ ReactDOM.render((<HashRouter>
                         (props)=><ParrotLayout {...props} >
                                 <Switch>
                                         <Route path="/button" exact component={(props)=><ButtonPage {...props}/>}></Route>
+                                        <Route path="/upload" exact component={(props)=><UploadPage {...props}/>}></Route>
                                         <Route path="/input" exact component={(props)=><InputPage {...props}/>}></Route>
                                         <Route path="/select" exact component={(props)=><SelectPage {...props}/>}></Route>
                                         <Route path="/tooltip" exact component={(props)=><TooltipPage {...props}/>}></Route>
