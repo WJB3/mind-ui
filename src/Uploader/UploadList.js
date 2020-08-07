@@ -11,7 +11,8 @@ const UploadList=React.forwardRef((props,ref)=>{
         listType,
         isImageUrl:isImgUrl,
         prefixCls,
-        onPreview 
+        onPreview,
+        showRemoveIcon=true
     }=props;
 
     const handleIconRender=(file)=>{

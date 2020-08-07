@@ -2,6 +2,7 @@ import React from 'react';
 import Upload from './index';
 import Button from '../ButtonBase';
 import message from '../Message';
+import { Upload as AUpload} from 'antd';
 
 const Page=React.forwardRef((props,ref)=>{
 
@@ -28,9 +29,9 @@ const Page=React.forwardRef((props,ref)=>{
     }
 
     return (
-        <Upload {...uploadProp}>
+        <AUpload {...uploadProp} showUploadList={{showDownloadIcon:true}}>
             <Button>Click to upload</Button>   
-        </Upload>
+        </AUpload>
     )
 });
 
