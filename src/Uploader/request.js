@@ -64,6 +64,7 @@ export default function upload(option){
 
     if(option.onProgress && xhr.upload){
         xhr.upload.onprogress=function progress(e){
+            console.log("progress")
             if(e.total>0){
                 e.percent=e.loaded/e.total*100;
             }

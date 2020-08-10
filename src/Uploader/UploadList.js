@@ -1,6 +1,8 @@
 import React from 'react';
 import { CSSTransition,TransitionGroup } from 'react-transition-group';
+import classNames from '../_utils/className';
 import Icon from '../components/icon';
+import Progress from '../Progress';
 import Loading from '../Loading';
 
 const UploadList=React.forwardRef((props,ref)=>{
@@ -13,7 +15,9 @@ const UploadList=React.forwardRef((props,ref)=>{
         prefixCls,
         onPreview,
         showRemoveIcon=true
-    }=props;
+    }=props; 
+
+    console.log(items)
 
     const handleIconRender=(file)=>{
         if(iconRender){
@@ -32,7 +36,7 @@ const UploadList=React.forwardRef((props,ref)=>{
         return onPreview(file);
     }
 
-    const list=items.map(file=>{
+    const list=items.map(file=>{ 
         let progress;
         const iconNode=handleIconRender(file);
 
@@ -57,18 +61,12 @@ const UploadList=React.forwardRef((props,ref)=>{
                 onClick={()=>handlePreview(file,e)}>
                 {file.name}
             </a>
-        ]
-
-        const iconAndPreview=(
-            <span>
-                {icon}
-                {preview}
-            </span>
-        )
+        ]:null;
+ 
 
         const dom=(
             <div>
-                {iconAndPreview}
+                {preview}
                 {progress}
             </div>
         )

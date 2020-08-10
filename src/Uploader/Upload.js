@@ -4,6 +4,7 @@ import { classNames } from '../components/helper/className';
 import { ConfigContext } from '../ConfigContext'; 
 import useInit from '../_utils/useInit';
 import { getFileItem,fileToObject } from './utils'; 
+import UploadList from './UploadList';
 import "./index.scss";
 
 
@@ -34,13 +35,15 @@ const Uploader =forwardRef((props,ref)=>{
 
     const ajaxUploaderRef=useRef(null);
 
-    const progressTimer=useRef(null);
+    const [forceUpdate,setForceUpdate]=useState([]);
 
     const { getPrefixCls } = React.useContext(ConfigContext);
 
     const prefixCls = getPrefixCls("upload", customizePrefixCls);
 
     const onStart=(file)=>{ 
+
+        console.log("onStart")
       
         const targetItem=fileToObject(file);
 
@@ -80,6 +83,8 @@ const Uploader =forwardRef((props,ref)=>{
     }
 
     const onProgress=(e,file)=>{
+
+        console.log("onProgress")
        
         const targetItem=getFileItem(file,fileList.current); 
 
@@ -95,6 +100,7 @@ const Uploader =forwardRef((props,ref)=>{
     }
 
     const onSuccess=(response,file,xhr)=>{
+         
         try{
             if(typeof response==='string'){
                 response=JSON.parse(response);
@@ -114,8 +120,8 @@ const Uploader =forwardRef((props,ref)=>{
     }
 
     const onChange=(info)=>{  
-
-        fileList.current=info.fileList||[];
+  
+        fileList.current=info.fileList||[]; 
 
         if(onChangeProp){
             onChangeProp({
@@ -157,7 +163,11 @@ const Uploader =forwardRef((props,ref)=>{
     }
 
     const renderUploadList=()=>{
-        
+        console.log("renderUploadList")
+        return <UploadList 
+            items={fileList.current}
+            prefixCls={prefixCls}
+        />
     }
 
     const renderUpload=()=>{

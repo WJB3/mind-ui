@@ -2,6 +2,7 @@ import React from 'react';
 import Upload from './index';
 import Button from '../ButtonBase';
 import message from '../Message';
+import Icon from '../components/icon';
 import { Upload as AUpload} from 'antd';
 
 const Page=React.forwardRef((props,ref)=>{
@@ -18,7 +19,7 @@ const Page=React.forwardRef((props,ref)=>{
         },
         onChange(info) {
             if (info.file.status !== 'uploading') {
-              console.log(info.file, info.fileList);
+              //console.log(info.file, info.fileList);
             }
             if (info.file.status === 'done') {
               message.success(`${info.file.name} file uploaded successfully`);
@@ -29,9 +30,9 @@ const Page=React.forwardRef((props,ref)=>{
     }
 
     return (
-        <AUpload {...uploadProp} showUploadList={{showDownloadIcon:true}}>
-            <Button>Click to upload</Button>   
-        </AUpload>
+        <Upload {...uploadProp} showUploadList={{showDownloadIcon:true}}>
+            <Button><Icon name={"cloud-upload"} style={{marginRight:10}}/>Click to upload</Button>   
+        </Upload>
     )
 });
 
